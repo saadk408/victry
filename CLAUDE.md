@@ -19,7 +19,7 @@ Victry is an AI-powered resume builder designed to help users create, tailor, an
 # Install dependencies
 npm install
 
-# Development server with turbopack
+# Development server
 npm run dev
 
 # Build for production
@@ -33,6 +33,12 @@ npm run lint
 
 # Type check the project
 npx tsc --noEmit
+
+# Run tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
 ```
 
 ## Technical Architecture
@@ -44,6 +50,7 @@ npx tsc --noEmit
 - Form Management: react-hook-form with zod validation
 - Rich Text Editing: TipTap
 - Animation: Framer Motion (imported via motion package)
+  - Custom animation utilities in globals.css including fade-in, float, and pulse effects
 - Drag and Drop: @dnd-kit/core, @dnd-kit/sortable
 
 ### Backend & Services
@@ -223,13 +230,50 @@ When working in this codebase:
 6. Use the existing hooks for state management
 7. Maintain strict type checking with TypeScript
 
+## Testing
+
+The project uses Jest for testing with the following structure:
+- Unit tests for AI client integration
+- API route tests
+- Configuration in jest.config.js and jest.hasteConfig.js
+
+When adding new features, include corresponding tests in the __tests__ directory.
+
+## Code Formatting
+
+Code formatting is handled by Prettier with Tailwind plugin configuration.
+Follow the project's formatting rules defined in prettier.config.js.
+
+## Environment Variables
+
+The project uses environment variables for configuration. Reference `.env.example` for required variables. For local development, create a `.env.local` file with your development credentials.
+
+Key variables include:
+- Supabase configuration
+- API keys for Claude 3.7
+- Application URLs
+
+## Database Schema Optimizations
+
+The database schema has been optimized for performance and scalability:
+
+1. **Data Integrity Controls**: Custom domains and constraints ensure data validity.
+2. **Optimized Indexing**: Strategic indexes for foreign keys, text search, and timestamp queries.
+3. **JSON Storage**: JSONB columns for flexible storage with proper indexing.
+4. **Row Level Security**: Policies ensuring users can only access their own data.
+5. **Transaction Management**: Robust stored procedures with error handling.
+6. **Performance Monitoring**: Functions to identify slow queries and database health.
+7. **Materialized Views**: Pre-computed results for common queries.
+8. **Connection Pooling**: Functions optimized for PgBouncer compatibility.
+9. **Audit Trails**: Efficient change tracking with BRIN indexes.
+
+Migration scripts for these optimizations are located in `/database/migrations/`.
+
 ## Development Areas for Improvement
 
 The following areas need further development:
-1. Testing infrastructure (unit, integration, and E2E tests)
-2. Data migration strategy for schema changes
-3. Error boundary implementation for better error handling
-4. Enhanced logging for debugging
+1. Error boundary implementation for better error handling
+2. Enhanced logging for debugging
 
 ## Context7 Integration
 
