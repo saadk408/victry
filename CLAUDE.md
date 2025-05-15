@@ -89,6 +89,9 @@ npm run test:watch
 - `/models`: Core data models
 - `/types`: TypeScript type definitions
 - `/hooks`: Custom React hooks
+- `/supabase`: Supabase configuration and migration files
+  - `/migrations`: Timestamp-based migration files
+  - `/schemas`: Declarative schema files (types, tables, functions, policies)
 
 ## Core Data Models
 
@@ -188,6 +191,33 @@ Supabase is used for database, authentication, and storage. The integration incl
   - `handleSupabaseError()`: Standardized error handling
   - `retryOperation()`: Retry logic with exponential backoff
 
+### Supabase Best Practices
+
+The Supabase integration follows these best practices:
+
+1. **Database Structure**:
+   - Timestamp-based migrations (format: YYYYMMDDHHmmss_description.sql)
+   - Declarative schema files for different components (types, tables, functions, policies)
+   - Table comments for documentation
+
+2. **Security**:
+   - Granular Row Level Security (RLS) policies for each operation (select, insert, update, delete)
+   - Separate RLS policies for authenticated and anonymous users
+   - Security definer functions with empty search_path to prevent SQL injection
+   - Function-based permissions (e.g., is_resume_owner()) for complex checks
+
+3. **Performance**:
+   - Strategic indexes (B-tree, GIN, BRIN) for different query patterns
+   - GIN indexes for JSONB columns and text search
+   - BRIN indexes for timestamp data
+   - Composite indexes for common filter combinations
+   - Connection pooling compatibility
+
+4. **Type Safety**:
+   - Generated TypeScript types for database schema
+   - Enum types for constrained values
+   - Custom domains for data validation
+
 ## Hooks and State Management
 
 Key custom hooks include:
@@ -267,13 +297,58 @@ The database schema has been optimized for performance and scalability:
 8. **Connection Pooling**: Functions optimized for PgBouncer compatibility.
 9. **Audit Trails**: Efficient change tracking with BRIN indexes.
 
-Migration scripts for these optimizations are located in `/database/migrations/`.
+Migration scripts for these optimizations are located in `/supabase/migrations/` (following Supabase's recommended timestamp-based format).
+
+## To-Do List for Supabase Implementation
+
+The following tasks should be completed to ensure a robust Supabase implementation:
+
+1. **Database Monitoring**:
+   - Set up performance monitoring for slow queries
+   - Implement query analysis using EXPLAIN ANALYZE to identify bottlenecks
+   - Consider adding logging for critical operations
+
+2. **Advanced Authorization**:
+   - Implement role-based access control for admin functions
+   - Create middleware for handling JWTs in server-side operations
+   - Add session handling utilities
+
+3. **Error Handling Enhancement**:
+   - Create a comprehensive error tracking system
+   - Implement standardized error responses across all API endpoints
+   - Add retry mechanisms for transient database errors
+
+4. **Testing Strategy**:
+   - Develop unit tests for database operations
+   - Create integration tests for Supabase client functions
+   - Set up CI/CD pipeline for automated testing
+
+5. **Edge Functions**:
+   - Evaluate operations that would benefit from Edge Functions
+   - Implement serverless functions for performance-critical operations
+   - Set up proper environment configuration for Edge Functions
+
+6. **Performance Optimization**:
+   - Analyze and optimize query patterns
+   - Consider implementing materialized views for complex reports
+   - Set up intelligent caching strategies
+
+7. **CI/CD Integration**:
+   - Implement GitHub Actions workflow for database migrations
+   - Set up automated type generation when schema changes
+   - Create deployment pipelines for different environments
+
+8. **Security Audit**:
+   - Conduct comprehensive review of RLS policies
+   - Test authentication flows thoroughly
+   - Audit function permissions and security contexts
 
 ## Development Areas for Improvement
 
 The following areas need further development:
 1. Error boundary implementation for better error handling
 2. Enhanced logging for debugging
+3. Implement the Supabase to-do list items above
 
 ## Context7 Integration
 
