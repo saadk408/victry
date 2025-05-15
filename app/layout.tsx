@@ -14,6 +14,9 @@ import Footer from "@/components/layout/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
+// Import RBAC provider for role-based access control
+import { RbacProvider } from "@/components/auth/role-based-access";
+
 // Load Inter font
 const inter = Inter({
   subsets: ["latin"],
@@ -88,6 +91,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <RbacProvider>
           {/* Header with authentication state */}
           <Suspense
             fallback={
@@ -105,6 +109,7 @@ export default async function RootLayout({
 
           {/* Toast notifications */}
           <Toaster />
+          </RbacProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -11,6 +11,8 @@ import { JobDescription } from "@/types/job-description";
 import { formatDate } from "@/lib/utils/formatting";
 import { ResumesResponse } from "@/types/api";
 import { JobDescriptionsResponse } from "@/types/api";
+import { AdminOnly, PremiumOnly } from "@/components/auth/role-based-access";
+import { PremiumFeature } from "@/components/resume/premium-feature";
 
 // Icons
 import {
@@ -22,6 +24,9 @@ import {
   Search,
   Zap,
   ChevronRight,
+  BarChart3,
+  Settings,
+  Users,
 } from "lucide-react";
 
 export default function DashboardPage() {
@@ -242,6 +247,66 @@ export default function DashboardPage() {
                     ))}
                   </div>
                 )}
+              </div>
+
+              {/* Role-Based Access Demo Section */}
+              <div className="mt-6 space-y-4">
+                {/* Admin Panel Access */}
+                <AdminOnly fallback={null}>
+                  <div className="rounded-lg bg-purple-50 p-6 shadow border border-purple-200">
+                    <h2 className="mb-4 text-xl font-semibold flex items-center gap-2 text-purple-800">
+                      <Settings className="h-5 w-5" />
+                      Admin Controls
+                    </h2>
+                    <div className="space-y-2">
+                      <Link
+                        href="/dashboard/admin"
+                        className="flex items-center rounded-lg bg-white p-3 text-purple-700 transition-colors hover:bg-purple-100 border border-purple-200"
+                      >
+                        <Users className="mr-3 h-5 w-5" />
+                        <span>Manage Users</span>
+                      </Link>
+                      <Link
+                        href="/dashboard/analytics"
+                        className="flex items-center rounded-lg bg-white p-3 text-purple-700 transition-colors hover:bg-purple-100 border border-purple-200"
+                      >
+                        <BarChart3 className="mr-3 h-5 w-5" />
+                        <span>Analytics Dashboard</span>
+                      </Link>
+                    </div>
+                  </div>
+                </AdminOnly>
+                
+                {/* Premium Feature Demo */}
+                <PremiumFeature
+                  title="Application Tracking"
+                  description="Track and manage your job applications in one place"
+                  featureName="Application Tracking"
+                >
+                  <div className="p-4 border rounded-lg bg-white">
+                    <h3 className="text-lg font-semibold mb-2">Job Applications</h3>
+                    <div className="space-y-3">
+                      <div className="p-3 border rounded-md">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h4 className="font-medium">Senior Frontend Developer</h4>
+                            <p className="text-sm text-gray-500">TechCorp Inc.</p>
+                          </div>
+                          <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Interview</span>
+                        </div>
+                      </div>
+                      <div className="p-3 border rounded-md">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h4 className="font-medium">UX Designer</h4>
+                            <p className="text-sm text-gray-500">Design Studio</p>
+                          </div>
+                          <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Applied</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </PremiumFeature>
               </div>
             </div>
           </div>
