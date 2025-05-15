@@ -1,0 +1,222 @@
+<context>
+# Overview
+Victry is an AI-powered resume builder designed to dramatically reduce the time and stress associated with resume tailoring while maintaining authenticity and ATS compatibility. The application helps professionals create, manage, and tailor resumes to specific job descriptions with intelligent AI assistance, ensuring their applications pass through Applicant Tracking Systems (ATS) while preserving their authentic voice.
+
+# Core Features
+1. **User Authentication & Profiles**
+   - Email/password and social login via Supabase Auth
+   - User profiles with subscription status
+   - Account management and settings
+
+2. **Resume Management**
+   - Create and manage base resumes
+   - View and organize job-tailored resumes
+   - Browse template gallery
+   - Import existing resumes
+
+3. **Resume Editor**
+   - Two-panel interface (form editor + live preview)
+   - Collapsible section navigation
+   - Granular editing of all resume components
+   - Real-time preview updates
+   - Template switching
+
+4. **AI-Powered Tailoring Engine**
+   - Job description analysis
+   - Keyword extraction and matching
+   - Voice preservation algorithm
+   - Tailoring intensity controls
+   - Highlight AI-suggested changes
+
+5. **ATS Optimization System**
+   - ATS compatibility score
+   - Keyword analysis dashboard
+   - Format validation
+   - Parsing simulation
+
+6. **Multi-Version Resume Management**
+   - Base template management
+   - Version history and tracking
+   - Application tracking integration
+   - Easy duplication and modification
+
+7. **Cover Letter Generation**
+   - Template selection
+   - Content synchronization with resume
+   - Tone customization
+   - Personal connection paragraph builder
+
+# User Experience
+- **Primary Users**: White-collar professionals aged 25-45 in technology, finance, marketing, consulting, sales, operations, and healthcare
+- **Experience Level**: Mid-career individuals with multiple jobs pursuing mid to upper-level positions
+- **Context**: Users who are typically pressed for time, often job searching while employed
+- **Technical Comfort**: Tech-savvy individuals with varying degrees of comfort with AI tools
+- **Emotional State**: People experiencing stress and anxiety about the job search process
+
+Key user flows:
+- Registration and onboarding
+- Resume creation/import
+- Section-by-section resume building
+- Job description analysis and tailoring
+- ATS optimization and feedback
+- Version management and exports
+- Cover letter generation
+</context>
+<PRD>
+# Technical Architecture
+## Frontend Stack
+- Framework: Next.js 15.2.3 with React 19 and TypeScript 5.8.2
+- Styling: Tailwind CSS 3.4.17 with ShadCN components
+- Animation: Framer Motion 10.16.4 for smooth transitions and UI feedback
+- State Management: React Context API for simple state, potentially Zustand for complex state
+
+## Backend & Services
+- Database: Supabase (PostgreSQL)
+- Authentication: Supabase Auth
+- File Storage: Supabase Storage
+- API Layer: Next.js API routes as middleware
+- AI Integration: Claude 3.7 via API
+
+## Database Schema
+Key tables include:
+- users (authentication and profile information)
+- base_resumes (core resume information)
+- tailored_resumes (job-specific versions)
+- job_descriptions (stored job postings)
+- job_analysis (AI-extracted data)
+- Various resume content tables (personal_info, work_experiences, education, skills, etc.)
+
+## AI Integration
+- Next.js API routes to handle Claude 3.7 API calls
+- Structured prompts for different resume elements
+- Hybrid caching strategy for AI suggestions
+- Features include resume parsing, job description analysis, content enhancement, keyword optimization, resume scoring, and cover letter generation
+
+# Development Roadmap
+## Phase 1: MVP Core Functionality
+- User authentication system (registration, login, profile management)
+- Database schema implementation
+- Basic resume editor with core sections
+- Simple resume templates (2-3 ATS-compatible options)
+- PDF export functionality
+- Basic UI/UX implementation
+- File upload and basic parsing
+- Simple ATS compatibility checker
+
+## Phase 2: AI Enhancement
+- Claude 3.7 API integration
+- Job description analysis middleware
+- Resume content enhancement features
+- Keyword optimization engine
+- Basic resume scoring implementation
+- AI suggestion interface with accept/reject controls
+- Improved resume parsing
+
+## Phase 3: Advanced Features
+- Multi-version resume management
+- Cover letter generation
+- Template expansion (5+ templates)
+- Enhanced job matching functionality
+- Version history and tracking
+- Advanced ATS optimization
+- Application tracking integration
+
+## Phase 4: Polish & Optimization
+- UI/UX refinements based on user feedback
+- Performance optimization
+- Enhanced mobile experience
+- Subscription management
+- Advanced security implementation
+- Comprehensive testing and bug fixes
+
+# Logical Dependency Chain
+1. **Foundation Layer** (must be built first)
+   - User authentication and database setup
+   - Basic UI framework and navigation
+   - Resume data model implementation
+   - Form components for resume sections
+
+2. **Core Functionality** (getting to a usable product)
+   - Resume editor with live preview
+   - Template system implementation
+   - PDF generation and export
+   - File import and parsing
+
+3. **AI Integration** (adding intelligence)
+   - API middleware for Claude 3.7
+   - Job description analysis
+   - Resume tailoring suggestions
+   - ATS compatibility checking
+
+4. **Advanced Features** (expanding capabilities)
+   - Multi-version management
+   - Cover letter generation
+   - Application tracking
+   - Version history
+
+5. **Polish & Scale** (refining the experience)
+   - UI/UX improvements
+   - Performance optimization
+   - Mobile responsiveness
+   - Subscription implementation
+
+# Risks and Mitigations
+## Technical Challenges
+1. **Resume Parsing Accuracy**
+   - Implement multiple parsing approaches
+   - Allow user correction of parsed content
+   - Start with a simplified parser and improve incrementally
+
+2. **AI Response Time**
+   - Implement background processing for longer operations
+   - Use staged loading indicators
+   - Optimize prompts for efficiency
+   - Implement strategic caching
+
+3. **ATS Simulation Accuracy**
+   - Focus on bulletproof formatting rather than perfect simulation
+   - Implement progressive improvements based on testing
+   - Build with flexibility to adapt to ATS algorithm changes
+
+## Business Challenges
+1. **Building User Trust in AI**
+   - Implement transparent AI with clear explanations
+   - Allow granular control over AI suggestions
+   - Provide before/after comparisons
+
+2. **Competing with Established Resume Builders**
+   - Focus on unique AI tailoring value proposition
+   - Emphasize time-saving benefits with actual metrics
+   - Deliver exceptional UX/UI to stand out
+
+3. **Scaling AI Costs**
+   - Implement tiered AI usage based on subscription
+   - Optimize prompts for token efficiency
+   - Develop smart caching strategies
+
+# Appendix
+## Technology Stack Details
+- Next.js 15.2.3 with App Router
+- React 19 with Server Components
+- TypeScript 5.8.2
+- Tailwind CSS 3.4.17
+- ShadCN UI components
+- Framer Motion 10.16.4
+- Supabase for authentication, database, and storage
+- Claude 3.7 AI API
+- PDF.js for PDF processing
+- Docx-parser/mammoth.js for Word documents
+
+## Monetization Strategy
+- Freemium model with tiered features
+- Free tier with limited capabilities
+- Premium subscription with full feature access
+- One-time purchase options for specific use cases
+
+## Future Expansion
+- LinkedIn integration
+- Job application tracking
+- Interview preparation
+- Career progression tools
+- Team collaboration features
+</PRD> 
