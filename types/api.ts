@@ -1,18 +1,18 @@
 // File: /types/api.ts
-import { Resume } from "@/models/resume";
+import { Resume } from "../models/resume";
 import {
   JobDescription,
   JobAnalysis,
   JobRequirement,
   JobKeyword,
-} from "@/models/job-description";
+} from "../models/job-description";
 import {
   ATSScoreResult,
   KeywordMatch,
   TailoringSettings,
   ResumeTemplate,
 } from "./resume";
-import { User, SubscriptionTier } from "@/models/user";
+import { User, SubscriptionTier } from "../models/user";
 
 /**
  * Pagination metadata returned with list responses

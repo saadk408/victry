@@ -1,0 +1,252 @@
+/**
+ * Tests for API routes
+ */
+import { withTestUser, withAnonUser } from '../supabase/test-utils';
+import { resetTestDatabase } from '../supabase/test-reset';
+
+const API_BASE_URL = 'http://localhost:3000/api';
+
+describe('API Routes', () => {
+  // Reset the database before all tests
+  beforeAll(async () => {
+    await resetTestDatabase();
+  });
+  
+  describe('Authentication', () => {
+    it('should reject unauthenticated requests to protected routes', async () => {
+      await withAnonUser(async (supabase) => {
+        const response = await fetch(`${API_BASE_URL}/resume`);
+        
+        expect(response.status).toBe(401);
+        const data = await response.json();
+        expect(data.error).toBeDefined();
+      });
+    });
+    
+    it('should accept authenticated requests to protected routes', async () => {
+      await withTestUser('basic', async (supabase) => {
+        // Get the session
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        // Make a request with the access token
+        const response = await fetch(`${API_BASE_URL}/resume`, {
+          headers: {
+            'Authorization': `Bearer ${session?.access_token}`
+          }
+        });
+        
+        expect(response.status).toBe(200);
+      });
+    });
+  });
+  
+  describe('Resume Routes', () => {
+    it('should create a resume', async () => {
+      await withTestUser('basic', async (supabase) => {
+        // Get the session
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        const resumeData = {
+          title: 'API Test Resume',
+          templateId: 'modern'
+        };
+        
+        // Create a resume via the API
+        const response = await fetch(`${API_BASE_URL}/resume`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${session?.access_token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(resumeData)
+        });
+        
+        expect(response.status).toBe(201);
+        const data = await response.json();
+        expect(data.id).toBeDefined();
+        expect(data.title).toBe(resumeData.title);
+      });
+    });
+    
+    it('should get a resume by ID', async () => {
+      await withTestUser('basic', async (supabase) => {
+        // Get the session
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        // First create a resume
+        const { data: createData } = await supabase.from('resumes').insert({
+          title: 'Resume to Get',
+          templateId: 'modern'
+        }).select();
+        
+        const resumeId = createData![0].id;
+        
+        // Get the resume via the API
+        const response = await fetch(`${API_BASE_URL}/resume/${resumeId}`, {
+          headers: {
+            'Authorization': `Bearer ${session?.access_token}`
+          }
+        });
+        
+        expect(response.status).toBe(200);
+        const data = await response.json();
+        expect(data.id).toBe(resumeId);
+      });
+    });
+    
+    it('should update a resume', async () => {
+      await withTestUser('basic', async (supabase) => {
+        // Get the session
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        // First create a resume
+        const { data: createData } = await supabase.from('resumes').insert({
+          title: 'Resume to Update',
+          templateId: 'modern'
+        }).select();
+        
+        const resumeId = createData![0].id;
+        
+        // Update data
+        const updateData = {
+          title: 'Updated via API'
+        };
+        
+        // Update the resume via the API
+        const response = await fetch(`${API_BASE_URL}/resume/${resumeId}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${session?.access_token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updateData)
+        });
+        
+        expect(response.status).toBe(200);
+        const data = await response.json();
+        expect(data.id).toBe(resumeId);
+        expect(data.title).toBe(updateData.title);
+      });
+    });
+    
+    it('should delete a resume', async () => {
+      await withTestUser('basic', async (supabase) => {
+        // Get the session
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        // First create a resume
+        const { data: createData } = await supabase.from('resumes').insert({
+          title: 'Resume to Delete',
+          templateId: 'modern'
+        }).select();
+        
+        const resumeId = createData![0].id;
+        
+        // Delete the resume via the API
+        const response = await fetch(`${API_BASE_URL}/resume/${resumeId}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${session?.access_token}`
+          }
+        });
+        
+        expect(response.status).toBe(200);
+        
+        // Verify it's gone
+        const { data } = await supabase.from('resumes').select().eq('id', resumeId);
+        expect(data!.length).toBe(0);
+      });
+    });
+  });
+  
+  describe('Job Description Routes', () => {
+    it('should create a job description', async () => {
+      await withTestUser('basic', async (supabase) => {
+        // Get the session
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        const jobData = {
+          title: 'API Test Job',
+          company: 'Test Company',
+          content: 'This is a test job description.'
+        };
+        
+        // Create a job description via the API
+        const response = await fetch(`${API_BASE_URL}/job-description`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${session?.access_token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(jobData)
+        });
+        
+        expect(response.status).toBe(201);
+        const data = await response.json();
+        expect(data.id).toBeDefined();
+        expect(data.title).toBe(jobData.title);
+      });
+    });
+  });
+  
+  describe('AI Routes', () => {
+    it('should analyze a job description', async () => {
+      await withTestUser('premium', async (supabase) => {
+        // Get the session
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        // First create a job description
+        const { data: jobData } = await supabase.from('job_descriptions').insert({
+          title: 'Job to Analyze',
+          company: 'AI Company',
+          content: 'We are looking for a developer with skills in React, TypeScript, and Node.js.'
+        }).select();
+        
+        const jobId = jobData![0].id;
+        
+        // Analyze the job via the API
+        const response = await fetch(`${API_BASE_URL}/ai/analyze-job`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${session?.access_token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ jobDescriptionId: jobId })
+        });
+        
+        // Just checking that the endpoint accepts the request
+        // The actual analysis would be done by Claude which we're not testing here
+        expect(response.status).toBe(202); // Accepted
+      });
+    });
+    
+    it('should reject job analysis from basic users', async () => {
+      await withTestUser('basic', async (supabase) => {
+        // Get the session
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        // First create a job description
+        const { data: jobData } = await supabase.from('job_descriptions').insert({
+          title: 'Basic User Job',
+          company: 'Basic Company',
+          content: 'Job description for testing permissions.'
+        }).select();
+        
+        const jobId = jobData![0].id;
+        
+        // Try to analyze the job via the API
+        const response = await fetch(`${API_BASE_URL}/ai/analyze-job`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${session?.access_token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ jobDescriptionId: jobId })
+        });
+        
+        // Should be forbidden for basic users
+        expect(response.status).toBe(403);
+      });
+    });
+  });
+});

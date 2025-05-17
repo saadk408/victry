@@ -265,7 +265,7 @@ DECLARE
   admin_role_id UUID;
   premium_role_id UUID;
   basic_role_id UUID;
-  permission_id UUID;
+  current_permission_id UUID;
 BEGIN
   -- Get role IDs
   SELECT id INTO admin_role_id FROM auth_rbac.roles WHERE name = 'admin';
@@ -273,37 +273,37 @@ BEGIN
   SELECT id INTO basic_role_id FROM auth_rbac.roles WHERE name = 'basic';
   
   -- Basic permissions (for all users)
-  FOR permission_id IN 
+  FOR current_permission_id IN 
     SELECT id FROM auth_rbac.permissions 
     WHERE name IN ('view_own_resumes', 'create_own_resumes', 'update_own_resumes', 'delete_own_resumes')
   LOOP
     INSERT INTO auth_rbac.role_permissions (role_id, permission_id)
     VALUES 
-      (basic_role_id, permission_id),
-      (premium_role_id, permission_id),
-      (admin_role_id, permission_id)
+      (basic_role_id, current_permission_id),
+      (premium_role_id, current_permission_id),
+      (admin_role_id, current_permission_id)
     ON CONFLICT (role_id, permission_id) DO NOTHING;
   END LOOP;
   
   -- Premium permissions
-  FOR permission_id IN 
+  FOR current_permission_id IN 
     SELECT id FROM auth_rbac.permissions 
     WHERE name IN ('use_ai_tailoring', 'use_advanced_templates', 'unlimited_resumes', 'export_to_all_formats')
   LOOP
     INSERT INTO auth_rbac.role_permissions (role_id, permission_id)
     VALUES 
-      (premium_role_id, permission_id),
-      (admin_role_id, permission_id)
+      (premium_role_id, current_permission_id),
+      (admin_role_id, current_permission_id)
     ON CONFLICT (role_id, permission_id) DO NOTHING;
   END LOOP;
   
   -- Admin permissions
-  FOR permission_id IN 
+  FOR current_permission_id IN 
     SELECT id FROM auth_rbac.permissions 
     WHERE name IN ('manage_users', 'view_analytics', 'manage_templates', 'system_config')
   LOOP
     INSERT INTO auth_rbac.role_permissions (role_id, permission_id)
-    VALUES (admin_role_id, permission_id)
+    VALUES (admin_role_id, current_permission_id)
     ON CONFLICT (role_id, permission_id) DO NOTHING;
   END LOOP;
 END $$;
@@ -391,8 +391,14 @@ BEGIN
 END;
 $$;
 
--- Update the resume creation policy to include the limit check
-CREATE OR REPLACE POLICY "Users can create their own resumes with limits" 
+-- Enable RLS on the resumes table
+ALTER TABLE public.resumes ENABLE ROW LEVEL SECURITY;
+
+-- Add policies to resumes table if not already present
+DROP POLICY IF EXISTS "Users can create their own resumes" ON public.resumes;
+
+-- Then create the policy with limits
+CREATE POLICY "Users can create their own resumes with limits" 
   ON public.resumes FOR INSERT 
   TO authenticated
   WITH CHECK (

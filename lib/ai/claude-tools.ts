@@ -46,7 +46,7 @@ export interface ToolHandlers {
 export function createTool(
   name: string,
   description: string,
-  inputSchema: Record<string, any>
+  inputSchema: Record<string, any> & { type: string }
 ): ClaudeTool {
   return {
     name,
@@ -61,7 +61,7 @@ export function createTool(
  * @param tool - The Claude tool to convert
  * @returns An Anthropic SDK tool object
  */
-export function convertToSDKTool(tool: ClaudeTool): Anthropic.Tool {
+export function convertToSDKTool(tool: ClaudeTool): any {
   return {
     name: tool.name,
     description: tool.description,
@@ -161,9 +161,9 @@ export async function executeToolCalls(
  * @param toolCalls - Array of tool calls with results
  * @returns Tool results content block in the SDK format
  */
-export function formatSDKToolResults(toolCalls: ToolCall[]): Anthropic.ContentBlock {
+export function formatSDKToolResults(toolCalls: ToolCall[]): any {
   return {
-    type: 'tool_result',
+    type: 'tool_result' as any,
     tool_results: toolCalls.map(call => ({
       tool_call_id: call.input.name,
       output: call.output?.output || null
@@ -181,7 +181,7 @@ export const keywordExtractionTool = createTool(
   "extract_keywords",
   "Extract relevant keywords from a text",
   {
-    type: "object",
+    type: "object" as const,
     properties: {
       text: { type: "string", description: "The text to extract keywords from" },
       maxKeywords: { type: "number", description: "Maximum number of keywords to extract" },
@@ -195,7 +195,7 @@ export const atsScoreTool = createTool(
   "calculate_ats_score",
   "Calculate an ATS compatibility score for a resume against a job description",
   {
-    type: "object",
+    type: "object" as const,
     properties: {
       resumeText: { type: "string", description: "The resume text" },
       jobDescription: { type: "string", description: "The job description text" },
@@ -209,7 +209,7 @@ export const skillMatchingTool = createTool(
   "match_skills",
   "Match resume skills with job description requirements",
   {
-    type: "object",
+    type: "object" as const,
     properties: {
       resumeSkills: { 
         type: "array", 
@@ -251,15 +251,16 @@ export const defaultToolHandlers: ToolHandlers = {
     const jobWords = new Set(jobDescription.toLowerCase().split(/\W+/).filter(w => w.length > 3));
     
     // Calculate word overlap
-    let matchCount = 0;
-    for (const word of resumeWords) {
-      if (jobWords.has(word)) {
-        matchCount++;
-      }
-    }
+    // Convert Set to Array to avoid TS downlevelIteration issues
+    const resumeWordsArray = Array.from(resumeWords);
+    const jobWordsArray = Array.from(jobWords);
+    
+    const matchCount = resumeWordsArray.filter(word => jobWordsArray.includes(word)).length;
     
     // Calculate score (simplified)
-    const score = Math.min(100, Math.round((matchCount / Math.min(jobWords.size, 50)) * 100));
+    // Convert Set.size to array length equivalent for TypeScript compatibility
+    const jobWordsCount = Array.from(jobWords).length;
+    const score = Math.min(100, Math.round((matchCount / Math.min(jobWordsCount, 50)) * 100));
     
     return {
       score,
@@ -270,31 +271,21 @@ export const defaultToolHandlers: ToolHandlers = {
   
   match_skills: async ({ resumeSkills, jobSkills }) => {
     // Convert arrays to sets (case-insensitive)
-    const resumeSkillsSet = new Set(resumeSkills.map(s => s.toLowerCase()));
-    const jobSkillsSet = new Set(jobSkills.map(s => s.toLowerCase()));
+    const resumeSkillsLower = resumeSkills.map(s => s.toLowerCase());
+    const jobSkillsLower = jobSkills.map(s => s.toLowerCase());
     
-    // Find matches
-    const matches = [];
-    for (const skill of resumeSkillsSet) {
-      if (jobSkillsSet.has(skill)) {
-        matches.push(skill);
-      }
-    }
+    // Find matches - use array methods instead of Set iteration
+    const matches = resumeSkillsLower.filter(skill => jobSkillsLower.includes(skill));
     
     // Find missing skills
-    const missing = [];
-    for (const skill of jobSkillsSet) {
-      if (!resumeSkillsSet.has(skill)) {
-        missing.push(skill);
-      }
-    }
+    const missing = jobSkillsLower.filter(skill => !resumeSkillsLower.includes(skill));
     
     return {
       matches,
       missing,
       matchCount: matches.length,
       missingCount: missing.length,
-      matchPercentage: Math.round((matches.length / jobSkillsSet.size) * 100)
+      matchPercentage: Math.round((matches.length / jobSkillsLower.length) * 100)
     };
   }
 };

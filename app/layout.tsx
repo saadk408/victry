@@ -51,17 +51,19 @@ export const metadata: Metadata = {
     description:
       "Tailor your resume to job descriptions with AI assistance and ensure ATS compatibility",
   },
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0c4a6e" },
-  ],
 };
+
+export const viewport = { width: "device-width", initialScale: 1 };
+export const themeColor = [
+  { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  { media: "(prefers-color-scheme: dark)", color: "#0c4a6e" },
+];
 
 // Get user session data for the layout
 async function getUserSession() {
   try {
-    const supabase = createServerComponentClient({ cookies });
+    const cookieStore = cookies();
+    const supabase = createServerComponentClient({ cookies: () => cookieStore });
     const {
       data: { session },
     } = await supabase.auth.getSession();

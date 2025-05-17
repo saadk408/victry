@@ -316,3 +316,49 @@ export interface TailoringSettings {
   focusKeywords: boolean;
   // ... existing code ...
 }
+
+/**
+ * Resume template with styling and format options
+ */
+export interface ResumeTemplate {
+  /** Unique identifier for the template */
+  id: string;
+  /** Template name */
+  name: string;
+  /** Template description */
+  description: string;
+  /** Template category */
+  category: "modern" | "professional" | "creative" | "simple" | "academic" | "technical";
+  /** Template preview image URL */
+  previewImageUrl: string;
+  /** Is this a premium template requiring subscription */
+  isPremium: boolean;
+  /** Predefined format options for the template */
+  defaultFormatOptions: {
+    /** Font family */
+    fontFamily: string;
+    /** Base font size in px */
+    fontSize: number;
+    /** Primary color in hex */
+    primaryColor: string;
+    /** Secondary color in hex */
+    secondaryColor?: string;
+    /** Section order */
+    sectionOrder: string[];
+    /** Page margins in mm */
+    margins: {
+      top: number;
+      right: number;
+      bottom: number;
+      left: number;
+    };
+    /** Additional template-specific styling options */
+    additionalOptions?: Record<string, any>;
+  };
+  /** Tags for filtering templates */
+  tags?: string[];
+  /** Rating out of 5 */
+  rating?: number;
+  /** Number of users who have used this template */
+  usageCount?: number;
+}

@@ -51,8 +51,8 @@ const nextConfig = {
 
   // Experimental features
   experimental: {
-    // Optimize for production
-    optimizeCss: true,
+    // Optimization features
+    optimizeCss: false, // Disable CSS optimization to resolve critters module issue
   },
 
   // Configure redirects for authentication and onboarding
@@ -168,7 +168,6 @@ const nextConfig = {
   transpilePackages: ["lucide-react"],
 
   // Configure Next.js for dynamic rendering
-  output: "standalone",
   generateEtags: false,
 };
 

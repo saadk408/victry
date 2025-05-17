@@ -1,20 +1,20 @@
 import { NextRequest } from 'next/server';
-import { POST } from '@/app/api/ai/claude/route';
-import { getAnthropicClient, handleAnthropicError } from '@/lib/ai/anthropic-client';
-import { extractToolCalls, executeToolCalls } from '@/lib/ai/claude-tools';
+import { POST } from '../../../../../app/api/ai/claude/route';
+import { getAnthropicClient, handleAnthropicError } from '../../../../../lib/ai/anthropic-client';
+import { extractToolCalls, executeToolCalls } from '../../../../../lib/ai/claude-tools';
 
 // Mock the anthropic-client module
-jest.mock('@/lib/ai/anthropic-client', () => ({
+jest.mock('../../../../../lib/ai/anthropic-client', () => ({
   getAnthropicClient: jest.fn(),
   handleAnthropicError: jest.fn(error => error),
-  convertToSDKMessageFormat: jest.fn(messages => messages.map(msg => ({
+  convertToSDKMessageFormat: jest.fn((messages: any[]) => messages.map((msg: any) => ({
     role: msg.role,
     content: typeof msg.content === 'string' ? msg.content : msg.content
   })))
 }));
 
 // Mock the claude-tools module
-jest.mock('@/lib/ai/claude-tools', () => ({
+jest.mock('../../../../../lib/ai/claude-tools', () => ({
   extractToolCalls: jest.fn(),
   executeToolCalls: jest.fn()
 }));

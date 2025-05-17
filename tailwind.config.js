@@ -3,10 +3,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
   	container: {
@@ -137,7 +137,14 @@ module.exports = {
       scale: {
         102: '1.02',
         98: '0.98',
-      }
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'grid-white': "url('/grid.svg')",
+      },
+      fontFamily: {
+        'heading': ['var(--font-heading)', 'sans-serif'],
+      },
   	}
   },
   plugins: [require("tailwindcss-animate")],

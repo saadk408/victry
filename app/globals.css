@@ -1,8 +1,7 @@
 /* File: /app/globals.css */
 /* Tailwind CSS Directives */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config "../tailwind.config.js";
+@import "tailwindcss";
 
 /* Root Variables */
 @layer base {
@@ -201,4 +200,144 @@
   to {
     width: 100%;
   }
+}
+
+/* Add these custom animation utilities to your existing globals.css */
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes pulse-width {
+  0%, 100% { width: 100%; }
+  50% { width: 90%; }
+}
+
+@keyframes pulse-width-delayed-1 {
+  0%, 100% { width: 80%; }
+  50% { width: 70%; }
+}
+
+@keyframes pulse-width-delayed-2 {
+  0%, 100% { width: 60%; }
+  50% { width: 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Adding utilities for the animations */
+.animate-pulse {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-pulse-slower {
+  animation: pulse 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-pulse-width {
+  animation: pulse-width 3s ease-in-out infinite;
+}
+
+.animate-pulse-width-delayed-1 {
+  animation: pulse-width-delayed-1 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-pulse-width-delayed-2 {
+  animation: pulse-width-delayed-2 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 4s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up-delayed {
+  animation: fade-in-up 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-left {
+  animation: fade-in-left 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up-staggered-1 {
+  animation: fade-in-up 0.8s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-staggered-2 {
+  animation: fade-in-up 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-staggered-3 {
+  animation: fade-in-up 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-staggered-4 {
+  animation: fade-in-up 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+/* Utility classes for background sizes */
+.bg-size-200 {
+  background-size: 200% 200%;
+}
+
+.hover\:bg-pos-100:hover {
+  background-position: 100% 100%;
+}
+
+/* Add the transition for hover scale */
+.hover\:scale-102:hover {
+  transform: scale(1.02);
+}
+
+.active\:scale-98:active {
+  transform: scale(0.98);
 }

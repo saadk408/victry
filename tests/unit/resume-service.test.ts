@@ -1,0 +1,159 @@
+/**
+ * Tests for the Resume service
+ */
+import { withTestUser, withAnonUser } from '../supabase/test-utils';
+import { testConfig } from '../supabase/test-environment';
+import { resetTestDatabase } from '../supabase/test-reset';
+
+describe('Resume Service', () => {
+  // Reset the database before all tests
+  beforeAll(async () => {
+    await resetTestDatabase();
+  });
+  
+  describe('Resume CRUD operations', () => {
+    it('should allow users to create resumes', async () => {
+      await withTestUser('basic', async (supabase) => {
+        const resumeData = {
+          title: 'Test Resume',
+          templateId: 'modern',
+        };
+        
+        const { data, error } = await supabase.from('resumes').insert(resumeData).select();
+        
+        expect(error).toBeNull();
+        expect(data).not.toBeNull();
+        expect(data!.length).toBe(1);
+        expect(data![0].title).toBe(resumeData.title);
+      });
+    });
+    
+    it('should allow users to read their own resumes', async () => {
+      await withTestUser('basic', async (supabase) => {
+        // First create a resume
+        const resumeData = {
+          title: 'Test Resume for Reading',
+          templateId: 'modern',
+        };
+        
+        const { data: insertData } = await supabase.from('resumes').insert(resumeData).select();
+        const resumeId = insertData![0].id;
+        
+        // Now try to read it back
+        const { data, error } = await supabase.from('resumes').select().eq('id', resumeId);
+        
+        expect(error).toBeNull();
+        expect(data).not.toBeNull();
+        expect(data!.length).toBe(1);
+        expect(data![0].id).toBe(resumeId);
+      });
+    });
+    
+    it('should allow users to update their own resumes', async () => {
+      await withTestUser('basic', async (supabase) => {
+        // First create a resume
+        const resumeData = {
+          title: 'Test Resume for Updating',
+          templateId: 'modern',
+        };
+        
+        const { data: insertData } = await supabase.from('resumes').insert(resumeData).select();
+        const resumeId = insertData![0].id;
+        
+        // Now update it
+        const updatedTitle = 'Updated Resume Title';
+        const { data, error } = await supabase
+          .from('resumes')
+          .update({ title: updatedTitle })
+          .eq('id', resumeId)
+          .select();
+        
+        expect(error).toBeNull();
+        expect(data).not.toBeNull();
+        expect(data!.length).toBe(1);
+        expect(data![0].title).toBe(updatedTitle);
+      });
+    });
+    
+    it('should allow users to delete their own resumes', async () => {
+      await withTestUser('basic', async (supabase) => {
+        // First create a resume
+        const resumeData = {
+          title: 'Test Resume for Deletion',
+          templateId: 'modern',
+        };
+        
+        const { data: insertData } = await supabase.from('resumes').insert(resumeData).select();
+        const resumeId = insertData![0].id;
+        
+        // Now delete it
+        const { error } = await supabase
+          .from('resumes')
+          .delete()
+          .eq('id', resumeId);
+        
+        expect(error).toBeNull();
+        
+        // Verify it's gone
+        const { data, error: readError } = await supabase
+          .from('resumes')
+          .select()
+          .eq('id', resumeId);
+        
+        expect(readError).toBeNull();
+        expect(data!.length).toBe(0);
+      });
+    });
+  });
+  
+  describe('Resume access control', () => {
+    it('should not allow anonymous users to access resumes', async () => {
+      await withAnonUser(async (supabase) => {
+        const { data, error } = await supabase.from('resumes').select();
+        
+        expect(error).not.toBeNull();
+        expect(data).toBeNull();
+      });
+    });
+    
+    it('should enforce resume limits for basic users', async () => {
+      await withTestUser('basic', async (supabase) => {
+        const maxResumes = testConfig.limits.basic.maxResumes;
+        
+        // Create resumes up to the limit
+        for (let i = 0; i < maxResumes; i++) {
+          const { error } = await supabase.from('resumes').insert({
+            title: `Resume ${i + 1}`,
+            templateId: 'modern',
+          });
+          
+          expect(error).toBeNull();
+        }
+        
+        // Try to create one more resume beyond the limit
+        const { error } = await supabase.from('resumes').insert({
+          title: 'One Too Many',
+          templateId: 'modern',
+        });
+        
+        // This should fail with a permission error
+        expect(error).not.toBeNull();
+        expect(error!.code).toBe('42501'); // Permission denied
+      });
+    });
+    
+    it('should allow unlimited resumes for premium users', async () => {
+      await withTestUser('premium', async (supabase) => {
+        // Create several resumes
+        for (let i = 0; i < 5; i++) {
+          const { error } = await supabase.from('resumes').insert({
+            title: `Premium Resume ${i + 1}`,
+            templateId: 'premium-template',
+          });
+          
+          expect(error).toBeNull();
+        }
+      });
+    });
+  });
+});

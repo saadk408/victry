@@ -8,8 +8,8 @@ import {
   atsScoreTool,
   skillMatchingTool,
   defaultToolHandlers
-} from '@/lib/ai/claude-tools';
-import { ClaudeTool } from '@/lib/ai/claude-client';
+} from '../../../lib/ai/claude-tools';
+import { ClaudeTool } from '../../../lib/ai/claude-client';
 
 describe('Claude Tools', () => {
   describe('createTool', () => {
@@ -396,7 +396,7 @@ describe('Claude Tools', () => {
       expect(result.length).toBeLessThanOrEqual(3);
       
       // Each item should have word and count properties
-      result.forEach(item => {
+      result.forEach((item: { word: string; count: number }) => {
         expect(item).toHaveProperty('word');
         expect(item).toHaveProperty('count');
       });

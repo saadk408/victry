@@ -1,6 +1,6 @@
 // File: /lib/utils/error-utils.ts
-import { ApiErrorResponse } from "@/types/api";
-import { isUniqueConstraintError, isForeignKeyConstraintError, isAuthError } from "@/lib/supabase/client";
+import { ApiErrorResponse } from "../../types/api";
+import { isUniqueConstraintError, isForeignKeyConstraintError, isAuthError } from "../../lib/supabase/client";
 
 /**
  * Error categories for consistent error classification

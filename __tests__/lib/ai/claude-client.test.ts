@@ -5,11 +5,11 @@ import {
   streamCompletion,
   convertToSDKMessageFormat,
   ClaudeMessage
-} from '@/lib/ai/claude-client';
-import { getAnthropicClient, handleAnthropicError } from '@/lib/ai/anthropic-client';
+} from '../../../lib/ai/claude-client';
+import { getAnthropicClient, handleAnthropicError } from '../../../lib/ai/anthropic-client';
 
 // Mock the anthropic-client module
-jest.mock('@/lib/ai/anthropic-client', () => ({
+jest.mock('../../../lib/ai/anthropic-client', () => ({
   getAnthropicClient: jest.fn(),
   handleAnthropicError: jest.fn(error => error),
   DEFAULT_CLAUDE_MODEL: 'claude-3-7-sonnet-20250219'
@@ -157,8 +157,9 @@ describe('Claude Client', () => {
       const converted = convertToSDKMessageFormat(messages);
       
       expect(converted[0].role).toBe('user');
-      expect(converted[0].content[0].type).toBe('text');
-      expect(typeof converted[0].content[0].text).toBe('string');
+      // The type check should be done on the content block, not directly on the string
+      expect((converted[0].content[0] as { type: string }).type).toBe('text');
+      expect(typeof (converted[0].content[0] as { text: string }).text).toBe('string');
     });
   });
 

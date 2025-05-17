@@ -4,6 +4,10 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { getAnthropicClient, DEFAULT_CLAUDE_MODEL, handleAnthropicError } from './anthropic-client';
 
+// Re-export these functions and constants for consumers of this module
+export { getAnthropicClient, DEFAULT_CLAUDE_MODEL, handleAnthropicError };
+
+
 /**
  * Response structure from Claude API
  * Based on Anthropic Claude API Messages response format
@@ -62,7 +66,7 @@ export interface ContentBlock {
  */
 export interface ClaudeMessage {
   role: "user" | "assistant";
-  content: string | ContentBlock[] | AnthropicContentBlock[] | Anthropic.Content[];
+  content: string | ContentBlock[] | AnthropicContentBlock[] | any[];
 }
 
 /**
@@ -83,13 +87,25 @@ export interface ClaudeRequestOptions {
 }
 
 /**
+ * Input schema for Claude API tools
+ * Defines the schema of inputs that a tool can accept
+ */
+export interface InputSchema {
+  type: string;  // Usually "object" for Anthropic API compatibility
+  properties?: Record<string, any>;
+  required?: string[];
+  additionalProperties?: boolean;
+  [key: string]: any;
+}
+
+/**
  * Tool for Claude API
  * Represents a tool that Claude can use
  */
 export interface ClaudeTool {
   name: string;
   description?: string;
-  input_schema: Record<string, any>;
+  input_schema: InputSchema;
 }
 
 /**
@@ -176,7 +192,7 @@ export function convertToSDKMessageFormat(
     }
 
     // If content is an array, convert to SDK format
-    const sdkContent: Anthropic.Content[] = message.content.map(block => {
+    const sdkContent: any[] = message.content.map(block => {
       if (block.type === 'text') {
         return { type: 'text', text: block.text || '' };
       } else if (block.type === 'image') {
@@ -192,7 +208,7 @@ export function convertToSDKMessageFormat(
           }
         };
       } else if (block.type === 'tool_result') {
-        return block as unknown as Anthropic.Content;
+        return block; // Pass through tool_result blocks
       } else {
         // Default to text if type is unknown
         return { type: 'text', text: JSON.stringify(block) };
@@ -338,11 +354,15 @@ export async function generateCompletionDirect(
     
     // Add tools if provided
     if (mergedOptions.tools && mergedOptions.tools.length > 0) {
+      // Use type assertion to avoid TypeScript compatibility issues
       messageParams.tools = mergedOptions.tools.map(tool => ({
         name: tool.name,
         description: tool.description,
-        input_schema: tool.input_schema
-      }));
+        input_schema: {
+          type: "object",
+          ...(tool.input_schema as any)
+        }
+      } as any));
     }
     
     return await anthropic.messages.create(messageParams);
@@ -428,7 +448,7 @@ export async function streamCompletion(
 export async function streamCompletionDirect(
   prompt: string | ClaudeMessage[],
   options: ClaudeRequestOptions = {}
-): Promise<Anthropic.MessageStream> {
+): Promise<ReturnType<typeof Anthropic.prototype.messages.stream>> {
   const anthropic = getAnthropicClient();
   const mergedOptions = { ...DEFAULT_OPTIONS, ...options, stream: true };
   
@@ -465,11 +485,15 @@ export async function streamCompletionDirect(
     
     // Add tools if provided
     if (mergedOptions.tools && mergedOptions.tools.length > 0) {
+      // Use type assertion to avoid TypeScript compatibility issues
       messageParams.tools = mergedOptions.tools.map(tool => ({
         name: tool.name,
         description: tool.description,
-        input_schema: tool.input_schema
-      }));
+        input_schema: {
+          type: "object",
+          ...(tool.input_schema as any)
+        }
+      } as any));
     }
     
     return await anthropic.messages.stream(messageParams);

@@ -7,7 +7,7 @@ import {
   handleAnthropicError,
   convertToSDKMessageFormat,
   DEFAULT_CLAUDE_MODEL
-} from "@/lib/ai/claude-client";
+} from "../../../../lib/ai/claude-client";
 
 // POST /api/ai/claude-stream - Streaming implementation of Claude API
 export async function POST(request: NextRequest) {
@@ -68,15 +68,17 @@ export async function POST(request: NextRequest) {
 
     // Add tools if provided
     if (tools && tools.length > 0) {
+      // Use type assertion to avoid TypeScript errors with input_schema.type
       messageParams.tools = tools.map(tool => ({
         name: tool.name,
         description: tool.description,
         input_schema: tool.input_schema
-      }));
+      } as any));
     }
 
     // Call the Anthropic API with streaming
-    let stream: Anthropic.MessageStream;
+    // Need to specify the return type differently as it's not exported directly
+    let stream: ReturnType<typeof anthropic.messages.stream>;
     try {
       stream = await anthropic.messages.stream(messageParams);
     } catch (error) {

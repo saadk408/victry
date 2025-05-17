@@ -46,15 +46,15 @@ export const createClient = () => {
  * import { createServerClient } from '@/lib/supabase/client';
  *
  * export default async function ServerComponent() {
- *   const supabase = createServerClient(cookies());
+ *   const supabase = createServerClient(await cookies());
  *   const { data } = await supabase.from('table').select();
  *   // ...
  * }
  */
 export const createServerClient = cache(
-  (cookieStore: ReturnType<typeof cookies>) => {
+  async (cookieStore: ReturnType<typeof cookies>) => {
     return createServerComponentClient<Database>({
-      cookies: () => cookieStore,
+      cookies: async () => cookieStore,
     });
   },
 );
@@ -71,16 +71,20 @@ export const createServerClient = cache(
  * import { createActionClient } from '@/lib/supabase/client';
  *
  * export async function serverAction() {
- *   const supabase = createActionClient(cookies());
+ *   const supabase = createActionClient(await cookies());
  *   // Use supabase client...
  * }
  */
 export const createActionClient = (
   cookieStore: ReturnType<typeof cookies>,
-  options?: CookieOptions,
+  options?: {
+    supabaseUrl?: string;
+    supabaseKey?: string;
+    cookieOptions?: CookieOptions;
+  },
 ) => {
   return createServerActionClient<Database>(
-    { cookies: () => cookieStore },
+    { cookies: async () => cookieStore },
     options,
   );
 };

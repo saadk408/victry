@@ -11,8 +11,17 @@ export default function AccessDeniedPage({
   // Get the reason from query params
   const reason = searchParams.reason || "permission";
 
+  // Define interface for message types
+  interface AccessMessage {
+    title: string;
+    description: string;
+    action: string;
+    actionLink?: string;
+    actionText?: string;
+  }
+  
   // Define messages based on reason
-  const messages = {
+  const messages: Record<string, AccessMessage> = {
     admin: {
       title: "Admin Access Required",
       description: "You need administrator privileges to access this page.",

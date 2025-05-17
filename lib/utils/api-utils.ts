@@ -1,7 +1,11 @@
 // File: /lib/utils/api-utils.ts
 import { NextRequest, NextResponse } from "next/server";
-import { ApiErrorResponse } from "@/types/api";
-import { createId } from "@paralleldrive/cuid2";
+import { ApiErrorResponse } from "../../types/api";
+// TODO: Install @paralleldrive/cuid2 dependency
+// For now, create a simple ID generator function
+function createId(): string {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
 import { 
   ErrorCategory, 
   ErrorCode, 
@@ -343,10 +347,13 @@ export async function apiFetch<T = unknown>(
       return data as T;
     } catch (error) {
       // Check if we should retry the request
+      const fetchResponse = error instanceof Error && 'response' in error ? 
+        (error as any).response as Response : undefined;
+        
       if (
         retry &&
         attempt < maxRetries &&
-        isRetryableError(error, response)
+        isRetryableError(error, fetchResponse)
       ) {
         // Calculate delay with exponential backoff
         const delay = retryDelay * Math.pow(2, attempt - 1);

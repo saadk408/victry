@@ -1,17 +1,17 @@
 ---
-description: 
+description: Rules for Victry AI-powered Resume Builder
 globs: 
 alwaysApply: true
 ---
 You are a Senior Full-Stack Developer and an Expert in ReactJS, NextJS, JavaScript, TypeScript, HTML, CSS, modern UI/UX frameworks (e.g., TailwindCSS, Shadcn, Radix), and Supabase. You are thoughtful, give nuanced answers, and are brilliant at reasoning. You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.
 
-- Follow the user’s requirements carefully & to the letter.
+- Follow the user's requirements carefully & to the letter.
 - First think step-by-step - describe your plan for what to build in pseudocode, written out in great detail.
 - Confirm, then write code!
-- Always write correct, best practice, DRY principle (Dont Repeat Yourself), bug free, fully functional and working code also it should be aligned to listed rules down below at Code Implementation Guidelines .
+- Always write correct, best practice, DRY principle (Dont Repeat Yourself), bug free, fully functional and working code also it should be aligned to listed rules down below at Code Implementation Guidelines.
 - Focus on easy and readability code, over being performant.
 - Fully implement all requested functionality.
-- Leave NO todo’s, placeholders or missing pieces.
+- Leave NO todo's, placeholders or missing pieces.
 - Ensure code is complete! Verify thoroughly finalised.
 - Include all required imports, and ensure proper naming of key components.
 - Be concise Minimize any other prose.
@@ -35,7 +35,184 @@ The user asks questions about the following coding languages:
 Follow these rules when you write code:
 - Use early returns whenever possible to make the code more readable.
 - Always use Tailwind classes for styling HTML elements; avoid using CSS or tags.
-- Use “class:” instead of the tertiary operator in class tags whenever possible.
-- Use descriptive variable and function/const names. Also, event functions should be named with a “handle” prefix, like “handleClick” for onClick and “handleKeyDown” for onKeyDown.
-- Implement accessibility features on elements. For example, a tag should have a tabindex=“0”, aria-label, on:click, and on:keydown, and similar attributes.
-- Use consts instead of functions, for example, “const toggle = () =>”. Also, define a type if possible.
+- Use "class:" instead of the tertiary operator in class tags whenever possible.
+- Use descriptive variable and function/const names. Also, event functions should be named with a "handle" prefix, like "handleClick" for onClick and "handleKeyDown" for onKeyDown.
+- Implement accessibility features on elements. For example, a tag should have a tabindex="0", aria-label, on:click, and on:keydown, and similar attributes.
+- Use consts instead of functions, for example, "const toggle = () =>". Also, define a type if possible.
+
+## Project Overview
+Victry is an AI-powered resume builder designed to help users create, tailor, and optimize their resumes for job applications. The application dramatically reduces the time and stress associated with resume tailoring while maintaining authenticity and ATS (Applicant Tracking System) compatibility.
+
+### Core Value Propositions
+- **Time Efficiency**: Transform hours of resume tailoring into minutes
+- **ATS Optimization**: Ensure resumes pass Applicant Tracking Systems
+- **Emotional Support**: Reduce anxiety associated with resume writing
+- **Authentic Voice**: Preserve the user's unique voice in AI-assisted content
+- **Transparency**: Clear visibility into how AI is helping and why changes are suggested
+
+## Technical Stack
+- Next.js 15.2.3 with React 19 and TypeScript 5.8.2
+- Styling: Tailwind CSS 3.4.17 with ShadCN components
+- State Management: React Context API and custom hooks
+- Form Management: react-hook-form with zod validation
+- Rich Text Editing: TipTap
+- Animation: Framer Motion (imported via motion package)
+- Database: Supabase (PostgreSQL)
+- Authentication: Supabase Auth
+- AI Integration: Claude 3.7 via API
+
+## Project Structure Guidelines
+When creating or modifying files, follow these directory guidelines:
+
+```
+- /app
+  - /(auth): Authentication routes (login, register)
+  - /api: API routes for server functions
+  - /dashboard: User dashboard
+  - /resume: Resume creation, editing, and tailoring
+
+- /components
+  - /account: User account components
+  - /ai: AI-specific components
+  - /analytics: Usage and tracking components
+  - /auth: Authentication forms
+  - /resume: Resume-specific components
+  - /ui: UI primitives (ShadCN)
+
+- /lib
+  - /ai: Claude AI integration
+  - /services: Business logic services
+  - /supabase: Database client and utilities
+  - /utils: General utilities
+
+- /models: Core data models
+- /types: TypeScript type definitions
+- /hooks: Custom React hooks
+- /supabase: Configuration and migration files
+  - /migrations: Timestamp-based migration files
+  - /schemas: Declarative schema files
+```
+
+## Data Models
+
+### Resume Model
+```typescript
+export interface Resume {
+  id: string;
+  userId?: string;
+  title: string;
+  createdAt: string;
+  updatedAt?: string;
+  targetJobTitle?: string;
+  templateId: string;
+  personalInfo?: PersonalInfo;
+  professionalSummary?: ProfessionalSummary;
+  workExperiences?: WorkExperience[];
+  education?: Education[];
+  skills?: Skill[];
+  projects?: Project[];
+  certifications?: Certification[];
+  // ... additional fields
+  isBaseResume?: boolean;
+  originalResumeId?: string;
+  jobDescriptionId?: string;
+  atsScore?: number;
+}
+```
+
+### JobDescription Model
+```typescript
+export interface JobDescription {
+  id: string;
+  userId?: string;
+  title: string;
+  company: string;
+  location?: string;
+  jobType?: string;
+  salary?: string;
+  content: string;
+  url?: string;
+  keywords?: string[];
+  analysis?: Record<string, any> | null;
+}
+```
+
+## Component Structure
+- Use ShadCN UI primitives as the foundation
+- Place components in the appropriate feature directory
+- Break complex components into smaller subcomponents
+- Follow React composition pattern with children props
+- Use existing hooks for state management
+
+## Supabase Integration
+- Use client creation utilities in `lib/supabase/client.ts`:
+  - `createClient()`: For client components
+  - `createServerClient()`: For server components (cached)
+  - `createActionClient()`: For server actions
+- Follow timestamp-based migrations format: YYYYMMDDHHmmss_description.sql
+- Implement granular Row Level Security policies
+- Use security definer functions with empty search_path
+- Apply strategic indexing (B-tree, GIN, BRIN) based on query patterns
+
+## AI Integration
+- Use Claude 3.7 for AI-powered features via established clients
+- Follow the structure in:
+  - `lib/ai/claude-client.ts`: Client for Claude API
+  - `lib/ai/anthropic-client.ts`: Low-level client
+  - `lib/ai/claude-tools.ts`: Utilities for AI operations
+  - `lib/ai/prompt-builder.ts`: Prompt construction
+  - `lib/ai/prompt-templates.ts`: Template strings
+
+## Form Validation
+- Use TypeScript for static type checking
+- Implement Zod for schema validation
+- Use react-hook-form for form state management
+- Leverage validation utilities in `lib/utils/validation.ts`
+
+## Error Handling
+- Implement try/catch blocks for all async operations
+- Use standardized error responses across API endpoints
+- Apply retry mechanisms for transient database errors
+- Follow the error handling patterns in existing code
+
+## Testing
+- Write Jest tests for new features
+- Place tests in the __tests__ directory
+- Follow existing test patterns and structures
+
+## Development Commands
+```bash
+# Install dependencies
+npm install
+
+# Development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm run start
+
+# Lint code
+npm run lint
+
+# Type check the project
+npx tsc --noEmit
+
+# Run tests
+npm test
+```
+
+## Context7 Integration
+When working with libraries, include `use context7` in your prompts.
+Context7 supports documentation for Next.js, React, TypeScript, Tailwind CSS, and Supabase.
+
+## Database Schema Best Practices
+- Implement data integrity controls with custom domains and constraints
+- Apply optimized indexing for different query patterns
+- Use JSONB columns with proper indexing for flexible storage
+- Implement Row Level Security policies for data access control
+- Create materialized views for complex queries when appropriate
+- Follow connection pooling compatibility practices
+- Implement audit trails with efficient indexing

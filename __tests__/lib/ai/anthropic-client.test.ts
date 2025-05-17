@@ -1,7 +1,7 @@
 // Mock the import to shims/web which may not exist in test environment
 jest.mock('@anthropic-ai/sdk/shims/web', () => {}, { virtual: true });
 
-import { getAnthropicClient, resetAnthropicClient, handleAnthropicError, DEFAULT_CLAUDE_MODEL } from '@/lib/ai/anthropic-client';
+import { getAnthropicClient, resetAnthropicClient, handleAnthropicError, DEFAULT_CLAUDE_MODEL } from '../../../lib/ai/anthropic-client';
 import Anthropic from '@anthropic-ai/sdk';
 
 // Mock the Anthropic SDK constructor
@@ -12,17 +12,16 @@ jest.mock('@anthropic-ai/sdk', () => {
     })),
     APIError: class APIError extends Error {
       status: number;
-      type: string;
-      requestId: string;
+      name: string;
       
-      constructor(message: string, status = 400, type = 'error', requestId = 'test-request-id') {
+      constructor(message: string, status = 400) {
         super(message);
         this.status = status;
-        this.type = type;
-        this.requestId = requestId;
         this.name = 'APIError';
       }
-    }
+    },
+    // Mock expected constructors with all parameters to avoid TS errors
+    mockAPIErrorWithAllParams: (message: string, status = 400, type = '', requestId = '') => new Error(message)
   };
 });
 
@@ -91,7 +90,15 @@ describe('Anthropic Client', () => {
 
   describe('handleAnthropicError', () => {
     it('should handle APIError with detailed logging', () => {
-      const apiError = new Anthropic.APIError('Rate limit exceeded', 429, 'rate_limit_error', 'req123');
+      // Create a mock error with basic properties
+      const apiError = {
+        name: 'APIError',
+        message: 'Rate limit exceeded', 
+        status: 429
+      } as any;
+      // Mock properties needed for the test
+      (apiError as any).type = 'rate_limit_error';
+      (apiError as any).request_id = 'req123';
       const error = handleAnthropicError(apiError);
       
       expect(error.message).toBe('Anthropic API error (429): Rate limit exceeded');

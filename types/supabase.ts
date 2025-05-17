@@ -553,6 +553,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      assign_role: {
+        Args: { p_user_id: string; p_role_name: string }
+        Returns: void
+      }
+      check_ai_usage_limit: {
+        Args: { feature_param: string }
+        Returns: boolean
+      }
       get_resume_colors: {
         Args: { resume_id: string }
         Returns: {
@@ -566,6 +574,10 @@ export type Database = {
           font_family: string
           font_size: number
         }[]
+      }
+      get_user_permissions: {
+        Args: Record<PropertyKey, never>
+        Returns: Array<{ resource: string; action: string }>
       }
       gtrgm_compress: {
         Args: { "": unknown }
@@ -586,6 +598,14 @@ export type Database = {
       gtrgm_out: {
         Args: { "": unknown }
         Returns: unknown
+      }
+      has_permission: {
+        Args: { resource_param: string; action_param: string }
+        Returns: boolean
+      }
+      record_ai_feature_usage: {
+        Args: { feature_param: string }
+        Returns: void
       }
       set_limit: {
         Args: { "": number }

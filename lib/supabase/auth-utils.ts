@@ -3,8 +3,9 @@
  * This module provides utilities for checking user roles and permissions
  */
 
-import { createClient, createServerClient } from '@/lib/supabase/client';
-import type { User } from '@/types/user';
+import { createClient, createServerClient } from '../../lib/supabase/client';
+import type { User } from '../../types/user';
+import { Database } from '../../types/supabase';
 import { cookies } from 'next/headers';
 
 /**
@@ -25,8 +26,7 @@ export interface Permission {
  * @returns Array of user roles
  */
 export async function getUserRoles(): Promise<UserRole[]> {
-  const cookieStore = cookies();
-  const supabase = createServerClient(cookieStore);
+  const supabase = await createServerClient(await cookies());
   
   // Get the user's session which contains JWT claims
   const { data: { session } } = await supabase.auth.getSession();
@@ -75,8 +75,7 @@ export async function isPremium(): Promise<boolean> {
  * @returns Whether the user has the specified permission
  */
 export async function hasPermission(resource: string, action: string): Promise<boolean> {
-  const cookieStore = cookies();
-  const supabase = createServerClient(cookieStore);
+  const supabase = await createServerClient(await cookies());
   
   // Using RPC call to the database function we created
   const { data, error } = await supabase.rpc('has_permission', {
@@ -89,7 +88,7 @@ export async function hasPermission(resource: string, action: string): Promise<b
     return false;
   }
   
-  return data || false;
+  return data === true || false;
 }
 
 /**
@@ -103,8 +102,7 @@ export async function hasReachedResumeLimit(): Promise<boolean> {
   }
   
   // Otherwise, check the database limit
-  const cookieStore = cookies();
-  const supabase = createServerClient(cookieStore);
+  const supabase = await createServerClient(await cookies());
   
   // Get the user's ID
   const { data: { user } } = await supabase.auth.getUser();
@@ -140,8 +138,7 @@ export async function canUseAiFeature(feature: string): Promise<boolean> {
   }
   
   // Otherwise, check the database limit
-  const cookieStore = cookies();
-  const supabase = createServerClient(cookieStore);
+  const supabase = await createServerClient(await cookies());
   
   // Using RPC call to the database function we created
   const { data, error } = await supabase.rpc('check_ai_usage_limit', {
@@ -153,7 +150,7 @@ export async function canUseAiFeature(feature: string): Promise<boolean> {
     return false;
   }
   
-  return data || false;
+  return data === true || false;
 }
 
 /**
@@ -162,11 +159,10 @@ export async function canUseAiFeature(feature: string): Promise<boolean> {
  * @returns Whether the usage was successfully recorded
  */
 export async function recordAiFeatureUsage(feature: string): Promise<boolean> {
-  const cookieStore = cookies();
-  const supabase = createServerClient(cookieStore);
+  const supabase = await createServerClient(await cookies());
   
   // Call the database function to record usage
-  const { data, error } = await supabase.rpc('record_ai_feature_usage', {
+  const { error } = await supabase.rpc('record_ai_feature_usage', {
     feature_param: feature
   });
   
@@ -240,11 +236,10 @@ export async function assignRole(userId: string, role: UserRole): Promise<boolea
     return false;
   }
   
-  const cookieStore = cookies();
-  const supabase = createServerClient(cookieStore);
+  const supabase = await createServerClient(await cookies());
   
   // Call the database function to assign role
-  const { data, error } = await supabase.rpc('assign_role', {
+  const { error } = await supabase.rpc('assign_role', {
     p_user_id: userId,
     p_role_name: role
   });
@@ -262,11 +257,10 @@ export async function assignRole(userId: string, role: UserRole): Promise<boolea
  * @returns Object mapping resource.action to boolean
  */
 export async function getUserPermissions(): Promise<Record<string, boolean>> {
-  const cookieStore = cookies();
-  const supabase = createServerClient(cookieStore);
+  const supabase = await createServerClient(await cookies());
   
   // Call a view or function that returns all user permissions
-  const { data, error } = await supabase.rpc('get_user_permissions');
+  const { data, error } = await supabase.rpc('get_user_permissions', {});
   
   if (error) {
     console.error('Error getting user permissions:', error);
@@ -276,8 +270,10 @@ export async function getUserPermissions(): Promise<Record<string, boolean>> {
   // Transform array of permissions into a map
   const permissionsMap: Record<string, boolean> = {};
   
-  for (const perm of (data || [])) {
-    permissionsMap[`${perm.resource}.${perm.action}`] = true;
+  if (data && Array.isArray(data)) {
+    for (const perm of data as Array<{resource: string, action: string}>) {
+      permissionsMap[`${perm.resource}.${perm.action}`] = true;
+    }
   }
   
   return permissionsMap;

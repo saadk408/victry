@@ -21,7 +21,7 @@ import {
   getRecordHistory,
   purgeOldAuditLogs,
 } from '@/lib/supabase/audit-logger';
-import { logger } from '@/lib/utils/logger';
+import logger from '@/lib/utils/logger';
 
 // Schema for record history request
 const RecordHistorySchema = z.object({
