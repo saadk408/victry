@@ -51,158 +51,134 @@ export interface TextareaProps
   helperText?: React.ReactNode;
 }
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  (
-    {
-      className,
-      variant,
-      size,
-      autoResize = false,
-      showCount = false,
-      error,
-      helperText,
-      maxLength,
-      value,
-      defaultValue,
-      onChange,
-      ...props
+function Textarea({
+  className,
+  variant,
+  size,
+  autoResize = false,
+  showCount = false,
+  error,
+  helperText,
+  maxLength,
+  value,
+  defaultValue,
+  onChange,
+  ...props
+}: TextareaProps) {
+  // Use internal ref for autoResize
+  const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
+
+  // Track input value for character count
+  const [inputVal, setInputVal] = React.useState(
+    value !== undefined
+      ? String(value)
+      : defaultValue !== undefined
+        ? String(defaultValue)
+        : "",
+  );
+
+  // Calculate character count and percentage for visualization
+  const charCount = inputVal.length;
+  const maxPercent = maxLength
+    ? Math.min(100, Math.round((charCount / maxLength) * 100))
+    : 0;
+
+  // Auto-resize function
+  const adjustHeight = React.useCallback(() => {
+    const textarea = textareaRef.current;
+    if (!textarea || !autoResize) return;
+
+    // Reset height to get the correct scrollHeight
+    textarea.style.height = "auto";
+    // Set the height to the scrollHeight to expand the textarea
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }, [autoResize]);
+
+  // Handle changes for controlled and uncontrolled components
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      if (onChange) onChange(e);
+      if (value === undefined) setInputVal(e.target.value);
+      if (autoResize) setTimeout(adjustHeight, 0);
     },
-    ref,
-  ) => {
-    // Use internal ref if autoResize is enabled
-    const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
-    const combinedRef = useCombinedRefs(ref, textareaRef);
+    [onChange, adjustHeight, autoResize, value],
+  );
 
-    // Track input value for character count
-    const [inputVal, setInputVal] = React.useState(
-      value !== undefined
-        ? String(value)
-        : defaultValue !== undefined
-          ? String(defaultValue)
-          : "",
-    );
+  // Update internal value when the controlled value changes
+  React.useEffect(() => {
+    if (value !== undefined) setInputVal(String(value));
+  }, [value]);
 
-    // Calculate character count and percentage for visualization
-    const charCount = inputVal.length;
-    const maxPercent = maxLength
-      ? Math.min(100, Math.round((charCount / maxLength) * 100))
-      : 0;
+  // Handle auto-resize on mount and when content changes
+  React.useEffect(() => {
+    if (autoResize) adjustHeight();
+  }, [autoResize, adjustHeight, inputVal]);
 
-    // Auto-resize function
-    const adjustHeight = React.useCallback(() => {
-      const textarea = textareaRef.current;
-      if (!textarea || !autoResize) return;
+  // Determine variant based on error prop
+  const resolvedVariant = error ? "error" : variant;
 
-      // Reset height to get the correct scrollHeight
-      textarea.style.height = "auto";
-      // Set the height to the scrollHeight to expand the textarea
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    }, [autoResize]);
-
-    // Handle changes for controlled and uncontrolled components
-    const handleChange = React.useCallback(
-      (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        if (onChange) onChange(e);
-        if (value === undefined) setInputVal(e.target.value);
-        if (autoResize) setTimeout(adjustHeight, 0);
-      },
-      [onChange, adjustHeight, autoResize, value],
-    );
-
-    // Update internal value when the controlled value changes
-    React.useEffect(() => {
-      if (value !== undefined) setInputVal(String(value));
-    }, [value]);
-
-    // Handle auto-resize on mount and when content changes
-    React.useEffect(() => {
-      if (autoResize) adjustHeight();
-    }, [autoResize, adjustHeight, inputVal]);
-
-    // Determine variant based on error prop
-    const resolvedVariant = error ? "error" : variant;
-
-    return (
-      <div className="w-full">
-        <textarea
-          ref={combinedRef}
-          value={value}
-          defaultValue={defaultValue}
-          onChange={handleChange}
-          maxLength={maxLength}
-          className={cn(
-            textareaVariants({ variant: resolvedVariant, size }),
-            autoResize && "resize-none overflow-hidden",
-            className,
-          )}
-          aria-invalid={!!error}
-          aria-describedby={
-            error || helperText || showCount
-              ? `${props.id || ""}-description`
-              : undefined
-          }
-          {...props}
-        />
-
-        {/* Helper text, error message and character count */}
-        {(error || helperText || (showCount && maxLength)) && (
-          <div
-            id={`${props.id || ""}-description`}
-            className={cn(
-              "mt-1 flex justify-between text-xs",
-              error ? "text-red-500" : "text-gray-500",
-            )}
-          >
-            <div>
-              {error && <p className="text-red-500">{error}</p>}
-              {!error && helperText && <p>{helperText}</p>}
-            </div>
-
-            {showCount && maxLength && (
-              <div className="flex items-center">
-                <div className="mr-2 h-1.5 w-16 overflow-hidden rounded-full bg-gray-200">
-                  <div
-                    className={cn(
-                      "h-full rounded-full",
-                      maxPercent < 80
-                        ? "bg-green-500"
-                        : maxPercent < 95
-                          ? "bg-amber-500"
-                          : "bg-red-500",
-                    )}
-                    style={{ width: `${maxPercent}%` }}
-                  />
-                </div>
-                <span>
-                  {charCount}/{maxLength}
-                </span>
-              </div>
-            )}
-          </div>
+  return (
+    <div data-slot="textarea-container" className="w-full">
+      <textarea
+        data-slot="textarea"
+        ref={textareaRef}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={handleChange}
+        maxLength={maxLength}
+        className={cn(
+          textareaVariants({ variant: resolvedVariant, size }),
+          autoResize && "resize-none overflow-hidden",
+          className,
         )}
-      </div>
-    );
-  },
-);
-Textarea.displayName = "Textarea";
-
-// Utility to combine refs (for forwarding refs and using local ref)
-function useCombinedRefs<T = unknown>(
-  ...refs: Array<React.ForwardedRef<T> | React.RefObject<T> | null>
-): React.RefCallback<T> {
-  return React.useCallback(
-    (element: T) => {
-      refs.forEach((ref) => {
-        if (!ref) return;
-
-        if (typeof ref === "function") {
-          ref(element);
-        } else {
-          (ref as React.MutableRefObject<T>).current = element;
+        aria-invalid={!!error}
+        aria-describedby={
+          error || helperText || showCount
+            ? `${props.id || ""}-description`
+            : undefined
         }
-      });
-    },
-    [refs],
+        {...props}
+      />
+
+      {/* Helper text, error message and character count */}
+      {(error || helperText || (showCount && maxLength)) && (
+        <div
+          data-slot="textarea-description"
+          id={`${props.id || ""}-description`}
+          className={cn(
+            "mt-1 flex justify-between text-xs",
+            error ? "text-red-500" : "text-gray-500",
+          )}
+        >
+          <div>
+            {error && <p data-slot="textarea-error" className="text-red-500">{error}</p>}
+            {!error && helperText && <p data-slot="textarea-helper">{helperText}</p>}
+          </div>
+
+          {showCount && maxLength && (
+            <div data-slot="textarea-count" className="flex items-center">
+              <div className="mr-2 h-1.5 w-16 overflow-hidden rounded-full bg-gray-200">
+                <div
+                  data-slot="textarea-count-indicator"
+                  className={cn(
+                    "h-full rounded-full",
+                    maxPercent < 80
+                      ? "bg-green-500"
+                      : maxPercent < 95
+                        ? "bg-amber-500"
+                        : "bg-red-500",
+                  )}
+                  style={{ width: `${maxPercent}%` }}
+                />
+              </div>
+              <span>
+                {charCount}/{maxLength}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 

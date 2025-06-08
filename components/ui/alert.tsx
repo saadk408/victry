@@ -19,41 +19,53 @@ const alertVariants = cva(
   },
 );
 
-const Alert = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
->(({ className, variant, ...props }, ref) => (
-  <div
-    ref={ref}
-    role="alert"
-    className={cn(alertVariants({ variant }), className)}
-    {...props}
-  />
-));
-Alert.displayName = "Alert";
+interface AlertProps extends
+  React.ComponentProps<"div">,
+  VariantProps<typeof alertVariants> {}
 
-const AlertTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h5
-    ref={ref}
-    className={cn("mb-1 font-medium leading-none tracking-tight", className)}
-    {...props}
-  />
-));
-AlertTitle.displayName = "AlertTitle";
+function Alert({ 
+  className,
+  variant,
+  ...props
+}: AlertProps) {
+  return (
+    <div
+      data-slot="alert"
+      role="alert"
+      className={cn(alertVariants({ variant }), className)}
+      {...props}
+    />
+  );
+}
 
-const AlertDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("text-sm [&_p]:leading-relaxed", className)}
-    {...props}
-  />
-));
-AlertDescription.displayName = "AlertDescription";
+interface AlertTitleProps extends React.ComponentProps<"h5"> {}
+
+function AlertTitle({ 
+  className,
+  ...props
+}: AlertTitleProps) {
+  return (
+    <h5
+      data-slot="alert-title"
+      className={cn("mb-1 font-medium leading-none tracking-tight", className)}
+      {...props}
+    />
+  );
+}
+
+interface AlertDescriptionProps extends React.ComponentProps<"div"> {}
+
+function AlertDescription({ 
+  className,
+  ...props
+}: AlertDescriptionProps) {
+  return (
+    <div
+      data-slot="alert-description"
+      className={cn("text-sm [&_p]:leading-relaxed", className)}
+      {...props}
+    />
+  );
+}
 
 export { Alert, AlertTitle, AlertDescription };

@@ -1,7 +1,6 @@
 // File: /lib/ai/anthropic-client.ts
 // Singleton Anthropic client for shared use across the application
 
-import '@anthropic-ai/sdk/shims/web';
 import Anthropic from '@anthropic-ai/sdk';
 
 // Export a module with all the necessary functions

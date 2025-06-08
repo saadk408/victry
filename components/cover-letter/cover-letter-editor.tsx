@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Link from "@tiptap/extension-link";
@@ -104,7 +104,7 @@ export function CoverLetterEditor({
   readOnly = false,
   showAiGeneration = true,
 }: CoverLetterEditorProps) {
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   // State for cover letter content
   const [coverLetter, setCoverLetter] = useState<CoverLetterContent>(

@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import { type JobDescription } from "@/models/job-description";
 
 /**
@@ -18,7 +18,7 @@ export function useJobDescription(id?: string) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   /**
    * Fetch a job description by ID

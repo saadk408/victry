@@ -60,7 +60,7 @@ export async function recordQueryPerformance(
   const client = opts.client || createClient();
   
   try {
-    const { data, error } = await client.rpc('monitoring.record_query_performance', {
+    const { data, error } = await client.rpc('record_query_performance', {
       query_text: queryText,
       execution_time_ms: executionTimeMs,
       rows_processed: rowsProcessed,
@@ -155,7 +155,7 @@ export async function getSlowQueryReport(
   const supabase = client || createClient();
   
   try {
-    const { data, error } = await supabase.rpc('monitoring.get_slow_query_report', {
+    const { data, error } = await supabase.rpc('get_slow_query_report', {
       start_time: startTime?.toISOString(),
       end_time: endTime?.toISOString(),
       min_execution_time: minExecutionTime,
@@ -211,7 +211,7 @@ export async function purgeOldMonitoringData(
   const supabase = client || createClient();
   
   try {
-    const { data, error } = await supabase.rpc('monitoring.purge_old_data', {
+    const { data, error } = await supabase.rpc('purge_old_data', {
       retention_days: retentionDays,
     });
     

@@ -1,6 +1,6 @@
 // File: /app/api/ai/tailor-resume/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
+import { createActionClient } from "@/lib/supabase/client";
 import { cookies } from "next/headers";
 import { TailorResumeRequest, TailorResumeResponse } from "@/types/api";
 import { Resume } from "@/models/resume";
@@ -125,7 +125,7 @@ function extractTailoringData(response: Anthropic.Message): ClaudeTailoringData 
 export async function POST(request: NextRequest) {
   try {
     // Initialize Supabase client
-    const supabase = createRouteHandlerClient({ cookies });
+    const supabase = await createActionClient();
 
     // Authenticate user
     const {

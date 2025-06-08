@@ -14,8 +14,10 @@ import { createActionClient } from '@/lib/supabase/client';
 import { withQueryMonitoring, QuerySource } from '@/lib/supabase/query-monitoring';
 import { withErrorLogging } from '@/lib/middlewares/error-logging-middleware';
 import { withQueryMonitoring as withQueryMonitoringMiddleware } from '@/lib/middlewares/query-monitoring-middleware';
-import { validateRequest } from '@/lib/utils/api-utils';
+// Remove validateRequest import as it doesn't exist in api-utils
 import { logger } from '@/lib/utils/logger';
+import { isAdmin } from '@/lib/supabase/auth-utils';
+import { cookies } from 'next/headers';
 
 // Schema for GET request query parameters
 const GetSlowQueriesSchema = z.object({
@@ -40,7 +42,8 @@ async function handleGet(req: NextRequest): Promise<NextResponse> {
   const action = searchParams.get('action');
   
   // Only allow admin users to access monitoring data
-  const supabase = createActionClient();
+  const cookieStore = await cookies();
+  const supabase = createActionClient(cookieStore);
   const { data: { user } } = await supabase.auth.getUser();
   
   if (!user) {
@@ -50,15 +53,10 @@ async function handleGet(req: NextRequest): Promise<NextResponse> {
     );
   }
   
-  // Check if user has admin role
-  const { data: userRoles } = await supabase
-    .from('user_roles')
-    .select('role')
-    .eq('user_id', user.id);
+  // Check if user has admin role using auth utilities
+  const hasAdminRole = await isAdmin();
   
-  const isAdmin = userRoles?.some(ur => ur.role === 'admin');
-  
-  if (!isAdmin) {
+  if (!hasAdminRole) {
     return NextResponse.json(
       { error: 'Admin access required' },
       { status: 403 }
@@ -74,7 +72,7 @@ async function handleGet(req: NextRequest): Promise<NextResponse> {
           minExecutionTime: searchParams.get('minExecutionTime') || undefined,
         });
         
-        const { data, error } = await supabase.rpc('monitoring.get_slow_query_report', {
+        const { data, error } = await supabase.rpc('get_slow_query_report', {
           start_time: params.startTime,
           end_time: params.endTime,
           min_execution_time: params.minExecutionTime,
@@ -162,7 +160,8 @@ async function handleGet(req: NextRequest): Promise<NextResponse> {
  */
 async function handlePost(req: NextRequest): Promise<NextResponse> {
   // Only allow admin users to modify monitoring settings
-  const supabase = createActionClient();
+  const cookieStore = await cookies();
+  const supabase = createActionClient(cookieStore);
   const { data: { user } } = await supabase.auth.getUser();
   
   if (!user) {
@@ -172,15 +171,10 @@ async function handlePost(req: NextRequest): Promise<NextResponse> {
     );
   }
   
-  // Check if user has admin role
-  const { data: userRoles } = await supabase
-    .from('user_roles')
-    .select('role')
-    .eq('user_id', user.id);
+  // Check if user has admin role using auth utilities
+  const hasAdminRole = await isAdmin();
   
-  const isAdmin = userRoles?.some(ur => ur.role === 'admin');
-  
-  if (!isAdmin) {
+  if (!hasAdminRole) {
     return NextResponse.json(
       { error: 'Admin access required' },
       { status: 403 }
@@ -259,7 +253,7 @@ async function handlePost(req: NextRequest): Promise<NextResponse> {
           );
         }
         
-        const { data, error } = await supabase.rpc('monitoring.purge_old_data', {
+        const { data, error } = await supabase.rpc('purge_old_data', {
           retention_days: retentionDays,
         });
         
@@ -299,7 +293,7 @@ async function handlePost(req: NextRequest): Promise<NextResponse> {
         
         // Record the query performance
         const { data, error } = await withQueryMonitoring(
-          () => supabase.rpc('monitoring.record_query_performance', {
+          () => supabase.rpc('record_query_performance', {
             query_text: 'SELECT * FROM resumes LIMIT 10',
             execution_time_ms: executionTime,
             rows_processed: 10,
@@ -334,7 +328,7 @@ async function handlePost(req: NextRequest): Promise<NextResponse> {
     
     case 'reset-configuration': {
       try {
-        const { data, error } = await supabase.rpc('monitoring.reset_configuration');
+        const { data, error } = await supabase.rpc('reset_configuration');
         
         if (error) {
           logger.error('Error resetting monitoring configuration', { error });

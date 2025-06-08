@@ -13,6 +13,7 @@ alter table public.certifications enable row level security;
 alter table public.social_links enable row level security;
 alter table public.custom_sections enable row level security;
 alter table public.custom_entries enable row level security;
+alter table public.profiles enable row level security;
 alter table public.job_descriptions enable row level security;
 alter table public.job_analysis enable row level security;
 
@@ -56,6 +57,49 @@ create policy "Anon users cannot update resumes"
 
 create policy "Anon users cannot delete resumes" 
   on public.resumes for delete 
+  to anon
+  using (false);
+
+-- Profiles table policies
+-- Authenticated users can only access their own profile
+create policy "Users can view their own profile" 
+  on public.profiles for select 
+  to authenticated
+  using (id = (select auth.uid()));
+
+create policy "Users can create their own profile" 
+  on public.profiles for insert 
+  to authenticated
+  with check (id = (select auth.uid()));
+
+create policy "Users can update their own profile" 
+  on public.profiles for update 
+  to authenticated
+  using (id = (select auth.uid()));
+
+create policy "Users can delete their own profile" 
+  on public.profiles for delete 
+  to authenticated
+  using (id = (select auth.uid()));
+
+-- Anon users cannot access profiles
+create policy "Anon users cannot view profiles" 
+  on public.profiles for select 
+  to anon
+  using (false);
+
+create policy "Anon users cannot create profiles" 
+  on public.profiles for insert 
+  to anon
+  with check (false);
+
+create policy "Anon users cannot update profiles" 
+  on public.profiles for update 
+  to anon
+  using (false);
+
+create policy "Anon users cannot delete profiles" 
+  on public.profiles for delete 
   to anon
   using (false);
 

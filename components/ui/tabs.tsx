@@ -48,10 +48,15 @@ export interface TabsListProps
 /**
  * Component for containing the tab triggers.
  */
-const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
-  ({ className, vertical = false, fullWidth = false, ...props }, ref) => (
+function TabsList({ 
+  className, 
+  vertical = false, 
+  fullWidth = false, 
+  ...props 
+}: TabsListProps) {
+  return (
     <TabsPrimitive.List
-      ref={ref}
+      data-slot="tabs-list"
       className={cn(
         "flex items-center rounded-md bg-gray-100 p-1 text-gray-500 dark:bg-gray-800 dark:text-gray-400",
         vertical
@@ -63,9 +68,8 @@ const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
       {...props}
       data-orientation={vertical ? "vertical" : "horizontal"}
     />
-  ),
-);
-TabsList.displayName = TabsPrimitive.List.displayName || "TabsList";
+  );
+}
 
 /**
  * Props for the tabs trigger component
@@ -103,54 +107,65 @@ export interface TabsTriggerProps
 /**
  * Component for the clickable tab buttons
  */
-const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
-  (
-    {
-      className,
-      underlined = false,
-      pill = false,
-      icon,
-      badge,
-      children,
-      ...props
-    },
-    ref,
-  ) => {
-    // Base styles always applied
-    const baseStyles =
-      "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300";
+function TabsTrigger({
+  className,
+  underlined = false,
+  pill = false,
+  icon,
+  badge,
+  children,
+  ...props
+}: TabsTriggerProps) {
+  // Debug logging
+  React.useEffect(() => {
+    console.log('[TabsTrigger Debug] Mounted:', { 
+      value: props.value, 
+      children, 
+      disabled: props.disabled 
+    });
+  }, [props.value, children, props.disabled]);
 
-    // Style variants
-    const styleVariants = {
-      default:
-        "rounded-sm px-3 py-1.5 data-[state=active]:bg-white data-[state=active]:text-gray-950 data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-950 dark:data-[state=active]:text-gray-50",
-      underlined:
-        "border-b-2 border-transparent px-1 pb-3 pt-2 data-[state=active]:border-gray-950 data-[state=active]:text-gray-950 dark:data-[state=active]:border-gray-50 dark:data-[state=active]:text-gray-50",
-      pill: "rounded-full bg-transparent px-3 py-1.5 hover:bg-gray-100 data-[state=active]:bg-gray-900 data-[state=active]:text-white dark:hover:bg-gray-800 dark:data-[state=active]:bg-gray-100 dark:data-[state=active]:text-gray-900",
-    };
+  // Base styles always applied
+  const baseStyles =
+    "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300";
 
-    // Determine which style to use
-    const styleToUse = pill ? "pill" : underlined ? "underlined" : "default";
+  // Style variants
+  const styleVariants = {
+    default:
+      "rounded-sm px-3 py-1.5 data-[state=active]:bg-white data-[state=active]:text-gray-950 data-[state=active]:shadow-xs dark:data-[state=active]:bg-gray-950 dark:data-[state=active]:text-gray-50",
+    underlined:
+      "border-b-2 border-transparent px-1 pb-3 pt-2 data-[state=active]:border-gray-950 data-[state=active]:text-gray-950 dark:data-[state=active]:border-gray-50 dark:data-[state=active]:text-gray-50",
+    pill: "rounded-full bg-transparent px-3 py-1.5 hover:bg-gray-100 data-[state=active]:bg-gray-900 data-[state=active]:text-white dark:hover:bg-gray-800 dark:data-[state=active]:bg-gray-100 dark:data-[state=active]:text-gray-900",
+  };
 
-    return (
-      <TabsPrimitive.Trigger
-        ref={ref}
-        className={cn(baseStyles, styleVariants[styleToUse], className)}
-        {...props}
-      >
-        {/* Icon if provided */}
-        {icon && <span className="mr-2 inline-flex">{icon}</span>}
+  // Determine which style to use
+  const styleToUse = pill ? "pill" : underlined ? "underlined" : "default";
 
-        {/* Tab text content */}
-        <span>{children}</span>
+  return (
+    <TabsPrimitive.Trigger
+      data-slot="tabs-trigger"
+      className={cn(baseStyles, styleVariants[styleToUse], className)}
+      onClick={(e) => {
+        console.log('[TabsTrigger Debug] Click event:', {
+          value: props.value,
+          currentTarget: e.currentTarget,
+          defaultPrevented: e.defaultPrevented,
+          propagationStopped: e.isPropagationStopped()
+        });
+      }}
+      {...props}
+    >
+      {/* Icon if provided */}
+      {icon && <span data-slot="tabs-trigger-icon" className="mr-2 inline-flex">{icon}</span>}
 
-        {/* Badge if provided */}
-        {badge && <span className="ml-2 inline-flex">{badge}</span>}
-      </TabsPrimitive.Trigger>
-    );
-  },
-);
-TabsTrigger.displayName = TabsPrimitive.Trigger.displayName || "TabsTrigger";
+      {/* Tab text content */}
+      <span data-slot="tabs-trigger-content">{children}</span>
+
+      {/* Badge if provided */}
+      {badge && <span data-slot="tabs-trigger-badge" className="ml-2 inline-flex">{badge}</span>}
+    </TabsPrimitive.Trigger>
+  );
+}
 
 /**
  * Props for the tabs content component
@@ -184,46 +199,44 @@ export interface TabsContentProps
 /**
  * Component for the content displayed when a tab is selected
  */
-const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
-  (
-    {
-      className,
-      animate = true,
-      isLoading = false,
-      loadingElement,
-      children,
-      ...props
-    },
-    ref,
-  ) => {
-    // If animate is true, wrap the content in motion.div for smooth transitions
-    const content = animate ? (
-      <motion.div
-        initial={{ opacity: 0, y: 5 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -5 }}
-        transition={{ duration: 0.2 }}
-      >
-        {children}
-      </motion.div>
-    ) : (
-      children
-    );
+function TabsContent({
+  className,
+  animate = false, // Temporarily disabled animations
+  isLoading = false,
+  loadingElement,
+  children,
+  ...props
+}: TabsContentProps) {
+  // If animate is true, wrap the content in motion.div for smooth transitions
+  const content = animate ? (
+    <motion.div
+      data-slot="tabs-content-animation"
+      initial={{ opacity: 0, y: 5 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -5 }}
+      transition={{ duration: 0.2 }}
+    >
+      {children}
+    </motion.div>
+  ) : (
+    children
+  );
 
-    return (
-      <TabsPrimitive.Content
-        ref={ref}
-        className={cn(
-          "mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300",
-          className,
-        )}
-        {...props}
-      >
-        {isLoading ? loadingElement : content}
-      </TabsPrimitive.Content>
-    );
-  },
-);
-TabsContent.displayName = TabsPrimitive.Content.displayName || "TabsContent";
+  return (
+    <TabsPrimitive.Content
+      data-slot="tabs-content"
+      className={cn(
+        "mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300",
+        className,
+      )}
+      {...props}
+    >
+      {isLoading ? 
+        <div data-slot="tabs-content-loading">{loadingElement}</div> : 
+        content
+      }
+    </TabsPrimitive.Content>
+  );
+}
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };

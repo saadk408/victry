@@ -1,5 +1,5 @@
 // File: /services/analytics-service.ts
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import { Database } from "@/types/supabase";
 import { debounce } from "@/lib/utils/utils";
 
@@ -114,7 +114,7 @@ interface AnalyticsOptions {
  * Records events to Supabase for analysis
  */
 export class AnalyticsService {
-  private supabase = createClientComponentClient<Database>();
+  private supabase = createClient();
   private sessionId: string;
   private isEnabled: boolean;
   private trackAnonymousUsers: boolean;

@@ -1,5 +1,5 @@
 // File: /services/job-description-service.ts
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import { JobDescription } from "@/models/job-description";
 import {
   CreateJobDescriptionRequest,
@@ -37,7 +37,7 @@ export async function getJobDescriptions(
   } = {},
 ): Promise<JobDescriptionsResponse> {
   try {
-    const supabase = createClientComponentClient();
+    const supabase = createClient();
 
     // Get current user
     const {
@@ -175,7 +175,7 @@ export async function getJobDescriptionById(
   id: string,
 ): Promise<JobDescription | null> {
   try {
-    const supabase = createClientComponentClient();
+    const supabase = createClient();
 
     // Get current user
     const {
@@ -280,7 +280,7 @@ export async function createJobDescription(
   data: CreateJobDescriptionRequest,
 ): Promise<JobDescription> {
   try {
-    const supabase = createClientComponentClient();
+    const supabase = createClient();
 
     // Get current user
     const {
@@ -406,7 +406,7 @@ export async function updateJobDescription(
   data: UpdateJobDescriptionRequest,
 ): Promise<JobDescription> {
   try {
-    const supabase = createClientComponentClient();
+    const supabase = createClient();
 
     // Get current user
     const {
@@ -560,7 +560,7 @@ export async function updateJobDescription(
  */
 export async function deleteJobDescription(id: string): Promise<void> {
   try {
-    const supabase = createClientComponentClient();
+    const supabase = createClient();
 
     // Get current user
     const {
@@ -658,7 +658,7 @@ export async function searchJobDescriptions(
   } = {},
 ): Promise<JobDescriptionsResponse> {
   try {
-    const supabase = createClientComponentClient();
+    const supabase = createClient();
 
     // Get current user
     const {

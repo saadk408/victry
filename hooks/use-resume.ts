@@ -1,7 +1,7 @@
 // File: /app/_lib/hooks/use-resume.ts
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import {
   type Resume,
   type PersonalInfo,
@@ -83,7 +83,7 @@ export function useResume(id?: string) {
   const [resume, setResume] = useState<Resume | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const supabase = createClientComponentClient<Database>();
+  const supabase = createClient();
 
   const fetchResume = useCallback(async () => {
     if (!id) {

@@ -156,7 +156,7 @@ export function AISuggestion({
     <div
       className={cn(
         "my-2 rounded-md border border-blue-200 bg-blue-50 p-4",
-        isHovering && "border-blue-300 shadow-sm",
+        isHovering && "border-blue-300 shadow-xs",
         className,
       )}
       onMouseEnter={() => setIsHovering(true)}

@@ -4,15 +4,18 @@ import { cn } from "@/lib/utils/utils";
 
 /**
  * Input component based on ShadCN design system
+ * Updated for React 19 compatibility using data-slot pattern
  * Used for text inputs across the application
  */
-const Input = React.forwardRef<
-  HTMLInputElement,
-  React.InputHTMLAttributes<HTMLInputElement>
->(({ className, type, ...props }, ref) => {
+function Input({
+  className,
+  type,
+  ...props
+}: React.ComponentProps<"input">) {
   return (
     <input
       type={type}
+      data-slot="input"
       className={cn(
         // Base styles
         "flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm",
@@ -27,11 +30,9 @@ const Input = React.forwardRef<
         // Custom className passed to component
         className,
       )}
-      ref={ref}
       {...props}
     />
   );
-});
-Input.displayName = "Input";
+}
 
 export { Input };

@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -47,7 +47,7 @@ const TEMPLATES = [
 
 export default function CreateResumePage() {
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   // Form state
   const [currentStep, setCurrentStep] = useState<number>(0);
@@ -866,7 +866,7 @@ export default function CreateResumePage() {
       </div>
 
       {/* Form Content */}
-      <div className="mb-6 rounded-lg bg-white p-6 shadow-sm">
+      <div className="mb-6 rounded-lg bg-white p-6 shadow-xs">
         {error && (
           <div className="mb-6 border-l-4 border-red-500 bg-red-50 p-4 text-red-700">
             <p>{error}</p>

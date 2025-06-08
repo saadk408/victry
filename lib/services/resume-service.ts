@@ -1,5 +1,5 @@
 // File: /services/resume-service.ts
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import { Resume } from "@/models/resume";
 import {
   CreateResumeRequest,
@@ -171,7 +171,7 @@ export async function getResumes(
   } = {},
 ): Promise<ResumesResponse> {
   try {
-    const supabase = createClientComponentClient<Database>();
+    const supabase = createClient();
 
     // Get current user
     const {
@@ -317,7 +317,7 @@ export async function getResumes(
  */
 export async function getResumeById(id: string): Promise<Resume | null> {
   try {
-    const supabase = createClientComponentClient<Database>();
+    const supabase = createClient();
 
     // Get current user
     const {
@@ -408,7 +408,7 @@ export async function getResumeById(id: string): Promise<Resume | null> {
  */
 export async function createResume(data: CreateResumeRequest): Promise<Resume> {
   try {
-    const supabase = createClientComponentClient<Database>();
+    const supabase = createClient();
 
     // Get current user
     const {
@@ -724,7 +724,7 @@ export async function updateResume(
   data: UpdateResumeRequest,
 ): Promise<Resume> {
   try {
-    const supabase = createClientComponentClient<Database>();
+    const supabase = createClient();
 
     // Get current user
     const {
@@ -1355,7 +1355,7 @@ export async function updateResume(
  */
 export async function deleteResume(id: string): Promise<void> {
   try {
-    const supabase = createClientComponentClient<Database>();
+    const supabase = createClient();
 
     // Get current user
     const {
@@ -1591,7 +1591,7 @@ export async function duplicateResume(
  */
 export async function exportResumeToPdf(id: string): Promise<Blob> {
   try {
-    const supabase = createClientComponentClient<Database>();
+    const supabase = createClient();
 
     // Get current user
     const {

@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import * as React from "react";
 import Link from "next/link";
 import {
@@ -193,7 +193,7 @@ export function ApplicationTracking({
   limit = 25,
   showTitle = true,
 }: ApplicationTrackingProps) {
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   // Component state
   const [applications, setApplications] = useState<JobApplication[]>([]);
@@ -1065,7 +1065,7 @@ export function ApplicationTracking({
                   {applicationsByStatus[status].map((app) => (
                     <div
                       key={app.id}
-                      className="cursor-pointer rounded border border-gray-200 bg-white p-3 shadow-sm transition-shadow hover:shadow"
+                      className="cursor-pointer rounded border border-gray-200 bg-white p-3 shadow-xs transition-shadow hover:shadow"
                       onClick={() => toggleApplicationDetails(app.id)}
                     >
                       <div className="mb-1 font-medium text-blue-700">
@@ -1171,7 +1171,7 @@ export function ApplicationTracking({
       <div className="space-y-6">
         {/* Summary Stats */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
-          <div className="rounded-lg border bg-white p-4 shadow-sm">
+          <div className="rounded-lg border bg-white p-4 shadow-xs">
             <h3 className="mb-1 text-sm font-medium text-gray-500">
               Total Applications
             </h3>
@@ -1179,7 +1179,7 @@ export function ApplicationTracking({
             <p className="mt-1 text-sm text-gray-600">All time</p>
           </div>
 
-          <div className="rounded-lg border bg-white p-4 shadow-sm">
+          <div className="rounded-lg border bg-white p-4 shadow-xs">
             <h3 className="mb-1 text-sm font-medium text-gray-500">
               Active Applications
             </h3>
@@ -1191,7 +1191,7 @@ export function ApplicationTracking({
             </p>
           </div>
 
-          <div className="rounded-lg border bg-white p-4 shadow-sm">
+          <div className="rounded-lg border bg-white p-4 shadow-xs">
             <h3 className="mb-1 text-sm font-medium text-gray-500">
               Response Rate
             </h3>
@@ -1203,7 +1203,7 @@ export function ApplicationTracking({
             </p>
           </div>
 
-          <div className="rounded-lg border bg-white p-4 shadow-sm">
+          <div className="rounded-lg border bg-white p-4 shadow-xs">
             <h3 className="mb-1 text-sm font-medium text-gray-500">
               Success Rate
             </h3>
@@ -1217,7 +1217,7 @@ export function ApplicationTracking({
         </div>
 
         {/* Status Distribution */}
-        <div className="rounded-lg border bg-white p-6 shadow-sm">
+        <div className="rounded-lg border bg-white p-6 shadow-xs">
           <h3 className="mb-4 text-lg font-medium">
             Application Status Distribution
           </h3>
@@ -1265,7 +1265,7 @@ export function ApplicationTracking({
         </div>
 
         {/* Application Activity */}
-        <div className="rounded-lg border bg-white p-6 shadow-sm">
+        <div className="rounded-lg border bg-white p-6 shadow-xs">
           <h3 className="mb-4 text-lg font-medium">Application Activity</h3>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

@@ -51,7 +51,7 @@ function PremiumUpgradePrompt({
   const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
   
   return (
-    <Card className="relative overflow-hidden border-2 border-primary/20 shadow-sm">
+    <Card className="relative overflow-hidden border-2 border-primary/20 shadow-xs">
       <CardHeader className="pb-2 bg-gradient-to-r from-primary/10 to-primary/5">
         <CardTitle className="text-2xl flex items-center gap-2">
           <span>{title}</span>

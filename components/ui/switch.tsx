@@ -73,68 +73,65 @@ interface SwitchProps
   thumbClassName?: string;
 }
 
-const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
-  function Switch(props, ref) {
-    const {
-      className,
-      size,
-      variant,
-      hasError,
-      label,
-      labelPosition = "right",
-      thumbClassName,
-      ...switchProps
-    } = props;
+function Switch({
+  className,
+  size,
+  variant,
+  hasError,
+  label,
+  labelPosition = "right",
+  thumbClassName,
+  ...switchProps
+}: SwitchProps) {
+  // Generate a unique ID for label association
+  const id = React.useId();
 
-    // Generate a unique ID for label association
-    const id = React.useId();
+  // Switch component with variants applied
+  const switchComponent = (
+    <SwitchPrimitives.Root
+      data-slot="switch"
+      className={cn(switchVariants({ size, variant, hasError }), className)}
+      {...switchProps}
+      id={id}
+    >
+      <SwitchPrimitives.Thumb
+        data-slot="switch-thumb"
+        className={cn(thumbVariants({ size }), thumbClassName)}
+      />
+    </SwitchPrimitives.Root>
+  );
 
-    // Switch component with variants applied
-    const switchComponent = (
-      <SwitchPrimitives.Root
-        className={cn(switchVariants({ size, variant, hasError }), className)}
-        {...switchProps}
-        id={id}
-        ref={ref}
-      >
-        <SwitchPrimitives.Thumb
-          className={cn(thumbVariants({ size }), thumbClassName)}
-        />
-      </SwitchPrimitives.Root>
-    );
+  // If no label provided, return just the switch
+  if (!label) {
+    return switchComponent;
+  }
 
-    // If no label provided, return just the switch
-    if (!label) {
-      return switchComponent;
-    }
+  // Return switch with label
+  return (
+    <div className="flex items-center gap-2">
+      {labelPosition === "left" && (
+        <label
+          data-slot="switch-label"
+          htmlFor={id}
+          className="cursor-pointer select-none text-sm font-medium"
+        >
+          {label}
+        </label>
+      )}
 
-    // Return switch with label
-    return (
-      <div className="flex items-center gap-2">
-        {labelPosition === "left" && (
-          <label
-            htmlFor={id}
-            className="cursor-pointer select-none text-sm font-medium"
-          >
-            {label}
-          </label>
-        )}
+      {switchComponent}
 
-        {switchComponent}
-
-        {labelPosition === "right" && (
-          <label
-            htmlFor={id}
-            className="cursor-pointer select-none text-sm font-medium"
-          >
-            {label}
-          </label>
-        )}
-      </div>
-    );
-  },
-);
-
-Switch.displayName = "Switch";
+      {labelPosition === "right" && (
+        <label
+          data-slot="switch-label"
+          htmlFor={id}
+          className="cursor-pointer select-none text-sm font-medium"
+        >
+          {label}
+        </label>
+      )}
+    </div>
+  );
+}
 
 export { Switch };

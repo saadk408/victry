@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumePreview } from "@/app/resume/_components/resume-preview";
 import { useResume } from "@/hooks/use-resume";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import {
   Edit,
   Download,
@@ -27,7 +27,7 @@ interface ResumeViewPageProps {
 export default function ResumeViewPage({ params }: ResumeViewPageProps) {
   const { id } = params;
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
   const { resume, loading, error, deleteResume } = useResume(id);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -218,7 +218,7 @@ export default function ResumeViewPage({ params }: ResumeViewPageProps) {
           </div>
         </div>
       ) : (
-        <div className="rounded-lg bg-white shadow-sm">
+        <div className="rounded-lg bg-white shadow-xs">
           {loading ? (
             <div className="flex h-[800px] items-center justify-center">
               <div className="text-center">

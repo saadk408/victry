@@ -77,6 +77,18 @@ export interface JobAnalysis {
   /** Reference to the analyzed job description */
   jobDescriptionId: string;
 
+  /** Company information */
+  companyInfo: {
+    size?: string;
+    industry?: string;
+    culture?: string;
+    mission?: string;
+    values?: string[];
+  };
+
+  /** Job summary */
+  jobSummary: string;
+
   /** List of requirements extracted from the job description */
   requirements: JobRequirement[];
 

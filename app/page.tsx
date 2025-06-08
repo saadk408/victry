@@ -774,16 +774,16 @@ export default function HomePage() {
                     <div className="p-4">
                       <div className="h-4 w-1/2 bg-white/20 rounded-full mb-6"></div>
                       <div className="flex flex-col gap-3">
-                        <div className="h-16 bg-white/10 rounded-xl backdrop-blur-sm shadow-sm border border-white/10"></div>
-                        <div className="h-16 bg-white/10 rounded-xl backdrop-blur-sm shadow-sm border border-white/10"></div>
-                        <div className="h-16 bg-indigo-600/20 rounded-xl backdrop-blur-sm shadow-sm border border-indigo-500/30 flex items-center px-4">
+                        <div className="h-16 bg-white/10 rounded-xl backdrop-blur-sm shadow-xs border border-white/10"></div>
+                        <div className="h-16 bg-white/10 rounded-xl backdrop-blur-sm shadow-xs border border-white/10"></div>
+                        <div className="h-16 bg-indigo-600/20 rounded-xl backdrop-blur-sm shadow-xs border border-indigo-500/30 flex items-center px-4">
                           <div className="h-8 w-8 rounded-full bg-indigo-500/50 mr-3"></div>
                           <div className="h-3 w-3/4 bg-white/30 rounded-full"></div>
                         </div>
                       </div>
                       <div className="mt-8">
                         <div className="h-4 w-1/3 bg-white/20 rounded-full mb-4"></div>
-                        <div className="h-40 bg-white/10 rounded-xl shadow-sm backdrop-blur-sm border border-white/10 flex items-center justify-center p-4">
+                        <div className="h-40 bg-white/10 rounded-xl shadow-xs backdrop-blur-sm border border-white/10 flex items-center justify-center p-4">
                           <div className="h-24 w-5/6 rounded-lg bg-gradient-to-br from-indigo-500/30 to-blue-500/30 backdrop-blur-sm border border-white/10"></div>
                         </div>
                       </div>
@@ -854,6 +854,7 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
+
     </main>
   );
 }

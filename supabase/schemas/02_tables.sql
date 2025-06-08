@@ -25,6 +25,30 @@ create table public.resumes (
 );
 comment on table public.resumes is 'Stores user resume metadata including titles, versions, and references to related content. Each resume belongs to a single user and may link to job descriptions for tailoring.';
 
+-- User profiles table
+create table public.profiles (
+  id uuid primary key references auth.users(id) on delete cascade,
+  first_name text,
+  last_name text,
+  avatar_url text,
+  subscription_tier text not null default 'free',
+  subscription_expires_at timestamptz,
+  resume_count integer default 0,
+  job_description_count integer default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  
+  -- Constraints
+  constraint valid_subscription_tier check (subscription_tier in ('free', 'premium', 'enterprise')),
+  constraint valid_creation_date check (created_at <= current_timestamp),
+  constraint valid_update_date check (updated_at <= current_timestamp),
+  constraint valid_names check (
+    (first_name is null and last_name is null) or 
+    (char_length(trim(coalesce(first_name, '') || coalesce(last_name, ''))) > 0)
+  )
+);
+comment on table public.profiles is 'User profile information including subscription details and usage statistics. One profile per authenticated user.';
+
 -- Personal information
 create table public.personal_info (
   id uuid primary key default gen_random_uuid(),
@@ -157,7 +181,7 @@ create table public.custom_sections (
   id uuid primary key default gen_random_uuid(),
   resume_id uuid not null references public.resumes(id) on delete cascade,
   title text not null,
-  order integer,
+  display_order integer,
   is_visible boolean default true
 );
 comment on table public.custom_sections is 'User-defined resume sections for additional content types.';

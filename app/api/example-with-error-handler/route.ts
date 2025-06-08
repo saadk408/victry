@@ -1,6 +1,6 @@
 // File: /app/api/example-with-error-handler/route.ts
 import { NextRequest } from "next/server";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
+import { createActionClient } from "@/lib/supabase/client";
 import { cookies } from "next/headers";
 import { withRouteErrorHandlers, validateRequest, ensureAuthenticated } from "@/lib/middlewares/error-handler";
 import { apiResponse } from "@/lib/utils/api-utils";
@@ -70,7 +70,7 @@ async function handleGet(request: NextRequest) {
   }
   
   // Get Supabase client
-  const supabase = createRouteHandlerClient<Database>({ cookies });
+  const supabase = await createActionClient();
   
   try {
     // Fetch data from database
@@ -121,7 +121,7 @@ async function handlePost(request: NextRequest) {
   }
   
   // Get Supabase client
-  const supabase = createRouteHandlerClient<Database>({ cookies });
+  const supabase = await createActionClient();
   
   try {
     // Get authenticated user
@@ -191,7 +191,7 @@ async function handlePut(request: NextRequest) {
   }
   
   // Get Supabase client
-  const supabase = createRouteHandlerClient<Database>({ cookies });
+  const supabase = await createActionClient();
   
   try {
     // Get authenticated user
@@ -275,7 +275,7 @@ async function handleDelete(request: NextRequest) {
   }
   
   // Get Supabase client
-  const supabase = createRouteHandlerClient<Database>({ cookies });
+  const supabase = await createActionClient();
   
   try {
     // Get authenticated user

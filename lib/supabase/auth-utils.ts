@@ -26,7 +26,8 @@ export interface Permission {
  * @returns Array of user roles
  */
 export async function getUserRoles(): Promise<UserRole[]> {
-  const supabase = await createServerClient(await cookies());
+  const cookieStore = await cookies();
+  const supabase = await createServerClient(cookieStore);
   
   // Get the user's session which contains JWT claims
   const { data: { session } } = await supabase.auth.getSession();
@@ -75,7 +76,8 @@ export async function isPremium(): Promise<boolean> {
  * @returns Whether the user has the specified permission
  */
 export async function hasPermission(resource: string, action: string): Promise<boolean> {
-  const supabase = await createServerClient(await cookies());
+  const cookieStore = await cookies();
+  const supabase = await createServerClient(cookieStore);
   
   // Using RPC call to the database function we created
   const { data, error } = await supabase.rpc('has_permission', {
@@ -102,7 +104,8 @@ export async function hasReachedResumeLimit(): Promise<boolean> {
   }
   
   // Otherwise, check the database limit
-  const supabase = await createServerClient(await cookies());
+  const cookieStore = await cookies();
+  const supabase = await createServerClient(cookieStore);
   
   // Get the user's ID
   const { data: { user } } = await supabase.auth.getUser();
@@ -138,7 +141,8 @@ export async function canUseAiFeature(feature: string): Promise<boolean> {
   }
   
   // Otherwise, check the database limit
-  const supabase = await createServerClient(await cookies());
+  const cookieStore = await cookies();
+  const supabase = await createServerClient(cookieStore);
   
   // Using RPC call to the database function we created
   const { data, error } = await supabase.rpc('check_ai_usage_limit', {
@@ -159,7 +163,8 @@ export async function canUseAiFeature(feature: string): Promise<boolean> {
  * @returns Whether the usage was successfully recorded
  */
 export async function recordAiFeatureUsage(feature: string): Promise<boolean> {
-  const supabase = await createServerClient(await cookies());
+  const cookieStore = await cookies();
+  const supabase = await createServerClient(cookieStore);
   
   // Call the database function to record usage
   const { error } = await supabase.rpc('record_ai_feature_usage', {
@@ -236,7 +241,8 @@ export async function assignRole(userId: string, role: UserRole): Promise<boolea
     return false;
   }
   
-  const supabase = await createServerClient(await cookies());
+  const cookieStore = await cookies();
+  const supabase = await createServerClient(cookieStore);
   
   // Call the database function to assign role
   const { error } = await supabase.rpc('assign_role', {
@@ -257,7 +263,8 @@ export async function assignRole(userId: string, role: UserRole): Promise<boolea
  * @returns Object mapping resource.action to boolean
  */
 export async function getUserPermissions(): Promise<Record<string, boolean>> {
-  const supabase = await createServerClient(await cookies());
+  const cookieStore = await cookies();
+  const supabase = await createServerClient(cookieStore);
   
   // Call a view or function that returns all user permissions
   const { data, error } = await supabase.rpc('get_user_permissions', {});

@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import {
   Home,
   FileText,
@@ -26,7 +26,7 @@ export default function Sidebar() {
   const [resumesExpanded, setResumesExpanded] = useState(true);
   const [jobsExpanded, setJobsExpanded] = useState(false);
 
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   // Fetch user on component mount
   useEffect(() => {

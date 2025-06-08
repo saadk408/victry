@@ -17,6 +17,16 @@ create index if not exists idx_resumes_is_base_resume on public.resumes(user_id)
 create index if not exists idx_resumes_format_options on public.resumes using gin(format_options);
 create index if not exists idx_resumes_metadata on public.resumes using gin(metadata);
 
+-- Profiles table indexes
+create index if not exists idx_profiles_subscription_tier 
+  on public.profiles(subscription_tier);
+  
+create index if not exists idx_profiles_created_at 
+  on public.profiles(created_at desc);
+  
+create index if not exists idx_profiles_updated_at 
+  on public.profiles(updated_at desc);
+
 -- Personal info indexes
 create index if not exists idx_personal_info_resume_id on public.personal_info(resume_id);
 create index if not exists idx_personal_info_full_name_trgm on public.personal_info using gin(full_name gin_trgm_ops);

@@ -3,7 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { Metadata } from "next";
 import { Suspense } from "react";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerClient } from "@/lib/supabase/client";
 import { cookies } from "next/headers";
 
 // Import layout components
@@ -62,8 +62,7 @@ export const themeColor = [
 // Get user session data for the layout
 async function getUserSession() {
   try {
-    const cookieStore = cookies();
-    const supabase = createServerComponentClient({ cookies: () => cookieStore });
+    const supabase = await createServerClient();
     const {
       data: { session },
     } = await supabase.auth.getSession();
@@ -85,7 +84,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <body
-        className={`${inter.className} flex min-h-screen flex-col bg-gray-50 antialiased dark:bg-gray-900`}
+        className={`${inter.className} flex min-h-screen flex-col bg-background antialiased`}
       >
         <ThemeProvider
           attribute="class"

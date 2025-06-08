@@ -1,9 +1,6 @@
 // File: /lib/supabase/client.ts
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
-import { type cookies } from "next/headers";
-import { type CookieOptions } from "@supabase/ssr";
+import { createBrowserClient, createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
 import { cache } from "react";
 import { Database } from "../../types/supabase";
 
@@ -31,63 +28,99 @@ const BASE_DELAY = 500;
  *   // Use supabase client...
  * }
  */
-export const createClient = () => {
-  return createClientComponentClient<Database>();
-};
+export function createClient() {
+  return createBrowserClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
 
 /**
  * Creates a cached Supabase client for server components
  * This is safe to use in server components and prevents unnecessary client creation
  *
- * @param cookieStore - The cookie store from Next.js
  * @returns A typed Supabase client
  * @example
- * import { cookies } from 'next/headers';
  * import { createServerClient } from '@/lib/supabase/client';
  *
  * export default async function ServerComponent() {
- *   const supabase = createServerClient(await cookies());
+ *   const supabase = await createServerClient();
  *   const { data } = await supabase.from('table').select();
  *   // ...
  * }
  */
-export const createServerClient = cache(
-  async (cookieStore: ReturnType<typeof cookies>) => {
-    return createServerComponentClient<Database>({
-      cookies: async () => cookieStore,
-    });
-  },
-);
+export const createServerComponentClient = cache(async () => {
+  const cookieStore = await cookies();
+  
+  return createServerClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            );
+          } catch {
+            // Server Component context - ignore
+            // The `set` method is only available in a Server Action or Route Handler
+          }
+        },
+      },
+    }
+  );
+});
 
 /**
- * Creates a Supabase client for use in Server Actions
+ * Creates a Supabase client for use in Server Actions and Route Handlers
+ * This client can read and write cookies
  *
- * @param cookieStore - The cookie store from Next.js
- * @param options - Optional cookie options
+ * @param cookieStore - The cookie store from Next.js (optional, will fetch if not provided)
  * @returns A typed Supabase client
  * @example
  * 'use server';
- * import { cookies } from 'next/headers';
  * import { createActionClient } from '@/lib/supabase/client';
  *
  * export async function serverAction() {
- *   const supabase = createActionClient(await cookies());
+ *   const supabase = await createActionClient();
  *   // Use supabase client...
  * }
  */
-export const createActionClient = (
-  cookieStore: ReturnType<typeof cookies>,
-  options?: {
-    supabaseUrl?: string;
-    supabaseKey?: string;
-    cookieOptions?: CookieOptions;
-  },
-) => {
-  return createServerActionClient<Database>(
-    { cookies: async () => cookieStore },
-    options,
+export async function createActionClient(cookieStore?: ReturnType<typeof cookies>) {
+  const _cookieStore = cookieStore || await cookies();
+  
+  return createServerClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return _cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              _cookieStore.set(name, value, options)
+            );
+          } catch (error) {
+            // Server Component context - ignore
+            // The `set` method is only available in a Server Action or Route Handler
+          }
+        },
+      },
+    }
   );
-};
+}
+
+/**
+ * Alias for createServerComponentClient for backwards compatibility
+ * @deprecated Use createServerComponentClient directly
+ */
+export const createServerClient = createServerComponentClient;
 
 /**
  * Utility function to handle Supabase errors consistently across the application

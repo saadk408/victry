@@ -1,6 +1,6 @@
 // File: /app/api/ai/analyze-job/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
+import { createActionClient } from "@/lib/supabase/client";
 import { cookies } from "next/headers";
 import { 
   generateCompletionDirect, 
@@ -127,7 +127,7 @@ function extractAnalysisData(response: Anthropic.Message): ClaudeAnalysisData {
 // POST /api/ai/analyze-job - Analyze a job description using Claude API
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient({ cookies });
+    const supabase = await createActionClient();
 
     // 1. Authenticate the user
     const {
@@ -450,19 +450,31 @@ export async function POST(request: NextRequest) {
     const analysis: JobAnalysis = {
       id: analysisRecord.id,
       jobDescriptionId,
+      companyInfo: {
+        size: analysisRecord.company_size,
+        industry: analysisRecord.industry,
+        culture: analysisRecord.company_culture_description,
+        mission: analysisRecord.company_mission,
+        values: analysisRecord.company_values || [],
+      },
+      jobSummary: analysisRecord.job_summary || "",
       requirements: (analysisRecord.requirements as JobRequirement[]) || [],
       keywords: (analysisRecord.keywords as JobKeyword[]) || [],
-      experienceLevel: analysisRecord.experience_level,
+      experienceLevel: analysisRecord.experience_level || "unspecified",
       companyCulture: analysisRecord.company_culture || [],
       createdAt: analysisRecord.created_at,
-      salaryRange: analysisRecord.salary_range as JobAnalysis["salaryRange"],
-      industry: analysisRecord.industry ?? undefined,
-      department: analysisRecord.department ?? undefined,
-      employmentType: analysisRecord.employment_type ?? undefined,
-      remoteWork: analysisRecord.remote_work ?? undefined,
-      responsibilities: analysisRecord.responsibilities ?? undefined,
-      atsCompatibilityScore:
-        analysisRecord.ats_compatibility_score ?? undefined,
+      salaryRange: analysisRecord.salary_range ? {
+        min: analysisRecord.salary_range.min,
+        max: analysisRecord.salary_range.max,
+        currency: analysisRecord.salary_range.currency,
+        isExplicit: !!analysisRecord.salary_range.isExplicit, 
+      } : undefined,
+      industry: analysisRecord.industry,
+      department: analysisRecord.department,
+      employmentType: analysisRecord.employment_type,
+      remoteWork: analysisRecord.remote_work,
+      responsibilities: analysisRecord.responsibilities || [],
+      atsCompatibilityScore: analysisRecord.ats_compatibility_score,
     };
 
     // 11. Return the analysis

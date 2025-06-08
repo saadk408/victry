@@ -1,6 +1,6 @@
 // File: /app/api/job-description/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
+import { createActionClient } from "@/lib/supabase/client";
 import { cookies } from "next/headers";
 import {
   CreateJobDescriptionRequest,
@@ -43,7 +43,7 @@ type JobDescriptionSortableColumns =
  */
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient({ cookies });
+    const supabase = await createActionClient();
 
     // Check if user is authenticated
     const {
@@ -123,7 +123,7 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient<Database>({ cookies }); // Use Database type
+    const supabase = await createActionClient();
 
     // Check if user is authenticated
     const {

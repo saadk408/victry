@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { User } from "@/models/user";
 import { Check, X, Zap, FileText, Shield, Clock, Loader2 } from "lucide-react";
@@ -108,7 +108,7 @@ export function SubscriptionPlans({
   onPlanSelect,
 }: SubscriptionPlansProps) {
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   const [user, setUser] = useState<User | null>(currentUser || null);
   const [loading, setLoading] = useState(!currentUser);

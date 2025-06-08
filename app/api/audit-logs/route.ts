@@ -12,6 +12,8 @@ import { withErrorLogging } from '@/lib/middlewares/error-logging-middleware';
 import { withQueryMonitoring } from '@/lib/middlewares/query-monitoring-middleware';
 import { withAuditLogging } from '@/lib/middlewares/audit-logging-middleware';
 import { OperationCategory } from '@/lib/supabase/audit-logger';
+import { isAdmin } from '@/lib/supabase/auth-utils';
+import { cookies } from 'next/headers';
 import {
   getRecentOperations,
   getSecurityEvents,
@@ -48,7 +50,8 @@ async function handleGet(req: NextRequest): Promise<NextResponse> {
   const action = searchParams.get('action');
   
   // Only allow admin users to access audit logs
-  const supabase = createActionClient();
+  const cookieStore = await cookies();
+  const supabase = createActionClient(cookieStore);
   const { data: { user } } = await supabase.auth.getUser();
   
   if (!user) {
@@ -58,15 +61,10 @@ async function handleGet(req: NextRequest): Promise<NextResponse> {
     );
   }
   
-  // Check if user has admin role
-  const { data: userRoles } = await supabase
-    .from('user_roles')
-    .select('role')
-    .eq('user_id', user.id);
+  // Check if user has admin role using auth utilities
+  const hasAdminRole = await isAdmin();
   
-  const isAdmin = userRoles?.some(ur => ur.role === 'admin');
-  
-  if (!isAdmin) {
+  if (!hasAdminRole) {
     return NextResponse.json(
       { error: 'Admin access required' },
       { status: 403 }
@@ -157,7 +155,8 @@ async function handleGet(req: NextRequest): Promise<NextResponse> {
  */
 async function handlePost(req: NextRequest): Promise<NextResponse> {
   // Only allow admin users to access audit logs
-  const supabase = createActionClient();
+  const cookieStore = await cookies();
+  const supabase = createActionClient(cookieStore);
   const { data: { user } } = await supabase.auth.getUser();
   
   if (!user) {
@@ -167,15 +166,10 @@ async function handlePost(req: NextRequest): Promise<NextResponse> {
     );
   }
   
-  // Check if user has admin role
-  const { data: userRoles } = await supabase
-    .from('user_roles')
-    .select('role')
-    .eq('user_id', user.id);
+  // Check if user has admin role using auth utilities
+  const hasAdminRole = await isAdmin();
   
-  const isAdmin = userRoles?.some(ur => ur.role === 'admin');
-  
-  if (!isAdmin) {
+  if (!hasAdminRole) {
     return NextResponse.json(
       { error: 'Admin access required' },
       { status: 403 }
