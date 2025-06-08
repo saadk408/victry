@@ -20,7 +20,7 @@ import {
 import { cn } from "@/lib/utils/utils";
 import { Skill } from "@/types/resume";
 import { Badge } from "@/components/ui/badge";
-import { analytics } from "@/lib/services/analytics-service";
+import { clientAnalytics } from "@/lib/utils/client-analytics";
 
 // Common skill categories and suggestions based on job markets
 const SKILL_CATEGORIES = [
@@ -271,13 +271,11 @@ export function SkillInput({
     setSearchTerm("");
 
     // Track skill added event
-    analytics
-      .trackEvent("skill_added", {
-        skillName: newSkill.name,
-        hasCategory: !!newSkill.category,
-        hasLevel: !!newSkill.level,
-      })
-      .catch(console.error);
+    clientAnalytics.trackSkillAdded(
+      newSkill.name,
+      !!newSkill.category,
+      !!newSkill.level
+    );
   };
 
   // Remove a skill
@@ -287,11 +285,7 @@ export function SkillInput({
 
     // Track skill removed event
     if (skillToRemove) {
-      analytics
-        .trackEvent("skill_removed", {
-          skillName: skillToRemove.name,
-        })
-        .catch(console.error);
+      clientAnalytics.trackSkillRemoved(skillToRemove.name);
     }
   };
 

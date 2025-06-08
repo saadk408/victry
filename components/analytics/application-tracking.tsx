@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/browser";
 import * as React from "react";
 import Link from "next/link";
 import {
@@ -30,7 +30,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { formatDate } from "@/lib/utils";
 import { Resume } from "../../models/resume";
 import { JobDescription } from "../../models/job-description";
-import { analytics } from "../../lib/services/analytics-service";
+import { clientAnalytics } from "../../lib/utils/client-analytics";
 
 // Application status options
 export const APPLICATION_STATUSES = [
@@ -354,12 +354,7 @@ export function ApplicationTracking({
     fetchJobDescriptions();
 
     // Use correct event type for tracking view
-    analytics
-      .trackEvent("feature_viewed", {
-        feature: "application_tracker",
-        view: activeTab,
-      })
-      .catch(console.error);
+    clientAnalytics.trackFeatureViewed("application_tracker");
   }, [activeTab, fetchApplications, fetchResumes, fetchJobDescriptions]);
 
   // Get filtered and sorted applications

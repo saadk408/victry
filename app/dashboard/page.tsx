@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { StatsCard } from "./_components/stats-card";
-import { getResumes } from "@/lib/services/resume-service";
-import { getJobDescriptions } from "@/lib/services/job-description-service";
+// Client components should use API routes, not service functions directly
 import { Resume } from "@/types/resume";
 import { JobDescription } from "@/types/job-description";
 import { formatDate } from "@/lib/utils/formatting";
@@ -39,13 +38,18 @@ export default function DashboardPage() {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const [resumesResponse, jobDescriptionsResponse]: [
-          ResumesResponse,
-          JobDescriptionsResponse,
-        ] = await Promise.all([getResumes(), getJobDescriptions()]);
+        
+        // Call API routes instead of service functions directly
+        const [resumesRes, jobDescriptionsRes] = await Promise.all([
+          fetch('/api/resume'),
+          fetch('/api/job-description')
+        ]);
 
-        setResumes(resumesResponse.data);
-        setJobDescriptions(jobDescriptionsResponse.data);
+        const resumesResponse: ResumesResponse = await resumesRes.json();
+        const jobDescriptionsResponse: JobDescriptionsResponse = await jobDescriptionsRes.json();
+
+        setResumes(resumesResponse.data || []);
+        setJobDescriptions(jobDescriptionsResponse.data || []);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
         setResumes([]);

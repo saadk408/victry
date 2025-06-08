@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumePreview } from "@/app/resume/_components/resume-preview";
 import { useResume } from "@/hooks/use-resume";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/browser";
 import {
   Edit,
   Download,

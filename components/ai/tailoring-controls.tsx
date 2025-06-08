@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Info, Sparkles, RefreshCw } from "lucide-react";
 import { TailoringSettings } from "@/types/resume";
-import { analytics } from "@/lib/services/analytics-service";
+import { clientAnalytics } from "@/lib/utils/client-analytics";
 
 interface TailoringControlsProps {
   onSettingsChange: (settings: TailoringSettings) => void;
@@ -43,14 +43,7 @@ export function TailoringControls({
   // Track setting changes for analytics
   const trackSettingChange = useCallback(
     (settingName: string, value: number | boolean | string) => {
-      analytics
-        .trackEvent("tailoring_setting_changed", {
-          setting: settingName,
-          value: value,
-        })
-        .catch((err) => {
-          console.error("Failed to track setting change:", err);
-        });
+      clientAnalytics.trackTailoringSettingChanged(settingName, value);
     },
     [],
   );

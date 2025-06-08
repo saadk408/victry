@@ -1,7 +1,7 @@
 // File: /app/_lib/hooks/use-resume.ts
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/browser";
 import {
   type Resume,
   type PersonalInfo,

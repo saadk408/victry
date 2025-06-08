@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/browser";
 import { LoginForm } from "@/components/auth/login-form";
 
 export default function LoginPage() {

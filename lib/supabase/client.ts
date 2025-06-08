@@ -1,8 +1,54 @@
-// File: /lib/supabase/client.ts
-import { createBrowserClient, createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
-import { cache } from "react";
+/**
+ * Supabase Client Re-exports (Updated 2025-06-08)
+ * 
+ * This file was updated as part of the client/server separation fix to resolve
+ * the Next.js build error: "You're importing a component that needs 'next/headers'"
+ * 
+ * Previous Issue:
+ * This file previously imported 'cookies' from 'next/headers' directly, making
+ * it server-only, but it was being imported by 18+ client components causing
+ * build failures.
+ * 
+ * Current Solution:
+ * Now provides re-exports from separate browser and server client files for
+ * backwards compatibility while maintaining proper separation.
+ * 
+ * Recommended Usage:
+ * - Client components: import { createClient } from "@/lib/supabase/browser"
+ * - Server components: import { createClient } from "@/lib/supabase/server"
+ * - Legacy code: Can continue using this file (automatically routed)
+ * 
+ * Architecture:
+ * - /lib/supabase/browser.ts - Browser-safe client (no next/headers)
+ * - /lib/supabase/server.ts - Server-only client (uses next/headers)
+ * - /lib/supabase/client.ts - Re-exports for compatibility (this file)
+ */
+
 import { Database } from "../../types/supabase";
+
+/**
+ * For Client Components, import from browser client
+ * @example
+ * 'use client';
+ * import { createClient } from '@/lib/supabase/browser';
+ */
+export { createClient } from './browser';
+
+/**
+ * For Server Components, Server Actions, and Route Handlers
+ * @example
+ * import { createClient } from '@/lib/supabase/server';
+ */
+export { 
+  createClient as createServerClient,
+  createActionClient 
+} from './server';
+
+/**
+ * Alias for createServerClient for backwards compatibility
+ * @deprecated Use createServerClient directly
+ */
+export { createClient as createServerComponentClient } from './server';
 
 /**
  * Maximum retry attempts for database operations
@@ -13,114 +59,6 @@ const MAX_RETRIES = 3;
  * Base delay for exponential backoff (in milliseconds)
  */
 const BASE_DELAY = 500;
-
-/**
- * Creates a Supabase client for use in client components
- * This is safe to use in client-side code (components with 'use client')
- *
- * @returns A typed Supabase client
- * @example
- * 'use client';
- * import { createClient } from '@/lib/supabase/client';
- *
- * export default function Component() {
- *   const supabase = createClient();
- *   // Use supabase client...
- * }
- */
-export function createClient() {
-  return createBrowserClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-}
-
-/**
- * Creates a cached Supabase client for server components
- * This is safe to use in server components and prevents unnecessary client creation
- *
- * @returns A typed Supabase client
- * @example
- * import { createServerClient } from '@/lib/supabase/client';
- *
- * export default async function ServerComponent() {
- *   const supabase = await createServerClient();
- *   const { data } = await supabase.from('table').select();
- *   // ...
- * }
- */
-export const createServerComponentClient = cache(async () => {
-  const cookieStore = await cookies();
-  
-  return createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll();
-        },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            );
-          } catch {
-            // Server Component context - ignore
-            // The `set` method is only available in a Server Action or Route Handler
-          }
-        },
-      },
-    }
-  );
-});
-
-/**
- * Creates a Supabase client for use in Server Actions and Route Handlers
- * This client can read and write cookies
- *
- * @param cookieStore - The cookie store from Next.js (optional, will fetch if not provided)
- * @returns A typed Supabase client
- * @example
- * 'use server';
- * import { createActionClient } from '@/lib/supabase/client';
- *
- * export async function serverAction() {
- *   const supabase = await createActionClient();
- *   // Use supabase client...
- * }
- */
-export async function createActionClient(cookieStore?: ReturnType<typeof cookies>) {
-  const _cookieStore = cookieStore || await cookies();
-  
-  return createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return _cookieStore.getAll();
-        },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              _cookieStore.set(name, value, options)
-            );
-          } catch (error) {
-            // Server Component context - ignore
-            // The `set` method is only available in a Server Action or Route Handler
-          }
-        },
-      },
-    }
-  );
-}
-
-/**
- * Alias for createServerComponentClient for backwards compatibility
- * @deprecated Use createServerComponentClient directly
- */
-export const createServerClient = createServerComponentClient;
 
 /**
  * Utility function to handle Supabase errors consistently across the application

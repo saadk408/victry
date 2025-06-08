@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { Sparkles, CheckCircle2, XCircle, Loader2, Undo2 } from "lucide-react";
 import { cn } from "@/lib/utils/utils";
 import { generateFullDiffHtml } from "@/lib/utils/diff-utils";
-import { analytics } from "@/lib/services/analytics-service";
+import { clientAnalytics } from "@/lib/utils/client-analytics";
 
 interface AISuggestionProps {
   original: string;
@@ -111,7 +111,7 @@ export function AISuggestion({
     if (isLoading || accepted) return;
 
     // Track acceptance in analytics
-    analytics.trackAISuggestionAccepted(category, suggestion.length);
+    clientAnalytics.trackAISuggestionAccepted(category, suggestion.length);
 
     // Update UI state
     setAccepted(true);
@@ -127,7 +127,7 @@ export function AISuggestion({
     if (isLoading || accepted) return;
 
     // Track rejection in analytics
-    analytics.trackAISuggestionRejected(category, suggestion.length);
+    clientAnalytics.trackAISuggestionRejected(category, suggestion.length);
 
     // Call the parent's callback
     onReject();
@@ -141,7 +141,7 @@ export function AISuggestion({
     const timeElapsed = Date.now() - acceptedTimestampRef.current;
 
     // Track undo in analytics
-    analytics.trackAISuggestionUndone(category, timeElapsed);
+    clientAnalytics.trackAISuggestionUndone(category, timeElapsed);
 
     // Reset state
     setAccepted(false);

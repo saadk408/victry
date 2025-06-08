@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/browser";
 import { ForgotPasswordForm } from "@/components/auth/forgot-password-form";
 import { ArrowLeft } from "lucide-react";
 

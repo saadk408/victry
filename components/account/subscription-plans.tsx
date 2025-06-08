@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
 import { User } from "@/models/user";
 import { Check, X, Zap, FileText, Shield, Clock, Loader2 } from "lucide-react";

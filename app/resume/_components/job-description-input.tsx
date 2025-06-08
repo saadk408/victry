@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 // import { useRouter } from "next/navigation"; // Removed unused import
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";

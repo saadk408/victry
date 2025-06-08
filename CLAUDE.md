@@ -86,6 +86,73 @@ npm test -- --coverage               # Run with coverage report
 
 ## 🏗️ Architecture Patterns
 
+### Supabase Client/Server Separation Pattern (Fixed 2025-06-08)
+```typescript
+// ✅ CORRECT: Browser client for client components
+// /lib/supabase/browser.ts
+import { createBrowserClient } from "@supabase/ssr";
+import { Database } from "../../types/supabase";
+
+export function createClient() {
+  return createBrowserClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
+
+// ✅ CORRECT: Server client for API routes and server components
+// /lib/supabase/server.ts
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
+import { Database } from "../../types/supabase";
+
+export async function createClient() {
+  const cookieStore = await cookies();
+  return createServerClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            );
+          } catch (error) {
+            // Server Component context - ignore
+          }
+        },
+      },
+    }
+  );
+}
+
+// ✅ CORRECT: Client components use browser client
+import { createClient } from "@/lib/supabase/browser";
+
+// ✅ CORRECT: API routes use server client  
+import { createClient } from "@/lib/supabase/server";
+
+// ❌ WRONG: Client components importing server code
+import { createClient } from "@/lib/supabase/client"; // if it imports next/headers
+```
+
+### Client-Safe Analytics Pattern
+```typescript
+// ✅ CORRECT: Client components use client-safe analytics
+// /lib/utils/client-analytics.ts
+import { clientAnalytics } from "@/lib/utils/client-analytics";
+
+// In client components:
+clientAnalytics.trackEvent('resume_created', { templateId });
+
+// ❌ WRONG: Client components importing server analytics
+import { analytics } from "@/lib/services/analytics-service"; // imports server client
+```
+
 ### Error Handling Pattern
 ```typescript
 // ✅ CORRECT: /lib/utils/error-utils.ts
@@ -418,6 +485,11 @@ enum ErrorCategory {
 
 ## 🔄 Recent Updates
 
+- **2025-06-08**: ✅ **Client/Server Separation Fixed** - Resolved Next.js build error "You're importing a component that needs 'next/headers'"
+  - Created separate browser (`/lib/supabase/browser.ts`) and server (`/lib/supabase/server.ts`) clients
+  - Fixed 18+ client components to use browser-safe imports
+  - Created client-safe analytics utility (`/lib/utils/client-analytics.ts`)
+  - Updated dashboard and resume pages to use API routes instead of direct service imports
 - **2025-06-04**: ✅ **OAuth Configured** - Email, Google OAuth, and LinkedIn OIDC configured in Supabase
 - **2025-06-04**: ✅ **Phase 1 COMPLETED** - All authentication files migrated to @supabase/ssr
 - **2025-06-03**: ✅ **Phase 2 COMPLETED** - Profiles table implementation with RLS policies and performance indexes

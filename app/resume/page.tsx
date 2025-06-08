@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { getResumes } from "@/lib/services/resume-service";
+// Client components should use API routes, not service functions directly
 import { Resume } from "@/types/resume";
 import { formatDate } from "@/lib/utils/formatting";
 import { Button } from "@/components/ui/button";
@@ -48,8 +48,9 @@ export default function ResumeListPage() {
     async function fetchResumes() {
       try {
         setLoading(true);
-        const response: ResumesResponse = await getResumes();
-        const resumeList = response.data;
+        const response = await fetch('/api/resume');
+        const resumesResponse: ResumesResponse = await response.json();
+        const resumeList = resumesResponse.data || [];
 
         setResumes(resumeList);
 
