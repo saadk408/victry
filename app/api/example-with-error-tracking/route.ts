@@ -9,7 +9,7 @@ import {
   createNotFoundError
 } from '@/lib/utils/error-utils';
 import { getLogger } from '@/lib/utils/logger';
-import { createClient } from '@/lib/supabase/client';
+import { createClient } from '@/lib/supabase/server';
 import { withRetry } from '@/lib/utils/retry-utils';
 
 // Create a logger for this API route

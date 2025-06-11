@@ -62,7 +62,7 @@ export function RegisterForm() {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          emailRedirectTo: `${window.location.origin}/auth/verify-email`,
           data: {
             first_name: firstName,
             last_name: lastName,
@@ -74,22 +74,9 @@ export function RegisterForm() {
         throw signUpError;
       }
 
-      // Create a user profile in the profiles table
-      if (data?.user) {
-        const { error: profileError } = await supabase.from("profiles").insert({
-          id: data.user.id,
-          first_name: firstName,
-          last_name: lastName,
-          subscription_tier: "free",
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        });
-
-        if (profileError) {
-          console.error("Error creating user profile:", profileError);
-          // Continue anyway as the auth account was created
-        }
-      }
+      // ✅ Profile creation now handled automatically by database trigger
+      // No manual profile creation needed - the handle_new_user() function
+      // automatically creates profiles when users sign up through any auth method
 
       // Check if email confirmation is required
       if (data?.user?.identities?.length === 0) {
@@ -271,7 +258,7 @@ export function RegisterForm() {
             onClick={() => setShowPassword(!showPassword)}
             tabIndex={-1}
           >
-            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
           </button>
         </div>
         <p className="text-xs text-gray-500">
@@ -304,7 +291,7 @@ export function RegisterForm() {
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             tabIndex={-1}
           >
-            {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            {showConfirmPassword ? <Eye size={18} /> : <EyeOff size={18} />}
           </button>
         </div>
       </div>

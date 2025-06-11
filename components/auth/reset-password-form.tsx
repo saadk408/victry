@@ -196,7 +196,7 @@ export function ResetPasswordForm() {
             tabIndex={-1}
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
-            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
           </button>
         </div>
 
@@ -261,7 +261,7 @@ export function ResetPasswordForm() {
             tabIndex={-1}
             aria-label={showConfirmPassword ? "Hide password" : "Show password"}
           >
-            {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            {showConfirmPassword ? <Eye size={18} /> : <EyeOff size={18} />}
           </button>
         </div>
         

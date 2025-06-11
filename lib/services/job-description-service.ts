@@ -1,5 +1,5 @@
 // File: /services/job-description-service.ts
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import { JobDescription } from "@/models/job-description";
 import {
   CreateJobDescriptionRequest,

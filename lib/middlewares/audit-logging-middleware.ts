@@ -6,7 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createActionClient } from '../supabase/client';
+import { createActionClient } from '../supabase/server';
 import { logCriticalOperation, OperationCategory } from '../supabase/audit-logger';
 import { logger } from '../utils/logger';
 

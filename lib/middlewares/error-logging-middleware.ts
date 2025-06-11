@@ -8,7 +8,7 @@ import {
   createApiError 
 } from '@/lib/utils/error-utils';
 import { ApiErrorResponse } from '@/types/api';
-import { createClient } from '@/lib/supabase/client';
+import { createClient } from '@/lib/supabase/server';
 
 // Create a logger for API requests
 const apiLogger = getLogger().child('api-middleware');

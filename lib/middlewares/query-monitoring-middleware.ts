@@ -9,7 +9,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { SupabaseClient } from '@supabase/supabase-js';
-import { createActionClient } from '../supabase/client';
+import { createActionClient } from '../supabase/server';
 import { withQueryMonitoring, QuerySource } from '../supabase/query-monitoring';
 import { logger } from '../utils/logger';
 

@@ -1,5 +1,5 @@
 // File: /services/analytics-service.ts
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import { Database } from "@/types/supabase";
 import { debounce } from "@/lib/utils/utils";
 

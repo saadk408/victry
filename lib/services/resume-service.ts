@@ -1,5 +1,5 @@
 // File: /services/resume-service.ts
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import { Resume } from "@/models/resume";
 import {
   CreateResumeRequest,
