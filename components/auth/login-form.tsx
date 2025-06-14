@@ -120,7 +120,7 @@ export function LoginForm() {
   return (
     <form className="space-y-6" onSubmit={handleSubmit}>
       {error && (
-        <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+        <div className="rounded-md border border-destructive/20 bg-destructive/10 p-3 text-sm text-destructive">
           {error}
         </div>
       )}
@@ -128,7 +128,7 @@ export function LoginForm() {
       <div className="space-y-2">
         <label
           htmlFor="email"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-foreground"
         >
           Email
         </label>
@@ -149,13 +149,13 @@ export function LoginForm() {
         <div className="flex items-center justify-between">
           <label
             htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-foreground"
           >
             Password
           </label>
           <a
             href="/forgot-password"
-            className="text-sm text-blue-600 hover:underline"
+            className="text-sm text-primary hover:underline"
           >
             Forgot password?
           </a>
@@ -174,7 +174,7 @@ export function LoginForm() {
           />
           <button
             type="button"
-            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500"
+            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-muted-foreground"
             onClick={() => setShowPassword(!showPassword)}
             tabIndex={-1}
           >
@@ -196,10 +196,10 @@ export function LoginForm() {
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-300"></div>
+          <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="bg-white px-2 text-gray-500">Or continue with</span>
+          <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
         </div>
       </div>
 

@@ -69,7 +69,7 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
   const getScoreColorClass = (score: number) => {
     if (score >= 80) return "text-green-700 bg-green-100";
     if (score >= 60) return "text-yellow-700 bg-yellow-100";
-    return "text-red-700 bg-red-100";
+    return "text-destructive bg-destructive/10";
   };
 
   // Get severity icon
@@ -116,7 +116,7 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="text-4xl font-bold">{score}</span>
-            <span className="text-sm text-gray-500">ATS Score</span>
+            <span className="text-sm text-muted-foreground">ATS Score</span>
           </div>
         </div>
       </div>
@@ -137,7 +137,7 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
         <h3 className="text-lg font-medium">Category Analysis</h3>
 
         {categoryScores.length === 0 ? (
-          <p className="p-4 text-center text-gray-500">
+          <p className="p-4 text-center text-muted-foreground">
             No specific feedback available
           </p>
         ) : (
@@ -146,7 +146,7 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
               <div key={category} className="overflow-hidden rounded-md border">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between p-4 text-left transition-colors hover:bg-gray-50"
+                  className="flex w-full items-center justify-between p-4 text-left transition-colors hover:bg-muted/50"
                   onClick={() => toggleCategory(category)}
                 >
                   <div className="flex items-center">

@@ -27,9 +27,9 @@ export function GoogleOAuthButton({
       className={`
         flex items-center justify-center gap-3
         min-h-[44px] px-4 py-2.5
-        bg-white hover:bg-gray-50
-        border border-gray-300 hover:border-gray-400
-        text-gray-700 font-medium
+        bg-background hover:bg-muted
+        border border-border hover:border-input
+        text-foreground font-medium
         transition-all duration-200
         ${fullWidth ? 'w-full' : ''}
         ${disabled || loading ? 'opacity-60 cursor-not-allowed' : ''}

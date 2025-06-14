@@ -27,17 +27,17 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <main className="min-h-screen bg-gradient-to-b from-background to-muted/50">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground">
         {/* Background elements */}
         <div className="absolute inset-0 bg-grid-white/[0.03] bg-[size:24px_24px]"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-black/10 to-transparent"></div>
         
         {/* Animated background blobs */}
-        <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-600/20 blur-[120px] animate-pulse"></div>
-        <div className="absolute top-1/2 -left-48 h-96 w-96 rounded-full bg-orange-500/20 blur-[120px] animate-pulse-slow"></div>
-        <div className="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-pink-500/10 blur-[80px] animate-pulse-slower"></div>
+        <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/20 blur-[120px] animate-pulse"></div>
+        <div className="absolute top-1/2 -left-48 h-96 w-96 rounded-full bg-accent/20 blur-[120px] animate-pulse-slow"></div>
+        <div className="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-accent/10 blur-[80px] animate-pulse-slower"></div>
         
         <div className="container relative mx-auto px-4 py-20 sm:px-6 lg:flex lg:items-center lg:gap-x-12 lg:px-8 lg:py-32">
           <motion.div 
@@ -59,7 +59,7 @@ export default function HomePage() {
                 </span>
               </h1>
               
-              <p className="mt-6 text-xl leading-relaxed text-blue-100/90">
+              <p className="mt-6 text-xl leading-relaxed text-primary-foreground/90">
                 Victry turns hours of resume tailoring into minutes while
                 maintaining your authentic voice and optimizing for ATS systems.
               </p>
@@ -109,7 +109,7 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <p className="ml-4 text-sm text-blue-100">
+              <p className="ml-4 text-sm text-primary-foreground/75">
                 <span className="font-semibold">2,000+</span> professionals 
                 <span className="hidden sm:inline"> trust Victry for their job search</span>
               </p>
@@ -131,20 +131,20 @@ export default function HomePage() {
                   <div className="flex flex-col gap-6">
                     <div className="flex items-center gap-4">
                       <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-orange-500 to-pink-600 flex items-center justify-center text-white font-bold shadow-lg">V</div>
-                      <div className="h-6 w-2/3 rounded-md bg-blue-100"></div>
+                      <div className="h-6 w-2/3 rounded-md bg-primary/10"></div>
                     </div>
                     
                     {/* Animated lines to simulate text */}
                     <div className="space-y-3">
-                      <div className="h-5 animate-pulse-width w-full rounded-md bg-gray-200"></div>
-                      <div className="h-5 animate-pulse-width-delayed-1 w-5/6 rounded-md bg-gray-200"></div>
-                      <div className="h-5 animate-pulse-width-delayed-2 w-4/6 rounded-md bg-gray-200"></div>
+                      <div className="h-5 animate-pulse-width w-full rounded-md bg-muted"></div>
+                      <div className="h-5 animate-pulse-width-delayed-1 w-5/6 rounded-md bg-muted"></div>
+                      <div className="h-5 animate-pulse-width-delayed-2 w-4/6 rounded-md bg-muted"></div>
                     </div>
                     
                     <div className="space-y-3">
-                      <div className="h-5 w-full rounded-md bg-gray-200"></div>
-                      <div className="h-5 w-full rounded-md bg-gray-200"></div>
-                      <div className="h-5 w-3/4 rounded-md bg-gray-200"></div>
+                      <div className="h-5 w-full rounded-md bg-muted"></div>
+                      <div className="h-5 w-full rounded-md bg-muted"></div>
+                      <div className="h-5 w-3/4 rounded-md bg-muted"></div>
                     </div>
                     
                     <div className="mt-4 flex justify-between">
@@ -190,11 +190,11 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-flex rounded-full bg-orange-100 px-3 py-1 text-sm font-medium text-orange-800 mb-4">Why Victry</span>
-            <h2 className="text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">
+            <span className="inline-flex rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent-foreground mb-4">Why Victry</span>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Why Professionals Choose Victry
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-muted-foreground">
               Our platform is designed to give you a competitive edge in your job search.
             </p>
           </motion.div>
@@ -227,10 +227,10 @@ export default function HomePage() {
                     />
                   </svg>
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-blue-950 group-hover:text-blue-800 transition-colors">
+                <h3 className="mb-3 text-xl font-semibold text-foreground group-hover:text-foreground/80 transition-colors">
                   Save Hours of Time
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Our AI tailoring engine customizes your resume for each job in
                   minutes, not hours, letting you apply to more positions faster.
                 </p>
@@ -264,10 +264,10 @@ export default function HomePage() {
                     />
                   </svg>
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-blue-950 group-hover:text-blue-800 transition-colors">
+                <h3 className="mb-3 text-xl font-semibold text-foreground group-hover:text-foreground/80 transition-colors">
                   Pass ATS Systems
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Optimize your resume to pass Applicant Tracking Systems with our
                   ATS compatibility score and keyword analysis.
                 </p>
@@ -301,10 +301,10 @@ export default function HomePage() {
                     />
                   </svg>
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-blue-950 group-hover:text-blue-800 transition-colors">
+                <h3 className="mb-3 text-xl font-semibold text-foreground group-hover:text-foreground/80 transition-colors">
                   Maintain Your Voice
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Our AI preserves your authentic voice while optimizing your
                   content for each job application, so it always sounds like you.
                 </p>
@@ -328,11 +328,11 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-flex rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 mb-4">Simple Process</span>
-            <h2 className="text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">
+            <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-foreground mb-4">Simple Process</span>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               How Victry Works
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-muted-foreground">
               A simple four-step process to supercharge your job applications
             </p>
           </motion.div>
@@ -351,10 +351,10 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <div className="md:col-span-2 md:text-right order-2 md:order-1">
-                  <h3 className="text-xl font-semibold text-blue-950 mb-3">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
                     Create Your Base Resume
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     Build or import your master resume with all your experience and skills. This serves as the foundation for all your tailored applications.
                   </p>
                 </div>
@@ -417,10 +417,10 @@ export default function HomePage() {
                 </div>
                 
                 <div className="md:col-span-2 md:text-left order-2 md:order-3">
-                  <h3 className="text-xl font-semibold text-blue-950 mb-3">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
                     Add Job Description
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     Paste the job posting you're interested in applying for. Our system will analyze it for key requirements and ATS keywords.
                   </p>
                 </div>
@@ -435,10 +435,10 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <div className="md:col-span-2 md:text-right order-2 md:order-1">
-                  <h3 className="text-xl font-semibold text-blue-950 mb-3">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
                     Customize Tailoring
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     Set your preferences for tailoring intensity and keyword focus. Control how much AI assistance you want for each section.
                   </p>
                 </div>
@@ -501,10 +501,10 @@ export default function HomePage() {
                 </div>
                 
                 <div className="md:col-span-2 md:text-left order-2 md:order-3">
-                  <h3 className="text-xl font-semibold text-blue-950 mb-3">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
                     Export Your Resume
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     Download your tailored resume in multiple formats (PDF, DOCX) or apply directly to the job with perfect ATS optimization.
                   </p>
                 </div>
@@ -582,11 +582,11 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-flex rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 mb-4">Testimonials</span>
-            <h2 className="text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">
+            <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-foreground mb-4">Testimonials</span>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               What Our Users Say
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-muted-foreground">
               Don't just take our word for it. Hear from those who've transformed their job search with Victry.
             </p>
           </motion.div>
@@ -610,7 +610,7 @@ export default function HomePage() {
                     ))}
                   </div>
                   <div className="mb-6 text-5xl text-orange-500 opacity-20 font-serif">"</div>
-                  <p className="mb-8 text-gray-600">
+                  <p className="mb-8 text-muted-foreground">
                     I applied to 5 jobs with my Victry-tailored resume and got
                     4 interviews. The ATS optimization feature was a
                     game-changer.
@@ -621,8 +621,8 @@ export default function HomePage() {
                     JP
                   </div>
                   <div>
-                    <h3 className="font-semibold text-blue-950">John P.</h3>
-                    <p className="text-sm text-gray-500">Software Engineer</p>
+                    <h3 className="font-semibold text-foreground">John P.</h3>
+                    <p className="text-sm text-muted-foreground">Software Engineer</p>
                   </div>
                 </div>
               </div>
@@ -646,7 +646,7 @@ export default function HomePage() {
                     ))}
                   </div>
                   <div className="mb-6 text-5xl text-blue-500 opacity-20 font-serif">"</div>
-                  <p className="mb-8 text-gray-600">
+                  <p className="mb-8 text-muted-foreground">
                     What used to take me 2 hours now takes 10 minutes. Victry
                     helped me land a job with a 30% higher salary.
                   </p>
@@ -656,8 +656,8 @@ export default function HomePage() {
                     SM
                   </div>
                   <div>
-                    <h3 className="font-semibold text-blue-950">Sarah M.</h3>
-                    <p className="text-sm text-gray-500">Marketing Director</p>
+                    <h3 className="font-semibold text-foreground">Sarah M.</h3>
+                    <p className="text-sm text-muted-foreground">Marketing Director</p>
                   </div>
                 </div>
               </div>
@@ -681,7 +681,7 @@ export default function HomePage() {
                     ))}
                   </div>
                   <div className="mb-6 text-5xl text-pink-500 opacity-20 font-serif">"</div>
-                  <p className="mb-8 text-gray-600">
+                  <p className="mb-8 text-muted-foreground">
                     The AI suggestions were spot-on and still sounded like me.
                     I&apos;m recommending Victry to everyone in my network.
                   </p>
@@ -691,8 +691,8 @@ export default function HomePage() {
                     RT
                   </div>
                   <div>
-                    <h3 className="font-semibold text-blue-950">Robert T.</h3>
-                    <p className="text-sm text-gray-500">Financial Analyst</p>
+                    <h3 className="font-semibold text-foreground">Robert T.</h3>
+                    <p className="text-sm text-muted-foreground">Financial Analyst</p>
                   </div>
                 </div>
               </div>
@@ -831,10 +831,10 @@ export default function HomePage() {
                   className="absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-gradient-to-br from-orange-600/10 to-pink-600/10 blur-3xl">
                 </div>
                 
-                <h2 className="text-3xl font-bold text-blue-950 mb-6 md:text-4xl relative">
+                <h2 className="text-3xl font-bold text-foreground mb-6 md:text-4xl relative">
                   Start Your Job Search Journey Today
                 </h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-10 relative">
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 relative">
                   Join the thousands of professionals who have revolutionized their job application process with Victry.
                 </p>
                 <div className="relative inline-block transition-all hover:scale-105 active:scale-95">

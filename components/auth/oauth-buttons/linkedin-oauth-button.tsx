@@ -30,8 +30,8 @@ export function LinkedInOAuthButton({
         flex items-center justify-center gap-3
         min-h-[44px] px-4 py-2.5
         ${priority 
-          ? 'bg-[#0077B5] hover:bg-[#005885] text-white border-0' 
-          : 'bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 hover:border-[#0077B5]'
+          ? 'bg-[#0077B5] hover:bg-[#005885] text-primary-foreground border-0' 
+          : 'bg-background hover:bg-muted text-foreground border border-border hover:border-[#0077B5]'
         }
         font-medium transition-all duration-200
         ${fullWidth ? 'w-full' : ''}

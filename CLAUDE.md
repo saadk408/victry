@@ -1,326 +1,254 @@
-# CLAUDE.md
+# Victry AI Resume Builder - Development Guide
 
-*AI-powered resume builder with Claude API integration for job analysis and resume tailoring*
+## 🎯 Project Overview
 
-## 🚀 Essential Commands
+**Victry** is an AI-powered resume builder that helps job seekers optimize their resumes for specific job opportunities. It uses Claude AI to analyze job descriptions and intelligently tailor resumes while preserving authenticity.
+
+### Core Capabilities
+- **Job Analysis**: Extract skills, requirements, and keywords from job postings
+- **Resume Tailoring**: Optimize resumes for ATS while maintaining truthfulness
+- **Intelligent Suggestions**: AI-powered recommendations for resume improvements
+- **Premium Features**: Advanced AI capabilities for subscribers
+
+### Architectural Philosophy
+- **API-First AI**: All AI operations go through API routes for security
+- **Semantic Design System**: Strict color token system for consistency
+- **Type-Safe Development**: TypeScript with comprehensive error handling
+- **Progressive Enhancement**: Free features with premium upgrades
+
+## 🚀 Quick Command Reference
 
 ```bash
 # Development
-npm run dev                          # Start dev server (localhost:3000)
-npm run build && npx tsc --noEmit    # IMPORTANT: Build + type check (always run together)
-npm run lint                         # Lint code
+npm run dev                    # Start development server (localhost:3000)
+npm run build && npx tsc      # Build and type-check (run together)
 
-# 🎨 Styling Validation (CRITICAL - Run before committing)
-npm run validate:colors              # Check for hard-coded colors (MUST be 0)
-npm run audit:styles                 # Audit component styling patterns
-npm run build:measure                # Verify CSS bundle < 50KB
+# Quality Checks (Run before committing)
+npm run validate:colors        # Must show 0 hard-coded colors
+npm run audit:styles          # Verify styling patterns
+npm test                      # Run tests (auto-resets DB)
 
-# Testing  
-npm run test                         # Run all tests (auto-resets DB with resume data)
-npm test -- --testNamePattern="resume" # Test resume-specific functionality
-
-# AI Feature Testing (CRITICAL for Victry)
-curl -X POST localhost:3000/api/ai/analyze-job \
-  -H "Content-Type: application/json" \
-  -d '{"jobDescription": "Software Engineer at TechCorp..."}'
-
-curl -X POST localhost:3000/api/ai/tailor-resume \
-  -H "Authorization: Bearer token" \
-  -d '{"resumeId": "123", "jobId": "456"}'
-
-# Database & Types (CRITICAL after schema changes)
-npx supabase gen types typescript --local         # Regenerate after resume schema updates
+# After Database Changes
+npx supabase gen types typescript --local  # Regenerate TypeScript types
 ```
 
-## 🎨 Styling System (CRITICAL - MUST FOLLOW)
+## 🏗️ Development Workflows
 
-### ❌ YOU MUST NEVER Use Hard-Coded Colors
+### Creating a New Component
+
+1. **Start with the pattern**:
 ```typescript
-// ❌ NEVER do this - Claude Code MUST flag as error:
-className="bg-gray-50 text-gray-900"       // Hard-coded grays
-className="text-blue-600 hover:text-blue-700" // Hard-coded blues
-className="bg-white dark:bg-gray-800"      // Direct colors
-className="border-gray-200"                // Hard-coded borders
-
-// ✅ ALWAYS use semantic tokens:
-className="bg-background text-foreground"   // Semantic colors
-className="text-primary hover:text-primary/90" // Semantic with opacity
-className="bg-muted text-muted-foreground" // Semantic neutrals
-className="border-border"                  // Semantic borders
-```
-
-### ✅ YOU MUST ALWAYS Use Semantic Color System
-```typescript
-// Import status utilities for consistent colors
-import { getStatusClasses, getScoreStatus } from '@/lib/utils/status-colors';
-
-// Status colors (success, warning, error, info)
-<Badge variant="success">Active</Badge>
-<div className={getStatusClasses('warning')}>Warning message</div>
-
-// Score-based automatic status
-const status = getScoreStatus(85); // Returns 'success' for 85%
-<div className={getStatusClasses(status)}>Score: 85%</div>
-
-// Available semantic tokens:
-// - primary, secondary, accent, destructive
-// - background, foreground, card, popover
-// - muted, muted-foreground, border, input, ring
-// - success, warning, info (with -foreground variants)
-```
-
-### 🧩 Component Development Rules
-```typescript
-// YOU MUST use cn() utility for all className compositions
-import { cn } from '@/lib/utils';
-
-// YOU MUST add data-slot attributes to all components
-<button data-slot="button" className={cn("base-classes", className)} />
-<input data-slot="input" className={cn("base-classes", className)} />
-<div data-slot="card" className={cn("base-classes", className)} />
-
-// YOU MUST use CVA for component variants
-const variants = cva("base-classes", {
-  variants: {
-    variant: {
-      default: "bg-primary text-primary-foreground",
-      secondary: "bg-secondary text-secondary-foreground",
-      destructive: "bg-destructive text-destructive-foreground",
-    }
-  }
-});
-```
-
-### 🚀 Tailwind v4 CSS-First Patterns
-```css
-/* YOU MUST define utilities in globals.css using @utility */
-@utility btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-primary-foreground);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
-  
-  &:hover {
-    opacity: 0.9;
-  }
-}
-
-/* YOU MUST use OKLCH for brand colors */
---color-primary: oklch(0.45 0.15 231);     /* Better color accuracy */
---color-success: oklch(0.65 0.15 145);     /* WCAG AA compliant */
-```
-
-### 📦 Performance Requirements
-```typescript
-// CSS Bundle Size Limits:
-// - Total CSS: < 50KB (compressed)
-// - Critical CSS: < 14KB (inline)
-// - Component CSS: Use containment
-
-// YOU MUST use CSS containment for isolated components
-<Card className="contain-paint">...</Card>
-<section className="contain-content">...</section>
-
-// YOU MUST use content-visibility for long content
-<div className="resume-section content-visibility-auto">...</div>
-```
-
-### 🧪 Styling Validation Checklist
-Before committing ANY styling changes:
-- [ ] Run `npm run validate:colors` - MUST show 0 hard-coded colors
-- [ ] Run `npm run audit:styles` - MUST pass all checks
-- [ ] All new components use semantic tokens
-- [ ] All components have data-slot attributes
-- [ ] CSS bundle remains under 50KB limit
-- [ ] Visual regression tests pass
-
-## 🎯 Victry AI Workflows
-
-### When Analyzing Job Descriptions
-```typescript
-// IMPORTANT: Always use API route, never direct Claude API from frontend
-POST /api/ai/analyze-job
-- Temperature: 0.2 (factual extraction)
-- Check prompts: /lib/ai/prompt-templates.ts
-- Validate extraction: /lib/services/ai-service.ts extractStructuredData()
-- Handle rate limits: /lib/ai/claude-client.ts withRetry()
-- YOU MUST use Claude tools with JSON schema validation for structured extraction
-```
-
-### When Tailoring Resumes  
-```typescript
-// CRITICAL: Premium feature - requires authentication + subscription
-POST /api/ai/tailor-resume  
-- Middleware protection: /middleware.ts premiumRoutes
-- Wildcard pattern matching: '/resume/*/tailor' requires premium
-- YOU MUST preserve authenticity while optimizing ATS keywords
-- Temperature: 0.3 (balanced factual + creative)
-- State management: /hooks/use-resume.ts
-```
-
-### When Working with Authentication
-```typescript
-// IMPORTANT: Profile auto-creation trigger active
-- New users get profiles automatically via DB trigger
-- Check /supabase/migrations/20250609153510_add_profile_creation_trigger.sql
-- YOU MUST use /lib/supabase/browser.ts for client components
-- YOU MUST use /lib/supabase/server.ts for API routes
-```
-
-### When Working with Databases & Supabase
-```typescript
-// 🔒 CRITICAL REQUIREMENT: Always follow Supabase rules
-- YOU MUST review all relevant guidelines in /supabase-rules/ folder before coding
-- Check postgresql-style-guide.md for database schema conventions
-- Follow supabase-auth-nextjs-guide.md for authentication patterns
-- Apply supabase-create-rls-policies-guidelines.md for security
-```
-
-## 💻 Critical Code Patterns
-
-### Styling Patterns (CRITICAL - Apply to ALL Components)
-```typescript
-// ✅ Component structure pattern
 import { cn } from '@/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const componentVariants = cva(
-  "base-classes-with-semantic-tokens-only",
+  "inline-flex items-center justify-center", // Base classes
   {
     variants: {
       variant: {
-        default: "bg-background text-foreground",
-        primary: "bg-primary text-primary-foreground",
-        muted: "bg-muted text-muted-foreground",
+        default: "bg-primary text-primary-foreground",
+        secondary: "bg-secondary text-secondary-foreground",
       }
     }
   }
 );
 
-export function Component({ className, variant, ...props }: ComponentProps) {
+export function MyComponent({ className, variant, ...props }: ComponentProps) {
   return (
     <div 
-      data-slot="component-name"
+      data-slot="component-name"  // Required for all components
       className={cn(componentVariants({ variant }), className)}
       {...props}
     />
   );
 }
-
-// ❌ NEVER use hard-coded colors in components
-// ❌ NEVER forget data-slot attribute
-// ❌ NEVER skip cn() utility for className merging
 ```
 
-### Supabase Client Usage (CRITICAL for Victry)
+2. **Use semantic colors only** (bg-primary, text-foreground, border-border)
+3. **Add to appropriate section** in components/
+4. **Test with different variants**
+
+### Adding AI Features
+
+1. **Create API route** in /app/api/ai/
 ```typescript
-// ✅ Client components ("use client")
-import { createClient } from "@/lib/supabase/browser";
-
-// ✅ API routes & server components
-import { createClient } from "@/lib/supabase/server";
-
-// ✅ Client-safe analytics
-import { clientAnalytics } from "@/lib/utils/client-analytics";
-```
-
-### AI Integration Pattern (ESSENTIAL)
-```typescript
-// YOU MUST follow this API route structure
 export async function POST(request: Request) {
-  // 1. Authenticate user
+  // Step 1: Authenticate
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   
-  // 2. IMPORTANT: Check premium access for AI features
-  if (isPremiumFeature && !user?.subscription) {
+  // Step 2: Check premium (if needed)
+  if (requiresPremium && !user?.subscription) {
     return createApiError('Premium required', ErrorCategory.PERMISSION, 403);
   }
   
-  // 3. Call AI service with proper error handling
-  try {
-    const result = await analyzeJobDescription(body.jobDescription);
-    return NextResponse.json({ data: result });
-  } catch (error) {
-    return createApiError('AI analysis failed', ErrorCategory.AI, 500);
-  }
+  // Step 3: Process with AI
+  const result = await aiService.process(data);
+  return NextResponse.json({ data: result });
 }
 ```
 
-### Error Handling (CRITICAL)
+2. **Configure AI parameters**:
+   - Job analysis: Temperature 0.2 (factual)
+   - Resume tailoring: Temperature 0.3 (balanced)
+   - Use structured extraction with JSON schema
+
+3. **Update prompt templates** in /lib/ai/prompt-templates.ts
+
+### Working with Resume Data
+
+Resume data spans 7 related tables. When updating:
+
+1. **Database**: Update migration in /supabase/migrations/
+2. **Types**: Update /types/resume.ts
+3. **Service**: Update /lib/services/resume-service.ts
+4. **UI**: Update section editor in /components/resume/section-editor/
+5. **Preview**: Update /components/resume/resume-preview.tsx
+6. **Regenerate types**: `npx supabase gen types typescript --local`
+
+### Working with Supabase
+
+**IMPORTANT**: Before working with Supabase features, read the relevant guide in `/supabase-rules/`:
+
+#### Database Operations
+- **Schema Design**: Read `@supabase-rules/supabase-database-schema-guide.md`
+- **Migrations**: Read `@supabase-rules/supabase-create-migrations.md`
+- **Style Guide**: Read `@supabase-rules/postgresql-style-guide.md`
+
+#### Authentication
+- **Next.js Auth**: Read `@supabase-rules/supabase-auth-nextjs-guide.md`
+- Profile auto-creation trigger is active (see migration 20250609153510)
+
+#### Security
+- **RLS Policies**: Read `@supabase-rules/supabase-create-rls-policies-guidelines.md`
+- Always implement RLS for user data isolation
+- Test policies with different user roles
+
+#### Functions
+- **Database Functions**: Read `@supabase-rules/supabase-create-functions-guide.md`
+- **Edge Functions**: Read `@supabase-rules/supabase-edge-functions-guidelines.md`
+
+Example workflow for new database feature:
+1. Read relevant guides in `/supabase-rules/`
+2. Create migration following conventions
+3. Implement RLS policies for security
+4. Update TypeScript types
+5. Test with different user contexts
+
+## 🎨 Styling System
+
+### The One Rule: Semantic Colors Only
+
 ```typescript
-import { createApiError, ErrorCategory, ErrorCode } from '@/lib/utils/error-utils';
+// ✅ CORRECT - Use semantic tokens
+className="bg-background text-foreground"
+className="bg-primary hover:bg-primary/90"
+className="border-border"
 
-// IMPORTANT: 12 Error Categories available
-// AUTH, PERMISSION, VALIDATION, NOT_FOUND, CONFLICT, RATE_LIMIT,
-// SERVICE, DATABASE, AI, SERVER, IO, NETWORK
+// ❌ WRONG - Never hard-code colors
+className="bg-gray-50 text-gray-900"
+className="bg-white border-gray-200"
+```
 
-// YOU MUST handle RLS policy issues (common with complex user data)
-try {
-  const resume = await getUserResumes(userId);
-} catch (error) {
-  if (error.code === 'PGRST116') {
-    return createApiError({
-      message: 'Access denied', 
-      category: ErrorCategory.PERMISSION, 
-      code: ErrorCode.PERMISSION_DENIED
-    });
-  }
-  return handleSupabaseError(error);  // Auto-maps 40+ error codes
+### Available Tokens
+- **Brand**: primary, secondary, accent, destructive
+- **Neutral**: background, foreground, muted, card
+- **Status**: success, warning, error, info
+- **Interactive**: border, input, ring
+
+### Performance Targets
+- Total CSS < 50KB compressed
+- Critical CSS < 14KB inline
+- Use `contain-paint` for isolated components
+- Use `content-visibility-auto` for long lists
+
+## 🧩 Critical Patterns
+
+### Supabase Client Selection
+```typescript
+// Client components
+import { createClient } from "@/lib/supabase/browser";
+
+// Server components & API routes
+import { createClient } from "@/lib/supabase/server";
+```
+
+### Error Handling System
+```typescript
+import { createApiError, ErrorCategory } from '@/lib/utils/error-utils';
+
+// 12 categories: AUTH, PERMISSION, VALIDATION, NOT_FOUND, 
+// CONFLICT, RATE_LIMIT, SERVICE, DATABASE, AI, SERVER, IO, NETWORK
+
+// Handle Supabase RLS errors
+if (error.code === 'PGRST116') {
+  return createApiError('Access denied', ErrorCategory.PERMISSION, 403);
 }
 ```
 
-## 🔧 Environment Setup
-
-```bash
-# CRITICAL: Required .env.local variables for AI features
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key  
-SUPABASE_SERVICE_ROLE_KEY=your_service_key
-ANTHROPIC_API_KEY=your_claude_api_key        # ESSENTIAL for AI features
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+### Import Order Convention
+```typescript
+// 1. React/Next.js core
+import * as React from "react";
+// 2. Third-party libraries
+import { cva } from "class-variance-authority";
+// 3. Internal imports (@/)
+import { cn } from "@/lib/utils";
+// 4. Types
+import type { Resume } from "@/types/resume";
 ```
 
-## 🧠 Context Management (IMPORTANT)
+## 🚨 Common Pitfalls & Solutions
 
-**Active Context Management**: Use these commands to maintain optimal performance:
-- `/clear` - Reset context window between unrelated tasks
-- `/compact` - Intelligent summarization while preserving key details
-- Real-time context monitoring available in Claude Code terminal
+### AI Integration
+- **Pitfall**: Direct Claude API calls from frontend
+- **Solution**: Always use API routes (/api/ai/*)
 
-**IMPORTANT**: Context window fills quickly with file contents and conversation. Use `/clear` frequently to maintain Claude's effectiveness across long sessions.
+### Resume Data
+- **Pitfall**: Forgetting snake_case ↔ camelCase conversion
+- **Solution**: Use service layer transformations
 
-## 🎨 Current Project Status
+### Styling
+- **Pitfall**: Using Tailwind color classes directly
+- **Solution**: Semantic tokens only, validate before commit
 
-**AI Integration**: Claude API with structured extraction and rate limiting  
-**Tailwind v4**: Migration complete - using CSS-first configuration with design tokens  
-**Styling System**: Semantic color tokens enforced, 117+ files need migration from hard-coded colors
-**Component Library**: ShadCN UI with data-slot patterns for React 19
-**Database**: Profiles table with auto-creation trigger implemented  
-**Premium Features**: Route protection and subscription validation active  
-**Testing**: 70% coverage requirement with resume-specific test data
-**Performance**: CSS bundle target < 50KB, Critical CSS < 14KB
+### Premium Features
+- **Pitfall**: Inconsistent access checks
+- **Solution**: Middleware + API route validation
 
-## 📚 Detailed Documentation
+## 📋 Testing Checklist
 
-**When you need detailed information, import these modules:**
+Before committing:
+- [ ] `npm run validate:colors` shows 0 violations
+- [ ] `npm run build && npx tsc` passes
+- [ ] Tests pass with `npm test`
+- [ ] Premium features check authentication
+- [ ] New components use data-slot attributes
 
-- **Debugging & Troubleshooting**: @docs/claude/troubleshooting-guide.md
-- **API Reference & Testing**: @docs/claude/reference-documentation.md  
-- **Implementation Patterns**: @docs/claude/code-patterns.md
-- **Styling Best Practices**: @docs/style-guide.md
+## 🔗 Key File References
 
-## 🚀 Project Commands Available
+### AI System
+- Prompts: `/lib/ai/prompt-templates.ts`
+- Service: `/lib/services/ai-service.ts`
+- Client: `/lib/ai/claude-client.ts`
 
-**Use these commands for common Victry workflows:**
+### Resume System
+- Types: `/types/resume.ts`
+- Service: `/lib/services/resume-service.ts`
+- Editors: `/components/resume/section-editor/*`
 
-- `/project:debug-ai [component]` - Debug AI features systematically
-- `/project:test-resume [type]` - Test resume functionality with specific scenarios
-- `/project:analyze-job [source]` - Test job analysis with different formats
-- `/project:audit-colors` - Find and report hard-coded color usage
-- `/project:migrate-colors [--dry-run]` - Migrate hard-coded colors to semantic tokens
-- `/project:validate-styling` - Comprehensive styling validation
+### Configuration
+- Middleware: `/middleware.ts`
+- Error Utils: `/lib/utils/error-utils.ts`
+- Status Colors: `/lib/utils/status-colors.ts`
+
+## 📈 Current Status
+
+- **Migration**: 117+ files need semantic color updates
+- **Coverage**: 70% test coverage requirement
+- **Performance**: Meeting CSS bundle targets
+- **AI Features**: Stable with rate limiting
 
 ---
 
-*Victry-specific guidance for Claude Code: Focus on AI workflow patterns, resume data complexity, semantic styling enforcement, and premium feature development when working with this codebase. ALWAYS validate styling compliance before committing any UI changes.*
+*When in doubt: Use semantic colors, check premium access, handle errors comprehensively, and validate before committing.*

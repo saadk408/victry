@@ -155,8 +155,8 @@ export function AISuggestion({
   return (
     <div
       className={cn(
-        "my-2 rounded-md border border-blue-200 bg-blue-50 p-4",
-        isHovering && "border-blue-300 shadow-xs",
+        "my-2 rounded-md border border-primary/20 bg-primary/5 p-4",
+        isHovering && "border-primary/30 shadow-xs",
         className,
       )}
       onMouseEnter={() => setIsHovering(true)}
@@ -164,8 +164,8 @@ export function AISuggestion({
     >
       <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center">
-          <Sparkles className="mr-2 h-4 w-4 text-blue-600" />
-          <h4 className="text-sm font-semibold text-blue-800">
+          <Sparkles className="mr-2 h-4 w-4 text-primary" />
+          <h4 className="text-sm font-semibold text-primary-foreground">
             {getCategoryLabel()}
           </h4>
         </div>
@@ -173,7 +173,7 @@ export function AISuggestion({
         {highlightDifferences && (
           <button
             onClick={() => setShowDiff(!showDiff)}
-            className="text-xs text-blue-600 transition-colors hover:text-blue-800"
+            className="text-xs text-primary transition-colors hover:text-primary/80"
           >
             {showDiff ? "Hide Changes" : "Show Changes"}
           </button>
@@ -182,10 +182,10 @@ export function AISuggestion({
 
       <div className="mb-4 grid grid-cols-1 gap-3 md:grid-cols-2">
         <div className="flex flex-col">
-          <span className="mb-1 ml-1 text-xs font-medium text-gray-500">
+          <span className="mb-1 ml-1 text-xs font-medium text-muted-foreground">
             Original
           </span>
-          <div className="flex-1 rounded border border-gray-200 bg-white p-3 text-gray-700">
+          <div className="flex-1 rounded border border-border bg-background p-3 text-foreground">
             <p
               className="whitespace-pre-wrap text-sm leading-relaxed"
               dangerouslySetInnerHTML={
@@ -198,14 +198,14 @@ export function AISuggestion({
         </div>
 
         <div className="flex flex-col">
-          <span className="mb-1 ml-1 text-xs font-medium text-gray-500">
+          <span className="mb-1 ml-1 text-xs font-medium text-muted-foreground">
             Suggested
           </span>
-          <div className="flex-1 rounded border border-blue-300 bg-white p-3 text-gray-900">
+          <div className="flex-1 rounded border border-primary/30 bg-background p-3 text-foreground">
             {isLoading ? (
               <div className="flex h-full items-center justify-center py-2">
-                <Loader2 className="mr-2 h-4 w-4 animate-spin text-blue-500" />
-                <p className="text-sm text-gray-500">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin text-primary" />
+                <p className="text-sm text-muted-foreground">
                   Generating suggestion...
                 </p>
               </div>
@@ -224,7 +224,7 @@ export function AISuggestion({
       </div>
 
       {/* Help text to guide the user */}
-      <p className="mb-3 text-xs text-gray-600">
+      <p className="mb-3 text-xs text-muted-foreground">
         Review the AI&apos;s suggestion above. You can accept to replace your
         original text or reject to keep it.
       </p>
@@ -233,7 +233,7 @@ export function AISuggestion({
         {showUndoButton && (
           <button
             onClick={handleUndo}
-            className="flex items-center rounded-md border border-amber-300 bg-amber-50 px-3 py-1.5 text-sm text-amber-700 transition-colors hover:bg-amber-100"
+            className="flex items-center rounded-md border border-warning/30 bg-warning/10 px-3 py-1.5 text-sm text-warning-foreground transition-colors hover:bg-warning/20"
           >
             <Undo2 className="mr-1.5 h-4 w-4" />
             Undo
@@ -246,8 +246,8 @@ export function AISuggestion({
           className={cn(
             "flex items-center rounded-md border px-3 py-1.5 text-sm transition-colors",
             isLoading || accepted
-              ? "cursor-not-allowed bg-gray-100 text-gray-400"
-              : "text-gray-700 hover:bg-gray-100",
+              ? "cursor-not-allowed bg-muted text-muted-foreground"
+              : "text-foreground hover:bg-muted",
           )}
           aria-label="Reject suggestion"
         >
@@ -261,8 +261,8 @@ export function AISuggestion({
           className={cn(
             "flex items-center rounded-md px-3 py-1.5 text-sm transition-colors",
             isLoading || accepted
-              ? "cursor-not-allowed bg-blue-400 text-white"
-              : "bg-blue-600 text-white hover:bg-blue-700",
+              ? "cursor-not-allowed bg-primary/60 text-primary-foreground"
+              : "bg-primary text-primary-foreground hover:bg-primary/90",
           )}
           aria-label="Accept suggestion"
         >

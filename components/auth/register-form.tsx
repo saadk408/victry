@@ -162,13 +162,13 @@ export function RegisterForm() {
   return (
     <form className="space-y-6" onSubmit={handleSubmit}>
       {error && (
-        <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+        <div className="rounded-md border border-destructive/20 bg-destructive/10 p-3 text-sm text-destructive-foreground">
           {error}
         </div>
       )}
 
       {successMessage && (
-        <div className="rounded-md border border-green-200 bg-green-50 p-3 text-sm text-green-700">
+        <div className="rounded-md border border-green/20 bg-green/10 p-3 text-sm text-green-foreground">
           {successMessage}
         </div>
       )}
@@ -177,7 +177,7 @@ export function RegisterForm() {
         <div className="space-y-2">
           <label
             htmlFor="firstName"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-foreground"
           >
             First Name
           </label>
@@ -196,7 +196,7 @@ export function RegisterForm() {
         <div className="space-y-2">
           <label
             htmlFor="lastName"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-foreground"
           >
             Last Name
           </label>
@@ -216,9 +216,9 @@ export function RegisterForm() {
       <div className="space-y-2">
         <label
           htmlFor="email"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-foreground"
         >
-          Email <span className="text-red-500">*</span>
+          Email <span className="text-destructive">*</span>
         </label>
         <Input
           id="email"
@@ -236,9 +236,9 @@ export function RegisterForm() {
       <div className="space-y-2">
         <label
           htmlFor="password"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-foreground"
         >
-          Password <span className="text-red-500">*</span>
+          Password <span className="text-destructive">*</span>
         </label>
         <div className="relative">
           <Input
@@ -254,14 +254,14 @@ export function RegisterForm() {
           />
           <button
             type="button"
-            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500"
+            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-muted-foreground"
             onClick={() => setShowPassword(!showPassword)}
             tabIndex={-1}
           >
             {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
           </button>
         </div>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-muted-foreground">
           Must be at least 8 characters with a letter and a number
         </p>
       </div>
@@ -269,9 +269,9 @@ export function RegisterForm() {
       <div className="space-y-2">
         <label
           htmlFor="confirmPassword"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-foreground"
         >
-          Confirm Password <span className="text-red-500">*</span>
+          Confirm Password <span className="text-destructive">*</span>
         </label>
         <div className="relative">
           <Input
@@ -287,7 +287,7 @@ export function RegisterForm() {
           />
           <button
             type="button"
-            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500"
+            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-muted-foreground"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             tabIndex={-1}
           >
@@ -308,13 +308,13 @@ export function RegisterForm() {
           )}
         </Button>
 
-        <p className="text-center text-xs text-gray-500">
+        <p className="text-center text-xs text-muted-foreground">
           By creating an account, you agree to our{" "}
-          <a href="/terms" className="text-blue-600 hover:underline">
+          <a href="/terms" className="text-primary hover:underline">
             Terms of Service
           </a>{" "}
           and{" "}
-          <a href="/privacy" className="text-blue-600 hover:underline">
+          <a href="/privacy" className="text-primary hover:underline">
             Privacy Policy
           </a>
         </p>
@@ -322,10 +322,10 @@ export function RegisterForm() {
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-300"></div>
+          <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="bg-white px-2 text-gray-500">Or continue with</span>
+          <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
         </div>
       </div>
 
@@ -346,7 +346,7 @@ export function RegisterForm() {
         <div className="text-center">
           <button
             type="button"
-            className="text-sm text-gray-600 hover:text-gray-800 underline"
+            className="text-sm text-muted-foreground hover:text-foreground underline"
             onClick={() => {
               const emailSection = document.getElementById('email');
               emailSection?.scrollIntoView({ behavior: 'smooth' });

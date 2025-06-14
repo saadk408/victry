@@ -106,9 +106,9 @@ export function TailoringControls({
 
   // Get color class for intensity badge
   const getIntensityColorClass = (value: number): string => {
-    if (value < 33) return "bg-blue-100 text-blue-800";
-    if (value < 66) return "bg-green-100 text-green-800";
-    return "bg-amber-100 text-amber-800";
+    if (value < 33) return "bg-primary/10 text-primary";
+    if (value < 66) return "bg-green/10 text-green-foreground";
+    return "bg-warning/10 text-warning-foreground";
   };
 
   // Examples of how different intensity levels affect resume content
@@ -116,19 +116,19 @@ export function TailoringControls({
     if (!showIntensityExamples || !showExamples) return null;
 
     return (
-      <div className="mt-4 rounded-md border border-gray-200 bg-gray-50 p-3 text-sm">
-        <h5 className="mb-2 flex items-center font-medium text-gray-700">
-          <Sparkles className="mr-1.5 h-4 w-4 text-blue-600" />
+      <div className="mt-4 rounded-md border border-border bg-muted/50 p-3 text-sm">
+        <h5 className="mb-2 flex items-center font-medium text-foreground">
+          <Sparkles className="mr-1.5 h-4 w-4 text-primary" />
           Example Tailoring Results
         </h5>
 
         <div className="space-y-3">
           {/* Original text */}
           <div>
-            <h6 className="mb-1 text-xs font-medium text-gray-500">
+            <h6 className="mb-1 text-xs font-medium text-muted-foreground">
               Original bullet point:
             </h6>
-            <p className="rounded border border-gray-200 bg-white p-2 text-sm text-gray-700">
+            <p className="rounded border border-border bg-background p-2 text-sm text-foreground">
               Managed a team of developers to deliver web applications for
               clients in the retail sector.
             </p>
@@ -138,46 +138,46 @@ export function TailoringControls({
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
             {/* Subtle */}
             <div>
-              <h6 className="mb-1 text-xs font-medium text-gray-500">
+              <h6 className="mb-1 text-xs font-medium text-muted-foreground">
                 Subtle:
               </h6>
-              <p className="rounded border border-gray-200 bg-white p-2 text-sm text-gray-700">
+              <p className="rounded border border-border bg-background p-2 text-sm text-foreground">
                 Managed a team of developers to deliver{" "}
-                <span className="bg-blue-50">e-commerce</span> applications for
+                <span className="bg-primary/10">e-commerce</span> applications for
                 clients in the retail sector.
               </p>
             </div>
 
             {/* Balanced */}
             <div>
-              <h6 className="mb-1 text-xs font-medium text-gray-500">
+              <h6 className="mb-1 text-xs font-medium text-muted-foreground">
                 Balanced:
               </h6>
-              <p className="rounded border border-gray-200 bg-white p-2 text-sm text-gray-700">
-                <span className="bg-green-50">Led</span> a team of developers to
+              <p className="rounded border border-border bg-background p-2 text-sm text-foreground">
+                <span className="bg-green/10">Led</span> a team of developers to
                 deliver{" "}
-                <span className="bg-green-50">responsive e-commerce</span>{" "}
-                applications for <span className="bg-green-50">enterprise</span>{" "}
+                <span className="bg-green/10">responsive e-commerce</span>{" "}
+                applications for <span className="bg-green/10">enterprise</span>{" "}
                 clients in the retail sector.
               </p>
             </div>
 
             {/* Aggressive */}
             <div>
-              <h6 className="mb-1 text-xs font-medium text-gray-500">
+              <h6 className="mb-1 text-xs font-medium text-muted-foreground">
                 Aggressive:
               </h6>
-              <p className="rounded border border-gray-200 bg-white p-2 text-sm text-gray-700">
-                <span className="bg-amber-50">
+              <p className="rounded border border-border bg-background p-2 text-sm text-foreground">
+                <span className="bg-warning/10">
                   Led cross-functional development team
                 </span>{" "}
                 to deliver{" "}
-                <span className="bg-amber-50">
+                <span className="bg-warning/10">
                   high-performance, responsive e-commerce
                 </span>{" "}
                 applications,{" "}
-                <span className="bg-amber-50">increasing sales by 32%</span> for{" "}
-                <span className="bg-amber-50">enterprise</span> clients in the
+                <span className="bg-warning/10">increasing sales by 32%</span> for{" "}
+                <span className="bg-warning/10">enterprise</span> clients in the
                 retail sector.
               </p>
             </div>
@@ -201,7 +201,7 @@ export function TailoringControls({
             <button
               type="button"
               onClick={() => setShowIntensityExamples(!showIntensityExamples)}
-              className="text-gray-400 hover:text-gray-600 focus:outline-none"
+              className="text-muted-foreground hover:text-foreground focus:outline-none"
               aria-label={
                 showIntensityExamples ? "Hide examples" : "Show examples"
               }
@@ -233,13 +233,13 @@ export function TailoringControls({
           disabled={disabled}
         />
 
-        <div className="flex justify-between px-1 text-xs text-gray-500">
+        <div className="flex justify-between px-1 text-xs text-muted-foreground">
           <span>Subtle</span>
           <span>Balanced</span>
           <span>Aggressive</span>
         </div>
 
-        <p className="mt-1 text-xs text-gray-600">
+        <p className="mt-1 text-xs text-muted-foreground">
           {intensity < 33
             ? "Makes minimal changes to match the job requirements while preserving your original content."
             : intensity < 66
@@ -254,7 +254,7 @@ export function TailoringControls({
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <Label htmlFor="preserve-voice">Preserve My Writing Style</Label>
-          <p className="text-xs text-gray-600">
+          <p className="text-xs text-muted-foreground">
             Maintains your unique voice and tone in the tailored content
           </p>
         </div>
@@ -271,7 +271,7 @@ export function TailoringControls({
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <Label htmlFor="focus-keywords">Match Job Keywords</Label>
-          <p className="text-xs text-gray-600">
+          <p className="text-xs text-muted-foreground">
             Prioritizes exact keyword matches from the job description
           </p>
         </div>
@@ -290,7 +290,7 @@ export function TailoringControls({
           variant="ghost"
           size="sm"
           onClick={handleReset}
-          className="text-gray-500 hover:text-gray-700"
+          className="text-muted-foreground hover:text-foreground"
           disabled={
             (intensity === 50 && preserveVoice && focusKeywords) || disabled
           }
@@ -301,7 +301,7 @@ export function TailoringControls({
       </div>
 
       {/* Explanation */}
-      <div className="rounded-md border border-blue-100 bg-blue-50 p-4 text-sm text-blue-900">
+      <div className="rounded-md border border-primary/20 bg-primary/5 p-4 text-sm text-primary-foreground">
         <h4 className="mb-2 font-medium">What These Settings Do</h4>
         <ul className="list-inside list-disc space-y-2">
           <li>

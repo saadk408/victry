@@ -52,39 +52,39 @@ const STATUS_COLORS: Record<
   { bg: string; text: string; border: string }
 > = {
   saved: {
-    bg: "bg-gray-100",
-    text: "text-gray-700",
-    border: "border-gray-300",
+    bg: "bg-muted",
+    text: "text-muted-foreground",
+    border: "border-border",
   },
   applied: {
-    bg: "bg-blue-100",
-    text: "text-blue-700",
-    border: "border-blue-300",
+    bg: "bg-primary/10",
+    text: "text-primary",
+    border: "border-primary/20",
   },
   interviewing: {
-    bg: "bg-amber-100",
-    text: "text-amber-700",
-    border: "border-amber-300",
+    bg: "bg-warning/10",
+    text: "text-warning-foreground",
+    border: "border-warning/20",
   },
   offer: {
-    bg: "bg-purple-100",
-    text: "text-purple-700",
-    border: "border-purple-300",
+    bg: "bg-accent/10",
+    text: "text-accent-foreground",
+    border: "border-accent/20",
   },
   accepted: {
-    bg: "bg-green-100",
-    text: "text-green-700",
-    border: "border-green-300",
+    bg: "bg-success/10",
+    text: "text-success-foreground",
+    border: "border-success/20",
   },
   rejected: {
-    bg: "bg-red-100",
-    text: "text-red-700",
-    border: "border-red-300",
+    bg: "bg-destructive/10",
+    text: "text-destructive-foreground",
+    border: "border-destructive/20",
   },
   withdrawn: {
-    bg: "bg-gray-100",
-    text: "text-gray-500",
-    border: "border-gray-300",
+    bg: "bg-muted",
+    text: "text-muted-foreground",
+    border: "border-border",
   },
 };
 
@@ -745,12 +745,12 @@ export function ApplicationTracking({
   const renderListView = () => {
     if (filteredApplications.length === 0) {
       return (
-        <div className="rounded-md bg-gray-50 py-10 text-center">
-          <Briefcase className="mx-auto mb-3 h-10 w-10 text-gray-300" />
-          <h3 className="mb-1 text-lg font-medium text-gray-900">
+        <div className="rounded-md bg-muted py-10 text-center">
+          <Briefcase className="mx-auto mb-3 h-10 w-10 text-muted-foreground/60" />
+          <h3 className="mb-1 text-lg font-medium text-foreground">
             No applications found
           </h3>
-          <p className="mb-4 text-gray-500">
+          <p className="mb-4 text-muted-foreground">
             {applications.length > 0
               ? "Try adjusting your filters or search term"
               : "Start tracking your job applications"}
@@ -767,8 +767,8 @@ export function ApplicationTracking({
 
     return (
       <div className="overflow-x-auto">
-        <table className="w-full rounded-lg border bg-white">
-          <thead className="bg-gray-50 text-sm text-gray-700">
+        <table className="w-full rounded-lg border bg-card">
+          <thead className="bg-muted text-sm text-muted-foreground">
             <tr>
               <th className="p-3 text-left font-medium">
                 <button
@@ -826,20 +826,20 @@ export function ApplicationTracking({
               <th className="p-3 text-center font-medium">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200">
+          <tbody className="divide-y divide-border">
             {filteredApplications.map((app) => (
               <React.Fragment key={app.id}>
                 <tr
-                  className="cursor-pointer hover:bg-gray-50"
+                  className="cursor-pointer hover:bg-muted/50"
                   onClick={() => toggleApplicationDetails(app.id)}
                 >
                   <td className="p-3">
-                    <div className="font-medium text-blue-700">
+                    <div className="font-medium text-primary">
                       {app.jobTitle}
                     </div>
-                    <div className="text-xs text-gray-500">{app.location}</div>
+                    <div className="text-xs text-muted-foreground">{app.location}</div>
                   </td>
-                  <td className="p-3 text-gray-800">{app.company}</td>
+                  <td className="p-3 text-foreground">{app.company}</td>
                   <td className="p-3">
                     <span
                       className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${
@@ -849,12 +849,12 @@ export function ApplicationTracking({
                       {STATUS_LABELS[app.status]}
                     </span>
                   </td>
-                  <td className="p-3 text-gray-600">
+                  <td className="p-3 text-muted-foreground">
                     {app.appliedDate
                       ? formatDate(app.appliedDate, "short")
                       : "-"}
                   </td>
-                  <td className="p-3 text-sm text-gray-600">
+                  <td className="p-3 text-sm text-muted-foreground">
                     {formatDate(app.updatedAt, "short")}
                   </td>
                   <td className="p-3">
@@ -864,7 +864,7 @@ export function ApplicationTracking({
                           e.stopPropagation();
                           handleEdit(app);
                         }}
-                        className="rounded-full p-1 text-gray-500 hover:bg-blue-50 hover:text-blue-600"
+                        className="rounded-full p-1 text-muted-foreground hover:bg-primary/10 hover:text-primary"
                         title="Edit Application"
                       >
                         <Edit className="h-4 w-4" />
@@ -874,12 +874,12 @@ export function ApplicationTracking({
                           e.stopPropagation();
                           handleDelete(app.id);
                         }}
-                        className="rounded-full p-1 text-gray-500 hover:bg-red-50 hover:text-red-600"
+                        className="rounded-full p-1 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                         title="Delete Application"
                       >
                         <Trash className="h-4 w-4" />
                       </button>
-                      <button className="rounded-full p-1 text-blue-600">
+                      <button className="rounded-full p-1 text-primary">
                         {expandedApplicationId === app.id ? (
                           <ChevronUp className="h-4 w-4" />
                         ) : (
@@ -892,7 +892,7 @@ export function ApplicationTracking({
 
                 {/* Expanded details row */}
                 {expandedApplicationId === app.id && (
-                  <tr className="bg-gray-50">
+                  <tr className="bg-muted/50">
                     <td colSpan={6} className="p-3">
                       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                         <div>
@@ -900,15 +900,15 @@ export function ApplicationTracking({
                             Application Details
                           </h4>
                           <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                            <dt className="text-gray-500">Job Type</dt>
+                            <dt className="text-muted-foreground">Job Type</dt>
                             <dd>{app.jobType || "-"}</dd>
 
-                            <dt className="text-gray-500">Salary</dt>
+                            <dt className="text-muted-foreground">Salary</dt>
                             <dd>{app.salary || "-"}</dd>
 
                             {app.status === "interviewing" && (
                               <>
-                                <dt className="text-gray-500">
+                                <dt className="text-muted-foreground">
                                   Interview Stage
                                 </dt>
                                 <dd className="capitalize">
@@ -917,13 +917,13 @@ export function ApplicationTracking({
                               </>
                             )}
 
-                            <dt className="text-gray-500">Resume Used</dt>
+                            <dt className="text-muted-foreground">Resume Used</dt>
                             <dd>
                               {app.resumeTitle ||
                                 (app.resumeId ? (
                                   <Link
                                     href={`/resume/${app.resumeId}`}
-                                    className="text-blue-600 hover:underline"
+                                    className="text-primary hover:underline"
                                     onClick={(e) => e.stopPropagation()}
                                   >
                                     View Resume
@@ -933,7 +933,7 @@ export function ApplicationTracking({
                                 ))}
                             </dd>
 
-                            <dt className="text-gray-500">Next Step</dt>
+                            <dt className="text-muted-foreground">Next Step</dt>
                             <dd>
                               {app.nextStep ? (
                                 <>
@@ -950,7 +950,7 @@ export function ApplicationTracking({
 
                         <div>
                           <h4 className="mb-2 font-medium">Notes</h4>
-                          <div className="min-h-24 rounded border bg-white p-2 text-sm">
+                          <div className="min-h-24 rounded border bg-card p-2 text-sm">
                             {app.notes ||
                               "No notes added for this application."}
                           </div>
@@ -983,7 +983,7 @@ export function ApplicationTracking({
                                             <span className="font-medium">
                                               {STATUS_LABELS[history.status]}
                                             </span>
-                                            <span className="ml-2 text-xs text-gray-500">
+                                            <span className="ml-2 text-xs text-muted-foreground">
                                               {formatDate(
                                                 history.date,
                                                 "short",
@@ -991,7 +991,7 @@ export function ApplicationTracking({
                                             </span>
                                           </div>
                                           {history.notes && (
-                                            <p className="mt-1 text-xs text-gray-600">
+                                            <p className="mt-1 text-xs text-muted-foreground">
                                               {history.notes}
                                             </p>
                                           )}
@@ -1050,9 +1050,9 @@ export function ApplicationTracking({
                 {applicationsByStatus[status].length}
               </span>
             </div>
-            <div className="h-full min-h-72 rounded-b-md bg-gray-50 p-2">
+            <div className="h-full min-h-72 rounded-b-md bg-muted/30 p-2">
               {applicationsByStatus[status].length === 0 ? (
-                <div className="py-8 text-center text-sm text-gray-400">
+                <div className="py-8 text-center text-sm text-muted-foreground/60">
                   No applications
                 </div>
               ) : (
@@ -1060,17 +1060,17 @@ export function ApplicationTracking({
                   {applicationsByStatus[status].map((app) => (
                     <div
                       key={app.id}
-                      className="cursor-pointer rounded border border-gray-200 bg-white p-3 shadow-xs transition-shadow hover:shadow"
+                      className="cursor-pointer rounded border border-border bg-card p-3 shadow-xs transition-shadow hover:shadow"
                       onClick={() => toggleApplicationDetails(app.id)}
                     >
-                      <div className="mb-1 font-medium text-blue-700">
+                      <div className="mb-1 font-medium text-primary">
                         {app.jobTitle}
                       </div>
-                      <div className="mb-2 text-sm text-gray-700">
+                      <div className="mb-2 text-sm text-foreground">
                         {app.company}
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-gray-500">
+                        <span className="text-muted-foreground">
                           {app.appliedDate
                             ? formatDate(app.appliedDate, "short")
                             : "Not applied"}
@@ -1081,7 +1081,7 @@ export function ApplicationTracking({
                               e.stopPropagation();
                               handleEdit(app);
                             }}
-                            className="rounded-full p-1 text-gray-500 hover:bg-blue-50 hover:text-blue-600"
+                            className="rounded-full p-1 text-muted-foreground hover:bg-primary/10 hover:text-primary"
                             title="Edit Application"
                           >
                             <Edit className="h-3 w-3" />
@@ -1090,14 +1090,14 @@ export function ApplicationTracking({
                       </div>
 
                       {/* Status change buttons */}
-                      <div className="mt-3 grid grid-cols-2 gap-1 border-t border-gray-100 pt-2 text-xs">
+                      <div className="mt-3 grid grid-cols-2 gap-1 border-t border-border pt-2 text-xs">
                         {status === "saved" && (
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               handleStatusChange(app.id, "applied");
                             }}
-                            className="rounded p-1 text-blue-600 hover:bg-blue-50"
+                            className="rounded p-1 text-primary hover:bg-primary/10"
                           >
                             Mark Applied
                           </button>
@@ -1108,7 +1108,7 @@ export function ApplicationTracking({
                               e.stopPropagation();
                               handleStatusChange(app.id, "interviewing");
                             }}
-                            className="rounded p-1 text-amber-600 hover:bg-amber-50"
+                            className="rounded p-1 text-warning-foreground hover:bg-warning/10"
                           >
                             Got Interview
                           </button>
@@ -1119,7 +1119,7 @@ export function ApplicationTracking({
                               e.stopPropagation();
                               handleStatusChange(app.id, "offer");
                             }}
-                            className="rounded p-1 text-purple-600 hover:bg-purple-50"
+                            className="rounded p-1 text-accent-foreground hover:bg-accent/10"
                           >
                             Got Offer
                           </button>
@@ -1130,7 +1130,7 @@ export function ApplicationTracking({
                               e.stopPropagation();
                               handleStatusChange(app.id, "accepted");
                             }}
-                            className="rounded p-1 text-green-600 hover:bg-green-50"
+                            className="rounded p-1 text-success-foreground hover:bg-success/10"
                           >
                             Accept Offer
                           </button>
@@ -1143,7 +1143,7 @@ export function ApplicationTracking({
                               e.stopPropagation();
                               handleStatusChange(app.id, "rejected");
                             }}
-                            className="rounded p-1 text-red-600 hover:bg-red-50"
+                            className="rounded p-1 text-destructive hover:bg-destructive/10"
                           >
                             Rejected
                           </button>
@@ -1166,53 +1166,53 @@ export function ApplicationTracking({
       <div className="space-y-6">
         {/* Summary Stats */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
-          <div className="rounded-lg border bg-white p-4 shadow-xs">
-            <h3 className="mb-1 text-sm font-medium text-gray-500">
+          <div className="rounded-lg border bg-card p-4 shadow-xs">
+            <h3 className="mb-1 text-sm font-medium text-muted-foreground">
               Total Applications
             </h3>
-            <p className="text-3xl font-bold text-blue-700">{stats.total}</p>
-            <p className="mt-1 text-sm text-gray-600">All time</p>
+            <p className="text-3xl font-bold text-primary">{stats.total}</p>
+            <p className="mt-1 text-sm text-muted-foreground">All time</p>
           </div>
 
-          <div className="rounded-lg border bg-white p-4 shadow-xs">
-            <h3 className="mb-1 text-sm font-medium text-gray-500">
+          <div className="rounded-lg border bg-card p-4 shadow-xs">
+            <h3 className="mb-1 text-sm font-medium text-muted-foreground">
               Active Applications
             </h3>
-            <p className="text-3xl font-bold text-amber-600">
+            <p className="text-3xl font-bold text-warning-foreground">
               {stats.activeCount}
             </p>
-            <p className="mt-1 text-sm text-gray-600">
+            <p className="mt-1 text-sm text-muted-foreground">
               Interviewing or received offers
             </p>
           </div>
 
-          <div className="rounded-lg border bg-white p-4 shadow-xs">
-            <h3 className="mb-1 text-sm font-medium text-gray-500">
+          <div className="rounded-lg border bg-card p-4 shadow-xs">
+            <h3 className="mb-1 text-sm font-medium text-muted-foreground">
               Response Rate
             </h3>
-            <p className="text-3xl font-bold text-purple-600">
+            <p className="text-3xl font-bold text-accent-foreground">
               {stats.responseRate}%
             </p>
-            <p className="mt-1 text-sm text-gray-600">
+            <p className="mt-1 text-sm text-muted-foreground">
               Applications with feedback
             </p>
           </div>
 
-          <div className="rounded-lg border bg-white p-4 shadow-xs">
-            <h3 className="mb-1 text-sm font-medium text-gray-500">
+          <div className="rounded-lg border bg-card p-4 shadow-xs">
+            <h3 className="mb-1 text-sm font-medium text-muted-foreground">
               Success Rate
             </h3>
-            <p className="text-3xl font-bold text-green-600">
+            <p className="text-3xl font-bold text-success-foreground">
               {stats.successRate}%
             </p>
-            <p className="mt-1 text-sm text-gray-600">
+            <p className="mt-1 text-sm text-muted-foreground">
               Applications with offers
             </p>
           </div>
         </div>
 
         {/* Status Distribution */}
-        <div className="rounded-lg border bg-white p-6 shadow-xs">
+        <div className="rounded-lg border bg-card p-6 shadow-xs">
           <h3 className="mb-4 text-lg font-medium">
             Application Status Distribution
           </h3>
@@ -1231,7 +1231,7 @@ export function ApplicationTracking({
                   style={{ width: `${percentage}%` }}
                   title={`${STATUS_LABELS[status]}: ${count} (${percentage.toFixed(1)}%)`}
                 >
-                  <div className="invisible absolute left-1/2 top-0 -translate-x-1/2 -translate-y-full transform whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-xs text-white group-hover:visible">
+                  <div className="invisible absolute left-1/2 top-0 -translate-x-1/2 -translate-y-full transform whitespace-nowrap rounded bg-popover px-2 py-1 text-xs text-popover-foreground group-hover:visible">
                     {STATUS_LABELS[status]}: {count} ({percentage.toFixed(1)}%)
                   </div>
                 </div>
@@ -1249,7 +1249,7 @@ export function ApplicationTracking({
                   <div
                     className={`mr-2 h-3 w-3 rounded-full ${STATUS_COLORS[status].bg} ${STATUS_COLORS[status].border}`}
                   ></div>
-                  <span className="text-gray-700">
+                  <span className="text-foreground">
                     {STATUS_LABELS[status]}:{" "}
                   </span>
                   <span className="ml-1 font-medium">{count}</span>
@@ -1260,17 +1260,17 @@ export function ApplicationTracking({
         </div>
 
         {/* Application Activity */}
-        <div className="rounded-lg border bg-white p-6 shadow-xs">
+        <div className="rounded-lg border bg-card p-6 shadow-xs">
           <h3 className="mb-4 text-lg font-medium">Application Activity</h3>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
-              <h4 className="mb-3 text-sm font-medium text-gray-500">
+              <h4 className="mb-3 text-sm font-medium text-muted-foreground">
                 Recent Activity
               </h4>
 
               {applications.length === 0 ? (
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   No application activity yet.
                 </p>
               ) : (
@@ -1288,25 +1288,25 @@ export function ApplicationTracking({
                           className={`mr-3 flex h-8 w-8 items-center justify-center rounded-full ${STATUS_COLORS[app.status].bg}`}
                         >
                           {app.status === "applied" && (
-                            <Briefcase className="h-4 w-4 text-blue-700" />
+                            <Briefcase className="h-4 w-4 text-primary" />
                           )}
                           {app.status === "interviewing" && (
-                            <MessageCircle className="h-4 w-4 text-amber-700" />
+                            <MessageCircle className="h-4 w-4 text-warning-foreground" />
                           )}
                           {app.status === "offer" && (
-                            <FileText className="h-4 w-4 text-purple-700" />
+                            <FileText className="h-4 w-4 text-accent-foreground" />
                           )}
                           {app.status === "accepted" && (
-                            <CheckCircle className="h-4 w-4 text-green-700" />
+                            <CheckCircle className="h-4 w-4 text-success-foreground" />
                           )}
                           {app.status === "rejected" && (
-                            <XCircle className="h-4 w-4 text-red-700" />
+                            <XCircle className="h-4 w-4 text-destructive" />
                           )}
                           {app.status === "withdrawn" && (
-                            <XCircle className="h-4 w-4 text-gray-700" />
+                            <XCircle className="h-4 w-4 text-muted-foreground" />
                           )}
                           {app.status === "saved" && (
-                            <Briefcase className="h-4 w-4 text-gray-700" />
+                            <Briefcase className="h-4 w-4 text-muted-foreground" />
                           )}
                         </div>
 
@@ -1314,7 +1314,7 @@ export function ApplicationTracking({
                           <p className="font-medium">
                             {app.jobTitle} at {app.company}
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             {app.lastStatusChangeDate
                               ? `Updated to ${STATUS_LABELS[app.status]} on ${formatDate(app.lastStatusChangeDate, "short")}`
                               : `Added on ${formatDate(app.createdAt, "short")}`}
@@ -1327,13 +1327,13 @@ export function ApplicationTracking({
             </div>
 
             <div>
-              <h4 className="mb-3 text-sm font-medium text-gray-500">
+              <h4 className="mb-3 text-sm font-medium text-muted-foreground">
                 Application Insights
               </h4>
 
               <ul className="space-y-2 text-sm">
                 <li className="flex items-center">
-                  <Calendar className="mr-2 h-4 w-4 text-blue-600" />
+                  <Calendar className="mr-2 h-4 w-4 text-primary" />
                   <span>
                     <strong>{stats.recentCount}</strong> applications in the
                     last 30 days
@@ -1341,7 +1341,7 @@ export function ApplicationTracking({
                 </li>
 
                 <li className="flex items-center">
-                  <Clock className="mr-2 h-4 w-4 text-blue-600" />
+                  <Clock className="mr-2 h-4 w-4 text-primary" />
                   <span>
                     Average response time: <strong>14 days</strong>
                   </span>
@@ -1349,7 +1349,7 @@ export function ApplicationTracking({
 
                 {stats.statusCounts.interviewing > 0 && (
                   <li className="flex items-center">
-                    <MessageCircle className="mr-2 h-4 w-4 text-amber-600" />
+                    <MessageCircle className="mr-2 h-4 w-4 text-warning-foreground" />
                     <span>
                       <strong>{stats.statusCounts.interviewing}</strong> active
                       interviews
@@ -1359,7 +1359,7 @@ export function ApplicationTracking({
 
                 {stats.statusCounts.offer > 0 && (
                   <li className="flex items-center">
-                    <FileText className="mr-2 h-4 w-4 text-purple-600" />
+                    <FileText className="mr-2 h-4 w-4 text-accent-foreground" />
                     <span>
                       <strong>{stats.statusCounts.offer}</strong> pending offers
                     </span>
@@ -1368,7 +1368,7 @@ export function ApplicationTracking({
 
                 {stats.statusCounts.accepted > 0 && (
                   <li className="flex items-center">
-                    <CheckCircle className="mr-2 h-4 w-4 text-green-600" />
+                    <CheckCircle className="mr-2 h-4 w-4 text-success-foreground" />
                     <span>
                       <strong>{stats.statusCounts.accepted}</strong> accepted
                       offers all time
@@ -1377,7 +1377,7 @@ export function ApplicationTracking({
                 )}
               </ul>
 
-              <div className="mt-4 rounded-md border border-blue-100 bg-blue-50 p-3 text-sm text-blue-700">
+              <div className="mt-4 rounded-md border border-primary/20 bg-primary/10 p-3 text-sm text-primary">
                 <h5 className="mb-1 font-medium">Quick Tip</h5>
                 <p>
                   Track follow-ups to boost your response rate. Adding notes
@@ -1394,13 +1394,13 @@ export function ApplicationTracking({
   // Render application form
   const renderApplicationForm = () => {
     return (
-      <div className="rounded-lg border bg-white p-6">
+      <div className="rounded-lg border bg-card p-6">
         <h3 className="mb-4 text-xl font-semibold">
           {editingApplicationId ? "Edit Application" : "Add New Application"}
         </h3>
 
         {error && (
-          <div className="mb-4 border-l-4 border-red-500 bg-red-50 p-3 text-red-700">
+          <div className="mb-4 border-l-4 border-destructive bg-destructive/10 p-3 text-destructive">
             <div className="flex">
               <AlertCircle className="mr-2 h-5 w-5" />
               <p>{error}</p>
@@ -1412,7 +1412,7 @@ export function ApplicationTracking({
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
               <Label htmlFor="jobTitle">
-                Job Title <span className="text-red-500">*</span>
+                Job Title <span className="text-destructive">*</span>
               </Label>
               <Input
                 id="jobTitle"
@@ -1426,7 +1426,7 @@ export function ApplicationTracking({
 
             <div>
               <Label htmlFor="company">
-                Company <span className="text-red-500">*</span>
+                Company <span className="text-destructive">*</span>
               </Label>
               <Input
                 id="company"
@@ -1458,7 +1458,7 @@ export function ApplicationTracking({
                 name="jobType"
                 value={formData.jobType}
                 onChange={handleInputChange}
-                className="w-full rounded-md border border-gray-300 px-3 py-2"
+                className="w-full rounded-md border border-input px-3 py-2 bg-background"
               >
                 <option value="full-time">Full-time</option>
                 <option value="part-time">Part-time</option>
@@ -1501,7 +1501,7 @@ export function ApplicationTracking({
                 name="status"
                 value={formData.status}
                 onChange={handleInputChange}
-                className="w-full rounded-md border border-gray-300 px-3 py-2"
+                className="w-full rounded-md border border-input px-3 py-2 bg-background"
               >
                 {APPLICATION_STATUSES.map((status) => (
                   <option key={status} value={status}>
@@ -1519,7 +1519,7 @@ export function ApplicationTracking({
                   name="interviewStage"
                   value={formData.interviewStage}
                   onChange={handleInputChange}
-                  className="w-full rounded-md border border-gray-300 px-3 py-2"
+                  className="w-full rounded-md border border-input px-3 py-2 bg-background"
                 >
                   <option value="">Select stage</option>
                   {INTERVIEW_STAGES.map((stage) => (
@@ -1540,7 +1540,7 @@ export function ApplicationTracking({
                 name="resumeId"
                 value={formData.resumeId || ""}
                 onChange={handleInputChange}
-                className="w-full rounded-md border border-gray-300 px-3 py-2"
+                className="w-full rounded-md border border-input px-3 py-2 bg-background"
               >
                 <option value="">Select a resume</option>
                 {resumes.map((resume) => (
@@ -1558,7 +1558,7 @@ export function ApplicationTracking({
                 name="jobDescriptionId"
                 value={formData.jobDescriptionId || ""}
                 onChange={handleInputChange}
-                className="w-full rounded-md border border-gray-300 px-3 py-2"
+                className="w-full rounded-md border border-input px-3 py-2 bg-background"
               >
                 <option value="">Select a job description</option>
                 {jobDescriptions.map((jd) => (
@@ -1601,7 +1601,7 @@ export function ApplicationTracking({
               name="notes"
               value={formData.notes || ""}
               onChange={handleInputChange}
-              className="min-h-32 w-full rounded-md border border-gray-300 px-3 py-2"
+              className="min-h-32 w-full rounded-md border border-input px-3 py-2 bg-background"
               placeholder="Add any notes about this application..."
             />
           </div>
@@ -1631,7 +1631,7 @@ export function ApplicationTracking({
       {showTitle && (
         <div>
           <h1 className="text-2xl font-bold">Application Tracker</h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Track your job applications and monitor your progress
           </p>
         </div>
@@ -1648,7 +1648,7 @@ export function ApplicationTracking({
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
             />
-            <div className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-400">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 transform text-muted-foreground">
               {/* Search icon */}
             </div>
           </div>
@@ -1674,7 +1674,7 @@ export function ApplicationTracking({
 
       {/* Filter options */}
       {showFilters && !showForm && (
-        <div className="space-y-4 rounded-md border bg-gray-50 p-4">
+        <div className="space-y-4 rounded-md border bg-muted p-4">
           <h3 className="mb-2 font-medium">Filter Applications</h3>
 
           {/* Status filter */}
@@ -1687,7 +1687,7 @@ export function ApplicationTracking({
                   className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
                     filters.status?.includes(status)
                       ? `${STATUS_COLORS[status].bg} ${STATUS_COLORS[status].text} ${STATUS_COLORS[status].border}`
-                      : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                      : "border border-input bg-background text-foreground hover:bg-muted"
                   }`}
                   onClick={() => {
                     setFilters((prev) => {
@@ -1787,15 +1787,15 @@ export function ApplicationTracking({
 
             <TabsContent value="list">
               {loading ? (
-                <div className="flex justify-center rounded-lg border bg-white p-12">
+                <div className="flex justify-center rounded-lg border bg-card p-12">
                   <div className="flex flex-col items-center">
-                    <Loader2 className="mb-4 h-8 w-8 animate-spin text-blue-600" />
-                    <p className="text-gray-600">Loading applications...</p>
+                    <Loader2 className="mb-4 h-8 w-8 animate-spin text-primary" />
+                    <p className="text-muted-foreground">Loading applications...</p>
                   </div>
                 </div>
               ) : error && applications.length === 0 ? (
-                <div className="rounded-lg border bg-white p-6">
-                  <div className="mb-4 text-center text-red-600">
+                <div className="rounded-lg border bg-card p-6">
+                  <div className="mb-4 text-center text-destructive">
                     <AlertCircle className="mx-auto mb-2 h-10 w-10" />
                     <p>{error}</p>
                   </div>
@@ -1810,15 +1810,15 @@ export function ApplicationTracking({
 
             <TabsContent value="kanban">
               {loading ? (
-                <div className="flex justify-center rounded-lg border bg-white p-12">
+                <div className="flex justify-center rounded-lg border bg-card p-12">
                   <div className="flex flex-col items-center">
-                    <Loader2 className="mb-4 h-8 w-8 animate-spin text-blue-600" />
-                    <p className="text-gray-600">Loading applications...</p>
+                    <Loader2 className="mb-4 h-8 w-8 animate-spin text-primary" />
+                    <p className="text-muted-foreground">Loading applications...</p>
                   </div>
                 </div>
               ) : error && applications.length === 0 ? (
-                <div className="rounded-lg border bg-white p-6">
-                  <div className="mb-4 text-center text-red-600">
+                <div className="rounded-lg border bg-card p-6">
+                  <div className="mb-4 text-center text-destructive">
                     <AlertCircle className="mx-auto mb-2 h-10 w-10" />
                     <p>{error}</p>
                   </div>
@@ -1833,15 +1833,15 @@ export function ApplicationTracking({
 
             <TabsContent value="stats">
               {loading ? (
-                <div className="flex justify-center rounded-lg border bg-white p-12">
+                <div className="flex justify-center rounded-lg border bg-card p-12">
                   <div className="flex flex-col items-center">
-                    <Loader2 className="mb-4 h-8 w-8 animate-spin text-blue-600" />
-                    <p className="text-gray-600">Loading statistics...</p>
+                    <Loader2 className="mb-4 h-8 w-8 animate-spin text-primary" />
+                    <p className="text-muted-foreground">Loading statistics...</p>
                   </div>
                 </div>
               ) : error && applications.length === 0 ? (
-                <div className="rounded-lg border bg-white p-6">
-                  <div className="mb-4 text-center text-red-600">
+                <div className="rounded-lg border bg-card p-6">
+                  <div className="mb-4 text-center text-destructive">
                     <AlertCircle className="mx-auto mb-2 h-10 w-10" />
                     <p>{error}</p>
                   </div>
