@@ -330,6 +330,98 @@ className="bg-muted text-muted-foreground border-border"
 }
 ```
 
+### OKLCH Browser Compatibility Implementation
+*Added: January 16, 2025 during Task 0.7 gap analysis*
+
+#### PostCSS Plugin Configuration
+
+The @csstools/postcss-oklab-function plugin automatically adds fallback colors for browsers without OKLCH support (6.9% as of 2025).
+
+```javascript
+// postcss.config.mjs
+export default {
+  plugins: {
+    'tailwindcss': {},
+    'autoprefixer': {},
+    '@csstools/postcss-oklab-function': {
+      preserve: true, // Keep OKLCH values for modern browsers
+      enableProgressiveCustomProperties: false, // Use simple fallbacks
+    },
+    ...(process.env.NODE_ENV === 'production' ? {
+      'cssnano': {
+        preset: ['default', {
+          discardComments: {
+            removeAll: true,
+          },
+          // CRITICAL: Prevent merging that breaks OKLCH fallbacks
+          mergeRules: false,
+          mergeLonghand: false,
+        }],
+      },
+    } : {})
+  },
+}
+```
+
+#### Next.js Configuration for OKLCH
+
+```javascript
+// next.config.mjs
+export default {
+  // Prevent cssnano-simple from breaking OKLCH fallbacks
+  experimental: {
+    cssChunking: 'loose', // Prevents aggressive CSS optimization
+  },
+  // Custom PostCSS config for OKLCH support
+  postcss: {
+    plugins: {
+      '@csstools/postcss-oklab-function': {
+        preserve: true,
+      },
+    },
+  },
+}
+```
+
+#### Generated Output Example
+
+The PostCSS plugin automatically generates RGB fallbacks:
+
+```css
+/* Input */
+.text-primary {
+  color: oklch(0.45 0.15 231);
+}
+
+/* Output after PostCSS processing */
+.text-primary {
+  color: rgb(0, 99, 204);  /* Fallback for older browsers */
+  color: oklch(0.45 0.15 231);  /* Modern browsers use this */
+}
+```
+
+#### Testing Browser Support
+
+```javascript
+// utils/color-support.ts
+export function supportsOKLCH(): boolean {
+  if (typeof window === 'undefined') return false;
+  
+  const testElement = document.createElement('div');
+  testElement.style.color = 'oklch(0 0 0)';
+  return testElement.style.color !== '';
+}
+
+// Optional: Add CSS class for fallback styling
+if (!supportsOKLCH()) {
+  document.documentElement.classList.add('no-oklch');
+}
+```
+
+#### Sources
+- [@csstools/postcss-oklab-function](https://www.npmjs.com/package/@csstools/postcss-oklab-function) - Official PostCSS plugin
+- [Next.js CSS Optimization Discussion](https://github.com/vercel/next.js/discussions/44687) - cssnano configuration
+
 ## Validation & Testing
 
 ### Color Contrast Testing

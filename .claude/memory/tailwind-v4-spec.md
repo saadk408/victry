@@ -320,6 +320,174 @@ export default {
    }
    ```
 
+### Color Validation Script Implementation
+*Added: January 16, 2025 during Task 0.7 gap analysis*
+
+```javascript
+// scripts/validate-colors.js
+const fs = require('fs');
+const path = require('path');
+const { parse } = require('@typescript-eslint/parser');
+
+// ESLint plugin configuration for semantic colors
+const semanticColorRule = {
+  meta: {
+    type: 'problem',
+    docs: {
+      description: 'Enforce semantic color usage, disallow hard-coded colors',
+    },
+    messages: {
+      hardCodedColor: 'Use semantic color "{{semantic}}" instead of "{{hardcoded}}"',
+      darkModeClass: 'Dark mode classes are not allowed. Remove "{{class}}"',
+    },
+  },
+  create(context) {
+    // Map of hard-coded colors to semantic replacements
+    const colorMap = {
+      'bg-white': 'bg-background',
+      'bg-black': 'bg-foreground',
+      'bg-gray-50': 'bg-muted',
+      'bg-gray-100': 'bg-muted',
+      'bg-gray-900': 'bg-foreground',
+      'text-white': 'text-background',
+      'text-black': 'text-foreground',
+      'text-gray-500': 'text-muted-foreground',
+      'text-gray-600': 'text-muted-foreground',
+      'border-gray-200': 'border-border',
+      'border-gray-300': 'border-border',
+    };
+
+    return {
+      JSXAttribute(node) {
+        if (node.name.name === 'className' && node.value) {
+          const classValue = node.value.value || node.value.expression?.value;
+          if (typeof classValue === 'string') {
+            // Check for dark mode classes
+            if (classValue.includes('dark:')) {
+              context.report({
+                node,
+                messageId: 'darkModeClass',
+                data: { class: classValue.match(/dark:[^ ]+/)?.[0] },
+              });
+            }
+
+            // Check for hard-coded colors
+            Object.entries(colorMap).forEach(([hardcoded, semantic]) => {
+              if (classValue.includes(hardcoded)) {
+                context.report({
+                  node,
+                  messageId: 'hardCodedColor',
+                  data: { hardcoded, semantic },
+                  fix(fixer) {
+                    const fixed = classValue.replace(hardcoded, semantic);
+                    return fixer.replaceText(node.value, `"${fixed}"`);
+                  },
+                });
+              }
+            });
+          }
+        }
+      },
+    };
+  },
+};
+
+// Standalone validation script
+async function validateColors(dir = 'components') {
+  const violations = [];
+  const hardCodedPattern = /(?:bg|text|border|ring|divide)-(white|black|gray|slate|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-?\d{0,3}/g;
+  const darkModePattern = /dark:/g;
+
+  function checkFile(filePath) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const lines = content.split('\n');
+    
+    lines.forEach((line, index) => {
+      // Check for dark mode
+      const darkMatches = line.match(darkModePattern);
+      if (darkMatches) {
+        violations.push({
+          file: filePath,
+          line: index + 1,
+          type: 'dark-mode',
+          match: line.trim(),
+        });
+      }
+
+      // Check for hard-coded colors
+      const colorMatches = line.match(hardCodedPattern);
+      if (colorMatches) {
+        violations.push({
+          file: filePath,
+          line: index + 1,
+          type: 'hard-coded-color',
+          match: colorMatches.join(', '),
+        });
+      }
+    });
+  }
+
+  function walkDir(dir) {
+    const files = fs.readdirSync(dir);
+    files.forEach(file => {
+      const filePath = path.join(dir, file);
+      const stat = fs.statSync(filePath);
+      
+      if (stat.isDirectory() && !file.startsWith('.') && file !== 'node_modules') {
+        walkDir(filePath);
+      } else if (stat.isFile() && (file.endsWith('.tsx') || file.endsWith('.ts'))) {
+        checkFile(filePath);
+      }
+    });
+  }
+
+  walkDir(dir);
+
+  // Report results
+  if (violations.length === 0) {
+    console.log('✅ No color violations found!');
+    return true;
+  } else {
+    console.error(`❌ Found ${violations.length} color violations:\n`);
+    violations.forEach(v => {
+      console.error(`${v.file}:${v.line} - ${v.type}: ${v.match}`);
+    });
+    return false;
+  }
+}
+
+// Run validation
+validateColors(process.argv[2] || 'components').then(success => {
+  process.exit(success ? 0 : 1);
+});
+```
+
+### ESLint Plugin Configuration
+
+```javascript
+// .eslintrc.js
+module.exports = {
+  extends: ['plugin:tailwindcss/recommended'],
+  rules: {
+    'tailwindcss/no-custom-classname': ['error', {
+      whitelist: ['custom-allowed-class'],
+    }],
+    'tailwindcss/no-contradicting-classname': 'error',
+    'tailwindcss/enforces-negative-arbitrary-values': 'warn',
+    'tailwindcss/enforces-shorthand': 'warn',
+    'tailwindcss/migration-from-tailwind-2': 'error',
+    'tailwindcss/classnames-order': 'warn',
+  },
+  settings: {
+    tailwindcss: {
+      config: 'tailwind.config.ts',
+      callees: ['cn', 'clsx', 'cva'],
+      classRegex: '^(class|className)$',
+    },
+  },
+};
+```
+
 ## Bundle Size Targets
 
 ### Current State

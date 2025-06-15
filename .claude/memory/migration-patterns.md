@@ -627,6 +627,119 @@ export async function trackMigration(component: string, metrics: MigrationMetric
 3. **Performance improvements** measurable
 4. **Development velocity** maintained
 
+## Animation Migration Patterns
+*Added: January 16, 2025 during Task 0.7 gap analysis*
+
+### Key Finding
+Tailwind v4 introduces CSS-first animation configuration using `--animate-*` theme variables, enabling @keyframes definition directly in CSS without JavaScript configuration files.
+
+### Migration Pattern for Animations
+
+```css
+/* app/globals.css - Animation definitions in @theme */
+@theme {
+  /* Define custom animations */
+  --animate-slide-in: slide-in 0.3s ease-out;
+  --animate-fade-in: fade-in 0.2s ease-in;
+  --animate-scale-up: scale-up 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Keyframes definitions */
+  @keyframes slide-in {
+    from {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes scale-up {
+    from { transform: scale(0.95); }
+    to { transform: scale(1); }
+  }
+}
+```
+
+### Component Implementation Example
+
+```typescript
+// Migrating animated components (e.g., switch.tsx, tabs.tsx)
+const animatedComponentVariants = cva(
+  "transition-all duration-200 ease-in-out", // Base transition classes
+  {
+    variants: {
+      state: {
+        entering: "animate-slide-in",
+        leaving: "animate-fade-out opacity-0",
+        idle: ""
+      }
+    }
+  }
+);
+
+// Using @starting-style for enter transitions (no JS required)
+const TabPanel = ({ children, isActive }) => (
+  <div
+    className={cn(
+      "opacity-100 transition-opacity duration-300",
+      !isActive && "opacity-0 pointer-events-none"
+    )}
+    style={{
+      '@starting-style': {
+        opacity: 0
+      }
+    }}
+  >
+    {children}
+  </div>
+);
+```
+
+### Dynamic Animation Values
+
+```typescript
+// For dynamic animation values, use CSS custom properties
+const AnimatedProgress = ({ value }: { value: number }) => (
+  <div
+    className="h-2 bg-primary transition-all duration-500 ease-out"
+    style={{
+      '--progress-width': `${value}%`,
+      width: 'var(--progress-width)'
+    }}
+  />
+);
+```
+
+### Performance Considerations
+
+1. **CSS Animations vs JavaScript**: CSS animations are GPU-accelerated and more performant
+2. **will-change Property**: Use sparingly for critical animations
+3. **Reduced Motion**: Always respect user preferences
+
+```css
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+### Sources
+- [Tailwind CSS v4.0 Blog Post](https://tailwindcss.com/blog/tailwindcss-v4) - @starting-style support
+- [Tailwind CSS Animation Docs](https://tailwindcss.com/docs/animation) - CSS-first animation patterns
+
 ## Implementation Timeline
 
 ### Week 1: High-Risk Components

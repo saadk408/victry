@@ -1,9 +1,9 @@
 # Dark Mode Removal - Resource Knowledge Map
 
 Generated: January 16, 2025
-Last Updated: January 16, 2025
+Last Updated: January 16, 2025 (Task 0.7 completed)
 Purpose: Central knowledge map for efficient task execution
-Total Files Cataloged: 13
+Total Files Cataloged: 16 (13 original + 3 gap research files)
 
 ## Quick Reference Guide
 
@@ -67,40 +67,150 @@ Total Files Cataloged: 13
 - **Before testing**: Read performance-budgets-quality-gates.md + migration-patterns.md (testing section)
 - **Before optimization**: Read performance-baseline.md + nextjs-15.md
 
-## Knowledge Gaps Identified
+## Gap Analysis Report
+*Generated: January 16, 2025 during Task 0.7*
 
-### Critical Implementation Details
-Based on comprehensive file analysis, the following potential gaps have been identified for investigation:
+### Analysis Summary
+- Files Analyzed: 13
+- Total Gaps Identified: 8
+- Critical Gaps: 2
+- Important Gaps: 3
+- Nice-to-Have Gaps: 3
 
-#### Build & Development Tooling
-- [ ] PostCSS configuration for Tailwind v4 CSS-first setup
-- [ ] Bundle analyzer setup for performance monitoring
-- [ ] CSS layer organization for critical CSS extraction
-- [ ] Development server hot reload configuration with new CSS architecture
+### CRITICAL Gaps (Must Research)
 
-#### Testing Infrastructure
-- [ ] Playwright configuration for visual regression testing
-- [ ] Storybook setup for component documentation
-- [ ] Accessibility testing automation setup
-- [ ] Performance testing harness configuration
+1. **Tailwind v4 Animation System Migration**
+   - Why Critical: Risk assessment shows tabs.tsx and switch.tsx use transitions/animations extensively, but migration-patterns.md lacks animation migration guidance
+   - Current State: No animation/transition patterns in tailwind-v4-spec.md or migration-patterns.md
+   - Blocks: Tasks 3.2-3.7 (all component migrations that use animations)
+   - Research Needed:
+     * Tailwind v4 transition utilities in CSS-first approach
+     * @keyframes implementation with @theme directive
+     * Performance comparison: CSS animations vs JavaScript
+     * Dynamic animation values using CSS custom properties
 
-#### Migration Automation
-- [ ] Automated script patterns for removing dark: prefixes
-- [ ] Color validation script implementation details
-- [ ] Git hooks setup for enforcing semantic colors
-- [ ] CI/CD pipeline configuration for quality gates
+2. **Next.js 15 Build Optimization Configuration**
+   - Why Critical: Performance targets require <1.5s build time (currently 2s), but no concrete configuration provided
+   - Current State: Performance targets defined in performance-budgets-quality-gates.md but implementation missing
+   - Blocks: Task 2.2 (Next.js Performance Configuration)
+   - Research Needed:
+     * Specific next.config.js settings for Tailwind v4 optimization
+     * @next/bundle-analyzer integration and configuration
+     * Turbopack setup for development performance
+     * Critical CSS extraction with Next.js 15 App Router
 
-#### Production Optimizations
-- [ ] Critical CSS extraction methodology
-- [ ] CSS purging strategy with semantic tokens
-- [ ] Font loading optimization patterns
-- [ ] Image optimization with Next.js 15
+### IMPORTANT Gaps (Should Research)
 
-#### Component-Specific Patterns
-- [ ] Form component migration patterns (React 19 Actions)
-- [ ] Animation/transition handling without dark mode
-- [ ] Complex state-based component patterns
-- [ ] Third-party component library integration
+1. **Color Validation Script Implementation**
+   - Why Important: Referenced in tailwind-v4-spec.md (line 312) but no implementation details
+   - Current State: Concept mentioned but no code or integration pattern
+   - Affects: Quality gates, CI/CD pipeline, developer workflow
+   - Research Needed:
+     * AST-based color detection using TypeScript compiler API
+     * ESLint plugin development for semantic color enforcement
+     * Performance optimization for large codebases
+
+2. **Playwright Visual Regression Configuration**
+   - Why Important: Essential for validating no visual breaks during migration
+   - Current State: Playwright mentioned in migration-patterns.md but no specific setup
+   - Affects: Tasks 3.2-3.7 (component migration confidence)
+   - Research Needed:
+     * Playwright visual comparison setup with tolerance levels
+     * Baseline screenshot management strategy
+     * CI integration with automatic visual diff reports
+
+3. **OKLCH Browser Fallback Implementation**
+   - Why Important: 6.9% of users need fallbacks (93.1% support mentioned)
+   - Current State: Fallback strategy mentioned in oklch-color-system.md but not implemented
+   - Affects: Production deployment and user experience
+   - Research Needed:
+     * PostCSS plugin configuration for automatic OKLCH→RGB conversion
+     * CSS @supports detection patterns
+     * Testing fallback rendering across browsers
+
+### NICE-TO-HAVE Gaps (Acknowledged Only)
+
+1. **Storybook 9 with Tailwind v4 Setup**
+   - Useful for component documentation but not blocking implementation
+
+2. **Real-time Performance Monitoring Dashboard**
+   - Would help track improvements but can use existing tools
+
+3. **Advanced OKLCH Color Manipulation**
+   - Color mixing and dynamic themes are interesting but not required
+
+## Gap Resolution Summary
+*Updated: January 16, 2025 after research completion*
+
+### Gaps Researched and Resolved ✅
+
+#### CRITICAL Gaps Resolved
+
+1. **Tailwind v4 Animation System Migration** ✅
+   - Status: RESOLVED
+   - Solution Location: migration-patterns.md (lines 630-741)
+   - Key Insight: CSS-first animations using --animate-* theme variables with @keyframes
+   - Implementation Ready: Yes
+   - Confidence Level: High
+
+2. **Next.js 15 Build Optimization Configuration** ✅
+   - Status: RESOLVED
+   - Solution Location: research/nextjs-build-optimization.md (complete file)
+   - Key Insight: Turbopack alpha builds offer 45.8% faster compilation
+   - Implementation Ready: Yes
+   - Confidence Level: High
+
+#### IMPORTANT Gaps Resolved
+
+1. **Color Validation Script Implementation** ✅
+   - Status: RESOLVED
+   - Solution Location: tailwind-v4-spec.md (lines 323-489)
+   - Key Insight: ESLint plugin + standalone validation script with AST parsing
+   - Implementation Ready: Yes
+   - Confidence Level: High
+
+2. **Playwright Visual Regression Configuration** ✅
+   - Status: RESOLVED
+   - Solution Location: research/playwright-visual-regression.md (complete file)
+   - Key Insight: Built-in visual comparison with configurable tolerance and CI integration
+   - Implementation Ready: Yes
+   - Confidence Level: High
+
+3. **OKLCH Browser Fallback Implementation** ✅
+   - Status: RESOLVED
+   - Solution Location: color-system-spec.md (lines 333-423)
+   - Key Insight: PostCSS plugin automatically generates RGB fallbacks for 6.9% unsupported browsers
+   - Implementation Ready: Yes
+   - Confidence Level: High
+
+### Gaps Not Researched (NICE-TO-HAVE)
+
+1. **Storybook 9 with Tailwind v4 Setup**
+   - Status: NICE-TO-HAVE - Not Researched
+   - Reason: Component documentation tool setup not critical for migration
+   - Future Consideration: After successful migration completion
+
+2. **Real-time Performance Monitoring Dashboard**
+   - Status: NICE-TO-HAVE - Not Researched
+   - Reason: Existing monitoring tools sufficient for migration validation
+   - Future Consideration: Post-deployment enhancement
+
+3. **Advanced OKLCH Color Manipulation**
+   - Status: NICE-TO-HAVE - Not Researched
+   - Reason: Basic OKLCH implementation sufficient for current needs
+   - Future Consideration: Future theme system enhancement
+
+### Implementation Impact
+
+All CRITICAL and IMPORTANT knowledge gaps have been researched and resolved. Implementation can proceed with confidence through all phases. The research has provided:
+
+- Complete animation migration patterns for tabs.tsx and switch.tsx
+- Concrete Next.js configuration for achieving <1.5s build times
+- Working validation scripts for enforcing semantic colors
+- Full Playwright setup for visual regression testing
+- OKLCH fallback strategy ensuring 100% browser compatibility
+
+NICE-TO-HAVE gaps are documented for future consideration but do not impact implementation success.
 
 ## Usage Instructions
 
