@@ -61,7 +61,7 @@ For EVERY task, start with exploration:
 ```
 
 
-## SPARC Phase 0: Research & Discovery [ ]
+## SPARC Phase 0: Research & Discovery [x]
 
 ### Research Prompt
 ```
@@ -118,7 +118,7 @@ Cross-reference all research files before proceeding to ensure comprehensive und
 Commit findings: "research: complete dark mode analysis with latest best practices"
 ```
 
-### Task 0.6: Explore and Document Resources [ ]
+### Task 0.6: Explore and Document Resources [x]
 ```
 Create a comprehensive knowledge map of ALL available resources to enable efficient implementation throughout the project.
 
@@ -287,7 +287,7 @@ Create a comprehensive knowledge map of ALL available resources to enable effici
 Commit: "docs: create comprehensive resource knowledge map"
 ```
 
-### Task 0.7: Identify and Fill Knowledge Gaps [ ]
+### Task 0.7: Identify and Fill Knowledge Gaps [x]
 ```
 Analyze RESOURCES.md to identify and research knowledge gaps that could impact implementation success.
 
