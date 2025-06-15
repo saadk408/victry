@@ -579,8 +579,8 @@ Commit: "research: resolve critical and important implementation gaps"
 - [x] 0.3: Map component dependencies and create risk matrix
 - [x] 0.4: Document current performance metrics vs 2025 standards
 - [x] 0.5: Create migration strategy based on latest best practices
-- [ ] 0.6: Explore and Document Resources
-- [ ] 0.7: Identify and Fill Critical Knowledge Gaps
+- [x] 0.6: Explore and Document Resources
+- [x] 0.7: Identify and Fill Critical Knowledge Gaps
 
 **Example Research Task Execution:**
 ```
@@ -1137,20 +1137,29 @@ Deploy to production:
 
 ```
 .claude/memory/
-├── research/                 # Research from Phase 0
-│   ├── RESOURCES.md         # Created in Task 0.5 (Resource Inventory)
-│   ├── [various research files created during Phase 0]
-│   └── [topic].md           # Additional topic-specific research
-├── color-system-spec.md     # From Phase 1
-├── tailwind-v4-spec.md      # From Phase 1
-├── migration-patterns.md    # From Phase 1
+├── RESOURCES.md             # Created in Task 0.6 (Resource Knowledge Map)
+├── research/                # Research from Phase 0
+│   ├── color-analysis.md
+│   ├── nextjs-15.md
+│   ├── nextjs-build-optimization.md    # Added in Task 0.7
+│   ├── oklch-color-system.md
+│   ├── performance-baseline.md
+│   ├── playwright-visual-regression.md  # Added in Task 0.7
+│   ├── react-19.md
+│   ├── risk-assessment.md
+│   └── tailwind-v4.md
+├── color-system-spec.md     # From Phase 1 (with OKLCH fallback added)
+├── tailwind-v4-spec.md      # From Phase 1 (with validation script added)
+├── migration-patterns.md    # From Phase 1 (with animation patterns added)
+├── migration-strategy.md    # From Phase 1
+├── performance-budgets-quality-gates.md  # From Phase 1
 ├── implementation/          # Created during Phase 2-5
-│   └── [task-name].md      # Decisions made during implementation
+│   └── tailwind-v4-config.md    # Already started
 ├── test-results/           # Created during Phase 4
 │   ├── visual-regression/
 │   ├── accessibility/
 │   └── performance/
-└── rollback-procedures.md  # Created during Phase 5
+└── rollback-procedures.md  # To be created during Phase 5
 ```
 
 ## Discovery-Based Development Guidelines
@@ -1267,8 +1276,8 @@ Remember: The goal is to leverage ALL available knowledge, regardless of where i
 ## Migration Progress
 - [x] Research Phase Complete ✓
 - [x] Specifications Complete ✓
-- [ ] Resources Discovered & Documented
-- [ ] Knowledge Gaps Identified & Filled
+- [x] Resources Discovered & Documented ✓
+- [x] Knowledge Gaps Identified & Filled ✓
 - [ ] Core Components: 0/15 migrated
 - [ ] Feature Components: 0/48 migrated
 - [ ] Tests Written: 0/200
@@ -1282,8 +1291,8 @@ Remember: The goal is to leverage ALL available knowledge, regardless of where i
 - [ ] E2E Tests: PENDING
 
 ## Knowledge Utilization
-- [ ] All research files explored
-- [ ] Critical gaps identified and researched
+- [x] All research files explored ✓
+- [x] Critical gaps identified and researched ✓
 - [ ] Specifications applied to implementation
 - [ ] Migration patterns followed consistently
 - [ ] Performance targets met
