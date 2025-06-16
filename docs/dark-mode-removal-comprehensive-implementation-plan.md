@@ -1099,128 +1099,459 @@ RESOURCES.md should make all specifications easily discoverable for future phase
 
 ## SPARC Phase 2: Architecture - Foundation Setup [ ]
 
-### Implementation Tasks with TDD Approach
-
-#### Task 2.1: Tailwind CSS v4 Setup [ ]
+### Phase Overview
 ```
-Implement Tailwind v4 CSS-first architecture:
+Transform Phase 1 specifications into working foundation architecture.
 
-1. Discovery phase (REQUIRED):
-   - Explore .claude/memory/ to understand available resources:
-     * Look for any Tailwind-related specifications
-     * Find color system specifications
-     * Check /implementation/ for any existing work
-   - Read relevant files to understand:
-     * The planned OKLCH color system
-     * CSS-first architecture approach
-     * Performance optimization strategies
+**Purpose**: Implement the core technical foundation based on the comprehensive specifications created in Phase 1, establishing the CSS-first architecture, performance optimizations, and testing infrastructure.
 
-2. Write failing tests for color system:
-   - Test semantic color token access
-   - Test WCAG compliance validation (using standards found in research)
-   - Test CSS bundle size limits (using targets found in specs)
+**Critical Approach - Implementation with Specification Guidance**:
+- Start EVERY task by consulting RESOURCES.md
+- Locate and read relevant specifications from Phase 1
+- Apply the integrated specification system (color → Tailwind → migration → quality)
+- Document implementation decisions for future phases
+- Test against quality gates defined in specifications
+```
+
+### Implementation Principles for Phase 2
+```
+For EVERY implementation task:
+
+1. **Navigate via RESOURCES.md**:
+   - Open RESOURCES.md first - it's your implementation guide
+   - Use Quick Reference to find relevant specifications
+   - Check Phase 1 Specification Insights for critical decisions
+   - Review Cross-Reference Matrix for dependencies
+
+2. **Apply Specifications, Don't Reinvent**:
+   - Phase 1 specifications contain concrete implementations
+   - Use the exact patterns and configurations provided
+   - Follow the integration points identified
+   - Respect the critical implementation order
+
+3. **Test-Driven Implementation**:
+   - Write tests based on quality gates from specifications
+   - Implement to make tests pass
+   - Validate against performance budgets
+   - Ensure WCAG compliance per color system spec
+
+4. **Document Implementation Reality**:
+   - Create implementation docs in .claude/memory/implementation/
+   - Note any deviations from specifications and why
+   - Record performance measurements
+   - Document lessons learned for Phase 3
+
+5. **Maintain Specification Integrity**:
+   - If reality differs from spec, document why
+   - Update RESOURCES.md with implementation insights
+   - Preserve the integrated system design
+   - Think about Phase 3 components while implementing
+```
+
+### Task 2.1: Tailwind CSS v4 Foundation Implementation [ ]
+```
+Implement the CSS-first Tailwind v4 architecture exactly as specified.
+
+**Discovery Phase (REQUIRED)**:
+1. Open RESOURCES.md and navigate to:
+   - Quick Reference → "Tailwind @theme configuration"
+   - Quick Reference → "Color token definitions"
+   - Phase 1 Specifications → Find tailwind-v4-spec.md details
+   - Phase 1 Specifications → Find color-system-spec.md details
+   - Cross-Reference Matrix → Confirm dependencies
+
+2. Read the complete specifications:
+   - Understand the @theme structure exactly as designed
+   - Review the OKLCH color tokens and semantic mappings
+   - Note the CSS custom property architecture
+   - Study the PostCSS pipeline configuration
+   - Check performance optimization settings
+
+3. Review Phase 1 Insights:
+   - Note the "Foundation Setup" critical order
+   - Understand why color and Tailwind must be implemented together
+   - Review the 5x build performance improvement expectation
+
+**Test-Driven Implementation**:
+1. Write tests based on specifications:
+   ```javascript
+   // Test examples should come from the specifications you discover
+   describe('Tailwind v4 Configuration', () => {
+     test('OKLCH colors are properly defined', () => {
+       // Test the actual color tokens from color-system-spec.md
+     });
+     
+     test('Semantic tokens map correctly', () => {
+       // Test semantic mappings from specifications
+     });
+     
+     test('CSS bundle meets size budget', () => {
+       // Use the exact budget from performance-budgets-quality-gates.md
+     });
+     
+     test('WCAG compliance for all color combinations', () => {
+       // Test the compliance matrix from color-system-spec.md
+     });
+   });
+   ```
+
+2. Implement the configuration:
+   - Update /app/globals.css with the exact @theme directive from specs
+   - Apply the OKLCH color tokens as specified
+   - Implement the semantic token hierarchy
+   - Configure PostCSS exactly as documented
+   - Add browser fallback patterns from specifications
+
+3. Validate implementation:
+   - Run all tests and ensure they pass
+   - Measure actual CSS bundle size
+   - Verify color contrast ratios
+   - Test browser compatibility (93.1% OKLCH support + fallbacks)
+   - Check build performance improvement
+
+**Documentation Requirements**:
+Create `.claude/memory/implementation/tailwind-v4-implementation.md`:
+```markdown
+# Tailwind v4 CSS-First Implementation
+
+## Specifications Applied
+- Source: tailwind-v4-spec.md (lines XX-XX)
+- Source: color-system-spec.md (lines XX-XX)
+- Integrated per Phase 1 specification system
+
+## Implementation Details
+### What Worked Exactly as Specified
+- [List specific successes]
+
+### Deviations from Specification
+- [Any changes and why]
+
+### Performance Results
+- CSS Bundle Size: XX KB (target was XX KB)
+- Build Time: XX ms (previous was XX ms)
+- [Other metrics]
+
+### Lessons for Component Migration
+- [Insights for Phase 3]
+
+### Files Modified
+- /app/globals.css
+- /postcss.config.js
+- [Other files]
+```
+
+Commit: "feat: implement Tailwind v4 CSS-first architecture with OKLCH colors"
+```
+
+### Task 2.2: Next.js Performance Optimization [ ]
+```
+Configure Next.js for optimal performance based on specifications and research.
+
+**Discovery Phase (REQUIRED)**:
+1. Navigate via RESOURCES.md to find:
+   - Performance baselines and targets
+   - Next.js optimization research
+   - Build configuration specifications
+   - Quality gate thresholds
    
-3. Implement configuration based on discovered specifications:
-   - Update /app/globals.css with @theme directive
-   - Apply color tokens from color system specification
-   - Use migration approach from Tailwind specification
+2. Read relevant materials completely:
+   - Understand current performance metrics (baseline)
+   - Review optimization opportunities researched
+   - Study the performance budgets defined
+   - Note the <1.5s build time target
+
+3. Check for build optimization patterns:
+   - Look in research files for Next.js 15 features
+   - Find any Turbopack configuration mentioned
+   - Review bundle optimization strategies
+   - Understand critical CSS requirements
+
+**Implementation Approach**:
+1. Write performance tests first:
+   ```javascript
+   describe('Build Performance', () => {
+     test('Build completes under budget', async () => {
+       // Test against the exact budget from specifications
+     });
+     
+     test('Bundle sizes meet targets', () => {
+       // Use targets from performance-budgets-quality-gates.md
+     });
+     
+     test('Route optimization is applied', () => {
+       // Test based on Next.js research findings
+     });
+   });
+   ```
+
+2. Apply optimizations discovered:
+   - Update next.config.js with patterns from research
+   - Configure bundle analyzer per specifications
+   - Implement build optimizations found effective
+   - Apply route optimization strategies
+   - Set up performance monitoring
+
+3. Measure and validate:
+   - Run build and measure time
+   - Analyze bundle composition
+   - Check route performance
+   - Verify against all quality gates
+   - Document actual vs. expected improvements
+
+**Documentation Requirements**:
+Create `.claude/memory/implementation/nextjs-performance.md`:
+```markdown
+# Next.js 15 Performance Configuration
+
+## Research and Specifications Applied
+- Performance baseline: [reference specific metrics found]
+- Optimization strategies: [list sources used]
+- Target metrics: [from performance-budgets-quality-gates.md]
+
+## Configuration Implemented
+### next.config.js Changes
+- [Specific configurations applied]
+- [Rationale for each]
+
+### Build Optimizations
+- Previous build time: XX
+- New build time: XX
+- Improvement: XX%
+
+### Bundle Analysis Results
+- Before: [sizes]
+- After: [sizes]
+- Savings: [amounts]
+
+### Unexpected Findings
+- [Any surprises during implementation]
+
+### Recommendations for Phase 3
+- [Component-specific optimizations to consider]
+```
+
+Commit: "perf: optimize Next.js build configuration for sub-1.5s builds"
+```
+
+### Task 2.3: Testing Infrastructure Implementation [ ]
+```
+Establish comprehensive testing infrastructure based on Phase 1 specifications.
+
+**Discovery Phase (REQUIRED)**:
+1. Use RESOURCES.md to locate:
+   - Testing strategies in migration-patterns.md
+   - Visual regression configuration research
+   - Quality gates and coverage requirements
+   - Rollback procedures that depend on tests
+
+2. Study the testing approach specified:
+   - Understand the 95% coverage target
+   - Review visual regression tolerances (10% threshold)
+   - Note accessibility testing requirements
+   - Study rollback trigger thresholds
+
+3. Identify testing patterns:
+   - Component migration test templates
+   - E2E test requirements for critical flows
+   - Performance testing guidelines
+   - CI/CD automation requirements
+
+**Test Infrastructure Setup**:
+1. Configure testing frameworks:
+   ```javascript
+   // jest.config.js - Based on discovered requirements
+   module.exports = {
+     coverageThreshold: {
+       global: {
+         // Use exact thresholds from specifications
+       }
+     },
+     // Other config from migration-patterns.md
+   };
+   ```
+
+2. Implement visual regression:
+   - Apply Playwright configuration from research
+   - Set tolerance levels per specifications
+   - Configure baseline management
+   - Set up CI integration patterns found
+
+3. Create test templates:
+   - Component migration test template
+   - Visual regression test patterns
+   - Accessibility test suites
+   - Performance test harnesses
+
+4. Validate infrastructure:
+   - Run sample tests
+   - Check coverage reporting
+   - Test visual regression detection
+   - Verify CI/CD integration
+
+**Documentation Requirements**:
+Create `.claude/memory/implementation/testing-infrastructure.md`:
+```markdown
+# Testing Infrastructure Implementation
+
+## Specifications Applied
+- Testing strategy: migration-patterns.md (lines XX-XX)
+- Quality gates: performance-budgets-quality-gates.md (lines XX-XX)
+- Visual regression: playwright-visual-regression.md
+
+## Infrastructure Established
+### Framework Configuration
+- Jest coverage: XX% target configured
+- Playwright tolerances: XX% threshold
+- [Other configurations]
+
+### Test Templates Created
+1. Component Migration Template
+   - Location: [path]
+   - Based on: [specification reference]
    
-4. Verify all tests pass
-5. Document implementation in .claude/memory/implementation/tailwind-v4-setup.md
-6. Note which files provided useful guidance
-7. Commit: "feat: implement Tailwind v4 CSS-first architecture"
+2. Visual Regression Template
+   - Location: [path]
+   - Tolerance: [percentage]
+
+### CI/CD Integration
+- GitHub Actions workflow: [details]
+- Automatic triggers: [list]
+- Rollback conditions: [thresholds]
+
+### Ready for Phase 3
+- All templates tested and working
+- Coverage reporting accurate
+- Visual regression baselines ready
+- Performance benchmarks established
 ```
 
-**File: `/app/globals.css`**
-```css
-@import "tailwindcss";
-
-@theme {
-  /* OKLCH Professional Color System */
-  --color-primary: oklch(0.45 0.15 231);         /* Professional blue */
-  --color-secondary: oklch(0.65 0.12 190);       /* Trustworthy cyan */
-  --color-background: oklch(1 0 0);              /* Pure white */
-  --color-foreground: oklch(0.09 0 0);           /* Deep black */
-  
-  /* WCAG 2.1 AA Compliant Neutrals */
-  --color-muted: oklch(0.96 0 0);                /* Light gray */
-  --color-muted-foreground: oklch(0.45 0 0);     /* 4.61:1 contrast */
-  --color-border: oklch(0.85 0 0);               /* Subtle borders */
-  --color-input: oklch(0.98 0 0);                /* Input backgrounds */
-  
-  /* Semantic Status Colors (WCAG AA Compliant) */
-  --color-success: oklch(0.35 0.15 145);         /* 6.5:1 contrast */
-  --color-warning: oklch(0.30 0.15 85);          /* 8.2:1 contrast */
-  --color-destructive: oklch(0.35 0.25 25);      /* 6.8:1 contrast */
-  --color-info: oklch(0.35 0.18 240);            /* 6.1:1 contrast */
-  
-  /* Professional Typography Scale */
-  --font-display: "Inter", "system-ui", sans-serif;
-  --font-body: "Inter", "system-ui", sans-serif;
-  --font-mono: "JetBrains Mono", "Consolas", monospace;
-}
+Commit: "test: establish comprehensive QA infrastructure with 95% coverage target"
 ```
 
-#### Task 2.2: Next.js Performance Configuration [ ]
+### Task 2.4: Update RESOURCES.md with Phase 2 Implementation [ ]
 ```
-Configure Next.js for optimal performance:
+Document all Phase 2 implementation decisions and deliverables for future phases.
 
-1. Discovery phase (REQUIRED):
-   - Explore .claude/memory/research/ for performance-related content:
-     * Look for Next.js configuration research
-     * Find performance baselines and targets
-     * Check for build optimization strategies
-   - Read any performance specifications in root .claude/memory/
-   - Identify current performance metrics and improvement goals
+**Objective**: Ensure RESOURCES.md remains the single source of truth by adding all Phase 2 implementation details, making them discoverable for Phase 3 component migrations.
 
-2. Update next.config.js with discovered optimizations:
-   - Apply patterns found in Next.js research
-   - Use performance targets from specifications
-   - Implement only production-ready features
+**Execution Steps**:
 
-3. Configure bundle analyzer:
-   - Follow setup patterns from research
-   - Set up measurement scripts
+1. Review all implementation documentation created:
+   - tailwind-v4-implementation.md
+   - nextjs-performance.md  
+   - testing-infrastructure.md
+   - Any additional files created
 
-4. Set up performance monitoring:
-   - Apply monitoring patterns discovered
-   - Configure build-time metrics
+2. Update Quick Reference Guide with implementation insights:
+   ```markdown
+   ### Need to find information about...
+   #### Phase 2 Implementation Details
+   - **Tailwind v4 setup results** → implementation/tailwind-v4-implementation.md
+   - **Actual color token usage** → implementation/tailwind-v4-implementation.md (examples section)
+   - **Build performance gains** → implementation/nextjs-performance.md (metrics section)
+   - **Test templates** → implementation/testing-infrastructure.md (templates section)
+   - **CI/CD configuration** → implementation/testing-infrastructure.md (CI/CD section)
+   ```
 
-5. Test build process and measure improvements:
-   - Compare against baselines found in research
-   - Document results in .claude/memory/test-results/performance/
+3. Add Implementation Documentation section:
+   ```markdown
+   ### Implementation Documentation (.claude/memory/implementation/)
+   | File | Component/Feature | Completion | Key Patterns | Reusable Learnings |
+   |------|-------------------|------------|--------------|-------------------|
+   | tailwind-v4-implementation.md | Tailwind v4 + OKLCH setup | Complete | @theme directive usage<br>CSS custom properties<br>Fallback patterns | CSS-first delivers 5x performance<br>OKLCH fallbacks work seamlessly |
+   | nextjs-performance.md | Build optimization | Complete | Turbopack config<br>Route optimization<br>Bundle analysis | XX% build time reduction achieved<br>Critical CSS pattern |
+   | testing-infrastructure.md | QA foundation | Complete | 95% coverage setup<br>Visual regression<br>Test templates | Templates accelerate migration<br>10% tolerance optimal |
+   ```
 
-6. Document configuration in .claude/memory/implementation/nextjs-config.md
-7. Note which research files provided valuable insights
-8. Commit: "perf: optimize Next.js build configuration"
+4. Document Phase 2 Insights:
+   ```markdown
+   ## Phase 2 Architecture Insights
+   *Added: [Date] after Phase 2 completion*
+   
+   ### Implementation vs. Specification Reality
+   - Tailwind v4 @theme worked exactly as specified
+   - Build performance exceeded targets: XX ms (target was 1500ms)
+   - [Other comparisons]
+   
+   ### Critical Discoveries for Phase 3
+   - Test templates significantly reduce migration time
+   - Visual regression at 10% catches real issues without false positives
+   - [Other discoveries]
+   
+   ### Performance Benchmarks Established
+   - CSS Bundle: XX KB (target: 50KB)
+   - JS Bundle: XX KB (target: 180KB)
+   - Build Time: XX ms (target: 1500ms)
+   - Test Execution: XX seconds for full suite
+   
+   ### Phase 3 Readiness Checklist
+   - ✓ Color tokens accessible via CSS custom properties
+   - ✓ Test templates ready for all component types
+   - ✓ Visual regression baselines captured
+   - ✓ Performance monitoring active
+   - ✓ Rollback procedures tested
+   ```
+
+5. Update Cross-Reference Matrix:
+   ```markdown
+   ### Phase 2 Implementation Dependencies
+   - **Component Migration Preparation**: All Phase 2 complete → Phase 3 can begin
+   - **Test Template Usage**: testing-infrastructure.md → All Phase 3 tasks
+   - **Color Token Access**: tailwind-v4-implementation.md → Component migrations
+   - **Performance Validation**: nextjs-performance.md → Continuous monitoring
+   ```
+
+**Success Criteria**:
+- ✓ All implementation files documented in RESOURCES.md
+- ✓ Quick Reference updated with Phase 2 deliverables
+- ✓ Key learnings captured for Phase 3 benefit
+- ✓ Performance benchmarks clearly documented
+- ✓ Phase 3 can start without searching for information
+
+Commit: "docs: update RESOURCES.md with Phase 2 architecture implementation insights"
 ```
 
-#### Task 2.3: Quality Assurance Infrastructure [ ]
-```
-Set up comprehensive testing infrastructure:
+### Tasks:
+- [ ] 2.1: Tailwind CSS v4 Foundation Implementation
+- [ ] 2.2: Next.js Performance Optimization  
+- [ ] 2.3: Testing Infrastructure Implementation
+- [ ] 2.4: Update RESOURCES.md with Phase 2 Implementation
 
-1. Discovery phase (REQUIRED):
-   - Explore .claude/memory/ for testing-related guidance:
-     * Look for testing strategies in migration patterns
-     * Find quality gates and validation criteria
-     * Check for recommended testing tools
-   - If testing patterns are not comprehensive:
-     * Research current Playwright best practices
-     * Look up Storybook visual regression techniques
-     * Document findings in .claude/memory/research/
+## Phase 2 Success Metrics
 
-2. Configure Playwright for E2E and accessibility testing
-3. Set up Storybook with visual regression
-4. Configure performance budget enforcement
-5. Create initial test suites following discovered patterns
-6. Document setup in .claude/memory/implementation/testing-setup.md
-7. Commit: "test: establish QA infrastructure"
-```
+Track these metrics throughout Phase 2:
 
-### Parallel Execution Opportunities:
-- [ ] 2.1: Tailwind CSS v4 setup
-- [ ] 2.2: Next.js performance configuration  
-- [ ] 2.3: Testing infrastructure setup
+### Phase 2 Progress
+- [ ] Tailwind v4 CSS-first setup complete
+- [ ] OKLCH colors with fallbacks working
+- [ ] Build time: Current __ms → Target <1500ms
+- [ ] CSS bundle: Current __KB → Target <50KB
+- [ ] Testing infrastructure: 0% → 95% coverage capability
+- [ ] Visual regression: Not configured → Configured with 10% tolerance
+- [ ] Documentation: 0 → 3 implementation files
+- [ ] RESOURCES.md: Not updated → Fully updated with Phase 2
+
+### Phase 2 Completion Checklist
+
+Before proceeding to Phase 3:
+- [ ] All tests from specifications are passing
+- [ ] Performance targets met or exceeded
+- [ ] Implementation documented in .claude/memory/implementation/
+- [ ] RESOURCES.md updated with all Phase 2 insights
+- [ ] Test templates validated with sample components
+- [ ] Visual regression baselines established
+- [ ] CI/CD pipeline tested with rollback triggers
+- [ ] Phase 3 can begin using only RESOURCES.md for guidance
+
+### Critical Reminders for Phase 2
+
+1. **Specifications are Implementation Blueprints**: Phase 1 specifications contain exact configurations - implement them faithfully
+2. **Document Reality**: If implementation differs from specification, document why
+3. **Think Forward**: While implementing, consider how Phase 3 components will use these foundations
+4. **Measure Everything**: Capture metrics for comparison with baselines and targets
+5. **Update RESOURCES.md**: This ensures Phase 3 can find everything needed
+
+The foundation built in Phase 2 directly enables the success of all component migrations in Phase 3.
 
 ## SPARC Phase 3: Refinement - Component Migration [ ]
 
