@@ -636,59 +636,452 @@ No additional research needed - all information available.
 Proceeding with implementation...
 ```
 
-## SPARC Phase 1: Specification - Modern CSS Architecture [x]
 
-### Specification Prompt
+## SPARC Phase 1: Specification - Modern CSS Architecture [ ]
+
+### Phase Overview
 ```
-Based on research findings and latest best practices, create detailed specifications (ultrathink):
+Transform comprehensive research into actionable specifications that will guide all implementation.
 
-PREREQUISITE: Read ALL research files in .claude/memory/research/ before proceeding:
-- latest-standards.md
-- color-analysis.md  
-- tech-stack.md
-- risk-assessment.md
-- performance-baseline.md
+**Purpose**: Create four interconnected specifications that together form a complete blueprint for removing dark mode while improving performance and user experience.
 
-1. Validate research is current:
-   - Confirm all documentation referenced is from 2024-2025
-   - Verify patterns against multiple authoritative sources
-   - Cross-reference with recent implementation examples
-   - Document any conflicting recommendations
-   - Update research files if newer information is found
+**Critical Mindset - Ultrathink**:
+When we say "ultrathink", we mean:
+- Synthesize insights from multiple research files
+- Consider second and third-order effects of decisions
+- Question assumptions and validate with research
+- Think about future maintainability, not just immediate needs
+- Consider the full lifecycle: development, testing, deployment, maintenance
+- Anticipate edge cases and failure modes
+```
 
-2. Design the new color system:
-   - Base design on findings from .claude/memory/research/color-analysis.md
-   - Apply WCAG guidelines from .claude/memory/research/latest-standards.md
-   - Professional OKLCH color palette based on latest color theory
-   - Semantic color tokens following current naming conventions
-   - WCAG AA compliant combinations per 2025 guidelines
-   - Save to .claude/memory/color-system-spec.md
+### Specification Creation Process
+```
+For EVERY specification task:
 
-3. Plan Tailwind v4 migration:
-   - Use .claude/memory/research/tailwind-v4.md findings
-   - Reference .claude/memory/research/tech-stack.md for current setup
-   - CSS-first configuration using latest v4 features
-   - Custom utilities following current best practices
-   - PostCSS optimization pipeline with 2025 techniques
-   - Document in .claude/memory/tailwind-v4-spec.md
+1. **Discovery via RESOURCES.md**:
+   - Open RESOURCES.md first - it's your navigation map
+   - Use Quick Reference Guide for fast topic lookup
+   - Check Complete File Inventory for detailed file purposes
+   - Review Gap Resolution Summary for newly researched items
 
-4. Define migration patterns:
-   - Apply risk assessment from .claude/memory/research/risk-assessment.md
-   - Component migration templates based on research
-   - Testing strategies using latest tools and patterns
-   - Rollback procedures following DevOps best practices
-   - Create .claude/memory/migration-patterns.md
+2. **Deep Research Reading**:
+   - Read identified files completely, not just summaries
+   - Take notes on key insights and patterns
+   - Look for contradictions or tensions between sources
+   - Identify unstated assumptions
 
-Reference research findings throughout specifications to ensure alignment with discoveries.
+3. **Synthesis Through Ultrathinking**:
+   - Connect insights across multiple research files
+   - Consider implementation realities, not just theory
+   - Balance ideal solutions with practical constraints
+   - Think about developer experience during implementation
 
-Commit specifications: "spec: define color system and migration architecture based on 2025 best practices"
+4. **Specification Writing**:
+   - Start with the "why" before the "what"
+   - Provide concrete, runnable examples
+   - Anticipate questions implementers will have
+   - Reference specific research that influenced decisions
+
+5. **Cross-Specification Integration**:
+   - Each spec should reference others where relevant
+   - Ensure consistency across all specifications
+   - Identify dependencies between specifications
+   - Create a cohesive system, not isolated documents
+```
+
+### Task 1.1: Design OKLCH Professional Color System with Semantic Tokens [ ]
+```
+Create a comprehensive color system specification using OKLCH color space.
+
+**Discovery Phase (REQUIRED)**:
+1. Open and read RESOURCES.md
+2. Identify ALL color-related research files:
+   - Look in Quick Reference Guide for "color system" entries
+   - Check Complete File Inventory for color-related topics
+   - Note any color-related gaps that were resolved in Task 0.7
+
+3. Read identified research files completely:
+   - Pay special attention to WCAG compliance requirements
+   - Note current color usage patterns and issues
+   - Understand OKLCH color space capabilities and limitations
+   - Review any fallback strategies documented
+
+4. Ultrathink about the color system design:
+   - How can OKLCH improve color consistency?
+   - What semantic tokens will cover all use cases?
+   - How to ensure WCAG AA compliance across all combinations?
+   - What fallback strategies are needed for browser compatibility?
+   - How to make the system extensible for future needs?
+
+5. Create .claude/memory/color-system-spec.md with:
+   - Complete OKLCH color palette with semantic naming
+   - Color token definitions for all UI states
+   - WCAG compliance matrix showing contrast ratios
+   - Fallback strategy for browsers without OKLCH support
+   - Usage guidelines with code examples
+   - Migration mapping from current colors to new system
+
+**Key Considerations**:
+- Professional appearance for resume builder context
+- Accessibility as a core requirement, not an afterthought
+- Performance impact of color calculations
+- Developer experience with clear naming conventions
+
+**Documentation Requirements**:
+- Include rationale for each color choice
+- Provide implementation examples
+- Document which research files influenced decisions
+- Add visual color swatches if possible
+- Create color usage guidelines with do's and don'ts
+
+**Research Integration Note**:
+Your specification should reflect insights from multiple research files. Don't just translate research into specs - synthesize and improve upon it.
+
+Commit: "spec: design OKLCH professional color system with semantic tokens"
+```
+
+### Task 1.2: Create Tailwind v4 CSS-First Configuration Specification [ ]
+```
+Design the Tailwind v4 migration specification leveraging CSS-first architecture.
+
+**Discovery Phase (REQUIRED)**:
+1. Consult RESOURCES.md for Tailwind v4 resources:
+   - Find all Tailwind-related research files
+   - Check for CSS architecture patterns
+   - Look for performance optimization research
+   - Note any Tailwind-specific gaps resolved in Task 0.7
+
+2. Read ALL identified research files:
+   - Understand Tailwind v4's @theme directive
+   - Learn CSS-first architecture benefits
+   - Review migration challenges and solutions
+   - Study performance implications
+
+3. Ultrathink about the configuration approach:
+   - How to structure the @theme configuration for maintainability?
+   - What custom utilities are needed beyond color system?
+   - How to optimize for smallest possible CSS output?
+   - What PostCSS plugins complement v4 architecture?
+   - How to ensure smooth migration from v3?
+
+4. Create .claude/memory/tailwind-v4-spec.md with:
+   - Complete @theme configuration structure
+   - CSS custom property architecture
+   - Utility class naming conventions
+   - PostCSS pipeline configuration
+   - Build optimization settings
+   - Migration checklist from v3 to v4
+   - Performance optimization strategies
+
+**Key Considerations**:
+- Bundle size reduction target (25-30KB)
+- Developer experience during migration
+- Integration with OKLCH color system from Task 1.1
+- Compatibility with existing component structure
+
+**Documentation Requirements**:
+- Step-by-step migration guide
+- Before/after code examples
+- Performance impact analysis
+- Common pitfalls and solutions
+- Reference which research informed each decision
+
+Commit: "spec: create Tailwind v4 CSS-first configuration specification"
+```
+
+### Task 1.3: Define Component Migration Patterns and Testing Strategies [ ]
+```
+Create comprehensive patterns for migrating components and ensuring quality.
+
+**Discovery Phase (REQUIRED)**:
+1. Use RESOURCES.md to find:
+   - Component risk assessment research
+   - Testing methodology research
+   - Migration strategy documentation
+   - Any component-specific research or patterns
+
+2. Read ALL relevant research thoroughly:
+   - Understand component risk levels and dependencies
+   - Review testing best practices for 2025
+   - Study successful migration patterns
+   - Note pain points from current implementation
+
+3. Ultrathink about migration patterns:
+   - What's the optimal order for component migration?
+   - How to ensure zero visual regression?
+   - What testing provides confidence without over-testing?
+   - How to handle complex, high-risk components?
+   - What rollback strategies minimize risk?
+
+4. Create .claude/memory/migration-patterns.md with:
+   
+   **Component Migration Template**:
+   - Pre-migration checklist
+   - Step-by-step migration process
+   - Dark mode class removal patterns
+   - Semantic color application guide
+   - Dependency handling strategies
+   
+   **Testing Strategy**:
+   - Visual regression test setup
+   - Accessibility testing requirements
+   - Performance testing guidelines
+   - E2E test patterns for critical flows
+   - Component-level test templates
+   
+   **Risk Mitigation**:
+   - Rollback procedures for each component type
+   - Staging deployment strategy
+   - Feature flag implementation (if needed)
+   - Monitoring and alerting setup
+
+**Key Considerations**:
+- Different patterns for simple vs complex components
+- Authentication components need extra care
+- AI-integrated components (ATS Score) have unique needs
+- Maintaining functionality during migration
+
+**Documentation Requirements**:
+- Concrete examples for each pattern
+- Decision trees for choosing approaches
+- Troubleshooting guide
+- Success criteria for each component type
+- Reference research that shaped these patterns
+
+Commit: "spec: define component migration patterns and testing strategies"
+```
+
+### Task 1.4: Establish Performance Budgets and Quality Gates [ ]
+```
+Define measurable targets and automated gates to ensure project success.
+
+**Discovery Phase (REQUIRED)**:
+1. From RESOURCES.md, locate:
+   - Performance baseline research
+   - Current metrics documentation
+   - Industry standards research
+   - Quality criteria from any research
+
+2. Study all performance-related research:
+   - Current performance metrics baseline
+   - Industry standards for 2025
+   - Build optimization opportunities
+   - User experience thresholds
+
+3. Ultrathink about realistic but ambitious targets:
+   - What performance gains are achievable?
+   - Which metrics matter most for user experience?
+   - How to balance performance with developer experience?
+   - What automated checks prevent regression?
+   - How to measure success objectively?
+
+4. Create .claude/memory/performance-budgets-quality-gates.md with:
+   
+   **Performance Budgets**:
+   - Bundle size targets (current vs goal)
+   - Build time limits
+   - Runtime performance metrics
+   - Core Web Vitals thresholds
+   - CSS-specific metrics
+   
+   **Quality Gates**:
+   - Test coverage requirements (95% target)
+   - Accessibility standards (WCAG AA)
+   - Visual regression thresholds
+   - Code quality metrics
+   - Documentation standards
+   
+   **Automation Configuration**:
+   - CI/CD pipeline requirements
+   - Automated testing triggers
+   - Performance monitoring setup
+   - Rollback trigger thresholds
+   - Success criteria for deployment
+
+**Key Considerations**:
+- Budgets should be ambitious but achievable
+- Gates should catch issues early, not create friction
+- Metrics should align with user experience
+- Automation should reduce manual oversight
+
+**Documentation Requirements**:
+- Justify each target with research data
+- Provide measurement methodologies
+- Include automation scripts/configs
+- Define escalation procedures
+- Reference baseline metrics from research
+
+Commit: "spec: establish performance budgets and quality gates"
+```
+
+### Task 1.5: Update RESOURCES.md with Phase 1 Specifications [ ]
+```
+Comprehensively update RESOURCES.md to incorporate all Phase 1 deliverables for future discoverability.
+
+**Objective**: Ensure RESOURCES.md remains the single source of truth by adding all newly created specifications, making them easily discoverable for Phase 2 and beyond.
+
+**Execution Steps**:
+
+1. Review all specifications created in Tasks 1.1-1.4:
+   - color-system-spec.md
+   - tailwind-v4-spec.md
+   - migration-patterns.md
+   - performance-budgets-quality-gates.md
+
+2. Update the Quick Reference Guide section:
+   Add entries for common specification lookups:
+   ```markdown
+   ### Need to find information about...
+   - **Color token definitions** → color-system-spec.md (token table: lines XX-XX)
+   - **OKLCH fallback strategy** → color-system-spec.md (fallback section: lines XX-XX)
+   - **Tailwind @theme configuration** → tailwind-v4-spec.md (config section: lines XX-XX)
+   - **Component migration steps** → migration-patterns.md (template: lines XX-XX)
+   - **Performance targets** → performance-budgets-quality-gates.md (budgets: lines XX-XX)
+   - **Quality gate thresholds** → performance-budgets-quality-gates.md (gates: lines XX-XX)
+   [Add more based on actual content created]
+   ```
+
+3. Add to Complete File Inventory:
+   Create new section for Phase 1 Specifications:
+   ```markdown
+   ### Phase 1 Specifications (.claude/memory/)
+   | File | Purpose | Key Sections | Status | Implementation Impact |
+   |------|---------|--------------|--------|---------------------|
+   | color-system-spec.md | OKLCH color system design | 1. Token definitions<br>2. WCAG compliance matrix<br>3. Fallback strategy<br>4. Usage guidelines | Complete | Ready for Task 2.1 |
+   | tailwind-v4-spec.md | CSS-first Tailwind config | 1. @theme structure<br>2. Migration checklist<br>3. Build optimization<br>4. PostCSS pipeline | Complete | Ready for Task 2.1 |
+   | migration-patterns.md | Component migration guide | 1. Migration template<br>2. Testing strategy<br>3. Risk mitigation<br>4. Rollback procedures | Complete | Guides all Phase 3 tasks |
+   | performance-budgets-quality-gates.md | Success metrics & gates | 1. Performance budgets<br>2. Quality gates<br>3. Automation config<br>4. Monitoring setup | Complete | Validates all phases |
+   ```
+
+4. Update Cross-Reference Matrix:
+   Add specification dependencies:
+   ```markdown
+   ### Specification Dependencies
+   - **Color Implementation**: color-system-spec.md → tailwind-v4-spec.md → Task 2.1
+   - **Component Migration**: migration-patterns.md → risk-assessment.md → Tasks 3.1-3.7
+   - **Quality Validation**: performance-budgets-quality-gates.md → All implementation tasks
+   - **Performance Tracking**: performance-baseline.md → performance-budgets-quality-gates.md → Task 4.2
+   
+   ### Implementation Order Dependencies
+   - **Must read before Task 2.1**: color-system-spec.md + tailwind-v4-spec.md
+   - **Must read before Phase 3**: migration-patterns.md + risk-assessment.md
+   - **Must read before Phase 4**: performance-budgets-quality-gates.md
+   ```
+
+5. Document New Insights:
+   Add a new section for specification insights:
+   ```markdown
+   ## Phase 1 Specification Insights
+   *Added: [Date] after Phase 1 completion*
+   
+   ### Key Decisions Made
+   - [Document any major decisions that differ from original research]
+   - [Note any trade-offs that were decided]
+   - [Highlight any innovative approaches developed]
+   
+   ### Integration Points Identified
+   - [How specifications work together]
+   - [Critical dependencies between specs]
+   - [Order of implementation importance]
+   
+   ### Implementation Readiness
+   - All specifications provide concrete examples
+   - Migration paths are clearly defined
+   - Success criteria are measurable
+   - Phase 2 can begin immediately
+   ```
+
+6. Update Usage Instructions:
+   Add guidance for Phase 2 and beyond:
+   ```markdown
+   ## Usage Instructions (Updated for Phase 2+)
+   
+   1. **For implementation tasks**: Check Quick Reference for relevant specs
+   2. **For architecture setup**: Start with color-system-spec.md + tailwind-v4-spec.md
+   3. **For component work**: Always consult migration-patterns.md first
+   4. **For validation**: Reference performance-budgets-quality-gates.md
+   5. **For decisions**: Check Phase 1 Specification Insights section
+   ```
+
+7. Version Control:
+   Update the header of RESOURCES.md:
+   ```markdown
+   # Dark Mode Removal - Resource Knowledge Map
+   
+   Generated: [Original Date]
+   Last Updated: [Current Date] - Added Phase 1 Specifications
+   Phase 1 Completed: [Current Date]
+   Purpose: Central knowledge map for efficient task execution
+   Total Files Cataloged: [New Total Number]
+   ```
+
+**Success Criteria**:
+- ✓ All four specification files are cataloged with accurate descriptions
+- ✓ Quick Reference includes the most commonly needed specification sections
+- ✓ Cross-references show clear dependencies for implementation phases
+- ✓ New insights from specification creation are documented
+- ✓ RESOURCES.md remains easy to navigate and search
+- ✓ Future phases can quickly find all specification guidance
+
+**Quality Check**:
+After updating, test RESOURCES.md by:
+- Looking up a random implementation need and verifying you can find guidance quickly
+- Checking that Phase 2 tasks have clear specification references
+- Ensuring no specifications are orphaned (all are referenced somewhere)
+
+Commit: "docs: update RESOURCES.md with Phase 1 specifications for complete knowledge map"
 ```
 
 ### Tasks:
-- [x] 1.1: Design OKLCH professional color system with semantic tokens
-- [x] 1.2: Create Tailwind v4 CSS-first configuration specification
-- [x] 1.3: Define component migration patterns and testing strategies
-- [x] 1.4: Establish performance budgets and quality gates
+- [x] 1.1: Design OKLCH professional color system with semantic tokens ✅
+- [x] 1.2: Create Tailwind v4 CSS-first configuration specification ✅
+- [x] 1.3: Define component migration patterns and testing strategies ✅
+- [ ] 1.4: Establish performance budgets and quality gates
+- [ ] 1.5: Update RESOURCES.md with Phase 1 specifications
+
+### Phase 1 Success Criteria
+Before proceeding to Phase 2, ensure:
+- ✓ RESOURCES.md was the starting point for every task
+- ✓ All relevant research files were discovered and read completely
+- ✓ Each specification reflects ultrathinking - deep synthesis, not surface-level planning
+- ✓ Specifications form a cohesive system, not isolated documents
+- ✓ Implementation teams can start work without clarification questions
+- ✓ Research influences are traceable throughout specifications
+- ✓ RESOURCES.md has been updated to include all Phase 1 deliverables
+
+### Specification Quality Checklist
+Each specification should include:
+- [ ] Clear "why" explaining the approach chosen
+- [ ] Concrete, copy-paste ready examples
+- [ ] Rationale backed by specific research citations
+- [ ] Cross-references showing how it connects to other specs
+- [ ] Success criteria that are measurable
+- [ ] "Watch out for" sections highlighting common pitfalls
+- [ ] Migration path showing step-by-step transformation
+
+### Specification System Integration
+The four specifications must work together:
+- **Color System** → feeds into → **Tailwind Config**
+- **Tailwind Config** → enables → **Migration Patterns**
+- **Migration Patterns** → must meet → **Quality Gates**
+- **Quality Gates** → validate → **Color System** implementation
+
+Before committing any specification, verify it strengthens this interconnected system.
+
+### Final Phase 1 Deliverables
+```
+.claude/memory/
+├── RESOURCES.md                    # UPDATED with Phase 1 specifications
+├── color-system-spec.md           # Complete OKLCH color system
+├── tailwind-v4-spec.md           # CSS-first configuration 
+├── migration-patterns.md         # Component migration playbook
+├── performance-budgets-quality-gates.md  # Success metrics
+└── research/                     # (Unchanged - source material)
+```
+
+Each file should be a standalone reference while contributing to the unified system.
+RESOURCES.md should make all specifications easily discoverable for future phases.
 
 ## SPARC Phase 2: Architecture - Foundation Setup [ ]
 
@@ -707,7 +1100,6 @@ Implement Tailwind v4 CSS-first architecture:
      * The planned OKLCH color system
      * CSS-first architecture approach
      * Performance optimization strategies
-   - Note: Check if tailwind-v4-config.md already exists in /implementation/
 
 2. Write failing tests for color system:
    - Test semantic color token access

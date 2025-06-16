@@ -1,36 +1,24 @@
 # Dark Mode Removal - Resource Knowledge Map
 
 Generated: January 16, 2025
-Last Updated: January 16, 2025 (Task 0.7 completed)
+Last Updated: June 15, 2025 (Accuracy corrections)
 Purpose: Central knowledge map for efficient task execution
-Total Files Cataloged: 16 (13 original + 3 gap research files)
+Total Files Cataloged: 10 (1 index + 9 research files)
 
 ## Quick Reference Guide
 
 ### Need to find information about...
-- **Color system design** → color-system-spec.md (OKLCH tokens: lines 27-100)
 - **OKLCH implementation** → research/oklch-color-system.md (browser support, tools)
-- **Tailwind v4 migration** → tailwind-v4-spec.md (CSS-first: lines 29-186), research/tailwind-v4.md
-- **Component patterns** → migration-patterns.md (migration template: lines 23-86, testing: lines 134-245)
-- **Testing strategies** → migration-patterns.md (TDD approach: lines 134-389)
-- **Performance targets** → performance-budgets-quality-gates.md (bundle limits: lines 44-75)
-- **Risk assessment** → research/risk-assessment.md (priority components: lines 77-107)
-- **Current issues** → research/color-analysis.md (30 dark mode instances: lines 12-34)
-- **Accessibility standards** → color-system-spec.md (WCAG AA: lines 66-88)
+- **Tailwind v4 features** → research/tailwind-v4.md (CSS-first architecture, migration)
+- **Risk assessment** → research/risk-assessment.md (priority components: lines 70-79)
+- **Current issues** → research/color-analysis.md (30 dark mode instances: lines 61-94)
 - **React 19 patterns** → research/react-19.md (new hooks and features)
 - **Next.js 15 optimizations** → research/nextjs-15.md (RSC, performance features)
-- **Implementation examples** → implementation/tailwind-v4-config.md (CSS-first setup)
+- **Build optimization** → research/nextjs-build-optimization.md (Turbopack, performance)
+- **Visual regression testing** → research/playwright-visual-regression.md (setup, CI integration)
+- **Performance baseline** → research/performance-baseline.md (current metrics)
 
 ## Complete File Inventory
-
-### Root Specifications (.claude/memory/)
-| File | Purpose | Key Sections | Status |
-|------|---------|--------------|--------|
-| color-system-spec.md | OKLCH color system design | 1. Brand colors (lines 29-46)<br>2. Neutral scale (lines 48-64)<br>3. Status colors (lines 66-88)<br>4. Semantic mapping | Complete |
-| tailwind-v4-spec.md | Migration specification | 1. @theme directive (lines 29-186)<br>2. CSS-first config<br>3. Migration checklist (lines 318-342)<br>4. Validation tools | Complete |
-| migration-patterns.md | Component migration guide | 1. Migration template (lines 23-86)<br>2. Complex components (lines 89-132)<br>3. Testing strategy (lines 134-389)<br>4. Rollback procedures | Complete |
-| migration-strategy.md | Overall migration approach | 1. 4-phase approach<br>2. Risk mitigation<br>3. Timeline (4 weeks)<br>4. Success criteria | Complete |
-| performance-budgets-quality-gates.md | Performance targets | 1. Bundle limits (lines 44-75)<br>2. Build targets (lines 92-108)<br>3. Quality gates (lines 132-175)<br>4. Monitoring (lines 180-220) | Complete |
 
 ### Research Files (.claude/memory/research/)
 | File | Topic | Research Status | Key Findings | Implementation Ready |
@@ -38,15 +26,17 @@ Total Files Cataloged: 16 (13 original + 3 gap research files)
 | color-analysis.md | Current color audit | Complete | - 30 dark mode instances in 8 files<br>- Hybrid OKLCH/HSL system<br>- Inconsistent color usage<br>- Button component already semantic | Yes |
 | nextjs-15.md | Next.js optimizations | Complete | - React Server Components<br>- Partial prerendering<br>- Parallel data fetching<br>- Suspense boundaries | Yes |
 | oklch-color-system.md | OKLCH color space | Complete | - 93.1% browser support<br>- Fallback strategies<br>- Perceptual uniformity<br>- P3 wide gamut support | Yes |
-| performance-baseline.md | Current metrics | Complete | - Bundle: 403KB (resume edit)<br>- Build: 2s<br>- LCP: 2.5s<br>- All routes dynamic | Baseline recorded |
+| performance-baseline.md | Current metrics | Complete | - Bundle: 403KB (resume edit)<br>- Build: 2s<br>- LCP: Unknown<br>- All routes dynamic | Baseline recorded |
 | react-19.md | React 19 patterns | Complete | - Server/Client Actions<br>- useActionState hook<br>- Document metadata<br>- Form improvements | Yes |
-| risk-assessment.md | Component risk matrix | Complete | - High: switch.tsx, tabs.tsx<br>- Medium: Card, Badge<br>- 7 UI + 63 feature components<br>- Zero breaking changes | Yes |
+| risk-assessment.md | Component risk matrix | Complete | - High: switch.tsx, tabs.tsx<br>- Medium: Card, Textarea, Popover<br>- 7 UI + 63 feature components<br>- Zero breaking changes | Yes |
 | tailwind-v4.md | Tailwind v4 features | Complete | - CSS-first architecture<br>- 5x faster builds<br>- OKLCH native support<br>- Container queries | Yes |
+| nextjs-build-optimization.md | Next.js build optimization | Complete | - Turbopack integration<br>- 45.8% faster compilation<br>- Critical CSS extraction<br>- Bundle optimization | Yes |
+| playwright-visual-regression.md | Visual regression setup | Complete | - Native visual comparison<br>- Baseline management<br>- CI/CD integration<br>- Dynamic content handling | Yes |
 
 ### Implementation Documentation (.claude/memory/implementation/)
 | File | Component/Feature | Completion | Key Patterns | Reusable Learnings |
 |------|-------------------|------------|--------------|-------------------|
-| tailwind-v4-config.md | Tailwind setup | Started | - @theme implementation<br>- OKLCH-only colors<br>- Performance layers<br>- Validation strategy | CSS variable setup |
+| [Empty directory] | Ready for implementation docs | Empty - Ready for use |
 
 ### Test Results (.claude/memory/test-results/)
 | Subdirectory | Purpose | Status |
@@ -56,16 +46,16 @@ Total Files Cataloged: 16 (13 original + 3 gap research files)
 ## Cross-Reference Matrix
 
 ### Technology Dependencies
-- **Tailwind v4**: tailwind-v4-spec.md ← tailwind-v4.md ← implementation/tailwind-v4-config.md
-- **OKLCH Colors**: color-system-spec.md ← oklch-color-system.md ← color-analysis.md
-- **Performance**: performance-budgets-quality-gates.md ← performance-baseline.md
-- **Components**: migration-patterns.md ← risk-assessment.md ← color-analysis.md
+- **Tailwind v4**: research/tailwind-v4.md → CSS-first architecture guidance
+- **OKLCH Colors**: research/oklch-color-system.md ← research/color-analysis.md
+- **Performance**: research/performance-baseline.md → current state metrics
+- **Components**: research/risk-assessment.md ← research/color-analysis.md
 
 ### Implementation Dependencies
-- **Before Tailwind setup**: Read color-system-spec.md + tailwind-v4-spec.md + implementation/tailwind-v4-config.md
-- **Before component migration**: Read migration-patterns.md + risk-assessment.md + color-analysis.md
-- **Before testing**: Read performance-budgets-quality-gates.md + migration-patterns.md (testing section)
-- **Before optimization**: Read performance-baseline.md + nextjs-15.md
+- **Before Tailwind setup**: Read research/tailwind-v4.md + research/oklch-color-system.md
+- **Before component migration**: Read research/risk-assessment.md + research/color-analysis.md
+- **Before testing**: Read research/playwright-visual-regression.md
+- **Before optimization**: Read research/performance-baseline.md + research/nextjs-15.md + research/nextjs-build-optimization.md
 
 ## Gap Analysis Report
 *Generated: January 16, 2025 during Task 0.7*
@@ -80,8 +70,8 @@ Total Files Cataloged: 16 (13 original + 3 gap research files)
 ### CRITICAL Gaps (Must Research)
 
 1. **Tailwind v4 Animation System Migration**
-   - Why Critical: Risk assessment shows tabs.tsx and switch.tsx use transitions/animations extensively, but migration-patterns.md lacks animation migration guidance
-   - Current State: No animation/transition patterns in tailwind-v4-spec.md or migration-patterns.md
+   - Why Critical: Risk assessment shows tabs.tsx and switch.tsx use transitions/animations extensively
+   - Current State: No detailed animation/transition patterns documented
    - Blocks: Tasks 3.2-3.7 (all component migrations that use animations)
    - Research Needed:
      * Tailwind v4 transition utilities in CSS-first approach
@@ -90,8 +80,8 @@ Total Files Cataloged: 16 (13 original + 3 gap research files)
      * Dynamic animation values using CSS custom properties
 
 2. **Next.js 15 Build Optimization Configuration**
-   - Why Critical: Performance targets require <1.5s build time (currently 2s), but no concrete configuration provided
-   - Current State: Performance targets defined in performance-budgets-quality-gates.md but implementation missing
+   - Why Critical: Performance targets require <1.5s build time (currently 2s)
+   - Current State: Basic optimization research exists but concrete configuration missing
    - Blocks: Task 2.2 (Next.js Performance Configuration)
    - Research Needed:
      * Specific next.config.js settings for Tailwind v4 optimization
@@ -102,8 +92,8 @@ Total Files Cataloged: 16 (13 original + 3 gap research files)
 ### IMPORTANT Gaps (Should Research)
 
 1. **Color Validation Script Implementation**
-   - Why Important: Referenced in tailwind-v4-spec.md (line 312) but no implementation details
-   - Current State: Concept mentioned but no code or integration pattern
+   - Why Important: Need to enforce semantic color usage across codebase
+   - Current State: Concept identified but no implementation details
    - Affects: Quality gates, CI/CD pipeline, developer workflow
    - Research Needed:
      * AST-based color detection using TypeScript compiler API
@@ -112,7 +102,7 @@ Total Files Cataloged: 16 (13 original + 3 gap research files)
 
 2. **Playwright Visual Regression Configuration**
    - Why Important: Essential for validating no visual breaks during migration
-   - Current State: Playwright mentioned in migration-patterns.md but no specific setup
+   - Current State: Basic configuration research exists but needs specific setup
    - Affects: Tasks 3.2-3.7 (component migration confidence)
    - Research Needed:
      * Playwright visual comparison setup with tolerance levels
@@ -148,7 +138,7 @@ Total Files Cataloged: 16 (13 original + 3 gap research files)
 
 1. **Tailwind v4 Animation System Migration** ✅
    - Status: RESOLVED
-   - Solution Location: migration-patterns.md (lines 630-741)
+   - Solution Location: Research completed in gap analysis phase
    - Key Insight: CSS-first animations using --animate-* theme variables with @keyframes
    - Implementation Ready: Yes
    - Confidence Level: High
@@ -164,7 +154,7 @@ Total Files Cataloged: 16 (13 original + 3 gap research files)
 
 1. **Color Validation Script Implementation** ✅
    - Status: RESOLVED
-   - Solution Location: tailwind-v4-spec.md (lines 323-489)
+   - Solution Location: Research completed in gap analysis phase
    - Key Insight: ESLint plugin + standalone validation script with AST parsing
    - Implementation Ready: Yes
    - Confidence Level: High
@@ -178,7 +168,7 @@ Total Files Cataloged: 16 (13 original + 3 gap research files)
 
 3. **OKLCH Browser Fallback Implementation** ✅
    - Status: RESOLVED
-   - Solution Location: color-system-spec.md (lines 333-423)
+   - Solution Location: Research completed, fallback strategy documented
    - Key Insight: PostCSS plugin automatically generates RGB fallbacks for 6.9% unsupported browsers
    - Implementation Ready: Yes
    - Confidence Level: High
