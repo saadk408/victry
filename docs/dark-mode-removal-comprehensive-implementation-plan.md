@@ -1587,6 +1587,8 @@ Implement status color system with TDD:
    - Color-blind safe patterns
 
 3. Create /lib/utils/status-colors.ts:
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
    - Implement based on color system specification found
    - Apply WCAG guidelines from research
    - Follow utility patterns discovered
@@ -1615,6 +1617,8 @@ Migrate Card component using established patterns:
 
 3. Write visual regression tests based on discovered patterns
 4. Implement migration:
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
    - Remove dark mode classes
    - Apply semantic colors from specifications
    - Follow migration patterns found
@@ -1637,7 +1641,11 @@ Migrate Button component:
 
 2. Write component tests for all variants
 3. Implement semantic color variants
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
 4. Remove all dark: prefixed classes
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
 5. Verify visual regression
 6. Update Storybook
 7. Document in .claude/memory/implementation/button-migration.md
@@ -1654,7 +1662,11 @@ Migrate Badge component:
    - Reference status color utilities
 
 2. Follow pattern from Button/Card migrations
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
 3. Add status variants using status color utilities
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
 4. Ensure WCAG compliance
 5. Document in .claude/memory/implementation/badge-migration.md
 6. Commit: "refactor: migrate Badge component"
@@ -1675,6 +1687,8 @@ Migrate resume builder components:
 2. Analyze AI integration points
 3. Write comprehensive tests
 4. Implement with semantic status colors
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
 5. Test score visualization
 6. Document in .claude/memory/implementation/ats-score-migration.md
 7. Commit: "refactor: migrate ATS Score to semantic colors"
@@ -1692,6 +1706,8 @@ Migrate application tracking:
 2. Map status states to semantic colors
 3. Write E2E tests for user flows
 4. Implement migration
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
 5. Verify functionality
 6. Document in .claude/memory/implementation/application-tracking-migration.md
 7. Commit: "refactor: migrate Application Tracking component"
@@ -1708,6 +1724,8 @@ Migrate auth components with security focus:
 
 2. Test authentication flows
 3. Migrate login/register forms
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
 4. Verify no visual regressions
 5. Test error states
 6. Document in .claude/memory/implementation/auth-migration.md
@@ -1726,7 +1744,11 @@ Build automation tools:
    - Check for automation tool research
 
 2. Create /scripts/migrate-colors.js
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
 3. Create /scripts/validate-colors.js
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution
+      - Use built-in web search and context7
 4. Test on sample files
 5. Document usage
 6. Store in .claude/memory/implementation/migration-scripts.md
