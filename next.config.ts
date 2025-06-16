@@ -57,6 +57,32 @@ const nextConfig = {
   experimental: {
     // Optimization features
     optimizeCss: false, // Disable CSS optimization to resolve critters module issue
+    
+    // Enable Next.js 15 optimizations
+    optimizePackageImports: [
+      '@/components/ui',
+      '@/lib/utils',
+      'lucide-react',
+      'framer-motion'
+    ]
+  },
+
+  // Configure Turbopack (stable in Next.js 15+)
+  turbopack: {
+    // Enable faster builds with Turbopack
+    rules: {
+      '*.svg': ['@svgr/webpack'],
+    }
+  },
+
+  // Configure modular imports for better tree shaking
+  modularizeImports: {
+    '@/components/ui': {
+      transform: '@/components/ui/{{member}}',
+    },
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
+    }
   },
 
   // Configure redirects for authentication and onboarding

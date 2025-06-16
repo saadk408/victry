@@ -24,8 +24,13 @@
 - Created risk-based migration order (tabs.tsx highest at 8.5/10)
 - Configured comprehensive CI/CD automation
 
+**Phase 2 Started (January 16, 2025):**
+- ✅ **Task 2.1**: Tailwind CSS v4 Foundation Implementation - COMPLETE
+- [ ] Task 2.2: Next.js Performance Optimization
+- [ ] Task 2.3: Testing Infrastructure Implementation  
+- [ ] Task 2.4: Update RESOURCES.md with Phase 2 Implementation
+
 **Ready to Execute:**
-- Phase 2: Architecture - Foundation Setup
 - Phase 3: Refinement - Component Migration
 - Phase 4: Testing & Validation
 - Phase 5: Completion - Production Deployment
@@ -1128,6 +1133,8 @@ For EVERY implementation task:
    - Use the exact patterns and configurations provided
    - Follow the integration points identified
    - Respect the critical implementation order
+   - Always intelligently and effectively use Subagents to perform discovery phases:
+      - When multiple files need to read and analyzed, use multiple subagents to read and analyze them in parallel
 
 3. **Test-Driven Implementation**:
    - Write tests based on quality gates from specifications
@@ -1152,7 +1159,7 @@ For EVERY implementation task:
 ```
 Implement the CSS-first Tailwind v4 architecture exactly as specified.
 
-**Discovery Phase (REQUIRED)**:
+**Discovery Phase (REQUIRED)** - Intelligently and effectively use Subagents:
 1. Open RESOURCES.md and navigate to:
    - Quick Reference → "Tailwind @theme configuration"
    - Quick Reference → "Color token definitions"
@@ -1247,14 +1254,16 @@ Commit: "feat: implement Tailwind v4 CSS-first architecture with OKLCH colors"
 ```
 Configure Next.js for optimal performance based on specifications and research.
 
-**Discovery Phase (REQUIRED)**:
-1. Navigate via RESOURCES.md to find:
+**Discovery Phase (REQUIRED)** - Intelligently and effectively use Subagents:
+1. Navigate via `.claude/memory/RESOURCES.md` to find:
    - Performance baselines and targets
    - Next.js optimization research
    - Build configuration specifications
    - Quality gate thresholds
    
 2. Read relevant materials completely:
+   - Always intelligently and effectively use Subagents to perform discovery phases:
+      - When multiple files need to read and analyzed, use multiple subagents to read and analyze them in parallel
    - Understand current performance metrics (baseline)
    - Review optimization opportunities researched
    - Study the performance budgets defined
@@ -1285,6 +1294,7 @@ Configure Next.js for optimal performance based on specifications and research.
    ```
 
 2. Apply optimizations discovered:
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution. Use context7
    - Update next.config.js with patterns from research
    - Configure bundle analyzer per specifications
    - Implement build optimizations found effective
@@ -1337,8 +1347,8 @@ Commit: "perf: optimize Next.js build configuration for sub-1.5s builds"
 ```
 Establish comprehensive testing infrastructure based on Phase 1 specifications.
 
-**Discovery Phase (REQUIRED)**:
-1. Use RESOURCES.md to locate:
+**Discovery Phase (REQUIRED)** - Intelligently and effectively use Subagents:
+1. Use `.claude/memory/RESOURCES.md` to locate:
    - Testing strategies in migration-patterns.md
    - Visual regression configuration research
    - Quality gates and coverage requirements
@@ -1371,6 +1381,7 @@ Establish comprehensive testing infrastructure based on Phase 1 specifications.
    ```
 
 2. Implement visual regression:
+   - ALWAYS verify the reasonableness of your solution before you implement each piece of the solution. Use context7
    - Apply Playwright configuration from research
    - Set tolerance levels per specifications
    - Configure baseline management
@@ -1428,11 +1439,11 @@ Create `.claude/memory/implementation/testing-infrastructure.md`:
 Commit: "test: establish comprehensive QA infrastructure with 95% coverage target"
 ```
 
-### Task 2.4: Update RESOURCES.md with Phase 2 Implementation [ ]
+### Task 2.4: Update `.claude/memory/RESOURCES.md` with Phase 2 Implementation [ ]
 ```
 Document all Phase 2 implementation decisions and deliverables for future phases.
 
-**Objective**: Ensure RESOURCES.md remains the single source of truth by adding all Phase 2 implementation details, making them discoverable for Phase 3 component migrations.
+**Objective**: Ensure `.claude/memory/RESOURCES.md` remains the single source of truth by adding all Phase 2 implementation details, making them discoverable for Phase 3 component migrations.
 
 **Execution Steps**:
 
@@ -1502,20 +1513,20 @@ Document all Phase 2 implementation decisions and deliverables for future phases
    ```
 
 **Success Criteria**:
-- ✓ All implementation files documented in RESOURCES.md
+- ✓ All implementation files documented in `.claude/memory/RESOURCES.md`
 - ✓ Quick Reference updated with Phase 2 deliverables
 - ✓ Key learnings captured for Phase 3 benefit
 - ✓ Performance benchmarks clearly documented
 - ✓ Phase 3 can start without searching for information
 
-Commit: "docs: update RESOURCES.md with Phase 2 architecture implementation insights"
+Commit: "docs: update `.claude/memory/RESOURCES.md` with Phase 2 architecture implementation insights"
 ```
 
 ### Tasks:
 - [ ] 2.1: Tailwind CSS v4 Foundation Implementation
 - [ ] 2.2: Next.js Performance Optimization  
 - [ ] 2.3: Testing Infrastructure Implementation
-- [ ] 2.4: Update RESOURCES.md with Phase 2 Implementation
+- [ ] 2.4: Update `.claude/memory/RESOURCES.md` with Phase 2 Implementation
 
 ## Phase 2 Success Metrics
 
