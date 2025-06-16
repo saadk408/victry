@@ -79,6 +79,6 @@ Ensure each task meets the success criteria defined in its instructions:
 - `.claude/memory/RESOURCES.md` is your navigation tool
 - Phase 1 specifications are your exact blueprints
 - Document everything for Phase 3's benefit
-- Task 2.4 (updating `.claude/memory/RESOURCES.md`) is critical
+- Task 2.4 (updating `.claude/memory/RESOURCES.md`) is critical (**ULTRATHINK THROUGHOUT TASK 2.4**)
 
 Now proceed to `docs/dark-mode-removal-comprehensive-implementation-plan.md` and begin with the first uncompleted Phase 2 task.
