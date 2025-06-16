@@ -63,8 +63,10 @@
     "zod": "^3.24.4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
     "@csstools/postcss-oklab-function": "^4.0.10",
     "@next/bundle-analyzer": "^15.1.8",
+    "@playwright/test": "^1.53.0",
     "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.5.2",

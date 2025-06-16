@@ -1,0 +1,64 @@
+/*
+ * Playwright Screenshot CSS
+ * Used to hide dynamic content that causes visual regression test flakiness
+ */
+
+/* Hide loading spinners and skeletons */
+[data-testid*="loading"],
+[data-testid*="spinner"],
+[data-testid*="skeleton"],
+.loading,
+.spinner,
+.skeleton {
+  visibility: hidden !important;
+}
+
+/* Hide timestamps and dynamic dates */
+[data-testid*="timestamp"],
+[data-testid*="date"],
+time {
+  visibility: hidden !important;
+}
+
+/* Hide animations and transitions */
+*,
+*::before,
+*::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+
+/* Hide text cursors */
+input,
+textarea,
+[contenteditable] {
+  caret-color: transparent !important;
+}
+
+/* Hide tooltips and popovers that might appear randomly */
+[role="tooltip"],
+.tooltip,
+.popover {
+  display: none !important;
+}
+
+/* Hide focus rings for consistent screenshots */
+*:focus,
+*:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Hide random user-generated content that might change */
+[data-testid*="avatar"],
+[data-testid*="profile-image"] {
+  background: #f3f4f6 !important;
+  color: transparent !important;
+}
+
+/* Stabilize dynamic content widths */
+[data-testid*="dynamic-width"] {
+  width: 200px !important;
+}
