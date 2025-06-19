@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 // Define switch variants using class-variance-authority
 const switchVariants = cva(
-  "peer inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-gray-200 dark:focus-visible:ring-gray-300 dark:focus-visible:ring-offset-gray-950 dark:data-[state=checked]:bg-gray-50 dark:data-[state=unchecked]:bg-gray-800",
+  "peer inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted",
   {
     variants: {
       size: {
@@ -19,18 +19,18 @@ const switchVariants = cva(
       },
       variant: {
         default:
-          "data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-gray-200 dark:data-[state=checked]:bg-gray-50 dark:data-[state=unchecked]:bg-gray-800",
+          "data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted",
         primary:
-          "data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-gray-200 dark:data-[state=checked]:bg-blue-500 dark:data-[state=unchecked]:bg-gray-800",
+          "data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted",
         success:
-          "data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-200 dark:data-[state=checked]:bg-green-500 dark:data-[state=unchecked]:bg-gray-800",
+          "data-[state=checked]:bg-success data-[state=unchecked]:bg-muted",
         danger:
-          "data-[state=checked]:bg-red-600 data-[state=unchecked]:bg-gray-200 dark:data-[state=checked]:bg-red-500 dark:data-[state=unchecked]:bg-gray-800",
+          "data-[state=checked]:bg-destructive data-[state=unchecked]:bg-muted",
         warning:
-          "data-[state=checked]:bg-amber-600 data-[state=unchecked]:bg-gray-200 dark:data-[state=checked]:bg-amber-500 dark:data-[state=unchecked]:bg-gray-800",
+          "data-[state=checked]:bg-warning data-[state=unchecked]:bg-muted",
       },
       hasError: {
-        true: "ring-2 ring-red-500 dark:ring-red-500",
+        true: "ring-2 ring-destructive",
         false: "",
       },
     },
@@ -44,7 +44,7 @@ const switchVariants = cva(
 
 // Define thumb variants
 const thumbVariants = cva(
-  "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0 dark:bg-gray-950",
+  "pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0",
   {
     variants: {
       size: {
@@ -113,7 +113,7 @@ function Switch({
         <label
           data-slot="switch-label"
           htmlFor={id}
-          className="cursor-pointer select-none text-sm font-medium"
+          className="cursor-pointer select-none text-sm font-medium text-foreground"
         >
           {label}
         </label>
@@ -125,7 +125,7 @@ function Switch({
         <label
           data-slot="switch-label"
           htmlFor={id}
-          className="cursor-pointer select-none text-sm font-medium"
+          className="cursor-pointer select-none text-sm font-medium text-foreground"
         >
           {label}
         </label>
