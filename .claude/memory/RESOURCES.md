@@ -1,12 +1,12 @@
 # Dark Mode Removal - Resource Knowledge Map
 
 Generated: January 16, 2025
-Last Updated: January 19, 2025 - Added Phase 3 Implementation Documentation
+Last Updated: January 19, 2025 - Updated Phase 3 Implementation Documentation
 Phase 1 Completed: January 16, 2025
 Phase 2 Completed: January 16, 2025
-Phase 3 Progress: 5/70 components documented
+Phase 3 Progress: 8/70 components documented
 Purpose: Central knowledge map for efficient task execution
-Total Files Cataloged: 26 (1 index + 9 research files + 4 specifications + 12 implementations)
+Total Files Cataloged: 29 (1 index + 9 research files + 4 specifications + 15 implementations)
 
 ## Quick Reference Guide
 
@@ -56,6 +56,9 @@ Total Files Cataloged: 26 (1 index + 9 research files + 4 specifications + 12 im
 - **Surface component patterns** → implementation/card-migration.md (Pattern 6 foundation)
 - **Badge enhancement patterns** → implementation/badge-migration.md (Pattern 7 & 8 discovery)
 - **Animation optimization analysis** → implementation/framer-motion-bundle-analysis.md (40-50KB savings)
+- **Form selection enhancement** → implementation/checkbox-migration.md (Pattern 9 border consistency)
+- **Choice component patterns** → implementation/radio-migration.md (identical enhancement template)
+- **Perfect dropdown template** → implementation/select-discovery.md (Pattern 11 discovery)
 
 ## Complete File Inventory
 
@@ -99,6 +102,9 @@ Total Files Cataloged: 26 (1 index + 9 research files + 4 specifications + 12 im
 | textarea-migration.md | Textarea component | 1. Character count colors<br>2. Progress indicators<br>3. Pattern 10 discovery<br>4. Complex form example | Pattern 9, 10 | High - Multi-system integration |
 | status-colors-example-migration.md | Application tracking | 1. Before/after examples<br>2. Migration workflow<br>3. Testing checklist<br>4. Multiple UI contexts | Pattern 5 examples | High - Concrete migration guide |
 | framer-motion-bundle-analysis.md | Animation analysis | 1. 40-50KB impact<br>2. CSS alternatives<br>3. Component breakdown<br>4. Optimization priority | Performance patterns | High - Major bundle savings |
+| checkbox-migration.md | Checkbox enhancement | 1. Border consistency fix<br>2. Pattern 9 enhancement<br>3. Verification process<br>4. Systematic issue discovery | Pattern 9 consistency | High - Form component template |
+| radio-migration.md | Radio enhancement | 1. Identical checkbox pattern<br>2. Choice selection patterns<br>3. Pattern validation<br>4. 3x faster than checkbox | Pattern 9 application | Medium - Pattern confirmation |
+| select-discovery.md | Select validation | 1. Already perfect semantic<br>2. Pattern 11 discovery<br>3. Dropdown template<br>4. Popover token usage | Pattern 9, 11 | High - Perfect dropdown example |
 
 ### Test Results (.claude/memory/test-results/)
 | Subdirectory | Purpose | Status |
@@ -137,9 +143,11 @@ Total Files Cataloged: 26 (1 index + 9 research files + 4 specifications + 12 im
 - **Bundle Optimization**: resume-editor-optimization.md → Pattern for all heavy components
 - **Surface Patterns**: card-migration.md → Template for Dialog, Popover, Alert
 - **Form Patterns**: input-discovery.md + textarea-migration.md → All form components
+- **Form Consistency**: checkbox-migration.md + radio-migration.md → Selection component borders
+- **Dropdown Template**: select-discovery.md → Pattern 11 for all overlay components
 - **Enhancement Model**: badge-migration.md → Pattern for improving semantic components
 - **Animation Strategy**: framer-motion-bundle-analysis.md → CSS-first animation approach
-- **Pattern Evolution**: Pattern 6 → Pattern 7 & 8 → Pattern 9 & 10 (progressive discovery)
+- **Pattern Evolution**: Pattern 6 → Pattern 7 & 8 → Pattern 9 & 10 → Pattern 11 (progressive discovery)
 
 ## Gap Analysis Report
 *Generated: January 16, 2025 during Task 0.7*
@@ -371,11 +379,12 @@ NICE-TO-HAVE gaps are documented for future consideration but do not impact impl
 - **Framer Motion**: Identified 40-50KB savings opportunity through CSS migration
 
 ### Pattern Discovery Acceleration
-- **10 Total Patterns**: 3 from specs + 7 discovered in just 5 components
+- **11 Total Patterns**: 3 from specs + 8 discovered in just 8 components
 - **Pattern 4**: Dynamic imports for heavy libraries (universal application)
 - **Pattern 6**: Surface component foundation (Card → Dialog, Popover, Alert)
 - **Pattern 7-8**: Enhancement patterns for already-semantic components
 - **Pattern 9-10**: Form component patterns with progressive complexity
+- **Pattern 11**: Dropdown component template from Select discovery
 
 ### Component Migration Insights
 - **Some Components Already Semantic**: Input was perfect, Badge needed enhancement only
@@ -384,9 +393,10 @@ NICE-TO-HAVE gaps are documented for future consideration but do not impact impl
 - **Form Template Established**: Input → Textarea progression shows clear path for remaining forms
 
 ### Efficiency Gains Observed
-- **Pattern Reuse**: 5/5 components used existing patterns
+- **Pattern Reuse**: 8/8 components used existing patterns
 - **Documentation Value**: Each migration creates templates for similar components
 - **Time Reduction**: Textarea took 30 minutes using Input as template
+- **Form Components**: Radio took 35 minutes (3x faster than Checkbox)
 - **Automation Readiness**: High potential for scripting simple replacements
 
 ### Phase 3A→3B Transition Indicators
@@ -426,7 +436,7 @@ NICE-TO-HAVE gaps are documented for future consideration but do not impact impl
 
 ### Critical Path for Phase 3
 1. **✅ COMPLETED**: Resume editor bundle optimization (404KB → 171KB achieved, 9KB under target)
-2. **🔄 IN PROGRESS**: Component Migration (5/70 components complete)
+2. **🔄 IN PROGRESS**: Component Migration (8/70 components complete)
 3. **⏳ PENDING**: Test Coverage - Increase from ~10% to 95% through component testing
 4. **⏳ PENDING**: Turbopack Resolution - Fix middleware conflicts for final build performance gains
 
@@ -434,15 +444,15 @@ NICE-TO-HAVE gaps are documented for future consideration but do not impact impl
 - ✅ **Phase 0**: Research Complete (9 comprehensive files)
 - ✅ **Phase 1**: Specifications Complete (4 integrated specs)
 - ✅ **Phase 2**: Architecture Complete (3 implementations, foundation solid)
-- 🔄 **Phase 3**: Component Migration (5/70 components complete, 9 implementations documented)
+- 🔄 **Phase 3**: Component Migration (8/70 components complete, 12 implementations documented)
 - ⏳ **Phase 4**: Testing & Validation (Infrastructure ready, tests pending)
 - ⏳ **Phase 5**: Production Deployment (Monitoring patterns established)
 
 ### Phase 3 Progress Details
-- **Components Complete**: 5/70 (7%) - Status utility, Card, Badge, Input, Textarea
+- **Components Complete**: 8/70 (11%) - Status utility, Card, Badge, Input, Textarea, Select, Checkbox, Radio
 - **Bundle Reduction**: 233KB achieved on critical path (404KB → 171KB)
-- **Patterns Discovered**: 7 new patterns (10 total with 3 from specifications)
-- **Documentation**: 9 implementation files capturing learnings
-- **Next Priority**: Select, Checkbox, Radio (form components leveraging Pattern 9)
+- **Patterns Discovered**: 8 new patterns (11 total with 3 from specifications)
+- **Documentation**: 12 implementation files capturing learnings
+- **Next Priority**: Switch, Slider (form components continuing Pattern 9 application)
 
 **Phase 3 Status**: Foundation established, patterns proven, ready for acceleration.
