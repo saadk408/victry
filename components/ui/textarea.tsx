@@ -4,18 +4,16 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { getStatusColors } from "@/lib/utils/status-colors";
 
 const textareaVariants = cva(
-  "flex w-full rounded-md border bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:ring-offset-gray-950 dark:placeholder:text-gray-400",
+  "flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
   {
     variants: {
       variant: {
-        default:
-          "border-gray-200 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300",
-        error:
-          "border-red-500 text-red-600 focus-visible:ring-red-500 dark:focus-visible:ring-red-500",
-        success:
-          "border-green-500 text-green-600 focus-visible:ring-green-500 dark:focus-visible:ring-green-500",
+        default: "",
+        error: "border-destructive text-destructive focus-visible:ring-destructive",
+        success: "border-success text-success focus-visible:ring-success",
       },
       size: {
         default: "min-h-[80px] py-2",
@@ -147,26 +145,25 @@ function Textarea({
           id={`${props.id || ""}-description`}
           className={cn(
             "mt-1 flex justify-between text-xs",
-            error ? "text-red-500" : "text-gray-500",
+            error ? "text-destructive" : "text-muted-foreground",
           )}
         >
           <div>
-            {error && <p data-slot="textarea-error" className="text-red-500">{error}</p>}
+            {error && <p data-slot="textarea-error" className="text-destructive">{error}</p>}
             {!error && helperText && <p data-slot="textarea-helper">{helperText}</p>}
           </div>
 
           {showCount && maxLength && (
             <div data-slot="textarea-count" className="flex items-center">
-              <div className="mr-2 h-1.5 w-16 overflow-hidden rounded-full bg-gray-200">
+              <div className="mr-2 h-1.5 w-16 overflow-hidden rounded-full bg-muted">
                 <div
                   data-slot="textarea-count-indicator"
                   className={cn(
                     "h-full rounded-full",
-                    maxPercent < 80
-                      ? "bg-green-500"
-                      : maxPercent < 95
-                        ? "bg-amber-500"
-                        : "bg-red-500",
+                    getStatusColors(
+                      maxPercent < 80 ? 'success' : maxPercent < 95 ? 'warning' : 'error',
+                      'solid'
+                    ).background,
                   )}
                   style={{ width: `${maxPercent}%` }}
                 />
