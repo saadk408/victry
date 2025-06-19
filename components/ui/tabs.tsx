@@ -3,7 +3,6 @@
 
 import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
-import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -201,39 +200,28 @@ export interface TabsContentProps
  */
 function TabsContent({
   className,
-  animate = false, // Temporarily disabled animations
+  animate = false, // CSS animations are used when true
   isLoading = false,
   loadingElement,
   children,
   ...props
 }: TabsContentProps) {
-  // If animate is true, wrap the content in motion.div for smooth transitions
-  const content = animate ? (
-    <motion.div
-      data-slot="tabs-content-animation"
-      initial={{ opacity: 0, y: 5 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -5 }}
-      transition={{ duration: 0.2 }}
-    >
-      {children}
-    </motion.div>
-  ) : (
-    children
-  );
+  // If animate is true, add CSS animation classes
+  const animationClasses = animate ? "animate-fade-in" : "";
 
   return (
     <TabsPrimitive.Content
       data-slot="tabs-content"
       className={cn(
         "mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300",
+        animationClasses,
         className,
       )}
       {...props}
     >
       {isLoading ? 
         <div data-slot="tabs-content-loading">{loadingElement}</div> : 
-        content
+        children
       }
     </TabsPrimitive.Content>
   );

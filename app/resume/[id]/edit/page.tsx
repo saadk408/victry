@@ -8,9 +8,32 @@ import { useResume } from "@/hooks/use-resume";
 import { JobDescription } from "@/types/job-description";
 import { ResumeEditor } from "@/app/resume/_components/resume-editor";
 import { ResumePreview } from "@/app/resume/_components/resume-preview";
-import { TemplatesPanel } from "@/app/resume/_components/templates-panel";
-import { ResumeScorePanel } from "@/app/resume/_components/resume-score-panel";
-import { JobMatchPanel } from "@/app/resume/_components/job-match-panel";
+import dynamic from "next/dynamic";
+
+// Dynamically import tab panels to reduce bundle size
+const TemplatesPanel = dynamic(
+  () => import("@/app/resume/_components/templates-panel").then(mod => ({ default: mod.TemplatesPanel })),
+  { 
+    ssr: false,
+    loading: () => <div className="p-4 text-center text-sm text-gray-500">Loading templates...</div>
+  }
+);
+
+const ResumeScorePanel = dynamic(
+  () => import("@/app/resume/_components/resume-score-panel").then(mod => ({ default: mod.ResumeScorePanel })),
+  { 
+    ssr: false,
+    loading: () => <div className="p-4 text-center text-sm text-gray-500">Loading score analysis...</div>
+  }
+);
+
+const JobMatchPanel = dynamic(
+  () => import("@/app/resume/_components/job-match-panel").then(mod => ({ default: mod.JobMatchPanel })),
+  { 
+    ssr: false,
+    loading: () => <div className="p-4 text-center text-sm text-gray-500">Loading job match...</div>
+  }
+);
 import { JobDescriptionInput } from "@/app/resume/_components/job-description-input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -190,7 +213,7 @@ export default function EditResumePage({ params }: EditResumePageProps) {
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="templates" className="p-4">
+            <TabsContent value="templates" className="p-4" animate={true}>
               <TemplatesPanel
                 currentTemplateId={resume.templateId}
                 onTemplateSelect={(templateId) => {
@@ -200,11 +223,11 @@ export default function EditResumePage({ params }: EditResumePageProps) {
               />
             </TabsContent>
 
-            <TabsContent value="resumeScore" className="p-4">
+            <TabsContent value="resumeScore" className="p-4" animate={true}>
               <ResumeScorePanel score={resumeScore || 0} />
             </TabsContent>
 
-            <TabsContent value="jobMatch" className="p-4">
+            <TabsContent value="jobMatch" className="p-4" animate={true}>
               {jobDescription ? (
                 <JobMatchPanel
                   score={jobMatchScore || 0}
