@@ -32,8 +32,8 @@
 ## Recent Implementation Docs (Most Recent First)
 <!-- Update this list after completing each component -->
 <!-- Keep only the 3 most recent entries -->
-1. _Resume Editor Bundle_ - `resume-editor-optimization.md` - Key insight: _Dynamic imports reduce 230KB (57%) for heavy libraries_
-2. _[Component name]_ - `[filename].md` - Key insight: _[main pattern/discovery]_
+1. _Status Colors Utility_ - `status-colors-migration.md` - Key insight: _Centralized semantic status management eliminates hardcoded colors_
+2. _Resume Editor Bundle_ - `resume-editor-optimization.md` - Key insight: _Dynamic imports reduce 230KB (57%) for heavy libraries_
 3. _[Component name]_ - `[filename].md` - Key insight: _[main pattern/discovery]_
 
 **Before Reaching Context Limit:**
@@ -178,7 +178,7 @@ cd ../victry                   # Main branch
   - [x] Target achieved: 9KB under 180KB limit
 
 ### Foundation (Required First)
-- [ ] `/lib/utils/status-colors.ts` - Semantic status utilities
+- [x] `/lib/utils/status-colors.ts` - Semantic status utilities ✓
 
 ### Core UI Components
 - [ ] Card - Component migration pattern establishment
@@ -245,7 +245,7 @@ Exceptions: [When NOT to use]
 
 ## Pattern Library
 
-**Current Pattern Count**: 4 (3 from specifications + 1 discovered)
+**Current Pattern Count**: 5 (3 from specifications + 2 discovered)
 
 ### Pattern 1: Surface Colors
 - **Rule**: "Replace all dark/light mode pairs with semantic surface tokens"
@@ -282,6 +282,15 @@ Exceptions: [When NOT to use]
 - **Found in**: Resume Editor optimization (TipTap ~150KB)
 - **Automation**: High
 - **Exceptions**: Core UI components needed for initial render
+
+### Pattern 5: Semantic Status Colors
+- **Rule**: "Replace hardcoded status colors with semantic status utility functions"
+- **Example**:
+  - Before: `STATUS_COLORS[status].bg + ' ' + STATUS_COLORS[status].text`
+  - After: `getStatusClasses(getSemanticStatus(status), 'soft')`
+- **Found in**: Application Tracking, Keyword Analysis, Import/Export Controls
+- **Automation**: High
+- **Exceptions**: None - all status colors should use semantic utilities
 
 ### [New patterns will be added here as discovered]
 
@@ -350,11 +359,11 @@ Template based on discovery:
 - Efficiency gained: [Track improvement]
 
 **Migration Progress**:
-- Components complete: 0/70 (Bundle optimization complete)
+- Components complete: 1/70 (Status colors utility foundation ✓)
 - Bundle reduction: 233KB achieved (404KB → 171KB)
 - Target exceeded: 9KB under 180KB limit ✓
-- Complexity pattern: High complexity for performance-critical tasks
-- Quality maintained: Yes (build verified, functionality preserved)
+- Complexity pattern: Foundation utilities enable rapid migration
+- Quality maintained: Yes (100% test coverage, zero hardcoded colors)
 
 ### Current Milestone Status
 - **Phase 3A (Discovery & Pattern Establishment)**: In Progress
@@ -395,6 +404,8 @@ Template based on discovery:
 6. Removing Framer Motion and using CSS animations saves ~30KB
 7. Dynamic imports for tab panels provide additional ~10KB savings
 8. Tab-based UIs benefit from loading only the active tab content
+9. Status colors should be centralized - many components have duplicate STATUS_COLORS objects
+10. Semantic status mapping allows domain-specific statuses to use consistent colors
 
 ## IMPORTANT Discovery Rules
 

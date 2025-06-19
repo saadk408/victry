@@ -77,6 +77,12 @@
   --color-destructive:     var(--color-error);
   --color-destructive-foreground: var(--color-white);
   
+  /* Status-specific semantic tokens for consistency */
+  --color-success-foreground: var(--color-white);
+  --color-warning-foreground: var(--color-gray-900);
+  --color-error-foreground: var(--color-white);
+  --color-info-foreground: var(--color-white);
+  
   /* ===================================================================
    * Typography System
    * =================================================================== */
