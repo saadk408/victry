@@ -13,7 +13,7 @@ function Card({
     <div
       data-slot="card"
       className={cn(
-        "rounded-lg border bg-white text-gray-950 shadow-xs dark:bg-gray-950 dark:text-gray-50",
+        "rounded-lg border bg-surface text-foreground shadow-xs",
         className,
       )}
       {...props}
@@ -63,7 +63,7 @@ function CardDescription({
   return (
     <p
       data-slot="card-description"
-      className={cn("text-sm text-gray-500 dark:text-gray-400", className)}
+      className={cn("text-sm text-muted-foreground", className)}
       {...props}
     />
   );

@@ -32,9 +32,9 @@
 ## Recent Implementation Docs (Most Recent First)
 <!-- Update this list after completing each component -->
 <!-- Keep only the 3 most recent entries -->
-1. _Status Colors Utility_ - `status-colors-migration.md` - Key insight: _Centralized semantic status management eliminates hardcoded colors_
-2. _Resume Editor Bundle_ - `resume-editor-optimization.md` - Key insight: _Dynamic imports reduce 230KB (57%) for heavy libraries_
-3. _[Component name]_ - `[filename].md` - Key insight: _[main pattern/discovery]_
+1. _Card Component_ - `card-migration.md` - Key insight: _Surface component pattern establishes foundation for Dialog, Popover, Alert migrations_
+2. _Status Colors Utility_ - `status-colors-migration.md` - Key insight: _Centralized semantic status management eliminates hardcoded colors_
+3. _Resume Editor Bundle_ - `resume-editor-optimization.md` - Key insight: _Dynamic imports reduce 230KB (57%) for heavy libraries_
 
 **Before Reaching Context Limit:**
 - [ ] Update pattern library with new discoveries
@@ -181,7 +181,7 @@ cd ../victry                   # Main branch
 - [x] `/lib/utils/status-colors.ts` - Semantic status utilities ✓
 
 ### Core UI Components
-- [ ] Card - Component migration pattern establishment
+- [x] Card - Component migration pattern establishment ✓
 - [x] Button - ALREADY SEMANTIC (patterns extracted)
 - [ ] Badge - Apply established patterns
 - [ ] Input - Form component patterns
@@ -245,7 +245,7 @@ Exceptions: [When NOT to use]
 
 ## Pattern Library
 
-**Current Pattern Count**: 5 (3 from specifications + 2 discovered)
+**Current Pattern Count**: 6 (3 from specifications + 3 discovered)
 
 ### Pattern 1: Surface Colors
 - **Rule**: "Replace all dark/light mode pairs with semantic surface tokens"
@@ -291,6 +291,15 @@ Exceptions: [When NOT to use]
 - **Found in**: Application Tracking, Keyword Analysis, Import/Export Controls
 - **Automation**: High
 - **Exceptions**: None - all status colors should use semantic utilities
+
+### Pattern 6: Card Component Foundation
+- **Rule**: "Card components use bg-surface for backgrounds and text-foreground/text-muted-foreground for text hierarchy"
+- **Example**:
+  - Before: `bg-white dark:bg-gray-950 text-gray-950 dark:text-gray-50`
+  - After: `bg-surface text-foreground`
+- **Found in**: Card component (first UI component migration)
+- **Automation**: High
+- **Exceptions**: None - surface patterns apply to all card-like containers
 
 ### [New patterns will be added here as discovered]
 
@@ -359,11 +368,11 @@ Template based on discovery:
 - Efficiency gained: [Track improvement]
 
 **Migration Progress**:
-- Components complete: 1/70 (Status colors utility foundation ✓)
+- Components complete: 2/70 (Status colors utility + Card component ✓)
 - Bundle reduction: 233KB achieved (404KB → 171KB)
 - Target exceeded: 9KB under 180KB limit ✓
-- Complexity pattern: Foundation utilities enable rapid migration
-- Quality maintained: Yes (100% test coverage, zero hardcoded colors)
+- Complexity pattern: Surface components follow established patterns
+- Quality maintained: Yes (zero hardcoded colors, semantic tokens working)
 
 ### Current Milestone Status
 - **Phase 3A (Discovery & Pattern Establishment)**: In Progress
@@ -406,6 +415,8 @@ Template based on discovery:
 8. Tab-based UIs benefit from loading only the active tab content
 9. Status colors should be centralized - many components have duplicate STATUS_COLORS objects
 10. Semantic status mapping allows domain-specific statuses to use consistent colors
+11. Surface components (Card, Dialog, Popover) follow identical bg-surface + text-foreground patterns
+12. Token name verification critical - check globals.css for exact semantic token names
 
 ## IMPORTANT Discovery Rules
 
