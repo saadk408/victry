@@ -32,9 +32,9 @@
 ## Recent Implementation Docs (Most Recent First)
 <!-- Update this list after completing each component -->
 <!-- Keep only the 3 most recent entries -->
-1. _Slider Component_ - `slider-migration.md` - Key insight: _Range components follow Pattern 9 + new Pattern 13 for track/range/control styling, form component patterns mature and highly predictable across 6 components_
-2. _Switch Component_ - `switch-migration.md` - Key insight: _Toggle components use background colors for state indication, Pattern 12 discovered for toggle patterns, extends Pattern 9 to background-based interactive components_
-3. _Radio Component_ - `radio-migration.md` - Key insight: _Choice patterns follow identical enhancement pattern to Checkbox, Pattern 9 validated across all form components_
+1. _Popover Component_ - `popover-migration.md` - Key insight: _Pattern 11 overlay tokens universally applicable - popover, select, future tooltip/dropdown all use identical token structure for consistent overlay theming_
+2. _Dialog Component_ - `dialog-discovery.md` - Key insight: _Dialog already semantic (zero dark classes), perfect overlay template combining Pattern 6 + 11, reinforces strategy to analyze before migrating_
+3. _Slider Component_ - `slider-migration.md` - Key insight: _Range components follow Pattern 9 + new Pattern 13 for track/range/control styling, form component patterns mature and highly predictable across 6 components_
 
 **Before Reaching Context Limit:**
 - [ ] Update pattern library with new discoveries
@@ -191,8 +191,8 @@ cd ../victry                   # Main branch
 - [x] Radio - Choice patterns ✓
 - [x] Switch - Toggle patterns (HIGH RISK)
 - [x] Slider - Range input patterns ✓
-- [ ] Dialog - Modal patterns
-- [ ] Popover - Overlay patterns
+- [x] Dialog - ALREADY SEMANTIC (perfect overlay template) ✓
+- [x] Popover - Overlay patterns (Pattern 11 validation) ✓
 - [ ] Tooltip - Hint patterns
 - [ ] Tabs - Navigation patterns (HIGH RISK)
 - [ ] Accordion - Collapsible patterns
@@ -434,7 +434,7 @@ Template based on discovery:
 - Efficiency gained: [Track improvement]
 
 **Migration Progress**:
-- Components complete: 10/70 (Status colors utility + Card component + Badge enhancement + Input discovery + Textarea migration + Select discovery + Checkbox enhancement + Radio enhancement + Switch enhancement + Slider enhancement ✓)
+- Components complete: 12/70 (Status colors utility + Card component + Badge enhancement + Input discovery + Textarea migration + Select discovery + Checkbox enhancement + Radio enhancement + Switch enhancement + Slider enhancement + Dialog discovery + Popover migration ✓)
 - Bundle reduction: 233KB achieved (404KB → 171KB)
 - Target exceeded: 9KB under 180KB limit ✓
 - Complexity pattern: Surface components follow established patterns, status enhancements highly effective
@@ -494,6 +494,8 @@ Template based on discovery:
 21. Systematic enhancement opportunities exist across component categories - look for patterns across similar components
 22. Toggle components (Switch) use background colors for state indication, different from border-based form components but following same semantic token principles - Pattern 12 established
 23. Range components (Slider) extend Pattern 9 with track/range/control patterns - Pattern 13 discovered for universal range input styling - form component patterns now proven across 6 components with 100% success rate
+24. Analysis-first discovery strategy prevents unnecessary work - Dialog component already semantic with zero dark classes, perfect overlay template combining Patterns 6+11, reinforces scanning for dark: classes as first step
+25. Pattern 11 overlay universality validated - Popover migration confirms overlay components (Select, Popover, future Tooltip/Dropdown) use identical popover token structure for consistent theming across component families
 
 ## IMPORTANT Discovery Rules
 
