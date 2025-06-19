@@ -13,6 +13,7 @@ Transform the foundation architecture into a fully migrated application through 
 - Progress to confident pattern application as knowledge accumulates
 - Culminate in efficient automation for the majority of components
 - Maintain quality through verification at every stage
+- **ALWAYS verify the reasonableness of your solution before you implement each piece of the solution**
 ```
 
 ### Migration Principles for Phase 3
@@ -38,7 +39,7 @@ For EVERY component migration:
    - What new patterns might this component reveal?
 
 4. **Verify Before Implementation**:
-   - **ALWAYS** verify the reasonableness of your solution before implementing
+   - **ALWAYS verify the reasonableness of your solution before you implement each piece of the solution**
    - Does this align with discovered architectural principles?
    - Will this maintain consistency with other migrated components?
    - Could this introduce regressions or break functionality?

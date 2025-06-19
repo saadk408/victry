@@ -14,6 +14,8 @@ Take a deep breath and take it one step at a time.
 
 Start by reading this plan to understand the complete methodology, milestones, and specific tasks.
 
+**ALWAYS verify the reasonableness of your solution before you implement each piece of the solution.**
+
 ## Determining Your Current Position
 
 **When starting any session, follow this sequence**:
