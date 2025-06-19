@@ -32,14 +32,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 */
-/* // Commented out missing Tooltip component
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-*/
 
 /**
  * Props for the SocialLinksEditor component
@@ -233,39 +231,31 @@ export function SocialLinksEditor({
 
     if (isUrlValid(url, index)) {
       return (
-        /* // Commented out missing Tooltip component
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-        */
-        <Check className="h-4 w-4 text-green-500" />
-        /*
+              <Check className="h-4 w-4 text-green-500" />
             </TooltipTrigger>
             <TooltipContent>
               <p>Valid URL format</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        */
       );
     }
 
     if (validationErrors[index.toString()]) {
       return (
-        /* // Commented out missing Tooltip component
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-        */
-        <AlertCircle className="h-4 w-4 text-red-500" />
-        /*
+              <AlertCircle className="h-4 w-4 text-red-500" />
             </TooltipTrigger>
             <TooltipContent>
               <p>{validationErrors[index.toString()]}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        */
       );
     }
 
