@@ -4,9 +4,13 @@ Execute Phase 3 by discovering and applying knowledge from the comprehensive wor
 
 ## Your Mission
 
+Take a deep breath and take it one step at a time.
+
 Systematically migrate 70 components from dark mode to semantic colors through intelligent discovery and application of existing knowledge. Transform each discovery into reusable patterns that accelerate future work.
 
 **The Phase 3 Implementation Plan is located at**: `docs/phase-3-implementation-plan.md`
+
+Take a deep breath and take it one step at a time.
 
 Start by reading this plan to understand the complete methodology, milestones, and specific tasks.
 
@@ -14,25 +18,27 @@ Start by reading this plan to understand the complete methodology, milestones, a
 
 **When starting any session, follow this sequence**:
 
-1. **Check CLAUDE.md First**:
+1. Take a deep breath and take it one step at a time.
+
+2. **Check CLAUDE.md First**:
    - Look at "Migration Checklist" - find the first unchecked [ ] item
    - Review "Current Milestone Status" - are you in Phase 3A, 3B, or 3C?
    - Check "Progress Tracking" - how many components completed?
    - Read "Recent Implementation Docs" - understand recent work
 
-2. **Navigate to Your Position in Implementation Plan**:
+3. **Navigate to Your Position in Implementation Plan**:
    - If Task 3.0 (Resume Editor) unchecked → Start there (CRITICAL)
    - If in Phase 3A (1-15 components) → Focus on discovery tasks
    - If in Phase 3B (16-30 components) → Apply patterns confidently  
    - If in Phase 3C (31-70 components) → Check if scripts exist, use automation
 
-3. **Understand Your Current Context**:
+4. **Understand Your Current Context**:
    - Components < 15: You're establishing patterns (Phase 3A)
    - Components 15-30: You're validating patterns (Phase 3B)
    - Components > 30: You should be automating (Phase 3C)
    - If Pattern Library has 3+ patterns used 5+ times → Consider moving to next phase
 
-4. **Find Your Specific Task**:
+5. **Find Your Specific Task**:
    - Locate the matching task number in Implementation Plan
    - If between numbered tasks, work on "Additional Components" for your current phase
    - If all specific tasks done but <70 components, continue with category-appropriate components
@@ -116,10 +122,12 @@ We say: "Discover what patterns exist and ultrathink about how they apply"
 
 ### For EVERY Component Migration
 
-**USE SUBAGENTS TO SEARCH AND READ FILES IN PARALLEL**
+**Take a deep breath and take it one step at a time.**
 
 #### Step 1: Explore Available Knowledge
 ```
+**INTELLIGENTLY USE SUBAGENTS TO SEARCH AND READ FILES IN PARALLEL**
+
 Don't search for specific files. Instead:
 
 1. Open RESOURCES.md
@@ -476,6 +484,7 @@ Your discoveries are valuable! Ensure they're findable:
 
 ## Final Wisdom
 
+**Take a deep breath and take it one step at a time.**
 **The 20KB CSS bundle from Phase 2 proves the specifications work.**  
 **The 50% build improvement shows the patterns are solid.**  
 **The testing infrastructure is ready and proven.**
@@ -499,3 +508,5 @@ Start by:
 5. Beginning work (Task 3.0 if starting fresh - CRITICAL)
 
 Let curiosity guide your exploration. The knowledge is there - go discover it!
+
+Take a deep breath and take it one step at a time.

@@ -13,6 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils/utils";
+import { type StatusType } from "@/lib/utils/status-colors";
 
 /**
  * Props for the SkillsEditor component
@@ -156,7 +157,7 @@ export function SkillsEditor({
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-medium">Skills</h3>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-muted-foreground">
             {skills.length} of {MAX_SKILLS} skills added
           </p>
         </div>
@@ -168,7 +169,7 @@ export function SkillsEditor({
             size="sm"
             onClick={handleAiSuggest}
             disabled={disabled || (aiSuggestionState?.isLoading ?? false)}
-            className="border-blue-200 text-blue-600 hover:bg-blue-50"
+            className="border-info text-info hover:bg-info/10"
           >
             {aiSuggestionState?.isLoading ? (
               <>
@@ -233,9 +234,9 @@ export function SkillsEditor({
 
       {/* Max Skills Alert */}
       {skills.length >= MAX_SKILLS && (
-        <Alert className="mb-4 border-amber-200 bg-amber-50">
-          <AlertCircle className="h-4 w-4 text-amber-600" />
-          <AlertDescription className="text-amber-800">
+        <Alert className="mb-4 border-warning bg-warning/10">
+          <AlertCircle className="h-4 w-4 text-warning" />
+          <AlertDescription className="text-warning-foreground">
             You&apos;ve reached the maximum of {MAX_SKILLS} skills. Consider
             removing less relevant skills before adding new ones.
           </AlertDescription>
@@ -246,7 +247,7 @@ export function SkillsEditor({
       <div className="space-y-4">
         <Label className="flex items-center">
           Add and organize your skills
-          <span className="ml-2 text-xs text-gray-500">
+          <span className="ml-2 text-xs text-muted-foreground">
             (tip: try grouping by category and adding proficiency levels)
           </span>
         </Label>
@@ -279,7 +280,7 @@ export function SkillsEditor({
                   )}
                 >
                   <CardContent className="p-4">
-                    <h5 className="mb-2 flex items-center justify-between font-medium text-gray-800">
+                    <h5 className="mb-2 flex items-center justify-between font-medium text-foreground">
                       <span>{category}</span>
                       {
                         <Badge variant="outline" className="text-xs">
@@ -289,46 +290,38 @@ export function SkillsEditor({
                     </h5>
                     <div className="flex flex-wrap gap-2">
                       {categorySkills.map((skill) => {
-                        // Get appropriate color based on skill level
-                        const levelColor = skill.level
-                          ? {
-                              beginner: "bg-blue-100 text-blue-800",
-                              intermediate: "bg-green-100 text-green-800",
-                              advanced: "bg-purple-100 text-purple-800",
-                              expert: "bg-orange-100 text-orange-800",
-                            }[skill.level]
-                          : "bg-gray-100 text-gray-800";
+                        // Map skill levels to semantic status types
+                        const getSkillLevelStatus = (level?: string): StatusType => {
+                          switch (level) {
+                            case 'beginner':
+                              return 'info';        // Blue tones
+                            case 'intermediate':
+                              return 'success';     // Green tones
+                            case 'advanced':
+                              return 'warning';     // Amber/warning tones
+                            case 'expert':
+                              return 'active';      // Accent/special color
+                            default:
+                              return 'neutral';     // Gray tones for no level
+                          }
+                        };
+
+                        const skillStatus = getSkillLevelStatus(skill.level);
 
                         return (
-                          <>
-                            <Badge
-                              key={skill.id}
-                              variant="secondary"
-                              className={cn("font-normal", levelColor)}
-                            >
-                              {skill.name}
-                              {skill.level && (
-                                <span className="ml-1 text-xs opacity-70">
-                                  ({skill.level.charAt(0).toUpperCase()})
-                                </span>
-                              )}
-                            </Badge>
-                            {/* Display skill name as fallback when Badge is missing */}
-                            <span
-                              key={`${skill.id}-fallback`}
-                              className={cn(
-                                "rounded border px-2 py-0.5 text-sm font-normal",
-                                levelColor,
-                              )}
-                            >
-                              {skill.name}
-                              {skill.level && (
-                                <span className="ml-1 text-xs opacity-70">
-                                  ({skill.level.charAt(0).toUpperCase()})
-                                </span>
-                              )}
-                            </span>
-                          </>
+                          <Badge
+                            key={skill.id}
+                            status={skillStatus}
+                            statusVariant="soft"
+                            className="font-normal"
+                          >
+                            {skill.name}
+                            {skill.level && (
+                              <span className="ml-1 text-xs opacity-70">
+                                ({skill.level.charAt(0).toUpperCase()})
+                              </span>
+                            )}
+                          </Badge>
                         );
                       })}
                     </div>
@@ -341,8 +334,8 @@ export function SkillsEditor({
       )}
 
       {/* Help Text */}
-      <div className="rounded-md bg-gray-50 p-4 text-sm text-gray-500">
-        <h4 className="mb-1 font-medium text-gray-700">
+      <div className="rounded-md bg-muted p-4 text-sm text-muted-foreground">
+        <h4 className="mb-1 font-medium text-foreground">
           Tips for Skills Section
         </h4>
         <ul className="list-inside list-disc space-y-1">
@@ -369,9 +362,9 @@ export function SkillsEditor({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <Sparkles className="mb-3 h-10 w-10 text-gray-300" />
-          <p className="mb-1 font-medium text-gray-600">No skills added yet</p>
-          <p className="mb-4 max-w-sm text-center text-sm text-gray-500">
+          <Sparkles className="mb-3 h-10 w-10 text-muted-foreground/50" />
+          <p className="mb-1 font-medium text-foreground">No skills added yet</p>
+          <p className="mb-4 max-w-sm text-center text-sm text-muted-foreground">
             Skills are essential for passing ATS systems. Add skills relevant to
             your target job to increase your chances.
           </p>
@@ -393,7 +386,7 @@ export function SkillsEditor({
                 size="sm"
                 onClick={handleAiSuggest}
                 disabled={disabled || (aiSuggestionState?.isLoading ?? false)}
-                className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                className="border-info text-info hover:bg-info/10"
               >
                 <Sparkles className="mr-2 h-4 w-4" />
                 {aiSuggestionState?.isLoading

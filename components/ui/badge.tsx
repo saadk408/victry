@@ -2,6 +2,7 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils/utils";
+import { getStatusClasses, type StatusType, type StatusVariant } from "@/lib/utils/status-colors";
 
 const badgeVariants = cva(
   "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
@@ -25,9 +26,36 @@ const badgeVariants = cva(
 
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+    VariantProps<typeof badgeVariants> {
+  /**
+   * Status type for semantic status badges
+   * When provided, overrides the variant prop and uses status-based styling
+   */
+  status?: StatusType;
+  /**
+   * Style variant when using status prop
+   * @default "solid"
+   */
+  statusVariant?: StatusVariant;
+}
 
-function Badge({ className, variant, ...props }: BadgeProps) {
+function Badge({ className, variant, status, statusVariant = "solid", ...props }: BadgeProps) {
+  // If status is provided, use status utilities; otherwise use regular variants
+  if (status) {
+    return (
+      <div 
+        className={cn(
+          "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+          "border-transparent shadow",
+          getStatusClasses(status, statusVariant, true),
+          className
+        )} 
+        {...props} 
+      />
+    );
+  }
+  
+  // Fallback to existing variant system
   return (
     <div className={cn(badgeVariants({ variant }), className)} {...props} />
   );

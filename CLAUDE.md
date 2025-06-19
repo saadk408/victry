@@ -32,9 +32,9 @@
 ## Recent Implementation Docs (Most Recent First)
 <!-- Update this list after completing each component -->
 <!-- Keep only the 3 most recent entries -->
-1. _Card Component_ - `card-migration.md` - Key insight: _Surface component pattern establishes foundation for Dialog, Popover, Alert migrations_
-2. _Status Colors Utility_ - `status-colors-migration.md` - Key insight: _Centralized semantic status management eliminates hardcoded colors_
-3. _Resume Editor Bundle_ - `resume-editor-optimization.md` - Key insight: _Dynamic imports reduce 230KB (57%) for heavy libraries_
+1. _Badge Component_ - `badge-migration.md` - Key insight: _Status prop override pattern enables both fixed and dynamic variants, skill level mapping provides reusable domain logic_
+2. _Card Component_ - `card-migration.md` - Key insight: _Surface component pattern establishes foundation for Dialog, Popover, Alert migrations_
+3. _Status Colors Utility_ - `status-colors-migration.md` - Key insight: _Centralized semantic status management eliminates hardcoded colors_
 
 **Before Reaching Context Limit:**
 - [ ] Update pattern library with new discoveries
@@ -183,7 +183,7 @@ cd ../victry                   # Main branch
 ### Core UI Components
 - [x] Card - Component migration pattern establishment ✓
 - [x] Button - ALREADY SEMANTIC (patterns extracted)
-- [ ] Badge - Apply established patterns
+- [x] Badge - Status variant enhancement + consumer cleanup ✓
 - [ ] Input - Form component patterns
 - [ ] Textarea - Multi-line input patterns
 - [ ] Select - Dropdown patterns
@@ -245,7 +245,7 @@ Exceptions: [When NOT to use]
 
 ## Pattern Library
 
-**Current Pattern Count**: 6 (3 from specifications + 3 discovered)
+**Current Pattern Count**: 8 (3 from specifications + 5 discovered)
 
 ### Pattern 1: Surface Colors
 - **Rule**: "Replace all dark/light mode pairs with semantic surface tokens"
@@ -300,6 +300,24 @@ Exceptions: [When NOT to use]
 - **Found in**: Card component (first UI component migration)
 - **Automation**: High
 - **Exceptions**: None - surface patterns apply to all card-like containers
+
+### Pattern 7: Status Prop Override
+- **Rule**: "When components need both fixed variants and dynamic status, use status prop to override variant behavior"
+- **Example**:
+  - Before: `<Badge variant="secondary" className={getStatusColor(status)}>`
+  - After: `<Badge status="success" statusVariant="soft">`
+- **Found in**: Badge component API design
+- **Automation**: Medium
+- **Exceptions**: Only when both fixed and dynamic behaviors are needed
+
+### Pattern 8: Skill Level Status Mapping
+- **Rule**: "Map domain-specific levels to semantic status using consistent color psychology"
+- **Example**:
+  - Before: `level === 'expert' ? 'bg-orange-100 text-orange-800' : ...`
+  - After: `getSkillLevelStatus(level)` → `'active'` → semantic tokens
+- **Found in**: Skills component level badges
+- **Automation**: High
+- **Exceptions**: None - color psychology is universal
 
 ### [New patterns will be added here as discovered]
 
@@ -368,10 +386,10 @@ Template based on discovery:
 - Efficiency gained: [Track improvement]
 
 **Migration Progress**:
-- Components complete: 2/70 (Status colors utility + Card component ✓)
+- Components complete: 3/70 (Status colors utility + Card component + Badge enhancement ✓)
 - Bundle reduction: 233KB achieved (404KB → 171KB)
 - Target exceeded: 9KB under 180KB limit ✓
-- Complexity pattern: Surface components follow established patterns
+- Complexity pattern: Surface components follow established patterns, status enhancements highly effective
 - Quality maintained: Yes (zero hardcoded colors, semantic tokens working)
 
 ### Current Milestone Status
@@ -417,6 +435,10 @@ Template based on discovery:
 10. Semantic status mapping allows domain-specific statuses to use consistent colors
 11. Surface components (Card, Dialog, Popover) follow identical bg-surface + text-foreground patterns
 12. Token name verification critical - check globals.css for exact semantic token names
+13. Some components are already semantic - expect enhancement opportunities, not just migrations
+14. Consumer component cleanup often provides more value than component migration itself
+15. Status prop override pattern enables both backward compatibility and new semantic APIs
+16. Domain-specific mappings (skill levels, priority levels) benefit from consistent semantic status mapping
 
 ## IMPORTANT Discovery Rules
 
