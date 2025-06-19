@@ -63,7 +63,15 @@ const nextConfig = {
       '@/components/ui',
       '@/lib/utils',
       'lucide-react',
-      'framer-motion'
+      'framer-motion',
+      '@tiptap/react',
+      '@tiptap/starter-kit',
+      '@tiptap/extension-underline',
+      '@tiptap/extension-link',
+      '@tiptap/extension-placeholder',
+      '@tiptap/extension-bullet-list',
+      '@tiptap/extension-ordered-list',
+      '@tiptap/extension-list-item'
     ]
   },
 

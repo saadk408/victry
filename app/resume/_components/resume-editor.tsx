@@ -8,16 +8,82 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils/utils";
 import { Resume } from "@/types/resume";
 
-// Import section editors
-import { PersonalInfoEditor } from "@/components/resume/section-editor/personal-info";
-import { SummaryEditor } from "@/components/resume/section-editor/summary";
-import { WorkExperienceEditor } from "@/components/resume/section-editor/work-experience";
-import { EducationEditor } from "@/components/resume/section-editor/education";
-import { SkillsEditor } from "@/components/resume/section-editor/skills";
-import { ProjectsEditor } from "@/components/resume/section-editor/projects";
-import { CertificationsEditor } from "@/components/resume/section-editor/certifications";
-import { SocialLinksEditor } from "@/components/resume/section-editor/social-links";
-// import { CustomSectionsEditor } from "@/components/resume/section-editor/custom-sections"; // Commented out - component likely missing
+import dynamic from "next/dynamic";
+
+// Dynamically import section editors to reduce initial bundle size
+// Each editor is loaded only when its section is selected
+const PersonalInfoEditor = dynamic(
+  () => import("@/components/resume/section-editor/personal-info").then(mod => ({ default: mod.PersonalInfoEditor })),
+  { 
+    ssr: false,
+    loading: () => <SectionLoading />
+  }
+);
+
+const SummaryEditor = dynamic(
+  () => import("@/components/resume/section-editor/summary").then(mod => ({ default: mod.SummaryEditor })),
+  { 
+    ssr: false,
+    loading: () => <SectionLoading />
+  }
+);
+
+const WorkExperienceEditor = dynamic(
+  () => import("@/components/resume/section-editor/work-experience").then(mod => ({ default: mod.WorkExperienceEditor })),
+  { 
+    ssr: false,
+    loading: () => <SectionLoading />
+  }
+);
+
+const EducationEditor = dynamic(
+  () => import("@/components/resume/section-editor/education").then(mod => ({ default: mod.EducationEditor })),
+  { 
+    ssr: false,
+    loading: () => <SectionLoading />
+  }
+);
+
+const SkillsEditor = dynamic(
+  () => import("@/components/resume/section-editor/skills").then(mod => ({ default: mod.SkillsEditor })),
+  { 
+    ssr: false,
+    loading: () => <SectionLoading />
+  }
+);
+
+const ProjectsEditor = dynamic(
+  () => import("@/components/resume/section-editor/projects").then(mod => ({ default: mod.ProjectsEditor })),
+  { 
+    ssr: false,
+    loading: () => <SectionLoading />
+  }
+);
+
+const CertificationsEditor = dynamic(
+  () => import("@/components/resume/section-editor/certifications").then(mod => ({ default: mod.CertificationsEditor })),
+  { 
+    ssr: false,
+    loading: () => <SectionLoading />
+  }
+);
+
+const SocialLinksEditor = dynamic(
+  () => import("@/components/resume/section-editor/social-links").then(mod => ({ default: mod.SocialLinksEditor })),
+  { 
+    ssr: false,
+    loading: () => <SectionLoading />
+  }
+);
+
+// Loading component for section editors
+function SectionLoading() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
+    </div>
+  );
+}
 
 interface ResumeEditorProps {
   id: string;
