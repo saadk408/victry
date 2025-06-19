@@ -126,8 +126,6 @@ We say: "Discover what patterns exist and ultrathink about how they apply"
 
 #### Step 1: Explore Available Knowledge
 ```
-**INTELLIGENTLY USE SUBAGENTS TO SEARCH AND READ FILES IN PARALLEL**
-
 Don't search for specific files. Instead:
 
 1. Open RESOURCES.md
@@ -136,14 +134,11 @@ Don't search for specific files. Instead:
    - "What kind of component is this?"
    - "What knowledge would help migrate it?"
    - "Has similar work been done?"
-   
-4. Browse the inventory:
+4. Browse the inventory (**INTELLIGENTLY USE SUBAGENTS TO SEARCH AND READ FILES IN PARALLEL**):
    - Research files: What was learned?
    - Specifications: What was designed?
    - Implementation: What has worked?
    - Test results: What was validated?
-
-**INTELLIGENTLY USE SUBAGENTS TO SEARCH AND READ FILES IN PARALLEL**
 ```
 
 #### Step 2: Read and Understand
@@ -169,6 +164,8 @@ For discovered relevant files:
 ```
 Before writing any code:
 
+Take a deep breath and take it one step at a time.
+
 1. Consider the specific component:
    - What makes it unique?
    - What patterns fit directly?
@@ -189,6 +186,8 @@ Before writing any code:
 #### Step 4: Implement with Confidence
 ```
 Before implementing any solution:
+
+Take a deep breath and take it one step at a time.
 
 **ALWAYS** verify the reasonableness of your solution:
 1. Check: Does this align with discovered patterns?
