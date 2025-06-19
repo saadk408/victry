@@ -32,9 +32,9 @@
 ## Recent Implementation Docs (Most Recent First)
 <!-- Update this list after completing each component -->
 <!-- Keep only the 3 most recent entries -->
-1. _Badge Component_ - `badge-migration.md` - Key insight: _Status prop override pattern enables both fixed and dynamic variants, skill level mapping provides reusable domain logic_
-2. _Card Component_ - `card-migration.md` - Key insight: _Surface component pattern establishes foundation for Dialog, Popover, Alert migrations_
-3. _Status Colors Utility_ - `status-colors-migration.md` - Key insight: _Centralized semantic status management eliminates hardcoded colors_
+1. _Textarea Component_ - `textarea-migration.md` - Key insight: _Character count status mapping + Input pattern template creates comprehensive form component foundation_
+2. _Badge Component_ - `badge-migration.md` - Key insight: _Status prop override pattern enables both fixed and dynamic variants, skill level mapping provides reusable domain logic_
+3. _Card Component_ - `card-migration.md` - Key insight: _Surface component pattern establishes foundation for Dialog, Popover, Alert migrations_
 
 **Before Reaching Context Limit:**
 - [ ] Update pattern library with new discoveries
@@ -185,8 +185,8 @@ cd ../victry                   # Main branch
 - [x] Button - ALREADY SEMANTIC (patterns extracted)
 - [x] Badge - Status variant enhancement + consumer cleanup ✓
 - [x] Input - ALREADY SEMANTIC (perfect form patterns) ✓
-- [ ] Textarea - Multi-line input patterns
-- [ ] Select - Dropdown patterns
+- [x] Textarea - Multi-line input patterns ✓
+- [x] Select - ALREADY SEMANTIC (perfect dropdown template) ✓
 - [ ] Checkbox - Selection patterns
 - [ ] Radio - Choice patterns
 - [ ] Switch - Toggle patterns (HIGH RISK)
@@ -245,7 +245,7 @@ Exceptions: [When NOT to use]
 
 ## Pattern Library
 
-**Current Pattern Count**: 9 (3 from specifications + 6 discovered)
+**Current Pattern Count**: 11 (3 from specifications + 8 discovered)
 
 ### Pattern 1: Surface Colors
 - **Rule**: "Replace all dark/light mode pairs with semantic surface tokens"
@@ -328,6 +328,25 @@ Exceptions: [When NOT to use]
 - **Automation**: High
 - **Exceptions**: None - all form inputs should follow this pattern
 
+### Pattern 10: Character Count Status Mapping
+- **Rule**: "Map percentage-based ranges to semantic status types for progress indicators"
+- **Example**:
+  - Before: `maxPercent < 80 ? "bg-green-500" : maxPercent < 95 ? "bg-amber-500" : "bg-red-500"`
+  - After: `getStatusColors(maxPercent < 80 ? 'success' : maxPercent < 95 ? 'warning' : 'error', 'solid').background`
+- **Found in**: Textarea character count progress bar
+- **Automation**: High
+- **Exceptions**: None - all progress indicators benefit from semantic status mapping
+
+### Pattern 11: Semantic Dropdown Components
+- **Rule**: "Dropdown components use popover tokens for content and accent tokens for item interactions"
+- **Example**:
+  - Content: `bg-popover text-popover-foreground`
+  - Items: `focus:bg-accent focus:text-accent-foreground`
+  - Trigger: `border-input focus:ring-ring`
+- **Found in**: Select component (perfect implementation)
+- **Automation**: High
+- **Exceptions**: None - popover pattern is universal for overlays
+
 ### [New patterns will be added here as discovered]
 
 ## Intelligent Discovery Prompts
@@ -395,7 +414,7 @@ Template based on discovery:
 - Efficiency gained: [Track improvement]
 
 **Migration Progress**:
-- Components complete: 4/70 (Status colors utility + Card component + Badge enhancement + Input discovery ✓)
+- Components complete: 6/70 (Status colors utility + Card component + Badge enhancement + Input discovery + Textarea migration + Select discovery ✓)
 - Bundle reduction: 233KB achieved (404KB → 171KB)
 - Target exceeded: 9KB under 180KB limit ✓
 - Complexity pattern: Surface components follow established patterns, status enhancements highly effective
@@ -449,6 +468,7 @@ Template based on discovery:
 15. Status prop override pattern enables both backward compatibility and new semantic APIs
 16. Domain-specific mappings (skill levels, priority levels) benefit from consistent semantic status mapping
 17. Form Input component is already perfectly semantic - serves as ideal pattern template for form migrations
+18. Character count progress patterns provide reusable status mapping for any percentage-based progress indicators
 
 ## IMPORTANT Discovery Rules
 
