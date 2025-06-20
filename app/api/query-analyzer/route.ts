@@ -9,7 +9,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createActionClient } from '@/lib/supabase/client';
 import { withErrorLogging } from '@/lib/middlewares/error-logging-middleware';
-import { withQueryMonitoring } from '@/lib/middlewares/query-monitoring-middleware';
+import { withQueryMonitoringMiddleware } from '@/lib/middlewares/query-monitoring-middleware';
 import { QuerySource } from '@/lib/supabase/query-monitoring';
 import { analyzeQuery, getQueryAnalysisHistory } from '@/lib/supabase/query-analyzer';
 import { logger } from '@/lib/utils/logger';
@@ -280,14 +280,14 @@ async function handlePost(req: NextRequest): Promise<NextResponse> {
 
 // Apply middlewares
 export const GET = withErrorLogging(
-  withQueryMonitoring(handleGet, {
+  withQueryMonitoringMiddleware(handleGet, {
     source: QuerySource.Admin,
     capturePlans: true,
   })
 );
 
 export const POST = withErrorLogging(
-  withQueryMonitoring(handlePost, {
+  withQueryMonitoringMiddleware(handlePost, {
     source: QuerySource.Admin,
     capturePlans: true,
   })

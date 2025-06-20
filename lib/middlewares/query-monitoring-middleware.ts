@@ -152,7 +152,7 @@ function getSerializableArgs(args: any[]): any {
  * @param options Query monitoring options
  * @returns Enhanced handler with query monitoring
  */
-export function withQueryMonitoring(
+export function withQueryMonitoringMiddleware(
   handler: ApiHandler,
   options: QueryMonitoringOptions = {}
 ): ApiHandler {

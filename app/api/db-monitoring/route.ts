@@ -13,7 +13,7 @@ import { z } from 'zod';
 import { createActionClient } from '@/lib/supabase/client';
 import { withQueryMonitoring, QuerySource } from '@/lib/supabase/query-monitoring';
 import { withErrorLogging } from '@/lib/middlewares/error-logging-middleware';
-import { withQueryMonitoring as withQueryMonitoringMiddleware } from '@/lib/middlewares/query-monitoring-middleware';
+import { withQueryMonitoringMiddleware } from '@/lib/middlewares/query-monitoring-middleware';
 // Remove validateRequest import as it doesn't exist in api-utils
 import { logger } from '@/lib/utils/logger';
 import { isAdmin } from '@/lib/supabase/auth-utils';

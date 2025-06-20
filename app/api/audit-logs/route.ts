@@ -9,7 +9,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createActionClient } from '@/lib/supabase/client';
 import { withErrorLogging } from '@/lib/middlewares/error-logging-middleware';
-import { withQueryMonitoring } from '@/lib/middlewares/query-monitoring-middleware';
+import { withQueryMonitoringMiddleware } from '@/lib/middlewares/query-monitoring-middleware';
 import { withAuditLogging } from '@/lib/middlewares/audit-logging-middleware';
 import { OperationCategory } from '@/lib/supabase/audit-logger';
 import { isAdmin } from '@/lib/supabase/auth-utils';
@@ -210,7 +210,7 @@ async function handlePost(req: NextRequest): Promise<NextResponse> {
 
 // Apply middlewares
 export const GET = withErrorLogging(
-  withQueryMonitoring(
+  withQueryMonitoringMiddleware(
     withAuditLogging(handleGet, {
       category: OperationCategory.Admin,
       operationType: 'view_audit_logs',
@@ -219,7 +219,7 @@ export const GET = withErrorLogging(
 );
 
 export const POST = withErrorLogging(
-  withQueryMonitoring(
+  withQueryMonitoringMiddleware(
     withAuditLogging(handlePost, {
       category: OperationCategory.Admin,
       operationType: 'manage_audit_logs',
