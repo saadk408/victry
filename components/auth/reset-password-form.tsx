@@ -10,6 +10,8 @@ import { isValidPassword } from "@/lib/utils/validation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Loader2, CheckCircle, AlertCircle } from "lucide-react";
+import { getStatusClasses, getScoreStatus } from "@/lib/utils/status-colors";
+import { cn } from "@/lib/utils";
 
 const resetPasswordSchema = z
   .object({
@@ -138,14 +140,17 @@ export function ResetPasswordForm() {
     return (
       <div className="space-y-6">
         <div className="flex justify-center">
-          <div className="rounded-full bg-red-100 p-3">
-            <AlertCircle className="h-8 w-8 text-red-600" />
+          <div className={cn(
+            "rounded-full p-3",
+            getStatusClasses('error', 'soft')
+          )}>
+            <AlertCircle className="h-8 w-8 text-destructive" />
           </div>
         </div>
         
         <div className="text-center">
-          <h3 className="text-lg font-medium text-gray-900">Session Expired</h3>
-          <p className="mt-2 text-sm text-gray-600">
+          <h3 className="text-lg font-medium text-foreground">Session Expired</h3>
+          <p className="mt-2 text-sm text-muted-foreground">
             Your password reset session has expired or is invalid. 
             Please request a new password reset link.
           </p>
@@ -159,13 +164,25 @@ export function ResetPasswordForm() {
   }
 
   const passwordStrength = password ? getPasswordStrength(password) : { score: 0, feedback: [] };
-  const strengthColors = ["bg-destructive/100", "bg-orange-500", "bg-yellow-500", "bg-lime-500", "bg-success/100"];
+  
+  // Use semantic status colors for password strength
+  const getStrengthStatusColor = (score: number) => {
+    if (score <= 1) return getStatusClasses('error', 'solid').split(' ')[0]; // bg-destructive
+    if (score <= 2) return 'bg-warning';
+    if (score <= 3) return 'bg-warning';
+    if (score <= 4) return 'bg-info';
+    return getStatusClasses('success', 'solid').split(' ')[0]; // bg-success
+  };
+  
   const strengthLabels = ["Very Weak", "Weak", "Fair", "Good", "Strong"];
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {errors.root && (
-        <div className="rounded-md border border-red-200 bg-destructive/10 p-3 text-sm text-red-700">
+        <div className={cn(
+          "rounded-md border p-3 text-sm",
+          getStatusClasses('error', 'soft')
+        )}>
           {errors.root.message}
         </div>
       )}
@@ -174,7 +191,7 @@ export function ResetPasswordForm() {
       <div className="space-y-2">
         <label
           htmlFor="password"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-foreground"
         >
           New Password
         </label>
@@ -191,7 +208,7 @@ export function ResetPasswordForm() {
           />
           <button
             type="button"
-            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500 hover:text-gray-700"
+            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-muted-foreground hover:text-foreground"
             onClick={() => setShowPassword(!showPassword)}
             tabIndex={-1}
             aria-label={showPassword ? "Hide password" : "Show password"}
@@ -201,7 +218,7 @@ export function ResetPasswordForm() {
         </div>
 
         {errors.password && (
-          <p className="text-sm text-red-600" role="alert">
+          <p className="text-sm text-destructive" role="alert">
             {errors.password.message}
           </p>
         )}
@@ -213,21 +230,22 @@ export function ResetPasswordForm() {
               {[1, 2, 3, 4, 5].map((level) => (
                 <div
                   key={level}
-                  className={`h-1 flex-1 rounded ${
+                  className={cn(
+                    "h-1 flex-1 rounded",
                     level <= passwordStrength.score
-                      ? strengthColors[Math.min(passwordStrength.score - 1, 4)]
-                      : "bg-gray-200"
-                  }`}
+                      ? getStrengthStatusColor(passwordStrength.score)
+                      : "bg-muted"
+                  )}
                 />
               ))}
             </div>
             <div className="flex justify-between items-center text-sm">
-              <span className="text-gray-600">
+              <span className="text-muted-foreground">
                 Strength: {strengthLabels[Math.min(passwordStrength.score - 1, 4)] || "Very Weak"}
               </span>
             </div>
             {passwordStrength.feedback.length > 0 && (
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Missing: {passwordStrength.feedback.join(", ")}
               </p>
             )}
@@ -239,7 +257,7 @@ export function ResetPasswordForm() {
       <div className="space-y-2">
         <label
           htmlFor="confirmPassword"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-foreground"
         >
           Confirm New Password
         </label>
@@ -256,7 +274,7 @@ export function ResetPasswordForm() {
           />
           <button
             type="button"
-            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500 hover:text-gray-700"
+            className="absolute right-3 top-1/2 -translate-y-1/2 transform text-muted-foreground hover:text-foreground"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             tabIndex={-1}
             aria-label={showConfirmPassword ? "Hide password" : "Show password"}
@@ -266,7 +284,7 @@ export function ResetPasswordForm() {
         </div>
         
         {errors.confirmPassword && (
-          <p className="text-sm text-red-600" role="alert">
+          <p className="text-sm text-destructive" role="alert">
             {errors.confirmPassword.message}
           </p>
         )}
@@ -277,12 +295,12 @@ export function ResetPasswordForm() {
             {password === confirmPassword ? (
               <>
                 <CheckCircle className="h-4 w-4 text-success" />
-                <span className="text-sm text-green-600">Passwords match</span>
+                <span className="text-sm text-success">Passwords match</span>
               </>
             ) : (
               <>
                 <AlertCircle className="h-4 w-4 text-destructive" />
-                <span className="text-sm text-red-600">Passwords do not match</span>
+                <span className="text-sm text-destructive">Passwords do not match</span>
               </>
             )}
           </div>

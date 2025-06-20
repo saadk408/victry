@@ -1095,7 +1095,7 @@ ls -lh .next/static/chunks/
 - [x] Dashboard components updated (dashboard/page.tsx + stats-card.tsx migrated to semantic tokens)
 - [x] Landing page migrated (19 bg-muted + 11 bg-surface instances, all basic backgrounds now semantic)
 - [x] Upgrade page pricing text colors migrated
-- [ ] Auth form components cleaned (forgot-password-form, reset-password-form)
+- [x] Auth form components cleaned (forgot-password-form, reset-password-form migrated to semantic tokens - 25 hardcoded colors replaced)
 - [ ] Account components migrated (profile-editor, subscription-plans)
 - [ ] Layout components cleaned (sidebar)
 - [ ] Resume editor controls migrated (rich-text-editor, skill-input, sortable-list)

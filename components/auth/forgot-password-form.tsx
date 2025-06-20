@@ -8,6 +8,8 @@ import { createClient } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2, Mail, CheckCircle } from "lucide-react";
+import { getStatusClasses } from "@/lib/utils/status-colors";
+import { cn } from "@/lib/utils";
 
 const forgotPasswordSchema = z.object({
   email: z
@@ -70,18 +72,21 @@ export function ForgotPasswordForm() {
     return (
       <div className="space-y-6">
         <div className="flex justify-center">
-          <div className="rounded-full bg-green-100 p-3">
-            <CheckCircle className="h-8 w-8 text-green-600" />
+          <div className={cn(
+            "rounded-full p-3",
+            getStatusClasses('success', 'soft')
+          )}>
+            <CheckCircle className="h-8 w-8 text-success" />
           </div>
         </div>
         
         <div className="text-center">
-          <h3 className="text-lg font-medium text-gray-900">Check your email</h3>
-          <p className="mt-2 text-sm text-gray-600">
-            If an account with that email exists, we've sent password reset 
+          <h3 className="text-lg font-medium text-foreground">Check your email</h3>
+          <p className="mt-2 text-sm text-muted-foreground">
+            If an account with that email exists, we&apos;ve sent password reset 
             instructions to <strong>{submittedEmail}</strong>.
           </p>
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-sm text-muted-foreground">
             The link will expire in 1 hour for security reasons.
           </p>
         </div>
@@ -106,7 +111,10 @@ export function ForgotPasswordForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {errors.root && (
-        <div className="rounded-md border border-red-200 bg-destructive/10 p-3 text-sm text-red-700">
+        <div className={cn(
+          "rounded-md border p-3 text-sm",
+          getStatusClasses('error', 'soft')
+        )}>
           {errors.root.message}
         </div>
       )}
@@ -114,13 +122,13 @@ export function ForgotPasswordForm() {
       <div className="space-y-2">
         <label
           htmlFor="email"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-foreground"
         >
           Email address
         </label>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <Mail className="h-4 w-4 text-gray-400" />
+            <Mail className="h-4 w-4 text-muted-foreground" />
           </div>
           <Input
             id="email"
@@ -135,11 +143,11 @@ export function ForgotPasswordForm() {
           />
         </div>
         {errors.email && (
-          <p className="text-sm text-red-600" role="alert">
+          <p className="text-sm text-destructive" role="alert">
             {errors.email.message}
           </p>
         )}
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-muted-foreground">
           Enter the email address associated with your account.
         </p>
       </div>
