@@ -748,7 +748,7 @@ export function CoverLetterEditor({
                     <SelectItem value="creative">Creative Layout</SelectItem>
                   </SelectContent>
                 </Select>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   Changes will replace current content
                 </p>
               </div>
@@ -780,7 +780,7 @@ export function CoverLetterEditor({
                     </SelectItem>
                   </SelectContent>
                 </Select>
-                <p className="text-xs text-gray-500">Used for AI generation</p>
+                <p className="text-xs text-muted-foreground">Used for AI generation</p>
               </div>
               */}
 

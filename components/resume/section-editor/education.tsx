@@ -236,7 +236,7 @@ export function EducationEditor({
                     </div>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="bg-white px-4 pb-4 pt-2">
+                <AccordionContent className="bg-surface px-4 pb-4 pt-2">
                   <div className="space-y-4">
                     {/* Institution Name */}
                     <div>
