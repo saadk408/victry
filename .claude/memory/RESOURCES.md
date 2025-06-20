@@ -1,12 +1,12 @@
 # Dark Mode Removal - Resource Knowledge Map
 
 Generated: January 16, 2025
-Last Updated: January 21, 2025 - Added Tabs analysis and migration documentation
+Last Updated: January 22, 2025 - Added ATS Score and Application Tracking documentation
 Phase 1 Completed: January 16, 2025
 Phase 2 Completed: January 16, 2025
-Phase 3 Progress: 15/70 components documented
+Phase 3 Progress: 17/70 components documented
 Purpose: Central knowledge map for efficient task execution
-Total Files Cataloged: 36 (1 index + 9 research files + 4 specifications + 22 implementations)
+Total Files Cataloged: 38 (1 index + 9 research files + 4 specifications + 24 implementations)
 
 ## Quick Reference Guide
 
@@ -67,6 +67,8 @@ Total Files Cataloged: 36 (1 index + 9 research files + 4 specifications + 22 im
 - **Collapsible component patterns** → implementation/accordion-discovery.md (Pattern 14 CSS keyframes, consumer cleanup importance)
 - **HIGH RISK component analysis** → implementation/tabs-analysis.md (multi-variant complexity analysis)
 - **Complex navigation patterns** → implementation/tabs-migration.md (3 variants, inverted pill pattern)
+- **Score-based status mapping** → implementation/ats-score-migration.md (Pattern 15 & 16 discovery)
+- **Pattern 5 enhancement example** → implementation/application-tracking-migration.md (8 usage contexts centralized)
 
 ## Complete File Inventory
 
@@ -121,6 +123,8 @@ Total Files Cataloged: 36 (1 index + 9 research files + 4 specifications + 22 im
 | accordion-discovery.md | Accordion validation | 1. Already semantic (zero dark)<br>2. Pattern 14 CSS keyframes<br>3. Consumer cleanup pattern<br>4. Analysis-first validation | Pattern 14, consumer cleanup | High - Collapsible template |
 | tabs-analysis.md | Tabs analysis | 1. HIGH RISK complexity analysis<br>2. 3 variant breakdown<br>3. Animation/transition usage<br>4. 8+ consumer impact | Pre-migration research | High - Complex component guide |
 | tabs-migration.md | Tabs (HIGH RISK) | 1. Multi-variant migration<br>2. Inverted pill pattern<br>3. State-based styling<br>4. Pattern scalability proof | Pattern 1-3, 6, 11, animations | High - Navigation component template |
+| ats-score-migration.md | ATS Score component | 1. Pattern 15 & 16 discovery<br>2. Score-based status mapping<br>3. SVG currentColor technique<br>4. Severity level mapping | Pattern 15, 16 | High - Score visualization template |
+| application-tracking-migration.md | Application Tracking | 1. Pattern 5 enhancement<br>2. 8 usage contexts<br>3. Zero dark: classes<br>4. Local STATUS_COLORS removal | Pattern 5 perfect example | High - Complex enhancement template |
 
 ### Test Results (.claude/memory/test-results/)
 | Subdirectory | Purpose | Status |
@@ -169,6 +173,8 @@ Total Files Cataloged: 36 (1 index + 9 research files + 4 specifications + 22 im
 - **Range Components**: slider-migration.md → Pattern 13 for all range-based inputs (progress bars, sliders)
 - **HIGH RISK Navigation**: tabs-analysis.md → tabs-migration.md → Complex multi-variant component strategy
 - **Collapsible Animations**: accordion-discovery.md → Pattern 14 for all expandable components
+- **Score-Based Visualization**: ats-score-migration.md → Pattern 15 & 16 for all progress/score components
+- **Enhancement Strategy**: application-tracking-migration.md → Pattern 5 centralization for already-semantic components
 
 ## Gap Analysis Report
 *Generated: January 16, 2025 during Task 0.7*
@@ -475,10 +481,10 @@ NICE-TO-HAVE gaps are documented for future consideration but do not impact impl
 - ⏳ **Phase 5**: Production Deployment (Monitoring patterns established)
 
 ### Phase 3 Progress Details
-- **Components Complete**: 15/70 (21%) - Status utility, Card, Badge, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Dialog, Popover, Tooltip, Accordion, Tabs
+- **Components Complete**: 17/70 (24%) - Status utility, Card, Badge, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Dialog, Popover, Tooltip, Accordion, Tabs, ATS Score, Application Tracking
 - **Bundle Reduction**: 233KB achieved on critical path (404KB → 171KB)
-- **Patterns Discovered**: 11 new patterns (14 total with 3 from specifications)
-- **Documentation**: 22 implementation files capturing learnings
-- **Next Priority**: Feature Components (ATS Score, Application Tracking)
+- **Patterns Discovered**: 13 new patterns (16 total with 3 from specifications)
+- **Documentation**: 24 implementation files capturing learnings
+- **Next Priority**: Auth Components, Resume Editor, Job Match Panel
 
 **Phase 3 Status**: Foundation established, patterns proven, ready for acceleration.
