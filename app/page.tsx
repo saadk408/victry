@@ -27,12 +27,12 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-background to-muted/50">
+    <main className="min-h-screen bg-gradient-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground">
+      <section className="relative overflow-hidden bg-gradient-primary text-primary-foreground">
         {/* Background elements */}
         <div className="absolute inset-0 bg-grid-white/[0.03] bg-[size:24px_24px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-black/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-overlay-dark"></div>
         
         {/* Animated background blobs */}
         <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/20 blur-[120px] animate-pulse"></div>
@@ -125,9 +125,9 @@ export default function HomePage() {
             <div className="relative">
               <div className="relative rounded-2xl bg-white/10 p-2 shadow-2xl shadow-blue-950/50 backdrop-blur-xl ring-1 ring-white/20 overflow-hidden">
                 {/* Inner glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/5 to-blue-500/5"></div>
+                <div className="absolute inset-0 bg-gradient-overlay-primary"></div>
                 
-                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-surface/50 to-surface p-6 shadow-inner">
+                <div className="relative overflow-hidden rounded-xl bg-gradient-surface-subtle p-6 shadow-inner">
                   <div className="flex flex-col gap-6">
                     <div className="flex items-center gap-4">
                       <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-orange-500 to-pink-600 flex items-center justify-center text-white font-bold shadow-lg">V</div>
@@ -208,7 +208,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-accent-subtle opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="h-1.5 bg-gradient-to-r from-orange-500 to-orange-600"></div>
               <div className="relative z-10 p-6 lg:p-8">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500/10 to-orange-600/10 text-orange-600 shadow-md">
@@ -245,7 +245,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-accent-subtle opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="h-1.5 bg-gradient-to-r from-blue-500 to-blue-600"></div>
               <div className="relative z-10 p-6 lg:p-8">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/10 to-blue-600/10 text-blue-600 shadow-md">
@@ -282,7 +282,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-accent-subtle opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="h-1.5 bg-gradient-to-r from-pink-500 to-pink-600"></div>
               <div className="relative z-10 p-6 lg:p-8">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500/10 to-pink-600/10 text-pink-600 shadow-md">
@@ -316,9 +316,9 @@ export default function HomePage() {
 
       {/* How It Works Section */}
       <section className="relative overflow-hidden py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-background"></div>
-        <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-muted/20 to-transparent"></div>
-        <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-muted/20 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-surface-subtle"></div>
+        <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-overlay-light"></div>
+        <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-overlay-light"></div>
         
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 

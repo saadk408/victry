@@ -52,7 +52,7 @@ function PremiumUpgradePrompt({
   
   return (
     <Card className="relative overflow-hidden border-2 border-primary/20 shadow-xs">
-      <CardHeader className="pb-2 bg-gradient-to-r from-primary/10 to-primary/5">
+      <CardHeader className="pb-2 bg-gradient-accent-subtle">
         <CardTitle className="text-2xl flex items-center gap-2">
           <span>{title}</span>
           <span className="text-sm px-2 py-1 bg-primary/10 rounded-full text-primary font-normal">
