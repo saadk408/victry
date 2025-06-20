@@ -16,6 +16,8 @@ import { Toaster } from "@/components/ui/toaster";
 
 // Import RBAC provider for role-based access control
 import { RbacProvider } from "@/components/auth/role-based-access";
+import { cn } from "@/lib/utils";
+
 
 // Load Inter font
 const inter = Inter({
@@ -96,7 +98,7 @@ export default async function RootLayout({
           {/* Header with authentication state */}
           <Suspense
             fallback={
-              <div className="h-16 animate-pulse border-b bg-white dark:bg-gray-800" />
+              <div className="h-16 animate-pulse border-b bg-surface" />
             }
           >
             <Header session={session} />

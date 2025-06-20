@@ -20,7 +20,13 @@
     "test:reset-db": "node tests/supabase/test-reset.js",
     "pretest": "npm run test:reset-db",
     "validate:colors": "echo 'Checking for hard-coded colors...' && ! grep -r 'bg-gray\\|text-gray\\|border-gray\\|bg-white\\|bg-black' --include='*.tsx' --include='*.ts' --include='*.jsx' --include='*.js' app/ components/ lib/ || echo 'Hard-coded colors found! Use semantic tokens only.'",
-    "audit:styles": "echo 'Auditing styling patterns...' && npm run validate:colors"
+    "audit:styles": "echo 'Auditing styling patterns...' && npm run validate:colors",
+    "migrate:analyze": "npx tsx scripts/migration/analyze-components.ts",
+    "migrate:test-run": "npx tsx scripts/migration/migrate-colors.ts --dry-run --verbose",
+    "migrate:colors": "npx tsx scripts/migration/migrate-colors.ts",
+    "migrate:generate-test": "npx tsx scripts/migration/generate-tests.ts",
+    "migrate:generate-docs": "npx tsx scripts/migration/generate-docs.ts",
+    "migrate:batch": "npx tsx scripts/migration/migrate-colors.ts --verbose"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.51.0",
