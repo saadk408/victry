@@ -4,21 +4,18 @@
 
 **Victry** is an AI-powered resume builder that helps professionals create, tailor, and optimize resumes for job applications. Built with Next.js 15, React 19, TypeScript, and Tailwind CSS v4.
 
-**Current Mission**: Remove dark mode throughout the application, replacing all dark/light color pairs with a semantic color system using OKLCH color space. This improves maintainability, reduces bundle size, and creates a consistent visual experience.
+**Current Mission**: Execute Phase 3C automation to efficiently migrate the remaining 40 components using validated patterns and hybrid automation approach. Focus on script-driven migration with human oversight to achieve 25% efficiency improvement while maintaining zero quality regressions.
 
 **Project Phases**:
 - ✅ Phase 0-1: Research & Specifications (Complete) 
 - ✅ Phase 2: Foundation Architecture (Complete - 20KB CSS, OKLCH colors working)
-- 🔄 Phase 3: Component Migration (Current - 70 components to migrate)
+- 🔄 Phase 3: Component Migration (Phase 3C Automation - 30/70 complete, 40 remaining)
 - ⏳ Phase 4: Testing & Validation
 - ⏳ Phase 5: Production Deployment
 
 **Success Metrics**: Zero hardcoded colors, 25-30KB bundle reduction, maintain all functionality
 
 ---
-
-**IMPORTANT**: This is a TEMPORARY CLAUDE.md for Phase 3 only. Restore original after completion.  
-**CRITICAL**: Resume editor bundle is 404KB (125% over 180KB target) - MUST FIX FIRST
 
 ## Session Continuity Reminders
 
@@ -123,6 +120,11 @@ npm run build -- --analyze                    # Full bundle analysis
 npm test components/ui/[component].test.tsx   # Unit testing
 npm run test:visual [component]               # Visual regression
 npm run validate:colors                       # Semantic color validation
+
+# Automation Scripts (Phase 3C)
+npm run migrate:analyze         # Analyze components for automation
+npm run migrate:test-run       # Test automation on 5 components
+npm run migrate:batch -- --category=display  # Run batch migration
 
 # Development Workflow
 npm run dev                                   # Development server
@@ -485,7 +487,7 @@ Template based on discovery:
 ### Current Milestone Status
 - **Phase 3A (Discovery & Pattern Establishment)**: Complete ✓
 - **Phase 3B (Pattern Application & Validation)**: Complete ✅ (30/30 components)
-- **Phase 3C (Automation)**: Ready to Start - All criteria met
+- **Phase 3C (Automation)**: In Progress - Script development phase
 - **Components per phase**: ~15 in 3A ✓, ~15 in 3B ✅ (30 total), ~40 in 3C (automation candidates identified)
 
 ### Phase 3B Assessment Tracking
@@ -653,6 +655,95 @@ New discoveries: None - already 100% semantic
 Automation feasibility: Extremely high - ideal minimal component template
 Error tracking: No migration needed, zero unexpected behavior
 Notes: Simple form helper demonstrates semantic system scales from complex to minimal components
+
+## Phase 3C Automation Progress
+
+### Script Development Status
+- [ ] Color Replacement Engine (Patterns 1-3)
+- [ ] Component Analyzer (Risk assessment, pattern detection)
+- [ ] Test Generator (Migration tests, visual regression)
+- [ ] Documentation Generator (Auto-create implementation docs)
+
+### Automation Metrics & ROI Tracking
+
+#### Time Investment vs Savings
+| Activity | Time Spent | Components | Time/Component | Projected Savings |
+|----------|------------|------------|----------------|-------------------|
+| Script Development | 0h | - | - | - |
+| Test Run (5 components) | 0h | 0 | - | - |
+| Batch Execution | 0h | 0 | - | - |
+| Manual Exceptions | 0h | 0 | - | - |
+| **Total** | **0h** | **0/40** | **-** | **Target: 4.2h** |
+
+#### Pattern Confidence Scores
+| Pattern | Applications | Success Rate | Confidence | Safe for Automation |
+|---------|--------------|--------------|------------|-------------------|
+| Pattern 1 (Surface) | 30 | 100% | 98% | ✅ Yes |
+| Pattern 2 (Border) | 25 | 100% | 98% | ✅ Yes |
+| Pattern 3 (Text) | 28 | 100% | 98% | ✅ Yes |
+| Pattern 5 (Status) | 12 | 92% | 85% | ⚠️ With verification |
+| Pattern 9 (Forms) | 15 | 100% | 95% | ✅ Yes |
+| Pattern 11 (Overlay) | 8 | 100% | 95% | ✅ Yes |
+| Pattern 15 (Score) | 4 | 100% | 90% | ⚠️ With verification |
+
+#### Daily Checkpoint Protocol
+- [ ] Morning: Review yesterday's automation results
+- [ ] Midday: Check error rates, adjust if >5%
+- [ ] Evening: Update metrics, plan next batch
+- [ ] Weekly: Analyze patterns, optimize scripts
+
+### Automation Safety Thresholds
+- **STOP if error rate > 5%** in any batch
+- **PAUSE if build failures > 2** in test run
+- **REVIEW if manual exceptions > 20%** per category
+- **ABORT if visual regression > 15%** average
+
+### Rollback Procedures
+1. **Immediate**: `git reset --hard HEAD~1` (uncommitted batch)
+2. **Batch**: `git revert [batch-commit-hash]` (committed batch)
+3. **Full**: Switch to pre-automation branch
+4. **Recovery**: Manual re-migration of affected components
+
+### Automation Test Run (5 components)
+| Component | Category | Patterns Applied | Success | Notes |
+|-----------|----------|-----------------|---------|-------|
+| [Pending] | - | - | - | - |
+
+### Batch Execution Progress
+#### Display Components Batch (~4 remaining)
+- [ ] Progress bars
+- [ ] Spinners
+- [ ] Avatars
+- [ ] Status indicators
+
+#### Interactive Components Batch (~4 remaining)
+- [ ] Icon buttons
+- [ ] Menus
+- [ ] Dropdowns
+- [ ] Remaining interactive
+
+#### Layout Components Batch (~3 remaining)
+- [ ] Header
+- [ ] Footer  
+- [ ] Sidebar
+
+#### Data Components Batch (~10 remaining)
+- [ ] Tables
+- [ ] Lists
+- [ ] Charts
+- [ ] Data grids
+- [ ] Tree views
+- [ ] Timelines
+
+#### Form Components Batch (0 remaining - 100% complete in Phase 3B)
+
+### Exception Log
+| Component | Reason | Manual Migration Status |
+|-----------|--------|------------------------|
+| [Track exceptions here] | - | - |
+
+### Script Improvement Notes
+- [Document refinements based on test runs]
 
 ### Key Learnings
 [Document as you discover, not prescribe]

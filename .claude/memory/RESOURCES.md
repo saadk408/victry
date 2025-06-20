@@ -1,12 +1,12 @@
 # Dark Mode Removal - Resource Knowledge Map
 
 Generated: January 16, 2025
-Last Updated: January 23, 2025 - Added Job Match Panel migration documentation
+Last Updated: January 24, 2025 - Added Toast migration and Component Inventory documentation
 Phase 1 Completed: January 16, 2025
 Phase 2 Completed: January 16, 2025
 Phase 3 Progress: 30/70 components documented
 Purpose: Central knowledge map for efficient task execution
-Total Files Cataloged: 43 (1 index + 9 research files + 4 specifications + 29 implementations)
+Total Files Cataloged: 45 (1 index + 9 research files + 5 specifications + 30 implementations)
 
 ## Quick Reference Guide
 
@@ -35,6 +35,7 @@ Total Files Cataloged: 43 (1 index + 9 research files + 4 specifications + 29 im
 - **Performance targets** → performance-budgets-quality-gates.md (budgets: lines 52-159)
 - **Quality gate thresholds** → performance-budgets-quality-gates.md (gates: lines 161-290)
 - **CI/CD automation** → performance-budgets-quality-gates.md (automation: lines 292-406)
+- **Component tracking** → component-inventory.md (74 components inventoried)
 
 #### Phase 2 Implementation Results
 - **Tailwind v4 actual setup** → implementation/tailwind-v4-implementation.md (20KB CSS bundle achieved)
@@ -73,6 +74,7 @@ Total Files Cataloged: 43 (1 index + 9 research files + 4 specifications + 29 im
 - **Complex component simplicity** → implementation/resume-editor-migration.md (architecture beats complexity)
 - **Form section patterns** → implementation/resume-section-editors-migration.md (5 editors, consistent patterns)
 - **Data visualization patterns** → implementation/job-match-panel-migration.md (Pattern 15 & 16 validation, 60% efficiency gain)
+- **Notification patterns** → implementation/toast-migration.md (95% semantic baseline, perfect automation candidate)
 
 ## Complete File Inventory
 
@@ -96,6 +98,7 @@ Total Files Cataloged: 43 (1 index + 9 research files + 4 specifications + 29 im
 | tailwind-v4-spec.md | CSS-first Tailwind configuration | 1. @theme Structure (lines 43-135)<br>2. CSS Custom Properties (lines 137-312)<br>3. Utility Conventions (lines 314-433)<br>4. PostCSS Pipeline (lines 497-547)<br>5. Animation System (lines 760-905) | Complete | Ready for Task 2.1 - Tailwind v4 setup guide |
 | migration-patterns.md | Component migration playbook | 1. Migration Template (lines 35-172)<br>2. Risk-Based Order (lines 174-266)<br>3. Testing Strategy (lines 267-426)<br>4. Dependency Handling (lines 567-645)<br>5. Rollback Procedures (lines 646-741) | Complete | Guides all Phase 3 component migrations |
 | performance-budgets-quality-gates.md | Success metrics & automated gates | 1. JS Bundle Budgets (lines 52-90)<br>2. CSS Budgets (lines 92-121)<br>3. Quality Gates (lines 161-290)<br>4. CI/CD Automation (lines 292-406)<br>5. Rollback Triggers (lines 459-524) | Complete | Validates all phases - Critical for quality assurance |
+| component-inventory.md | Complete component tracking | 1. UI Components (lines 6-34)<br>2. Feature Components (lines 35-94)<br>3. Layout Components (lines 95-101)<br>4. Summary by Category (lines 108-117)<br>5. Migration Priority (lines 120-162) | Complete | Phase 3 progress tracking - 74 total components inventoried |
 
 ### Implementation Documentation (.claude/memory/implementation/)
 | File | Component/Feature | Completion | Key Patterns | Reusable Learnings |
@@ -136,6 +139,7 @@ Total Files Cataloged: 43 (1 index + 9 research files + 4 specifications + 29 im
 | resume-section-editors-migration.md | Resume Section Editors | 1. 5 editors migrated, 3 already clean<br>2. Consistent form validation patterns<br>3. Help text pattern universal<br>4. Accordion hover state pattern | Pattern 5, 6, 9, 14 | High - Form section template |
 | calendar-datepicker-discovery.md | Calendar/DatePicker | 1. Already 100% semantic (zero migration)<br>2. Pattern 9 & 11 validation<br>3. Complex date picker seamless<br>4. Range selection semantic | Pattern 9, 11 validation | High - Complex form component template |
 | label-discovery.md | Label | 1. Already 100% semantic (zero migration)<br>2. Form helper patterns<br>3. Minimal semantic implementation<br>4. Pattern 9 scalability proof | Pattern 9 validation | High - Simple form component template |
+| toast-migration.md | Toast/Toaster | 1. Already 95% semantic (4 hardcoded colors)<br>2. Pattern 1-3 application<br>3. CSS-first animations intact<br>4. 100% pattern reuse | Pattern 1-3 validation | High - Phase 3B validation template |
 
 ### Test Results (.claude/memory/test-results/)
 | Subdirectory | Purpose | Status |
@@ -490,15 +494,15 @@ NICE-TO-HAVE gaps are documented for future consideration but do not impact impl
 - ✅ **Phase 0**: Research Complete (9 comprehensive files)
 - ✅ **Phase 1**: Specifications Complete (4 integrated specs)
 - ✅ **Phase 2**: Architecture Complete (3 implementations, foundation solid)
-- 🔄 **Phase 3**: Component Migration (26/70 components complete, 38 implementations documented)
+- 🔄 **Phase 3**: Component Migration (30/70 components complete, 30 implementations documented)
 - ⏳ **Phase 4**: Testing & Validation (Infrastructure ready, tests pending)
 - ⏳ **Phase 5**: Production Deployment (Monitoring patterns established)
 
 ### Phase 3 Progress Details
-- **Components Complete**: 26/70 (37%) - Status utility, Card, Badge, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Dialog, Popover, Tooltip, Accordion, Tabs, ATS Score, Application Tracking, Auth Components, Resume Editor, Job Match Panel, Resume Section Editors (5), Progress
+- **Components Complete**: 30/70 (43%) - Status utility, Card, Badge, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Dialog, Popover, Tooltip, Accordion, Tabs, ATS Score, Application Tracking, Auth Components, Resume Editor, Job Match Panel, Resume Section Editors (5), Progress, Alert, Toast/Toaster, Calendar/DatePicker, Label
 - **Bundle Reduction**: 233KB achieved on critical path (404KB → 171KB)
 - **Patterns Discovered**: 13 new patterns (16 total with 3 from specifications)
-- **Documentation**: 26 implementation files capturing learnings
-- **Next Priority**: Job Match Panel, Resume Section Editors
+- **Documentation**: 30 implementation files capturing learnings
+- **Next Priority**: Phase 3C automation for remaining 40 components
 
 **Phase 3 Status**: Foundation established, patterns proven, ready for acceleration.

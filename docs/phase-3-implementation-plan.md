@@ -543,16 +543,6 @@ After completing ~30 components total:
 Make go/no-go decision for automation phase
 ```
 
-### Phase 3B Completion Checklist
-
-Before proceeding to Phase 3C:
-1. Complete all 4 remaining components
-2. Update Phase 3B Assessment Tracking in CLAUDE.md
-3. Verify all automation readiness criteria are met
-4. Document go/no-go decision with rationale
-5. If GO: Proceed to Phase 3C automation
-6. If NO-GO: Identify what needs stabilization
-
 **Remember**: The goal is confident automation, not rushed completion.
 
 ## Phase 3C: Automation & Scale (Components 31-70)
@@ -604,6 +594,36 @@ Script Components to Build:
    - Track patterns used
    - Note manual interventions
 
+**Proven Automation Examples from Phase 3A/B**:
+
+1. **Pattern 1 Success**: Card component
+   - Original: `dark:bg-gray-800 bg-white`
+   - Automated to: `bg-surface`
+   - Applied successfully to: Dialog, Popover, Alert (100% success)
+
+2. **Pattern 5 Complexity**: Status colors
+   - Original: Local STATUS_COLORS objects
+   - Automated to: `getStatusClasses()` imports
+   - Required verification for: Custom status mappings
+
+3. **Pattern 9 Template**: Form components
+   - Original: Various border/focus patterns
+   - Automated to: Consistent `border-border focus:ring-ring`
+   - Edge case: Radio groups needed special handling
+
+**Automation vs Manual Decision Tree**:
+
+START → Component has dark: classes?
+├─ NO → Skip (already semantic)
+└─ YES → Check complexity
+    ├─ Simple (only Patterns 1-3) → AUTOMATE
+    ├─ Medium (includes Pattern 5,9,11) → AUTOMATE with verification
+    └─ Complex → Check specific factors
+        ├─ Custom animations? → MANUAL
+        ├─ >3 variants? → MANUAL
+        ├─ Business logic? → MANUAL
+        └─ None of above → AUTOMATE with careful review
+
 **Part 2: Safe Execution Protocol**
 
 Preparation:
@@ -648,6 +668,24 @@ Exception Handling:
 - Document why automation failed
 - Update patterns if needed
 - Track exception rate
+
+**Common Automation Failures & Solutions**:
+
+1. **"String to replace not found"**
+   - Cause: Pattern variations not accounted for
+   - Fix: Add regex flexibility, handle whitespace
+
+2. **TypeScript errors after migration**
+   - Cause: Missing imports for semantic utilities
+   - Fix: Auto-add required imports in script
+
+3. **Visual regression on hover states**
+   - Cause: Not preserving hover: modifiers
+   - Fix: Extend pattern matching to include pseudo-classes
+
+4. **Build failures from missing tokens**
+   - Cause: Using non-existent semantic tokens
+   - Fix: Validate against globals.css token list
 
 **Success Metrics**:
 - 90%+ automation success rate

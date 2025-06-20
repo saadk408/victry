@@ -8,7 +8,7 @@ Take a deep breath and take it one step at a time.
 
 Systematically migrate 70 components from dark mode to semantic colors through intelligent discovery and application of existing knowledge. Transform each discovery into reusable patterns that accelerate future work.
 
-**The Phase 3 Implementation Plan is located at**: `docs/phase-3-implementation-plan.md`
+**The Phase 3 Implementation Plan is located at**: @docs/phase-3-implementation-plan.md
 
 Take a deep breath and take it one step at a time.
 
@@ -53,6 +53,178 @@ If CLAUDE.md shows a component partially complete:
 - Complete the component before moving to the next
 
 **Important**: CLAUDE.md is your source of truth for progress. The Implementation Plan provides methodology, but CLAUDE.md tracks what's actually been done.
+
+## Phase 3C Automation Execution
+
+**You are now in Phase 3C - Automation & Scale**
+
+### Your Primary Task: Task 3.15 - Create and Execute Migration Automation
+
+**Current Status**:
+- 30/70 components complete (Phase 3A & 3B done)
+- 16 stable patterns proven
+- 40 components remaining for automation
+- Hybrid approach validated: Automate Patterns 1-3, manual for complex
+
+### Phase 3C Workflow
+
+#### Step 0: Pre-Flight Checklist
+Before ANY automation run:
+- [ ] All Phase 3B work committed and pushed
+- [ ] Working branch created: `phase-3c-automation-[date]`
+- [ ] globals.css token list extracted for validation
+- [ ] Test environment ready (dev server running)
+- [ ] Rollback plan documented
+- [ ] Time tracking started
+
+#### Step 1: Script Development (Current Phase)
+```
+1. Review Pattern Library for automatable patterns (1-3, 5, 9, 11, 15)
+2. Create 4 core scripts:
+   - Color Replacement Engine
+   - Component Analyzer  
+   - Test Generator
+   - Documentation Generator
+3. Focus on Patterns 1-3 first (highest ROI)
+4. Include human verification hooks
+
+**Discovering Automation Patterns in RESOURCES.md**:
+1. Start with "Phase 3 Implementation Discoveries" section
+2. Look for pattern mentions and success indicators  
+3. Read referenced implementation files for concrete examples
+4. Cross-reference with Pattern Library in CLAUDE.md
+5. Note "already semantic" and "HIGH RISK" components
+6. Build exclusion lists and edge case handlers from discoveries
+```
+
+#### Step 2: Progressive Automation Protocol
+
+**Stage 1 - Single Component Test**:
+1. Pick simplest display component (e.g., Avatar)
+2. Run script with maximum logging
+3. Manual verification: build, visual, interaction
+4. Time: 15 minutes
+5. GO/NO-GO decision point
+
+**Stage 2 - Small Batch (5 components)**:
+1. Select diverse set per plan:
+   - 1 display component (simple)
+   - 1 form component (medium)
+   - 1 data component (complex)
+   - 2 edge cases
+2. Run sequentially with pauses
+3. Verify each before proceeding
+4. Document any manual fixes needed
+5. Calculate success rate
+6. Time: 1 hour
+7. GO/NO-GO: >80% success required
+
+**Stage 3 - Category Batch**:
+1. Run full category automation
+2. Parallel execution where safe
+3. Batch verification protocol
+4. Time: 2-3 hours per category
+
+#### Step 3: Batch Execution
+```
+For each category batch:
+1. Pre-automation analysis (2 min/component)
+2. Run automation script
+3. Post-automation verification (5 min/component)
+4. Batch verification (every 10 components)
+5. Handle exceptions manually
+6. Commit batch with detailed message
+```
+
+### Automation-Specific Discovery Prompts
+
+**For Script Development**:
+```
+"Analyze Pattern [1-3] implementations across all 30 completed components"
+"Extract exact replacement rules for surface/border/text colors"
+"Find edge cases in implementation docs that need special handling"
+"Review manual verification checklist for automation hooks"
+```
+
+**For Component Analysis**:
+```
+"Find all components with dark: classes in [category]"
+"Analyze component complexity and risk levels"
+"Check for animation or state management complexity"
+"Identify components already using semantic tokens"
+```
+
+**For Script Development Using RESOURCES.md**:
+```
+"Navigate to RESOURCES.md and discover where Pattern [X] has been successfully applied"
+"Find implementation files that show edge cases for automated migration"
+"Discover which components are marked as 'already semantic' to exclude from automation"
+"Locate HIGH RISK component analyses to understand manual migration needs"
+"Find pattern confidence data by exploring implementation results"
+```
+
+### Quality Gates for Automation
+
+**Abort Automation If**:
+- Build failure after script run
+- >15% visual regression in test run
+- TypeScript errors in semantic tokens
+- Pattern match confidence <90%
+
+**Manual Override Required If**:
+- Component has complex animations
+- Custom business logic detected
+- Accessibility attributes affected
+- Performance regression detected
+
+### Emergency Stop Procedures
+
+**IMMEDIATE STOP** (Ctrl+C during script):
+- Use when seeing multiple errors
+- Check last processed component
+- Revert any uncommitted changes
+- Document failure point
+
+**BATCH ABORT** (After automation):
+1. `git status` - check modified files
+2. `git diff` - review changes
+3. `git checkout -- .` - revert all
+4. Document why abort was needed
+5. Refine scripts before retry
+
+**QUICK VALIDATION** Commands:
+```bash
+# After each component
+npm run typecheck -- --files [component]
+npm run dev # Visual check
+
+# After each batch  
+npm run build
+npm run test:colors
+npm run lint
+```
+
+### Pattern Confidence Verification
+
+Before applying any pattern in bulk:
+1. Check success rate in CLAUDE.md metrics
+2. Review exceptions from Phase 3A/B
+3. Test on one component first
+4. Verify no globals.css token mismatches
+5. Confirm pattern still applies to target components
+
+Confidence Requirements:
+- >95% success rate → Full automation
+- 85-95% → Automation with verification hooks
+- <85% → Manual migration recommended
+
+### RESOURCES.md Quick Discovery Tips
+
+**Pattern Implementation Examples**: Search for "Pattern [X]" in implementation descriptions
+**Automation Candidates**: Look for "perfect", "ideal automation", "100% pattern reuse"  
+**Manual Migration Queue**: Search "HIGH RISK", "complex", "multi-variant"
+**Skip List**: Find "already semantic", "zero migration needed"
+**Edge Cases**: Look for "special handling", "edge case", "exception"
 
 ## Critical Mindset: Discovery Over Prescription
 
@@ -216,26 +388,30 @@ Not just what you did, but:
 - WHAT complexity was involved
 ```
 
-## Critical First Task: Resume Editor Crisis
+## Current Phase 3C Focus: Automation Script Development
 
-### Approach This as a Discovery Challenge
+### Building the Automation Framework
 ```
-The Problem: 404KB bundle (125% over target)
+**Your Mission**: Create scripts that can safely migrate 40 components with 90%+ success rate
 
-Your Discovery Mission:
-1. How is bundle size measured? (Find in Phase 2 work)
-2. What optimization patterns already exist? (Check implementations)
-3. Why is this bundle so large? (Analyze with discovered tools)
-4. What techniques have worked before? (Review all optimizations)
-5. How to validate the fix works? (Find testing patterns)
+**Script Architecture Discovery**:
+1. How did Phase 3A/3B components use Patterns 1-3?
+2. What exact transformations were repeated?
+3. What validation caught issues?
+4. How can scripts replicate manual verification?
 
-**Critical**: Before implementing any optimization, **ALWAYS** verify:
-- Will this preserve all editor functionality?
-- Does this align with Next.js best practices discovered?
-- Is this the simplest solution that achieves the goal?
-- Have similar optimizations worked elsewhere?
+**Start with Pattern Analysis**:
+- Pattern 1: dark:bg-* → bg-surface variations
+- Pattern 2: dark:border-* → border-surface-border
+- Pattern 3: dark:text-* → text-foreground variations
 
-Document your discovery process as much as the solution!
+**Critical Verification Points**:
+- Does the script preserve all CSS classes except dark:?
+- Are imports for semantic utilities added?
+- Do components maintain their variant behavior?
+- Is the git backup strategy implemented?
+
+Document your script development process for future maintenance!
 ```
 
 ## Progressive Knowledge Building
