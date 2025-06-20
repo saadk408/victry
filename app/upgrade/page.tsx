@@ -17,7 +17,7 @@ export default function UpgradePage({
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
             Upgrade Your Victry Experience
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Take your resume to the next level with premium features designed to
             maximize your chances of landing that dream job.
           </p>
@@ -74,7 +74,7 @@ export default function UpgradePage({
               <CardDescription>For serious job hunters</CardDescription>
               <div className="mt-2">
                 <span className="text-3xl font-bold">$9.99</span>
-                <span className="text-gray-600">/month</span>
+                <span className="text-muted-foreground">/month</span>
               </div>
             </CardHeader>
             <CardContent className="space-y-2">
@@ -121,7 +121,7 @@ export default function UpgradePage({
               <CardDescription>For organizations</CardDescription>
               <div className="mt-2">
                 <span className="text-3xl font-bold">Contact</span>
-                <span className="text-gray-600"> for pricing</span>
+                <span className="text-muted-foreground"> for pricing</span>
               </div>
             </CardHeader>
             <CardContent className="space-y-2">

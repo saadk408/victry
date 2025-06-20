@@ -17,6 +17,8 @@
     "test:unit": "jest tests/unit",
     "test:integration": "jest tests/integration", 
     "test:performance": "jest tests/performance",
+    "test:visual": "playwright test",
+    "test:visual:ui": "playwright test --ui",
     "test:db": "supabase test db",
     "test:reset-db": "node tests/supabase/test-reset.js",
     "validate:colors": "echo 'Checking for hard-coded colors...' && ! grep -r 'bg-gray\\|text-gray\\|border-gray\\|bg-white\\|bg-black' --include='*.tsx' --include='*.ts' --include='*.jsx' --include='*.js' app/ components/ lib/ || echo 'Hard-coded colors found! Use semantic tokens only.'",
