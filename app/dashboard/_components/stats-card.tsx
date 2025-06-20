@@ -20,7 +20,7 @@ export function StatsCard({
 }: StatsCardProps) {
   // Color variants based on the design system - using semantic tokens
   const valueColorClasses = {
-    default: "text-blue-900",
+    default: "text-primary",
     success: "text-success",
     warning: "text-warning",
     error: "text-destructive",

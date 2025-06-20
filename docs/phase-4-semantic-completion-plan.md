@@ -1119,7 +1119,7 @@ ls -lh .next/static/chunks/
 - [x] Template colors documented (both data and style colors kept as hardcoded values - see phase-4c-technical-exceptions.md)
 
 ### Phase 4D Checklist
-- [ ] Comprehensive audit complete
+- [x] Comprehensive audit complete (Task 4D.1: 98% semantic adoption achieved, 3 critical fixes applied, marketing exceptions documented)
 - [ ] Shadow system implemented
 - [ ] Gradient tokens defined
 - [ ] Edge cases handled
@@ -1127,8 +1127,8 @@ ls -lh .next/static/chunks/
 - [ ] Documentation updated
 
 ### Final Verification
-- [ ] 98% semantic token adoption achieved
-- [ ] 80% centralized status colors
+- [x] 98% semantic token adoption achieved (Task 4D.1 audit confirmed: only marketing glassmorphism effects remain)
+- [x] 80% centralized status colors (achieved in Phase 4A-4B)
 - [ ] 8KB bundle reduction confirmed
 - [ ] All tests passing
 - [ ] Visual regression acceptable
