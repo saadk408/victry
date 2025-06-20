@@ -640,11 +640,11 @@ export default function ResumeListPage() {
             <>
               {baseResumes.length === 0 ? (
                 <div className="flex flex-col items-center justify-center px-4 py-12 text-center">
-                  <FileText className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <h3 className="mb-1 text-lg font-medium text-gray-900">
+                  <FileText className="mx-auto mb-4 h-16 w-16 text-muted" />
+                  <h3 className="mb-1 text-lg font-medium text-foreground">
                     You don&apos;t have any base resumes yet
                   </h3>
-                  <p className="mb-4 text-gray-500">
+                  <p className="mb-4 text-muted-foreground">
                     Create your first base resume to get started with Victry.
                   </p>
                   <Link href="/resume/create">
@@ -656,11 +656,11 @@ export default function ResumeListPage() {
                 </div>
               ) : getSortedResumes().length === 0 ? (
                 <div className="flex flex-col items-center justify-center px-4 py-12 text-center">
-                  <FileText className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <h3 className="mb-1 text-lg font-medium text-gray-900">
+                  <FileText className="mx-auto mb-4 h-16 w-16 text-muted" />
+                  <h3 className="mb-1 text-lg font-medium text-foreground">
                     No matching resumes found
                   </h3>
-                  <p className="mb-4 text-gray-500">
+                  <p className="mb-4 text-muted-foreground">
                     Try adjusting your search or clear the search field to see
                     all resumes.
                   </p>
@@ -734,13 +734,13 @@ export default function ResumeListPage() {
             <>
               {tailoredResumes.length === 0 ? (
                 <div className="flex flex-col items-center justify-center px-4 py-12 text-center">
-                  <FileText className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+                  <FileText className="mx-auto mb-4 h-16 w-16 text-muted" />
                   {baseResumes.length === 0 ? (
                     <>
-                      <h3 className="mb-1 text-lg font-medium text-gray-900">
+                      <h3 className="mb-1 text-lg font-medium text-foreground">
                         Create a base resume first
                       </h3>
-                      <p className="mb-4 text-gray-500">
+                      <p className="mb-4 text-muted-foreground">
                         You need to create a base resume before you can create
                         tailored resumes.
                       </p>
@@ -753,10 +753,10 @@ export default function ResumeListPage() {
                     </>
                   ) : (
                     <>
-                      <h3 className="mb-1 text-lg font-medium text-gray-900">
+                      <h3 className="mb-1 text-lg font-medium text-foreground">
                         You don&apos;t have any tailored resumes yet
                       </h3>
-                      <p className="mb-4 text-gray-500">
+                      <p className="mb-4 text-muted-foreground">
                         Create a tailored resume by selecting a base resume and
                         a job description.
                       </p>
@@ -769,11 +769,11 @@ export default function ResumeListPage() {
                 </div>
               ) : getSortedResumes().length === 0 ? (
                 <div className="flex flex-col items-center justify-center px-4 py-12 text-center">
-                  <FileText className="mx-auto mb-4 h-16 w-16 text-gray-300" />
-                  <h3 className="mb-1 text-lg font-medium text-gray-900">
+                  <FileText className="mx-auto mb-4 h-16 w-16 text-muted" />
+                  <h3 className="mb-1 text-lg font-medium text-foreground">
                     No matching resumes found
                   </h3>
-                  <p className="mb-4 text-gray-500">
+                  <p className="mb-4 text-muted-foreground">
                     Try adjusting your search or clear the search field to see
                     all resumes.
                   </p>

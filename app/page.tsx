@@ -811,7 +811,7 @@ export default function HomePage() {
       {/* Footer call to action */}
       <section className="py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-background"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-muted-foreground to-transparent"></div>
         
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 

@@ -463,7 +463,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
               ) : (
                 <div>
                   <h3 className="mb-2 text-xl font-medium">Resume Preview</h3>
-                  <p className="mb-4 text-gray-500">
+                  <p className="mb-4 text-muted-foreground">
                     Enter a job description and customize your tailoring options
                     to see your AI-tailored resume.
                   </p>

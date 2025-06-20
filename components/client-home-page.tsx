@@ -26,7 +26,7 @@ export function ClientHomePage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <main className="min-h-screen bg-gradient-to-b from-white to-muted/50">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white">
         {/* Background elements */}
@@ -135,15 +135,15 @@ export function ClientHomePage() {
                     
                     {/* Animated lines to simulate text */}
                     <div className="space-y-3">
-                      <div className="h-5 animate-pulse-width w-full rounded-md bg-gray-200"></div>
-                      <div className="h-5 animate-pulse-width-delayed-1 w-5/6 rounded-md bg-gray-200"></div>
-                      <div className="h-5 animate-pulse-width-delayed-2 w-4/6 rounded-md bg-gray-200"></div>
+                      <div className="h-5 animate-pulse-width w-full rounded-md bg-muted"></div>
+                      <div className="h-5 animate-pulse-width-delayed-1 w-5/6 rounded-md bg-muted"></div>
+                      <div className="h-5 animate-pulse-width-delayed-2 w-4/6 rounded-md bg-muted"></div>
                     </div>
                     
                     <div className="space-y-3">
-                      <div className="h-5 w-full rounded-md bg-gray-200"></div>
-                      <div className="h-5 w-full rounded-md bg-gray-200"></div>
-                      <div className="h-5 w-3/4 rounded-md bg-gray-200"></div>
+                      <div className="h-5 w-full rounded-md bg-muted"></div>
+                      <div className="h-5 w-full rounded-md bg-muted"></div>
+                      <div className="h-5 w-3/4 rounded-md bg-muted"></div>
                     </div>
                     
                     <div className="mt-4 flex justify-between">
@@ -193,7 +193,7 @@ export function ClientHomePage() {
             <h2 className="text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">
               Why Professionals Choose Victry
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-muted-foreground">
               Our platform is designed to give you a competitive edge in your job search.
             </p>
           </motion.div>
@@ -229,7 +229,7 @@ export function ClientHomePage() {
                 <h3 className="mb-3 text-xl font-semibold text-blue-950 group-hover:text-blue-800 transition-colors">
                   Save Hours of Time
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Our AI tailoring engine customizes your resume for each job in
                   minutes, not hours, letting you apply to more positions faster.
                 </p>
@@ -266,7 +266,7 @@ export function ClientHomePage() {
                 <h3 className="mb-3 text-xl font-semibold text-blue-950 group-hover:text-blue-800 transition-colors">
                   Pass ATS Systems
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Optimize your resume to pass Applicant Tracking Systems with our
                   ATS compatibility score and keyword analysis.
                 </p>
@@ -303,7 +303,7 @@ export function ClientHomePage() {
                 <h3 className="mb-3 text-xl font-semibold text-blue-950 group-hover:text-blue-800 transition-colors">
                   Maintain Your Voice
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Our AI preserves your authentic voice while optimizing your
                   content for each job application, so it always sounds like you.
                 </p>

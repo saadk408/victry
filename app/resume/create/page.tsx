@@ -782,7 +782,7 @@ export default function CreateResumePage() {
               </div>
 
               <div className="border-t border-border pt-4">
-                <h4 className="text-sm font-medium text-gray-500">
+                <h4 className="text-sm font-medium text-muted-foreground">
                   Professional Summary
                 </h4>
                 <p className="text-sm">

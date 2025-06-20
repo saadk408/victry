@@ -1104,7 +1104,7 @@ ls -lh .next/static/chunks/
 - [x] UI dialog component cleaned (already 100% semantic - bg-background, text-muted-foreground, focus:ring-ring, data-state variants all use semantic tokens)
 - [x] Analytics/application-tracking component migrated (1 bg-white instance → bg-background/90 with text-foreground, centralized status colors already in use)
 - [x] Resume Preview gray colors migrated (20 gray instances → semantic tokens: text-foreground, text-muted-foreground, border-border applied to all 4 resume templates)
-- [ ] No gray colors remaining (31 remaining instances across multiple files)
+- [x] No gray colors remaining (3 intentional gray-800 instances kept for mobile device mockup)
 - [ ] Functionality preserved
 
 ### Phase 4C Checklist
