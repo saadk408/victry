@@ -31,6 +31,12 @@ import { formatDate } from "@/lib/utils";
 import { Resume } from "../../models/resume";
 import { JobDescription } from "../../models/job-description";
 import { clientAnalytics } from "../../lib/utils/client-analytics";
+import { 
+  getSemanticStatus, 
+  getStatusBadgeClasses,
+  getStatusColors,
+  getStatusClasses 
+} from "@/lib/utils/status-colors";
 
 // Application status options
 export const APPLICATION_STATUSES = [
@@ -46,47 +52,8 @@ export const APPLICATION_STATUSES = [
 // Application status type
 export type ApplicationStatus = (typeof APPLICATION_STATUSES)[number];
 
-// Color mappings for different statuses
-const STATUS_COLORS: Record<
-  ApplicationStatus,
-  { bg: string; text: string; border: string }
-> = {
-  saved: {
-    bg: "bg-muted",
-    text: "text-muted-foreground",
-    border: "border-border",
-  },
-  applied: {
-    bg: "bg-primary/10",
-    text: "text-primary",
-    border: "border-primary/20",
-  },
-  interviewing: {
-    bg: "bg-warning/10",
-    text: "text-warning-foreground",
-    border: "border-warning/20",
-  },
-  offer: {
-    bg: "bg-accent/10",
-    text: "text-accent-foreground",
-    border: "border-accent/20",
-  },
-  accepted: {
-    bg: "bg-success/10",
-    text: "text-success-foreground",
-    border: "border-success/20",
-  },
-  rejected: {
-    bg: "bg-destructive/10",
-    text: "text-destructive-foreground",
-    border: "border-destructive/20",
-  },
-  withdrawn: {
-    bg: "bg-muted",
-    text: "text-muted-foreground",
-    border: "border-border",
-  },
-};
+// Status colors are now handled by semantic utilities
+// See @/lib/utils/status-colors for centralized status color management
 
 // User-friendly status labels
 const STATUS_LABELS: Record<ApplicationStatus, string> = {
@@ -841,11 +808,7 @@ export function ApplicationTracking({
                   </td>
                   <td className="p-3 text-foreground">{app.company}</td>
                   <td className="p-3">
-                    <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${
-                        STATUS_COLORS[app.status].bg
-                      } ${STATUS_COLORS[app.status].text}`}
-                    >
+                    <span className={getStatusBadgeClasses(getSemanticStatus(app.status))}>
                       {STATUS_LABELS[app.status]}
                     </span>
                   </td>
@@ -974,8 +937,8 @@ export function ApplicationTracking({
                                         <div className="mr-2 flex-shrink-0">
                                           <div
                                             className={`mt-1.5 h-2 w-2 rounded-full ${
-                                              STATUS_COLORS[history.status].bg
-                                            } ${STATUS_COLORS[history.status].border}`}
+                                              getStatusClasses(getSemanticStatus(history.status), 'soft')
+                                            }`}
                                           ></div>
                                         </div>
                                         <div>
@@ -1043,7 +1006,7 @@ export function ApplicationTracking({
         {displayStatuses.map((status) => (
           <div key={status} className="min-w-72">
             <div
-              className={`rounded-t-md p-3 ${STATUS_COLORS[status].bg} ${STATUS_COLORS[status].text} flex items-center justify-between font-medium`}
+              className={`rounded-t-md p-3 ${getStatusClasses(getSemanticStatus(status), 'soft')} flex items-center justify-between font-medium`}
             >
               <span>{STATUS_LABELS[status]}</span>
               <span className="rounded-full bg-white bg-opacity-90 px-2 py-0.5 text-xs">
@@ -1227,7 +1190,7 @@ export function ApplicationTracking({
               return (
                 <div
                   key={status}
-                  className={`${STATUS_COLORS[status].bg} group relative cursor-pointer`}
+                  className={`${getStatusColors(getSemanticStatus(status), 'soft').background} group relative cursor-pointer`}
                   style={{ width: `${percentage}%` }}
                   title={`${STATUS_LABELS[status]}: ${count} (${percentage.toFixed(1)}%)`}
                 >
@@ -1247,7 +1210,7 @@ export function ApplicationTracking({
               return (
                 <div key={status} className="flex items-center text-sm">
                   <div
-                    className={`mr-2 h-3 w-3 rounded-full ${STATUS_COLORS[status].bg} ${STATUS_COLORS[status].border}`}
+                    className={`mr-2 h-3 w-3 rounded-full ${getStatusClasses(getSemanticStatus(status), 'soft')}`}
                   ></div>
                   <span className="text-foreground">
                     {STATUS_LABELS[status]}:{" "}
@@ -1285,7 +1248,7 @@ export function ApplicationTracking({
                     .map((app) => (
                       <div key={app.id} className="flex items-start">
                         <div
-                          className={`mr-3 flex h-8 w-8 items-center justify-center rounded-full ${STATUS_COLORS[app.status].bg}`}
+                          className={`mr-3 flex h-8 w-8 items-center justify-center rounded-full ${getStatusColors(getSemanticStatus(app.status), 'soft').background}`}
                         >
                           {app.status === "applied" && (
                             <Briefcase className="h-4 w-4 text-primary" />
@@ -1686,7 +1649,7 @@ export function ApplicationTracking({
                   key={status}
                   className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
                     filters.status?.includes(status)
-                      ? `${STATUS_COLORS[status].bg} ${STATUS_COLORS[status].text} ${STATUS_COLORS[status].border}`
+                      ? getStatusClasses(getSemanticStatus(status), 'soft')
                       : "border border-input bg-background text-foreground hover:bg-muted"
                   }`}
                   onClick={() => {
