@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/button";
 import { User } from "@/models/user";
+import { getStatusClasses, getStatusBadgeClasses } from "@/lib/utils/status-colors";
+import { cn } from "@/lib/utils";
 import { Check, X, Zap, FileText, Shield, Clock, Loader2 } from "lucide-react";
 
 // Define plan features for each tier
@@ -275,8 +277,8 @@ export function SubscriptionPlans({
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-        <span className="ml-2 text-gray-600">Loading plans...</span>
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <span className="ml-2 text-muted-foreground">Loading plans...</span>
       </div>
     );
   }
@@ -285,45 +287,45 @@ export function SubscriptionPlans({
     <div className="w-full space-y-6">
       {showTitle && (
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900">
+          <h2 className="text-3xl font-bold text-foreground">
             Subscription Plans
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-xl text-gray-500">
+          <p className="mx-auto mt-3 max-w-2xl text-xl text-muted-foreground">
             Choose the perfect plan for your job search journey
           </p>
         </div>
       )}
 
       {error && (
-        <div className="mx-auto mb-6 max-w-3xl border-l-4 border-red-500 bg-destructive/10 p-4 text-red-700">
+        <div className="mx-auto mb-6 max-w-3xl border-l-4 border-destructive bg-destructive/10 p-4 text-destructive">
           <p>{error}</p>
         </div>
       )}
 
       {user && !compact && (
-        <div className="mx-auto mb-6 max-w-3xl rounded-lg border border-blue-100 bg-info/10 p-4">
+        <div className="mx-auto mb-6 max-w-3xl rounded-lg border border-info/20 bg-info/10 p-4">
           <div className="flex items-start">
-            <div className="mr-3 rounded-full bg-blue-100 p-2">
-              <FileText className="h-5 w-5 text-blue-700" />
+            <div className="mr-3 rounded-full bg-info/20 p-2">
+              <FileText className="h-5 w-5 text-info" />
             </div>
             <div>
-              <h3 className="font-medium text-blue-900">
+              <h3 className="font-medium text-info">
                 Your current plan:{" "}
                 <span className="font-bold">{getCurrentPlanName()}</span>
               </h3>
               {user.subscriptionTier === "premium" && (
-                <p className="mt-1 text-sm text-blue-700">
+                <p className="mt-1 text-sm text-info">
                   You have access to all premium features.
                 </p>
               )}
               {user.subscriptionStatus === "trial" && user.trialEnds && (
-                <p className="mt-1 text-sm text-blue-700">
+                <p className="mt-1 text-sm text-info">
                   Your trial period ends on{" "}
                   {new Date(user.trialEnds).toLocaleDateString()}
                 </p>
               )}
               {canUpgrade && (
-                <p className="mt-1 text-sm text-blue-700">
+                <p className="mt-1 text-sm text-info">
                   Upgrade to unlock all premium features!
                 </p>
               )}
@@ -335,27 +337,32 @@ export function SubscriptionPlans({
       {/* Billing Cycle Toggle - Only show for subscription plans */}
       {!compact && (
         <div className="mb-8 flex justify-center">
-          <div className="inline-flex rounded-lg bg-gray-100 p-1">
+          <div className="inline-flex rounded-lg bg-muted p-1">
             <button
-              className={`rounded px-4 py-2 text-sm font-medium ${
+              className={cn(
+                "rounded px-4 py-2 text-sm font-medium",
                 billingCycle === "monthly"
-                  ? "bg-white text-blue-700 shadow"
-                  : "text-gray-700 hover:text-gray-900"
-              }`}
+                  ? "bg-surface text-primary shadow"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
               onClick={() => setBillingCycle("monthly")}
             >
               Monthly Billing
             </button>
             <button
-              className={`flex items-center rounded px-4 py-2 text-sm font-medium ${
+              className={cn(
+                "flex items-center rounded px-4 py-2 text-sm font-medium",
                 billingCycle === "annual"
-                  ? "bg-white text-blue-700 shadow"
-                  : "text-gray-700 hover:text-gray-900"
-              }`}
+                  ? "bg-surface text-primary shadow"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
               onClick={() => setBillingCycle("annual")}
             >
               Annual Billing
-              <span className="ml-2 rounded-full bg-green-100 px-2 py-0.5 text-xs text-green-800">
+              <span className={cn(
+                "ml-2 rounded-full px-2 py-0.5 text-xs",
+                getStatusClasses('success', 'soft')
+              )}>
                 Save 25%
               </span>
             </button>
@@ -395,32 +402,33 @@ export function SubscriptionPlans({
           return (
             <div
               key={plan.id}
-              className={`overflow-hidden rounded-lg ${
+              className={cn(
+                "overflow-hidden rounded-lg",
                 plan.popular
-                  ? "relative border-2 border-blue-500"
-                  : "border border-gray-200"
-              }`}
+                  ? "relative border-2 border-primary"
+                  : "border border-border"
+              )}
             >
               {plan.popular && !compact && (
-                <div className="bg-info/100 py-1 text-center text-xs font-bold text-white">
+                <div className="bg-primary py-1 text-center text-xs font-bold text-primary-foreground">
                   MOST POPULAR
                 </div>
               )}
 
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900">{plan.name}</h3>
-                <p className="mt-1 text-gray-600">{plan.description}</p>
+                <h3 className="text-xl font-bold text-foreground">{plan.name}</h3>
+                <p className="mt-1 text-muted-foreground">{plan.description}</p>
 
                 <div className="mt-4">
                   <div className="flex items-baseline">
-                    <span className="text-3xl font-extrabold text-gray-900">
+                    <span className="text-3xl font-extrabold text-foreground">
                       {formatPrice(
                         displayPrice,
                         plan.oneTime ? undefined : billingCycle,
                       )}
                     </span>
                     {!plan.oneTime && (
-                      <span className="ml-1 text-gray-500">
+                      <span className="ml-1 text-muted-foreground">
                         {billingCycle === "monthly" ? "/month" : "/year"}
                       </span>
                     )}
@@ -429,13 +437,13 @@ export function SubscriptionPlans({
                   {billingCycle === "annual" &&
                     savingsPercent > 0 &&
                     !compact && (
-                      <p className="mt-1 text-sm text-green-600">
+                      <p className="mt-1 text-sm text-success">
                         Save {savingsPercent}% with annual billing
                       </p>
                     )}
 
                   {plan.oneTime && plan.duration && (
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-muted-foreground">
                       {plan.duration === "one-time"
                         ? "Single use"
                         : `Valid for ${plan.duration}`}
@@ -445,13 +453,14 @@ export function SubscriptionPlans({
 
                 <div className="mt-6">
                   <Button
-                    className={`w-full ${
+                    className={cn(
+                      "w-full",
                       plan.popular
-                        ? "bg-blue-600 hover:bg-blue-700"
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90"
                         : plan.id === "free"
-                          ? "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                          ? "bg-muted text-muted-foreground hover:bg-muted/80"
                           : ""
-                    }`}
+                    )}
                     disabled={
                       isCurrentPlan ||
                       (plan.id === "free" &&
@@ -479,7 +488,7 @@ export function SubscriptionPlans({
 
                 {!compact && (
                   <div className="mt-6 space-y-4">
-                    <h4 className="text-sm font-medium text-gray-900">
+                    <h4 className="text-sm font-medium text-foreground">
                       What&apos;s included:
                     </h4>
                     <ul className="space-y-3">
@@ -488,10 +497,13 @@ export function SubscriptionPlans({
                           {feature.included ? (
                             <Check className="mr-2 h-5 w-5 flex-shrink-0 text-success" />
                           ) : (
-                            <X className="mr-2 h-5 w-5 flex-shrink-0 text-gray-300" />
+                            <X className="mr-2 h-5 w-5 flex-shrink-0 text-muted" />
                           )}
                           <span
-                            className={`text-sm ${feature.included ? "text-gray-700" : "text-gray-400"}`}
+                            className={cn(
+                              "text-sm",
+                              feature.included ? "text-foreground" : "text-muted-foreground"
+                            )}
                           >
                             {feature.feature}
                           </span>
@@ -508,46 +520,46 @@ export function SubscriptionPlans({
 
       {/* Additional Information */}
       {!compact && (
-        <div className="mx-auto mt-12 max-w-4xl rounded-lg border border-gray-100 bg-gray-50 p-6">
-          <h3 className="mb-4 text-xl font-semibold text-gray-900">
+        <div className="mx-auto mt-12 max-w-4xl rounded-lg border border-border bg-muted/50 p-6">
+          <h3 className="mb-4 text-xl font-semibold text-foreground">
             Why Choose Premium?
           </h3>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div className="flex flex-col items-center text-center">
-              <div className="mb-4 rounded-full bg-blue-100 p-3">
-                <Zap className="h-6 w-6 text-blue-700" />
+              <div className="mb-4 rounded-full bg-primary/20 p-3">
+                <Zap className="h-6 w-6 text-primary" />
               </div>
-              <h4 className="mb-2 text-lg font-medium text-gray-900">
+              <h4 className="mb-2 text-lg font-medium text-foreground">
                 Unlimited Access
               </h4>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Create unlimited tailored resumes for every job you apply to,
                 maximizing your chances of success.
               </p>
             </div>
 
             <div className="flex flex-col items-center text-center">
-              <div className="mb-4 rounded-full bg-green-100 p-3">
-                <Shield className="h-6 w-6 text-green-700" />
+              <div className="mb-4 rounded-full bg-success/20 p-3">
+                <Shield className="h-6 w-6 text-success" />
               </div>
-              <h4 className="mb-2 text-lg font-medium text-gray-900">
+              <h4 className="mb-2 text-lg font-medium text-foreground">
                 Advanced AI Tools
               </h4>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Get unrestricted access to our AI-powered tailoring tools that
                 optimize your resume for each job application.
               </p>
             </div>
 
             <div className="flex flex-col items-center text-center">
-              <div className="mb-4 rounded-full bg-orange-100 p-3">
-                <Clock className="h-6 w-6 text-orange-700" />
+              <div className="mb-4 rounded-full bg-warning/20 p-3">
+                <Clock className="h-6 w-6 text-warning" />
               </div>
-              <h4 className="mb-2 text-lg font-medium text-gray-900">
+              <h4 className="mb-2 text-lg font-medium text-foreground">
                 Time Savings
               </h4>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Premium users save an average of 3-4 hours per job application
                 with our comprehensive tools.
               </p>

@@ -11,6 +11,8 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { User } from "@/models/user";
 import { isValidEmail } from "@/lib/utils/validation";
+import { getStatusClasses, getStatusBadgeClasses, getSemanticStatus } from "@/lib/utils/status-colors";
+import { cn } from "@/lib/utils";
 import { Loader2, Check, AlertCircle } from "lucide-react";
 
 interface ProfileEditorProps {
@@ -210,11 +212,11 @@ export function ProfileEditor({
     <div className="space-y-6">
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-          <span className="ml-2">Loading your profile...</span>
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <span className="ml-2 text-muted-foreground">Loading your profile...</span>
         </div>
       ) : error && !user ? (
-        <div className="border-l-4 border-red-500 bg-destructive/10 p-4 text-red-700">
+        <div className="border-l-4 border-destructive bg-destructive/10 p-4 text-destructive">
           <div className="flex items-start">
             <AlertCircle className="mr-2 mt-0.5 h-5 w-5 flex-shrink-0" />
             <div>
@@ -235,7 +237,7 @@ export function ProfileEditor({
         <form onSubmit={handleSubmit}>
           {/* Success Message */}
           {success && (
-            <div className="mb-6 border-l-4 border-green-500 bg-success/10 p-4 text-green-700">
+            <div className="mb-6 border-l-4 border-success bg-success/10 p-4 text-success">
               <div className="flex">
                 <Check className="mr-2 h-5 w-5" />
                 <p>{success}</p>
@@ -245,7 +247,7 @@ export function ProfileEditor({
 
           {/* Error Message */}
           {error && (
-            <div className="mb-6 border-l-4 border-red-500 bg-destructive/10 p-4 text-red-700">
+            <div className="mb-6 border-l-4 border-destructive bg-destructive/10 p-4 text-destructive">
               <div className="flex">
                 <AlertCircle className="mr-2 h-5 w-5" />
                 <p>{error}</p>
@@ -268,7 +270,7 @@ export function ProfileEditor({
 
             <TabsContent value="personal" className="space-y-4 py-4">
               <h2 className="text-lg font-semibold">Personal Information</h2>
-              <p className="mb-4 text-sm text-gray-600">
+              <p className="mb-4 text-sm text-muted-foreground">
                 Update your personal information and how you appear on the
                 platform.
               </p>
@@ -305,7 +307,7 @@ export function ProfileEditor({
                   placeholder="Your email address"
                   required
                 />
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   This is the email used for login and notifications.
                 </p>
               </div>
@@ -313,7 +315,7 @@ export function ProfileEditor({
 
             <TabsContent value="preferences" className="space-y-4 py-4">
               <h2 className="text-lg font-semibold">Preferences</h2>
-              <p className="mb-4 text-sm text-gray-600">
+              <p className="mb-4 text-sm text-muted-foreground">
                 Customize your experience with these preferences.
               </p>
 
@@ -321,7 +323,7 @@ export function ProfileEditor({
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label htmlFor="theme">Theme</Label>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                       Select your preferred theme for the application.
                     </p>
                   </div>
@@ -331,7 +333,7 @@ export function ProfileEditor({
                     onChange={(e) =>
                       setTheme(e.target.value as "light" | "dark" | "system")
                     }
-                    className="rounded-md border border-gray-300 p-2"
+                    className="rounded-md border border-border bg-background text-foreground p-2"
                   >
                     <option value="light">Light</option>
                     <option value="dark">Dark</option>
@@ -344,7 +346,7 @@ export function ProfileEditor({
                     <Label htmlFor="defaultTemplate">
                       Default Resume Template
                     </Label>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                       Choose your default template for new resumes.
                     </p>
                   </div>
@@ -352,7 +354,7 @@ export function ProfileEditor({
                     id="defaultTemplate"
                     value={defaultTemplate}
                     onChange={(e) => setDefaultTemplate(e.target.value)}
-                    className="rounded-md border border-gray-300 p-2"
+                    className="rounded-md border border-border bg-background text-foreground p-2"
                   >
                     <option value="">Choose a default template</option>
                     <option value="modern">Modern</option>
@@ -367,7 +369,7 @@ export function ProfileEditor({
                     <Label htmlFor="emailNotifications">
                       Email Notifications
                     </Label>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                       Receive email notifications about account activity and
                       updates.
                     </p>
@@ -383,15 +385,15 @@ export function ProfileEditor({
 
             <TabsContent value="account" className="space-y-4 py-4">
               <h2 className="text-lg font-semibold">Account Information</h2>
-              <p className="mb-4 text-sm text-gray-600">
+              <p className="mb-4 text-sm text-muted-foreground">
                 View and manage your account details.
               </p>
 
               <div className="space-y-4">
-                <div className="rounded-md bg-gray-50 p-4">
+                <div className="rounded-md bg-muted/50 p-4">
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div>
-                      <h4 className="text-sm font-medium text-gray-500">
+                      <h4 className="text-sm font-medium text-muted-foreground">
                         Subscription Plan
                       </h4>
                       <p className="font-medium">
@@ -404,17 +406,17 @@ export function ProfileEditor({
                     </div>
 
                     <div>
-                      <h4 className="text-sm font-medium text-gray-500">
+                      <h4 className="text-sm font-medium text-muted-foreground">
                         Subscription Status
                       </h4>
                       <div
-                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                          user?.subscriptionStatus === "active"
-                            ? "bg-green-100 text-green-800"
-                            : user?.subscriptionStatus === "trial"
-                              ? "bg-blue-100 text-blue-800"
-                              : "bg-gray-100 text-gray-800"
-                        }`}
+                        className={cn(
+                          "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
+                          getStatusClasses(
+                            getSemanticStatus(user?.subscriptionStatus || 'inactive'), 
+                            'soft'
+                          )
+                        )}
                       >
                         {user?.subscriptionStatus === "active"
                           ? "Active"
@@ -426,7 +428,7 @@ export function ProfileEditor({
 
                     {user?.subscriptionStatus === "trial" && user.trialEnds && (
                       <div className="col-span-2">
-                        <h4 className="text-sm font-medium text-gray-500">
+                        <h4 className="text-sm font-medium text-muted-foreground">
                           Trial Ends
                         </h4>
                         <p>{new Date(user.trialEnds).toLocaleDateString()}</p>
@@ -434,7 +436,7 @@ export function ProfileEditor({
                     )}
 
                     <div>
-                      <h4 className="text-sm font-medium text-gray-500">
+                      <h4 className="text-sm font-medium text-muted-foreground">
                         Member Since
                       </h4>
                       <p>
@@ -484,16 +486,16 @@ export function ProfileEditor({
                 </div>
 
                 <div className="border-t pt-4">
-                  <h3 className="mb-2 text-sm font-semibold text-red-600">
+                  <h3 className="mb-2 text-sm font-semibold text-destructive">
                     Danger Zone
                   </h3>
-                  <p className="mb-2 text-sm text-gray-600">
+                  <p className="mb-2 text-sm text-muted-foreground">
                     Permanently delete your account and all associated data.
                   </p>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-red-600 text-red-600 hover:bg-destructive/10"
+                    className="border-destructive text-destructive hover:bg-destructive/10"
                     onClick={() => {
                       if (
                         confirm(
