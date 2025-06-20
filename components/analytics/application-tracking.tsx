@@ -1009,7 +1009,7 @@ export function ApplicationTracking({
               className={`rounded-t-md p-3 ${getStatusClasses(getSemanticStatus(status), 'soft')} flex items-center justify-between font-medium`}
             >
               <span>{STATUS_LABELS[status]}</span>
-              <span className="rounded-full bg-white bg-opacity-90 px-2 py-0.5 text-xs">
+              <span className="rounded-full bg-background/90 px-2 py-0.5 text-xs text-foreground">
                 {applicationsByStatus[status].length}
               </span>
             </div>
