@@ -104,8 +104,8 @@ export default function Sidebar() {
       <div
         className={`flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
           active
-            ? "bg-blue-100 text-blue-900"
-            : "text-gray-700 hover:bg-info/10 hover:text-blue-900"
+            ? "bg-accent text-accent-foreground"
+            : "text-muted-foreground hover:bg-accent/50 hover:text-accent-foreground"
         }`}
       >
         <span className="mr-3">{icon}</span>
@@ -135,7 +135,7 @@ export default function Sidebar() {
     onClick: () => void;
   }) => (
     <button
-      className="flex w-full items-center justify-between px-3 py-2 text-sm font-semibold text-gray-700 hover:text-blue-900"
+      className="flex w-full items-center justify-between px-3 py-2 text-sm font-semibold text-muted-foreground hover:text-accent-foreground"
       onClick={onClick}
     >
       {label}
@@ -149,16 +149,16 @@ export default function Sidebar() {
 
   if (isLoading) {
     return (
-      <aside className="h-screen w-64 border-r bg-gray-50 p-4">
+      <aside className="h-screen w-64 border-r bg-muted/50 p-4">
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-blue-900">Victry</h2>
+          <h2 className="text-lg font-semibold text-foreground">Victry</h2>
         </div>
 
         <div className="space-y-4">
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
-              className="h-10 animate-pulse rounded-md bg-gray-200"
+              className="h-10 animate-pulse rounded-md bg-muted"
             />
           ))}
         </div>
@@ -167,10 +167,10 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="h-screen w-64 overflow-y-auto border-r bg-gray-50 p-4">
+    <aside className="h-screen w-64 overflow-y-auto border-r bg-muted/50 p-4">
       <div className="mb-6">
         <Link href="/">
-          <h2 className="text-lg font-semibold text-blue-900">Victry</h2>
+          <h2 className="text-lg font-semibold text-foreground">Victry</h2>
         </Link>
       </div>
 
@@ -194,7 +194,7 @@ export default function Sidebar() {
               />
 
               {resumesExpanded && (
-                <div className="ml-2 mt-1 space-y-1 border-l border-gray-200 pl-2">
+                <div className="ml-2 mt-1 space-y-1 border-l border-border pl-2">
                   <NavItem
                     href="/resume"
                     label="All Resumes"
@@ -220,7 +220,7 @@ export default function Sidebar() {
               />
 
               {jobsExpanded && (
-                <div className="ml-2 mt-1 space-y-1 border-l border-gray-200 pl-2">
+                <div className="ml-2 mt-1 space-y-1 border-l border-border pl-2">
                   <NavItem
                     href="/jobs"
                     label="All Jobs"
@@ -246,7 +246,7 @@ export default function Sidebar() {
           </div>
 
           {/* User Related Links */}
-          <div className="space-y-1 border-t border-gray-200 pt-4">
+          <div className="space-y-1 border-t border-border pt-4">
             <NavItem
               href="/account"
               label="Account Settings"
@@ -262,16 +262,16 @@ export default function Sidebar() {
           </div>
 
           {/* User Info */}
-          <div className="border-t border-gray-200 pt-4">
+          <div className="border-t border-border pt-4">
             <div className="flex items-center px-3 py-2">
-              <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
-                <User className="h-4 w-4 text-blue-600" />
+              <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-accent">
+                <User className="h-4 w-4 text-accent-foreground" />
               </div>
               <div className="truncate">
-                <p className="text-sm font-medium text-gray-700">
+                <p className="text-sm font-medium text-foreground">
                   {user.firstName || user.email?.split("@")[0] || "User"}
                 </p>
-                <p className="truncate text-xs text-gray-500">
+                <p className="truncate text-xs text-muted-foreground">
                   {user.subscriptionTier || "Free"} Plan
                 </p>
               </div>

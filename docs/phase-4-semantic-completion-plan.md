@@ -1097,7 +1097,7 @@ ls -lh .next/static/chunks/
 - [x] Upgrade page pricing text colors migrated
 - [x] Auth form components cleaned (forgot-password-form, reset-password-form migrated to semantic tokens - 25 hardcoded colors replaced)
 - [x] Account components migrated (profile-editor, subscription-plans migrated to semantic tokens - 56 hardcoded colors replaced with status utilities)
-- [x] Layout components cleaned (sidebar)
+- [x] Layout components cleaned (sidebar migrated to semantic tokens - 12 hardcoded colors replaced)
 - [ ] Resume editor controls migrated (rich-text-editor, skill-input, sortable-list)
 - [ ] Resume section editors cleaned (education.tsx)
 - [ ] Cover letter editor components migrated
