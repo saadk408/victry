@@ -45,7 +45,7 @@ export default function AccessDeniedPage({
   const message = messages[reason as keyof typeof messages] || messages.permission;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+    <div className="flex items-center justify-center min-h-screen bg-background">
       <Card className="w-full max-w-md mx-4 shadow-lg">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-center">
@@ -75,7 +75,7 @@ export default function AccessDeniedPage({
           </div>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
-          <p className="text-sm text-gray-600 text-center">{message.action}</p>
+          <p className="text-sm text-muted-foreground text-center">{message.action}</p>
           <div className="flex gap-4 justify-center w-full">
             <Button asChild variant="outline">
               <Link href="/">Home</Link>

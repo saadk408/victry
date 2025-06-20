@@ -3,6 +3,12 @@
 
 import { useState } from "react";
 import { Check, X, Search, ChevronDown, ChevronUp } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { 
+  getStatusBadgeClasses, 
+  importanceToStatus,
+  type ImportanceLevel 
+} from '@/lib/utils/status-colors';
 
 interface KeywordMatch {
   keyword: string;
@@ -68,50 +74,33 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
   const matchPercentage =
     totalKeywords > 0 ? Math.round((matchedKeywords / totalKeywords) * 100) : 0;
 
-  // Get importance color class
-  const getImportanceColorClass = (
-    importance: "low" | "medium" | "high",
-    found: boolean,
-  ) => {
-    if (!found) return "bg-gray-100 text-gray-800";
-
-    switch (importance) {
-      case "high":
-        return "bg-green-100 text-green-800";
-      case "medium":
-        return "bg-blue-100 text-blue-800";
-      case "low":
-        return "bg-gray-100 text-gray-800";
-    }
-  };
 
   return (
     <div className="space-y-6">
       {/* Summary Stats */}
-      <div className="rounded-lg border bg-white p-4">
+      <div className="rounded-lg border bg-surface p-4">
         <h3 className="mb-4 text-lg font-semibold">Keyword Match Summary</h3>
 
         <div className="flex flex-wrap justify-between gap-4">
           <div>
             <div className="flex items-baseline">
               <span className="text-3xl font-bold">{matchPercentage}%</span>
-              <span className="ml-2 text-gray-500">match rate</span>
+              <span className="ml-2 text-muted-foreground">match rate</span>
             </div>
-            <p className="mt-1 text-sm text-gray-600">
+            <p className="mt-1 text-sm text-muted-foreground">
               {matchedKeywords} of {totalKeywords} keywords found
             </p>
           </div>
 
           <div className="flex items-center">
-            <div className="h-2 w-full rounded-full bg-gray-200">
+            <div className="h-2 w-full rounded-full bg-muted">
               <div
-                className={`h-full rounded-full ${
-                  matchPercentage >= 80
-                    ? "bg-green-500"
-                    : matchPercentage >= 60
-                      ? "bg-yellow-500"
-                      : "bg-red-500"
-                }`}
+                className={cn(
+                  "h-full rounded-full transition-all",
+                  matchPercentage >= 80 ? "bg-success" :
+                  matchPercentage >= 60 ? "bg-warning" :
+                  "bg-destructive"
+                )}
                 style={{ width: `${matchPercentage}%` }}
               ></div>
             </div>
@@ -119,7 +108,7 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
         </div>
 
         <div className="mt-4 text-sm">
-          <p className="text-gray-700">
+          <p className="text-foreground">
             {matchPercentage >= 80
               ? "Excellent keyword match! Your resume is well-aligned with the job requirements."
               : matchPercentage >= 60
@@ -132,13 +121,13 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
       {/* Search & Filters */}
       <div className="space-y-3">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
           <input
             type="text"
             placeholder="Search keywords..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full rounded-md border py-2 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-md border border-border py-2 pl-10 pr-4 focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
           />
         </div>
 
@@ -146,7 +135,7 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
           <button
             type="button"
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center text-sm text-gray-600 hover:text-gray-900"
+            className="flex items-center text-sm text-muted-foreground hover:text-foreground"
           >
             {showFilters ? (
               <>
@@ -161,7 +150,7 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
             )}
           </button>
 
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-muted-foreground">
             {filteredAndSortedMatches.length}{" "}
             {filteredAndSortedMatches.length === 1 ? "keyword" : "keywords"}{" "}
             found
@@ -169,7 +158,7 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
         </div>
 
         {showFilters && (
-          <div className="grid grid-cols-1 gap-4 rounded-md bg-gray-50 p-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 rounded-md bg-muted/50 p-4 md:grid-cols-2">
             <div>
               <label className="mb-1 block text-sm font-medium">
                 Filter Keywords
@@ -177,7 +166,7 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
               <select
                 value={filter}
                 onChange={(e) => setFilter(e.target.value as KeywordFilter)}
-                className="w-full rounded-md border p-2"
+                className="w-full rounded-md border border-border bg-background p-2"
               >
                 <option value="all">All Keywords</option>
                 <option value="matched">Matched Keywords</option>
@@ -190,7 +179,7 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as KeywordSort)}
-                className="w-full rounded-md border p-2"
+                className="w-full rounded-md border border-border bg-background p-2"
               >
                 <option value="importance">Importance</option>
                 <option value="alphabetical">Alphabetical</option>
@@ -209,8 +198,8 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
         </h3>
 
         {filteredAndSortedMatches.length === 0 ? (
-          <div className="rounded-md bg-gray-50 p-6 text-center">
-            <p className="text-gray-500">
+          <div className="rounded-md bg-muted/50 p-6 text-center">
+            <p className="text-muted-foreground">
               No keywords found matching your criteria
             </p>
           </div>
@@ -219,31 +208,36 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
             {filteredAndSortedMatches.map((match, index) => (
               <div
                 key={index}
-                className="flex items-center rounded-md border bg-white p-3"
+                className="flex items-center rounded-md border bg-surface p-3"
               >
                 <div className="mr-3">
                   {match.found ? (
-                    <div className="rounded-full bg-green-100 p-1 text-green-800">
+                    <div className="rounded-full bg-success/10 p-1 text-success">
                       <Check className="h-4 w-4" />
                     </div>
                   ) : (
-                    <div className="rounded-full bg-red-100 p-1 text-red-800">
+                    <div className="rounded-full bg-destructive/10 p-1 text-destructive">
                       <X className="h-4 w-4" />
                     </div>
                   )}
                 </div>
 
                 <div className="flex-grow">
-                  <div className="font-medium text-gray-900">
+                  <div className="font-medium text-foreground">
                     {match.keyword}
                   </div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-muted-foreground">
                     {match.found ? "Found in resume" : "Missing in resume"}
                   </div>
                 </div>
 
                 <div
-                  className={`ml-2 rounded-full px-2 py-1 text-xs ${getImportanceColorClass(match.importance, match.found)}`}
+                  className={cn(
+                    "ml-2 rounded-full px-2 py-0.5 text-xs font-medium",
+                    match.found 
+                      ? getStatusBadgeClasses(importanceToStatus(match.importance as ImportanceLevel), 'small', 'soft')
+                      : "bg-muted text-muted-foreground"
+                  )}
                 >
                   {match.importance === "high"
                     ? "High"
@@ -258,24 +252,24 @@ export function KeywordAnalysis({ matches, jobTitle }: KeywordAnalysisProps) {
       </div>
 
       {/* Help Text */}
-      <div className="rounded-md border bg-gray-50 p-4 text-sm">
+      <div className="rounded-md border bg-muted/50 p-4 text-sm">
         <h4 className="mb-2 font-medium">About Keyword Matching</h4>
-        <p className="mb-2 text-gray-700">
+        <p className="mb-2 text-foreground">
           ATS systems scan resumes for keywords that match the job description.
           Keywords are rated by importance based on their frequency and context
           in the job posting.
         </p>
-        <ul className="list-inside list-disc space-y-1 text-gray-700">
+        <ul className="list-inside list-disc space-y-1 text-foreground">
           <li>
-            <span className="font-medium text-green-700">High importance</span>:
+            <span className="font-medium text-warning-foreground">High importance</span>:
             Essential skills or qualifications explicitly required in the job
           </li>
           <li>
-            <span className="font-medium text-blue-700">Medium importance</span>
+            <span className="font-medium text-info">Medium importance</span>
             : Relevant skills mentioned multiple times or in key sections
           </li>
           <li>
-            <span className="font-medium text-gray-700">Low importance</span>:
+            <span className="font-medium text-muted-foreground">Low importance</span>:
             Supporting skills or attributes mentioned in passing
           </li>
         </ul>

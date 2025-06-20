@@ -183,7 +183,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
       <div className="flex min-h-screen items-center justify-center">
         <div className="flex flex-col items-center">
           <Loader2 className="mb-4 h-12 w-12 animate-spin text-blue-600" />
-          <p className="text-gray-600">Loading resume...</p>
+          <p className="text-muted-foreground">Loading resume...</p>
         </div>
       </div>
     );
@@ -193,7 +193,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
     return (
       <div className="p-6">
         <h1 className="mb-6 text-2xl font-bold">Error</h1>
-        <p className="mb-4 text-red-600">
+        <p className="mb-4 text-destructive">
           {error?.message || "We couldn't load your resume. Please try again."}
         </p>
         <Link href="/resume" className="text-blue-600 hover:underline">
@@ -238,16 +238,16 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
         {/* Left column - Job Description & Controls */}
         <div className="lg:col-span-1">
           {tailoringState !== "completed" ? (
-            <div className="rounded-lg bg-white p-6 shadow">
+            <div className="rounded-lg bg-surface p-6 shadow">
               {!jobDescription ? (
                 <JobDescriptionInput onSubmit={handleJobDescriptionSubmit} />
               ) : (
                 <div className="space-y-6">
                   <div>
                     <h2 className="mb-2 text-xl font-semibold">Job Details</h2>
-                    <div className="rounded-md bg-gray-50 p-4">
+                    <div className="rounded-md bg-muted/50 p-4">
                       <h3 className="font-medium">{jobDescription.title}</h3>
-                      <p className="text-gray-600">{jobDescription.company}</p>
+                      <p className="text-muted-foreground">{jobDescription.company}</p>
                       <div className="mt-4">
                         <Button
                           variant="outline"
@@ -286,7 +286,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
                   </Button>
 
                   {tailoringState === "error" && (
-                    <div className="mt-4 rounded-md bg-red-50 p-4 text-red-700">
+                    <div className="mt-4 rounded-md bg-destructive/10 p-4 text-destructive">
                       <p className="font-medium">Error tailoring resume</p>
                       <p className="text-sm">{tailoringError}</p>
                       <Button
@@ -304,7 +304,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
               )}
             </div>
           ) : (
-            <div className="rounded-lg bg-white p-6 shadow">
+            <div className="rounded-lg bg-surface p-6 shadow">
               <div className="space-y-6">
                 <div>
                   <h2 className="mb-2 text-xl font-semibold">
@@ -340,7 +340,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
         {/* Right column - Resume Preview or Analysis */}
         <div className="lg:col-span-2">
           {tailoringState === "completed" ? (
-            <div className="rounded-lg bg-white shadow">
+            <div className="rounded-lg bg-surface shadow">
               <Tabs
                 value={activeTab}
                 onValueChange={(value) =>
@@ -364,7 +364,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
                     <h3 className="mb-4 text-xl font-bold">
                       {tailoredResume?.title}
                     </h3>
-                    <h4 className="mb-6 text-lg text-gray-700">
+                    <h4 className="mb-6 text-lg text-muted-foreground">
                       {tailoredResume?.targetJobTitle}
                     </h4>
 
@@ -372,7 +372,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
                       <h5 className="mb-2 font-semibold">
                         Professional Summary
                       </h5>
-                      <p className="text-gray-700">
+                      <p className="text-foreground">
                         {tailoredResume?.professionalSummary.content}
                       </p>
                     </div>
@@ -384,9 +384,9 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
                           <div className="flex justify-between">
                             <div>
                               <p className="font-medium">{exp.position}</p>
-                              <p className="text-gray-600">{exp.company}</p>
+                              <p className="text-muted-foreground">{exp.company}</p>
                             </div>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-muted-foreground">
                               {exp.startDate} -{" "}
                               {exp.current ? "Present" : exp.endDate}
                             </p>
@@ -396,7 +396,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
                               (highlight: string, index: number) => (
                                 <li
                                   key={index}
-                                  className="mt-1 text-sm text-gray-700"
+                                  className="mt-1 text-sm text-foreground"
                                 >
                                   {highlight}
                                 </li>
@@ -413,7 +413,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
                         {tailoredResume?.skills.map((skill) => (
                           <span
                             key={skill.id}
-                            className="rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-700"
+                            className="rounded-full bg-info/10 px-3 py-1 text-sm text-blue-700"
                           >
                             {skill.name}
                           </span>
@@ -422,7 +422,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
                     </div>
 
                     <div className="mt-8 text-center">
-                      <p className="italic text-gray-500">
+                      <p className="italic text-muted-foreground">
                         Download the PDF or save this resume to see the complete
                         version
                       </p>
@@ -448,14 +448,14 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
               </Tabs>
             </div>
           ) : (
-            <div className="flex h-64 flex-col items-center justify-center rounded-lg bg-white p-6 text-center shadow">
+            <div className="flex h-64 flex-col items-center justify-center rounded-lg bg-surface p-6 text-center shadow">
               {tailoringState === "processing" ? (
                 <div>
                   <Loader2 className="mx-auto mb-4 h-12 w-12 animate-spin text-blue-600" />
                   <h3 className="mb-2 text-xl font-medium">
                     Tailoring your resume...
                   </h3>
-                  <p className="text-gray-500">
+                  <p className="text-muted-foreground">
                     Our AI is optimizing your resume for this job description.
                     This might take a minute.
                   </p>
@@ -467,7 +467,7 @@ export default function TailorResumePage({ params }: TailorResumePageProps) {
                     Enter a job description and customize your tailoring options
                     to see your AI-tailored resume.
                   </p>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-muted-foreground">
                     The AI will highlight key skills, optimize your content, and
                     ensure ATS compatibility.
                   </p>

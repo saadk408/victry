@@ -18,22 +18,22 @@ export function StatsCard({
   colorVariant = "default",
   isLoading = false,
 }: StatsCardProps) {
-  // Color variants based on the design system
+  // Color variants based on the design system - using semantic tokens
   const valueColorClasses = {
     default: "text-blue-900",
-    success: "text-green-600",
-    warning: "text-amber-600",
-    error: "text-red-600",
+    success: "text-success",
+    warning: "text-warning",
+    error: "text-destructive",
   };
 
   return (
-    <div className="rounded-lg bg-white p-6 shadow transition-shadow duration-200 hover:shadow-md">
+    <div className="rounded-lg bg-surface p-6 shadow transition-shadow duration-200 hover:shadow-md">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm font-medium text-gray-500">{title}</p>
+          <p className="text-sm font-medium text-muted-foreground">{title}</p>
 
           {isLoading ? (
-            <div className="mt-1 h-9 w-24 animate-pulse rounded bg-gray-200"></div>
+            <div className="mt-1 h-9 w-24 animate-pulse rounded bg-muted"></div>
           ) : (
             <p
               className={cn(
@@ -47,13 +47,13 @@ export function StatsCard({
           )}
 
           {description && (
-            <p className="mt-1 text-sm text-gray-500">{description}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{description}</p>
           )}
         </div>
         {icon && (
           <div
             className={cn(
-              "text-gray-400 transition-colors",
+              "text-muted-foreground transition-colors",
               isLoading && "opacity-50",
             )}
           >

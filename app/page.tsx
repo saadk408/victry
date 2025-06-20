@@ -127,7 +127,7 @@ export default function HomePage() {
                 {/* Inner glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/5 to-blue-500/5"></div>
                 
-                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-white p-6 shadow-inner">
+                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-surface/50 to-surface p-6 shadow-inner">
                   <div className="flex flex-col gap-6">
                     <div className="flex items-center gap-4">
                       <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-orange-500 to-pink-600 flex items-center justify-center text-white font-bold shadow-lg">V</div>
@@ -202,7 +202,7 @@ export default function HomePage() {
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {/* Feature Card 1 */}
             <motion.div
-              className="group overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative"
+              className="group overflow-hidden rounded-2xl bg-surface shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -239,7 +239,7 @@ export default function HomePage() {
 
             {/* Feature Card 2 */}
             <motion.div
-              className="group overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative"
+              className="group overflow-hidden rounded-2xl bg-surface shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -276,7 +276,7 @@ export default function HomePage() {
 
             {/* Feature Card 3 */}
             <motion.div
-              className="group overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative"
+              className="group overflow-hidden rounded-2xl bg-surface shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -316,9 +316,9 @@ export default function HomePage() {
 
       {/* How It Works Section */}
       <section className="relative overflow-hidden py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white"></div>
-        <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-blue-100/40 to-transparent"></div>
-        <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-blue-100/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-background"></div>
+        <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-muted/20 to-transparent"></div>
+        <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-muted/20 to-transparent"></div>
         
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -371,13 +371,13 @@ export default function HomePage() {
                 </div>
                 
                 <div className="md:col-span-2 order-3">
-                  <div className="bg-white rounded-2xl p-2 shadow-xl overflow-hidden">
-                    <div className="aspect-video w-full bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl flex items-center justify-center p-4">
+                  <div className="bg-surface rounded-2xl p-2 shadow-xl overflow-hidden">
+                    <div className="aspect-video w-full bg-gradient-to-br from-muted/50 to-muted/30 rounded-xl flex items-center justify-center p-4">
                       <div className="w-full space-y-3 max-w-[200px] mx-auto">
                         <div className="h-6 w-full rounded-md bg-orange-200/70"></div>
-                        <div className="h-4 w-3/4 rounded-md bg-gray-200"></div>
-                        <div className="h-4 w-5/6 rounded-md bg-gray-200"></div>
-                        <div className="h-4 w-full rounded-md bg-gray-200"></div>
+                        <div className="h-4 w-3/4 rounded-md bg-muted"></div>
+                        <div className="h-4 w-5/6 rounded-md bg-muted"></div>
+                        <div className="h-4 w-full rounded-md bg-muted"></div>
                       </div>
                     </div>
                   </div>
@@ -393,13 +393,13 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <div className="md:col-span-2 order-3 md:order-1">
-                  <div className="bg-white rounded-2xl p-2 shadow-xl overflow-hidden">
-                    <div className="aspect-video w-full bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl flex items-center justify-center p-4">
+                  <div className="bg-surface rounded-2xl p-2 shadow-xl overflow-hidden">
+                    <div className="aspect-video w-full bg-gradient-to-br from-muted/50 to-muted/30 rounded-xl flex items-center justify-center p-4">
                       <div className="w-full space-y-3 max-w-[200px] mx-auto">
                         <div className="h-6 w-full rounded-md bg-blue-200/70"></div>
-                        <div className="h-4 w-3/4 rounded-md bg-gray-200"></div>
-                        <div className="h-4 w-5/6 rounded-md bg-gray-200"></div>
-                        <div className="h-4 w-full rounded-md bg-gray-200"></div>
+                        <div className="h-4 w-3/4 rounded-md bg-muted"></div>
+                        <div className="h-4 w-5/6 rounded-md bg-muted"></div>
+                        <div className="h-4 w-full rounded-md bg-muted"></div>
                       </div>
                     </div>
                   </div>
@@ -455,13 +455,13 @@ export default function HomePage() {
                 </div>
                 
                 <div className="md:col-span-2 order-3">
-                  <div className="bg-white rounded-2xl p-2 shadow-xl overflow-hidden">
-                    <div className="aspect-video w-full bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl flex items-center justify-center p-4">
+                  <div className="bg-surface rounded-2xl p-2 shadow-xl overflow-hidden">
+                    <div className="aspect-video w-full bg-gradient-to-br from-muted/50 to-muted/30 rounded-xl flex items-center justify-center p-4">
                       <div className="w-full space-y-3 max-w-[200px] mx-auto">
                         <div className="h-6 w-full rounded-md bg-pink-200/70"></div>
-                        <div className="h-4 w-3/4 rounded-md bg-gray-200"></div>
-                        <div className="h-4 w-5/6 rounded-md bg-gray-200"></div>
-                        <div className="h-4 w-full rounded-md bg-gray-200"></div>
+                        <div className="h-4 w-3/4 rounded-md bg-muted"></div>
+                        <div className="h-4 w-5/6 rounded-md bg-muted"></div>
+                        <div className="h-4 w-full rounded-md bg-muted"></div>
                       </div>
                     </div>
                   </div>
@@ -477,13 +477,13 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <div className="md:col-span-2 order-3 md:order-1">
-                  <div className="bg-white rounded-2xl p-2 shadow-xl overflow-hidden">
-                    <div className="aspect-video w-full bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl flex items-center justify-center p-4">
+                  <div className="bg-surface rounded-2xl p-2 shadow-xl overflow-hidden">
+                    <div className="aspect-video w-full bg-gradient-to-br from-muted/50 to-muted/30 rounded-xl flex items-center justify-center p-4">
                       <div className="w-full space-y-3 max-w-[200px] mx-auto">
                         <div className="h-6 w-full rounded-md bg-indigo-200/70"></div>
-                        <div className="h-4 w-3/4 rounded-md bg-gray-200"></div>
-                        <div className="h-4 w-5/6 rounded-md bg-gray-200"></div>
-                        <div className="h-4 w-full rounded-md bg-gray-200"></div>
+                        <div className="h-4 w-3/4 rounded-md bg-muted"></div>
+                        <div className="h-4 w-5/6 rounded-md bg-muted"></div>
+                        <div className="h-4 w-full rounded-md bg-muted"></div>
                       </div>
                     </div>
                   </div>
@@ -573,7 +573,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="mx-auto max-w-3xl text-center"
@@ -598,13 +598,13 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="group overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              className="group overflow-hidden rounded-2xl bg-surface p-8 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             >
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="h-5 w-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={i} className="h-5 w-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
@@ -634,13 +634,13 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="group overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              className="group overflow-hidden rounded-2xl bg-surface p-8 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             >
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="h-5 w-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={i} className="h-5 w-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
@@ -669,13 +669,13 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="group overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              className="group overflow-hidden rounded-2xl bg-surface p-8 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             >
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="h-5 w-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={i} className="h-5 w-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
@@ -798,7 +798,7 @@ export default function HomePage() {
                   transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                 ></motion.div>
                 <motion.div 
-                  className="absolute -bottom-5 -left-5 h-14 w-14 rounded-xl bg-blue-500/80 backdrop-blur-md shadow-lg"
+                  className="absolute -bottom-5 -left-5 h-14 w-14 rounded-xl bg-info/100/80 backdrop-blur-md shadow-lg"
                   animate={{ y: [0, 8, 0] }}
                   transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}
                 ></motion.div>
@@ -810,12 +810,12 @@ export default function HomePage() {
 
       {/* Footer call to action */}
       <section className="py-20 lg:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-background"></div>
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
         
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="mx-auto max-w-4xl bg-white rounded-3xl shadow-xl overflow-hidden"
+            className="mx-auto max-w-4xl bg-surface rounded-3xl shadow-xl overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

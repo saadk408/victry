@@ -15,7 +15,7 @@ const TemplatesPanel = dynamic(
   () => import("@/app/resume/_components/templates-panel").then(mod => ({ default: mod.TemplatesPanel })),
   { 
     ssr: false,
-    loading: () => <div className="p-4 text-center text-sm text-gray-500">Loading templates...</div>
+    loading: () => <div className="p-4 text-center text-sm text-muted-foreground">Loading templates...</div>
   }
 );
 
@@ -23,7 +23,7 @@ const ResumeScorePanel = dynamic(
   () => import("@/app/resume/_components/resume-score-panel").then(mod => ({ default: mod.ResumeScorePanel })),
   { 
     ssr: false,
-    loading: () => <div className="p-4 text-center text-sm text-gray-500">Loading score analysis...</div>
+    loading: () => <div className="p-4 text-center text-sm text-muted-foreground">Loading score analysis...</div>
   }
 );
 
@@ -31,7 +31,7 @@ const JobMatchPanel = dynamic(
   () => import("@/app/resume/_components/job-match-panel").then(mod => ({ default: mod.JobMatchPanel })),
   { 
     ssr: false,
-    loading: () => <div className="p-4 text-center text-sm text-gray-500">Loading job match...</div>
+    loading: () => <div className="p-4 text-center text-sm text-muted-foreground">Loading job match...</div>
   }
 );
 import { JobDescriptionInput } from "@/app/resume/_components/job-description-input";
@@ -131,7 +131,7 @@ export default function EditResumePage({ params }: EditResumePageProps) {
   return (
     <div className="flex h-screen flex-col">
       {/* Header */}
-      <header className="flex items-center justify-between border-b bg-white p-4">
+      <header className="flex items-center justify-between border-b bg-surface p-4">
         <div className="flex items-center">
           <Button variant="ghost" onClick={handleBack} className="mr-4">
             <ArrowLeft className="mr-1 h-5 w-5" />
@@ -163,9 +163,9 @@ export default function EditResumePage({ params }: EditResumePageProps) {
         </div>
 
         {/* Center panel - Resume preview */}
-        <div className="flex-grow overflow-y-auto bg-gray-50">
+        <div className="flex-grow overflow-y-auto bg-muted/50">
           <div className="mx-auto max-w-[800px] p-4">
-            <div className="sticky top-0 z-10 mb-2 flex items-center justify-between bg-gray-50 p-2">
+            <div className="sticky top-0 z-10 mb-2 flex items-center justify-between bg-muted/50 p-2">
               <div className="flex items-center">
                 <span className="mr-2 text-sm font-medium">Resume Score:</span>
                 <div className="rounded-md bg-yellow-100 px-2 py-1 text-sm font-medium text-yellow-800">
@@ -192,7 +192,7 @@ export default function EditResumePage({ params }: EditResumePageProps) {
         </div>
 
         {/* Right panel - Templates, Resume Score, Job Match */}
-        <div className="w-[350px] overflow-y-auto border-l bg-white">
+        <div className="w-[350px] overflow-y-auto border-l bg-surface">
           <Tabs
             value={activeTab}
             onValueChange={(value) => setActiveTab(value as ActivePanelTab)}
@@ -238,13 +238,13 @@ export default function EditResumePage({ params }: EditResumePageProps) {
                   <h3 className="mb-4 text-lg font-medium">
                     Creating your job tailored resume...
                   </h3>
-                  <p className="mb-6 text-gray-600">
+                  <p className="mb-6 text-muted-foreground">
                     Extracting job responsibilities...
                   </p>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
-                    <div className="h-full w-1/2 rounded-full bg-green-500"></div>
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
+                    <div className="h-full w-1/2 rounded-full bg-success/100"></div>
                   </div>
-                  <p className="mt-4 text-sm text-gray-500">
+                  <p className="mt-4 text-sm text-muted-foreground">
                     Please stay on this page while we analyze everything for
                     you. Time remaining ~3 seconds.
                   </p>

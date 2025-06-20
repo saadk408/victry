@@ -36,6 +36,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getStatusBadgeClasses } from '@/lib/utils/status-colors';
 import { Resume } from "@/models/resume";
 
 /**
@@ -328,7 +329,7 @@ export function ExportControls({
                 Export as Text
               </Button>
 
-              <hr className="my-1 border-gray-200" />
+              <hr className="my-1 border-border" />
 
               <Button
                 variant="ghost"
@@ -447,7 +448,7 @@ export function ExportControls({
 
       {/* Loading indicator */}
       {isExporting && (
-        <div className="flex items-center space-x-2 text-sm text-gray-500">
+        <div className="flex items-center space-x-2 text-sm text-muted-foreground">
           <Loader2 className="h-4 w-4 animate-spin" />
           <span>Exporting your resume...</span>
         </div>
@@ -455,8 +456,11 @@ export function ExportControls({
 
       {/* Error message */}
       {error && (
-        <div className="flex items-start space-x-2 rounded bg-red-50 p-2 text-sm text-red-600">
-          <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+        <div className={cn(
+          "flex items-start space-x-2 rounded p-2 text-sm",
+          getStatusBadgeClasses('error', 'default', 'soft')
+        )}>
+          <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
           <span>{error}</span>
         </div>
       )}
@@ -536,7 +540,7 @@ export function ExportControls({
               </SelectItem>
             </SelectContent>
           </Select>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-muted-foreground">
             PDF is recommended for job applications as it preserves formatting
             across all devices.
           </p>
@@ -642,7 +646,7 @@ export function ExportControls({
                 </Label>
               </div>
             </RadioGroup>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               Grayscale is recommended if your resume will be printed in black
               and white.
             </p>
@@ -655,7 +659,7 @@ export function ExportControls({
           <div className="flex items-center justify-between">
             <Label htmlFor="include-links" className="cursor-pointer">
               Include hyperlinks
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-muted-foreground">
                 Include clickable links for email, website, etc.
               </div>
             </Label>
@@ -671,7 +675,7 @@ export function ExportControls({
         <div className="flex items-center justify-between">
           <Label htmlFor="optimize-ats" className="cursor-pointer">
             Optimize for ATS
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-muted-foreground">
               Ensures compatibility with applicant tracking systems
             </div>
           </Label>

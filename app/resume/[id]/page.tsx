@@ -127,7 +127,7 @@ export default function ResumeViewPage({ params }: ResumeViewPageProps) {
                   : "Resume Preview"}
             </h1>
             {!loading && resume && (
-              <p className="text-gray-600">{resume.targetJobTitle}</p>
+              <p className="text-muted-foreground">{resume.targetJobTitle}</p>
             )}
           </div>
 
@@ -184,7 +184,7 @@ export default function ResumeViewPage({ params }: ResumeViewPageProps) {
       </div>
 
       {error ? (
-        <div className="flex items-center rounded-md border border-red-200 bg-red-50 p-6">
+        <div className="flex items-center rounded-md border border-red-200 bg-destructive/10 p-6">
           <div className="mr-4 rounded-full bg-red-100 p-2 text-red-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -203,8 +203,8 @@ export default function ResumeViewPage({ params }: ResumeViewPageProps) {
             </svg>
           </div>
           <div>
-            <h3 className="font-medium text-red-800">Error loading resume</h3>
-            <p className="mt-1 text-red-700">
+            <h3 className="font-medium text-destructive">Error loading resume</h3>
+            <p className="mt-1 text-destructive">
               {error.message || "Failed to load resume. Please try again."}
             </p>
             <Button
@@ -218,12 +218,12 @@ export default function ResumeViewPage({ params }: ResumeViewPageProps) {
           </div>
         </div>
       ) : (
-        <div className="rounded-lg bg-white shadow-xs">
+        <div className="rounded-lg bg-surface shadow-xs">
           {loading ? (
             <div className="flex h-[800px] items-center justify-center">
               <div className="text-center">
                 <Loader2 className="mx-auto mb-4 h-8 w-8 animate-spin text-blue-600" />
-                <p className="text-gray-600">Loading resume...</p>
+                <p className="text-muted-foreground">Loading resume...</p>
               </div>
             </div>
           ) : (

@@ -383,3 +383,21 @@ export function getStatusBadgeClasses(
 ): string {
   return `${statusBadgeClasses[size]} ${getStatusClasses(status, variant, false)}`;
 }
+
+/**
+ * Map score values to semantic status types
+ * Uses Pattern 15: Score-Based Status Mapping with consistent thresholds
+ * 
+ * @param score - Numeric score (0-100)
+ * @returns Semantic status type based on score thresholds
+ * 
+ * @example
+ * getScoreStatus(85) // Returns 'success'
+ * getScoreStatus(65) // Returns 'warning' 
+ * getScoreStatus(45) // Returns 'error'
+ */
+export function getScoreStatus(score: number): StatusType {
+  if (score >= 80) return 'success';
+  if (score >= 60) return 'warning';
+  return 'error';
+}

@@ -295,13 +295,13 @@ export function SubscriptionPlans({
       )}
 
       {error && (
-        <div className="mx-auto mb-6 max-w-3xl border-l-4 border-red-500 bg-red-50 p-4 text-red-700">
+        <div className="mx-auto mb-6 max-w-3xl border-l-4 border-red-500 bg-destructive/10 p-4 text-red-700">
           <p>{error}</p>
         </div>
       )}
 
       {user && !compact && (
-        <div className="mx-auto mb-6 max-w-3xl rounded-lg border border-blue-100 bg-blue-50 p-4">
+        <div className="mx-auto mb-6 max-w-3xl rounded-lg border border-blue-100 bg-info/10 p-4">
           <div className="flex items-start">
             <div className="mr-3 rounded-full bg-blue-100 p-2">
               <FileText className="h-5 w-5 text-blue-700" />
@@ -402,7 +402,7 @@ export function SubscriptionPlans({
               }`}
             >
               {plan.popular && !compact && (
-                <div className="bg-blue-500 py-1 text-center text-xs font-bold text-white">
+                <div className="bg-info/100 py-1 text-center text-xs font-bold text-white">
                   MOST POPULAR
                 </div>
               )}
@@ -486,7 +486,7 @@ export function SubscriptionPlans({
                       {plan.features.map((feature, index) => (
                         <li key={index} className="flex items-start">
                           {feature.included ? (
-                            <Check className="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+                            <Check className="mr-2 h-5 w-5 flex-shrink-0 text-success" />
                           ) : (
                             <X className="mr-2 h-5 w-5 flex-shrink-0 text-gray-300" />
                           )}

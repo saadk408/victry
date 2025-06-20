@@ -27,8 +27,28 @@ const customJestConfig = {
     '<rootDir>/tests/**/*.test.ts',
     '<rootDir>/tests/**/*.test.tsx',
   ],
+  testPathIgnorePatterns: [
+    '<rootDir>/tests/visual/',
+    '<rootDir>/tests/performance/',
+    '<rootDir>/.next/',
+    '<rootDir>/node_modules/',
+  ],
   testTimeout: 10000, // 10 seconds
   clearMocks: true,
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
+  transform: {
+    '^.+\\.(ts|tsx)$': ['ts-jest', {
+      useESM: true,
+      tsconfig: {
+        target: 'ES2020',
+        module: 'ESNext',
+        moduleResolution: 'node',
+      }
+    }],
+  },
+  transformIgnorePatterns: [
+    'node_modules/(?!(node-fetch|fetch-blob|data-uri-to-buffer|formdata-polyfill)/)',
+  ],
   collectCoverage: true,
   collectCoverageFrom: [
     'components/**/*.{ts,tsx}',

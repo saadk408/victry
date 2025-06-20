@@ -122,8 +122,8 @@ function VerifyEmailContent() {
       <div className="container mx-auto max-w-md py-16">
         <Card>
           <CardHeader className="text-center">
-            <AlertCircle className="mx-auto h-12 w-12 text-red-500" />
-            <CardTitle className="text-red-700">Invalid Verification Link</CardTitle>
+            <AlertCircle className="mx-auto h-12 w-12 text-destructive" />
+            <CardTitle className="text-destructive">Invalid Verification Link</CardTitle>
             <CardDescription>
               This verification link is missing required parameters. Please check your email for the correct link.
             </CardDescription>
@@ -146,16 +146,16 @@ function VerifyEmailContent() {
       <div className="container mx-auto max-w-md py-16">
         <Card>
           <CardHeader className="text-center">
-            <CheckCircle className="mx-auto h-12 w-12 text-green-500" />
-            <CardTitle className="text-green-700">Email Verified Successfully!</CardTitle>
+            <CheckCircle className="mx-auto h-12 w-12 text-success" />
+            <CardTitle className="text-success">Email Verified Successfully!</CardTitle>
             <CardDescription>
               Your email has been confirmed. You will be redirected to your dashboard shortly.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="text-center">
-              <Loader2 className="mx-auto h-6 w-6 animate-spin text-gray-400" />
-              <p className="mt-2 text-sm text-gray-600">Redirecting...</p>
+              <Loader2 className="mx-auto h-6 w-6 animate-spin text-muted-foreground" />
+              <p className="mt-2 text-sm text-muted-foreground">Redirecting...</p>
             </div>
           </CardContent>
         </Card>
@@ -168,8 +168,8 @@ function VerifyEmailContent() {
       <div className="container mx-auto max-w-md py-16">
         <Card>
           <CardHeader className="text-center">
-            <AlertCircle className="mx-auto h-12 w-12 text-red-500" />
-            <CardTitle className="text-red-700">Verification Failed</CardTitle>
+            <AlertCircle className="mx-auto h-12 w-12 text-destructive" />
+            <CardTitle className="text-destructive">Verification Failed</CardTitle>
             <CardDescription>
               {errorMessage || 'There was an error verifying your email address.'}
             </CardDescription>
@@ -206,7 +206,7 @@ function VerifyEmailContent() {
     <div className="container mx-auto max-w-md py-16">
       <Card>
         <CardHeader className="text-center">
-          <Mail className="mx-auto h-12 w-12 text-blue-500" />
+          <Mail className="mx-auto h-12 w-12 text-primary" />
           <CardTitle>Verify Your Email</CardTitle>
           <CardDescription>
             Click the button below to confirm your email address and activate your account.
@@ -233,8 +233,8 @@ function VerifyEmailContent() {
           </Button>
           
           <div className="mt-4 text-center">
-            <p className="text-xs text-gray-500">
-              Having trouble? <a href="/login" className="text-blue-600 hover:underline">Go to login</a>
+            <p className="text-xs text-muted-foreground">
+              Having trouble? <a href="/login" className="text-primary hover:underline">Go to login</a>
             </p>
           </div>
         </CardContent>
@@ -245,7 +245,7 @@ function VerifyEmailContent() {
 
 export default function VerifyEmailPage() {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div className="min-h-screen bg-background flex items-center justify-center">
       <Suspense 
         fallback={
           <Card className="w-full max-w-md">

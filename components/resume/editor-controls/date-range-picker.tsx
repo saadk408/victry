@@ -314,7 +314,7 @@ export function DateRangePicker({
       <div className="space-y-2">
         <Label htmlFor="start-date" className="flex items-center">
           {labels.startDate || "Start Date"}
-          {required && <span className="ml-1 text-red-500">*</span>}
+          {required && <span className="ml-1 text-destructive">*</span>}
         </Label>
 
         <div className="flex flex-col gap-2">
@@ -386,7 +386,7 @@ export function DateRangePicker({
         </div>
 
         {startDateError && (
-          <p className="text-sm text-red-500">{startDateError}</p>
+          <p className="text-sm text-destructive">{startDateError}</p>
         )}
       </div>
 
@@ -408,7 +408,7 @@ export function DateRangePicker({
         <div className="space-y-2">
           <Label htmlFor="end-date" className="flex items-center">
             {labels.endDate || "End Date"}
-            {required && <span className="ml-1 text-red-500">*</span>}
+            {required && <span className="ml-1 text-destructive">*</span>}
           </Label>
 
           <div className="flex flex-col gap-2">
@@ -484,7 +484,7 @@ export function DateRangePicker({
           </div>
 
           {endDateError && (
-            <p className="text-sm text-red-500">{endDateError}</p>
+            <p className="text-sm text-destructive">{endDateError}</p>
           )}
         </div>
       )}

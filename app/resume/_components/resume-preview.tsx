@@ -22,7 +22,7 @@ const templates = {
     experienceCompany: "text-gray-700",
     experienceDate: "text-gray-600",
     skillBadge:
-      "bg-blue-50 text-blue-800 rounded-full px-3 py-1 text-sm mr-2 mb-2",
+      "bg-info/10 text-info rounded-full px-3 py-1 text-sm mr-2 mb-2",
   },
   professional: {
     container: "font-serif",
@@ -94,10 +94,10 @@ export function ResumePreview({ id }: ResumePreviewProps) {
 
   if (loading) {
     return (
-      <div className="flex h-[1056px] items-center justify-center rounded bg-white p-8 shadow">
+      <div className="flex h-[1056px] items-center justify-center rounded bg-surface p-8 shadow">
         <div className="flex flex-col items-center space-y-4">
           <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-          <p className="text-gray-500">Loading resume preview...</p>
+          <p className="text-muted-foreground">Loading resume preview...</p>
         </div>
       </div>
     );
@@ -105,13 +105,13 @@ export function ResumePreview({ id }: ResumePreviewProps) {
 
   if (error || !resume) {
     return (
-      <div className="flex h-[1056px] items-center justify-center rounded bg-white p-8 shadow">
+      <div className="flex h-[1056px] items-center justify-center rounded bg-surface p-8 shadow">
         <div className="flex flex-col items-center space-y-4 text-center">
-          <AlertCircle className="h-8 w-8 text-red-500" />
-          <p className="font-medium text-gray-700">
+          <AlertCircle className="h-8 w-8 text-destructive" />
+          <p className="font-medium text-foreground">
             Failed to load resume preview
           </p>
-          <p className="max-w-md text-gray-500">
+          <p className="max-w-md text-muted-foreground">
             {error?.message ||
               "The resume couldn't be loaded. Please try again or contact support."}
           </p>
@@ -131,7 +131,7 @@ export function ResumePreview({ id }: ResumePreviewProps) {
   return (
     <div
       id="resume-preview-container"
-      className="overflow-hidden rounded bg-white p-8 shadow"
+      className="overflow-hidden rounded bg-surface p-8 shadow"
     >
       <div
         style={{
@@ -144,7 +144,7 @@ export function ResumePreview({ id }: ResumePreviewProps) {
       >
         <div
           className={cn(
-            "h-full w-full bg-white p-8 text-gray-800",
+            "h-full w-full bg-surface p-8 text-foreground",
             template.container,
           )}
         >
@@ -306,7 +306,7 @@ export function ResumePreview({ id }: ResumePreviewProps) {
                     </div>
 
                     {job.highlights?.length > 0 && (
-                      <ul className="mt-2 list-disc space-y-1 pl-5 text-gray-700">
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-muted-foreground">
                         {job.highlights.map((highlight, index) => (
                           <li key={index}>{highlight}</li>
                         ))}
@@ -336,7 +336,7 @@ export function ResumePreview({ id }: ResumePreviewProps) {
                           {edu.location ? `, ${edu.location}` : ""}
                         </p>
                         {edu.gpa && (
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-muted-foreground">
                             GPA: {edu.gpa}
                           </p>
                         )}
@@ -351,7 +351,7 @@ export function ResumePreview({ id }: ResumePreviewProps) {
                     </div>
 
                     {edu.highlights?.length > 0 && (
-                      <ul className="mt-2 list-disc space-y-1 pl-5 text-gray-700">
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-muted-foreground">
                         {edu.highlights.map((highlight, index) => (
                           <li key={index}>{highlight}</li>
                         ))}
@@ -393,7 +393,7 @@ export function ResumePreview({ id }: ResumePreviewProps) {
                           {project.name}
                         </h3>
                         {project.description && (
-                          <p className="text-gray-700">{project.description}</p>
+                          <p className="text-muted-foreground">{project.description}</p>
                         )}
                       </div>
                       {(project.startDate || project.endDate) && (
@@ -404,7 +404,7 @@ export function ResumePreview({ id }: ResumePreviewProps) {
                     </div>
 
                     {project.highlights?.length > 0 && (
-                      <ul className="mt-2 list-disc space-y-1 pl-5 text-gray-700">
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-muted-foreground">
                         {project.highlights.map((highlight, index) => (
                           <li key={index}>{highlight}</li>
                         ))}
@@ -427,11 +427,11 @@ export function ResumePreview({ id }: ResumePreviewProps) {
                     <div>
                       <span className="font-medium">{cert.name}</span>
                       {cert.issuer && (
-                        <span className="text-gray-700"> • {cert.issuer}</span>
+                        <span className="text-muted-foreground"> • {cert.issuer}</span>
                       )}
                     </div>
                     {cert.date && (
-                      <span className="text-gray-600">
+                      <span className="text-muted-foreground">
                         {formatDate(cert.date, "short")}
                       </span>
                     )}
@@ -472,11 +472,11 @@ export function ResumePreview({ id }: ResumePreviewProps) {
                     )}
 
                     {entry.description && (
-                      <p className="mt-1 text-gray-700">{entry.description}</p>
+                      <p className="mt-1 text-muted-foreground">{entry.description}</p>
                     )}
 
                     {entry.bullets?.length > 0 && (
-                      <ul className="mt-2 list-disc space-y-1 pl-5 text-gray-700">
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-muted-foreground">
                         {entry.bullets.map((bullet, i) => (
                           <li key={i}>{bullet}</li>
                         ))}

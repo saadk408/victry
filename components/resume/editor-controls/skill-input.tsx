@@ -669,7 +669,7 @@ export function SkillInput({
                 type="submit"
                 variant="ghost"
                 size="sm"
-                className="h-7 w-7 rounded-full p-0 text-green-600 hover:bg-green-50 hover:text-green-700"
+                className="h-7 w-7 rounded-full p-0 text-green-600 hover:bg-success/10 hover:text-green-700"
                 disabled={!newSkill.trim() || disabled}
               >
                 <span className="sr-only">Add</span>
@@ -723,7 +723,7 @@ export function SkillInput({
                 <Badge
                   key={index}
                   variant="outline"
-                  className="cursor-pointer hover:bg-blue-50 hover:text-blue-700"
+                  className="cursor-pointer hover:bg-info/10 hover:text-blue-700"
                   onClick={() => handleSelectSkill(skill)}
                 >
                   <Plus className="mr-1 h-3 w-3" />

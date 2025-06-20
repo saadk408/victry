@@ -214,7 +214,7 @@ export function ProfileEditor({
           <span className="ml-2">Loading your profile...</span>
         </div>
       ) : error && !user ? (
-        <div className="border-l-4 border-red-500 bg-red-50 p-4 text-red-700">
+        <div className="border-l-4 border-red-500 bg-destructive/10 p-4 text-red-700">
           <div className="flex items-start">
             <AlertCircle className="mr-2 mt-0.5 h-5 w-5 flex-shrink-0" />
             <div>
@@ -235,7 +235,7 @@ export function ProfileEditor({
         <form onSubmit={handleSubmit}>
           {/* Success Message */}
           {success && (
-            <div className="mb-6 border-l-4 border-green-500 bg-green-50 p-4 text-green-700">
+            <div className="mb-6 border-l-4 border-green-500 bg-success/10 p-4 text-green-700">
               <div className="flex">
                 <Check className="mr-2 h-5 w-5" />
                 <p>{success}</p>
@@ -245,7 +245,7 @@ export function ProfileEditor({
 
           {/* Error Message */}
           {error && (
-            <div className="mb-6 border-l-4 border-red-500 bg-red-50 p-4 text-red-700">
+            <div className="mb-6 border-l-4 border-red-500 bg-destructive/10 p-4 text-red-700">
               <div className="flex">
                 <AlertCircle className="mr-2 h-5 w-5" />
                 <p>{error}</p>
@@ -493,7 +493,7 @@ export function ProfileEditor({
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-red-600 text-red-600 hover:bg-red-50"
+                    className="border-red-600 text-red-600 hover:bg-destructive/10"
                     onClick={() => {
                       if (
                         confirm(

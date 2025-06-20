@@ -188,7 +188,7 @@ export function RichTextEditorContent({
       size="sm"
       className={cn(
         "h-8 w-8 p-0",
-        isActive && "bg-blue-50 text-blue-900",
+        isActive && "bg-info/10 text-blue-900",
         disabled && "cursor-not-allowed opacity-50",
       )}
       onClick={action}

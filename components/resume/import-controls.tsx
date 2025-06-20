@@ -25,6 +25,7 @@ import { Progress } from "@/components/ui/progress";
 import { isValidResumeFile, formatFileSize } from "@/lib/utils";
 import { Resume, WorkExperience, Education, Skill } from "@/models/resume";
 import { cn } from "@/lib/utils";
+import { getStatusBadgeClasses, getStatusColors } from '@/lib/utils/status-colors';
 import {
   Upload,
   File,
@@ -443,9 +444,9 @@ export function ImportControls({
           className={cn(
             "rounded-lg border-2 border-dashed p-6 transition-colors",
             selectedFile
-              ? "border-blue-400 bg-blue-50"
-              : "border-gray-300 hover:border-gray-400",
-            error ? "border-red-300 bg-red-50" : "",
+              ? "border-info bg-info/10"
+              : "border-border hover:border-border/80",
+            error ? "border-destructive bg-destructive/10" : "",
           )}
           onDrop={handleFileDrop}
           onDragOver={handleDragOver}
@@ -453,18 +454,18 @@ export function ImportControls({
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             {selectedFile ? (
               <div className="flex flex-col items-center">
-                <div className="mb-2 rounded-full bg-blue-100 p-3">
-                  <FileText className="h-6 w-6 text-blue-600" />
+                <div className="mb-2 rounded-full bg-info/10 p-3">
+                  <FileText className="h-6 w-6 text-info" />
                 </div>
-                <p className="font-medium text-gray-900">{selectedFile.name}</p>
-                <p className="text-sm text-gray-500">
+                <p className="font-medium text-foreground">{selectedFile.name}</p>
+                <p className="text-sm text-muted-foreground">
                   {formatFileSize(selectedFile.size)}
                 </p>
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
-                  className="mt-2 text-red-600 hover:bg-red-50 hover:text-red-700"
+                  className="mt-2 text-destructive hover:bg-destructive/10 hover:text-destructive"
                   onClick={() => setSelectedFile(null)}
                 >
                   <X className="mr-1 h-4 w-4" />
@@ -473,11 +474,11 @@ export function ImportControls({
               </div>
             ) : (
               <>
-                <div className="rounded-full bg-gray-100 p-3">
-                  <Upload className="h-6 w-6 text-gray-500" />
+                <div className="rounded-full bg-muted p-3">
+                  <Upload className="h-6 w-6 text-muted-foreground" />
                 </div>
                 <div>
-                  <p className="font-medium text-gray-700">
+                  <p className="font-medium text-foreground">
                     Drag & drop your resume file or
                   </p>
                   <div className="mt-2">
@@ -498,7 +499,7 @@ export function ImportControls({
                     />
                   </div>
                 </div>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   Supported formats: PDF, Word (.docx, .doc), Rich Text (.rtf),
                   and Plain Text (.txt)
                 </p>
@@ -509,8 +510,11 @@ export function ImportControls({
 
         {/* Error message */}
         {error && (
-          <div className="flex items-start space-x-2 rounded-md bg-red-50 p-3 text-sm text-red-600">
-            <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+          <div className={cn(
+            "flex items-start space-x-2 rounded-md p-3 text-sm",
+            getStatusBadgeClasses('error', 'default', 'soft')
+          )}>
+            <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
             <span>{error}</span>
           </div>
         )}
@@ -543,7 +547,7 @@ export function ImportControls({
         {/* Upload progress */}
         {importStatus === "uploading" && (
           <div className="space-y-2">
-            <div className="flex justify-between text-sm text-gray-500">
+            <div className="flex justify-between text-sm text-muted-foreground">
               <span>Uploading...</span>
               <span>{uploadProgress}%</span>
             </div>
@@ -571,15 +575,18 @@ export function ImportControls({
               placeholder="Paste your resume text here..."
             />
           </div>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-muted-foreground">
             Copy and paste the content of your resume from another document.
           </p>
         </div>
 
         {/* Error message */}
         {error && (
-          <div className="flex items-start space-x-2 rounded-md bg-red-50 p-3 text-sm text-red-600">
-            <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+          <div className={cn(
+            "flex items-start space-x-2 rounded-md p-3 text-sm",
+            getStatusBadgeClasses('error', 'default', 'soft')
+          )}>
+            <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
             <span>{error}</span>
           </div>
         )}
@@ -621,7 +628,7 @@ export function ImportControls({
     return (
       <div className="space-y-4">
         <h3 className="text-center text-lg font-medium">Resume Preview</h3>
-        <p className="mb-4 text-center text-sm text-gray-500">
+        <p className="mb-4 text-center text-sm text-muted-foreground">
           Review the imported information before confirming.
         </p>
 
@@ -634,7 +641,7 @@ export function ImportControls({
             <p className="text-lg font-bold">
               {parsedResume.personalInfo?.fullName || "Unnamed"}
             </p>
-            <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600">
+            <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
               {parsedResume.personalInfo?.email && (
                 <span>{parsedResume.personalInfo.email}</span>
               )}
@@ -653,7 +660,7 @@ export function ImportControls({
               <h4 className="mb-2 border-b pb-1 font-medium">
                 Professional Summary
               </h4>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-foreground">
                 {parsedResume.professionalSummary.content}
               </p>
             </div>
@@ -671,8 +678,8 @@ export function ImportControls({
                     (exp: WorkExperience, index: number) => (
                       <div key={index} className="text-sm">
                         <p className="font-medium">{exp.position}</p>
-                        <p className="text-gray-600">{exp.company}</p>
-                        <ul className="mt-1 list-inside list-disc text-gray-700">
+                        <p className="text-muted-foreground">{exp.company}</p>
+                        <ul className="mt-1 list-inside list-disc text-foreground">
                           {exp.highlights
                             ?.slice(0, 2)
                             .map((highlight: string, i: number) => (
@@ -702,7 +709,7 @@ export function ImportControls({
                     <p className="font-medium">
                       {edu.degree} in {edu.field}
                     </p>
-                    <p className="text-gray-600">{edu.institution}</p>
+                    <p className="text-muted-foreground">{edu.institution}</p>
                   </div>
                 ))}
               </div>
@@ -717,7 +724,7 @@ export function ImportControls({
                 {parsedResume.skills.map((skill: Skill, index: number) => (
                   <span
                     key={index}
-                    className="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-800"
+                    className="rounded-full bg-muted px-2 py-1 text-xs text-muted-foreground"
                   >
                     {skill.name}
                   </span>
@@ -764,13 +771,13 @@ export function ImportControls({
   const renderError = () => {
     return (
       <div className="flex flex-col items-center justify-center py-6">
-        <div className="mb-4 rounded-full bg-red-100 p-3 text-red-600">
+        <div className="mb-4 rounded-full bg-destructive/10 p-3 text-destructive">
           <AlertCircle className="h-8 w-8" />
         </div>
-        <h3 className="mb-2 text-lg font-medium text-gray-900">
+        <h3 className="mb-2 text-lg font-medium text-foreground">
           Import Failed
         </h3>
-        <p className="mb-4 text-center text-gray-500">
+        <p className="mb-4 text-center text-muted-foreground">
           {error ||
             "There was an error importing your resume. Please try again."}
         </p>
@@ -797,13 +804,13 @@ export function ImportControls({
   const renderSuccess = () => {
     return (
       <div className="flex flex-col items-center justify-center py-6">
-        <div className="mb-4 rounded-full bg-green-100 p-3 text-green-600">
+        <div className="mb-4 rounded-full bg-success/10 p-3 text-success">
           <CheckCircle2 className="h-8 w-8" />
         </div>
-        <h3 className="mb-2 text-lg font-medium text-gray-900">
+        <h3 className="mb-2 text-lg font-medium text-foreground">
           Resume Imported Successfully
         </h3>
-        <p className="mb-4 text-center text-gray-500">
+        <p className="mb-4 text-center text-muted-foreground">
           Your resume has been imported and is ready to edit.
         </p>
       </div>
@@ -898,10 +905,10 @@ export function ImportControls({
           {/* File Upload Option */}
           <div
             className={cn(
-              "cursor-pointer rounded-lg border p-4 transition-colors hover:border-blue-300 hover:bg-blue-50",
+              "cursor-pointer rounded-lg border p-4 transition-colors hover:border-primary hover:bg-primary/10",
               activeSource === "file"
-                ? "border-blue-300 bg-blue-50"
-                : "border-gray-200",
+                ? "border-primary bg-primary/10"
+                : "border-border",
             )}
             onClick={() => {
               setActiveSource("file");
@@ -909,11 +916,11 @@ export function ImportControls({
             }}
           >
             <div className="flex flex-col items-center p-4 text-center">
-              <div className="mb-3 rounded-full bg-blue-100 p-3">
-                <FileText className="h-6 w-6 text-blue-600" />
+              <div className="mb-3 rounded-full bg-primary/10 p-3">
+                <FileText className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="mb-1 font-medium text-gray-900">Upload a File</h3>
-              <p className="text-sm text-gray-500">
+              <h3 className="mb-1 font-medium text-foreground">Upload a File</h3>
+              <p className="text-sm text-muted-foreground">
                 Import from PDF, Word, or text file
               </p>
             </div>
@@ -922,10 +929,10 @@ export function ImportControls({
           {/* Paste Content Option */}
           <div
             className={cn(
-              "cursor-pointer rounded-lg border p-4 transition-colors hover:border-blue-300 hover:bg-blue-50",
+              "cursor-pointer rounded-lg border p-4 transition-colors hover:border-primary hover:bg-primary/10",
               activeSource === "paste"
-                ? "border-blue-300 bg-blue-50"
-                : "border-gray-200",
+                ? "border-primary bg-primary/10"
+                : "border-border",
             )}
             onClick={() => {
               setActiveSource("paste");
@@ -933,18 +940,18 @@ export function ImportControls({
             }}
           >
             <div className="flex flex-col items-center p-4 text-center">
-              <div className="mb-3 rounded-full bg-blue-100 p-3">
-                <ClipboardCheck className="h-6 w-6 text-blue-600" />
+              <div className="mb-3 rounded-full bg-primary/10 p-3">
+                <ClipboardCheck className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="mb-1 font-medium text-gray-900">Paste Content</h3>
-              <p className="text-sm text-gray-500">
+              <h3 className="mb-1 font-medium text-foreground">Paste Content</h3>
+              <p className="text-sm text-muted-foreground">
                 Copy and paste from another document
               </p>
             </div>
           </div>
         </div>
 
-        <p className="mt-2 text-center text-sm text-gray-500">
+        <p className="mt-2 text-center text-sm text-muted-foreground">
           Victry will automatically parse your resume and extract its content.
         </p>
       </CardContent>

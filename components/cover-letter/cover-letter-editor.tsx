@@ -692,14 +692,14 @@ export function CoverLetterEditor({
 
       {/* Status messages */}
       {error && (
-        <div className="flex items-center border-l-4 border-red-500 bg-red-50 p-4 text-red-700">
+        <div className="flex items-center border-l-4 border-red-500 bg-destructive/10 p-4 text-red-700">
           <AlertCircle className="mr-2 h-5 w-5 flex-shrink-0" />
           <p>{error}</p>
         </div>
       )}
 
       {success && (
-        <div className="flex items-center border-l-4 border-green-500 bg-green-50 p-4 text-green-700">
+        <div className="flex items-center border-l-4 border-green-500 bg-success/10 p-4 text-green-700">
           <Check className="mr-2 h-5 w-5 flex-shrink-0" />
           <p>{success}</p>
         </div>

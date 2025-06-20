@@ -8,7 +8,10 @@
 import { withTestUser, withAnonUser } from '../supabase/test-utils';
 import { testConfig } from '../supabase/test-environment';
 import { resetTestDatabase } from '../supabase/test-reset';
-import fetch from 'node-fetch';
+
+// Mock fetch for testing
+const mockFetch = jest.fn();
+global.fetch = mockFetch as any;
 
 // Base URL for app requests
 const APP_BASE_URL = 'http://localhost:3000';

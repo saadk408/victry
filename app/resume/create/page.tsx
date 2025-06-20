@@ -360,7 +360,7 @@ export default function CreateResumePage() {
         return (
           <div className="space-y-6">
             <h2 className="text-xl font-semibold">Choose a Template</h2>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               Select a professional template that best represents your style and
               industry.
             </p>
@@ -388,14 +388,14 @@ export default function CreateResumePage() {
 
                   <div className="p-4">
                     <h3 className="font-medium">{template.name}</h3>
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm text-muted-foreground">
                       {template.description}
                     </p>
 
                     <Button
                       className={`mt-3 w-full ${
                         resumeData.templateId === template.id
-                          ? "bg-green-600 hover:bg-green-700"
+                          ? "bg-success hover:bg-success/90"
                           : ""
                       }`}
                       onClick={() => handleTemplateSelect(template.id)}
@@ -430,8 +430,8 @@ export default function CreateResumePage() {
                   type="button"
                   className={`text-sm font-medium ${
                     importMethod === "manual"
-                      ? "text-blue-600"
-                      : "text-gray-500"
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                   onClick={() => setImportMethod("manual")}
                 >
@@ -442,8 +442,8 @@ export default function CreateResumePage() {
                   type="button"
                   className={`text-sm font-medium ${
                     importMethod === "upload"
-                      ? "text-blue-600"
-                      : "text-gray-500"
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                   onClick={() => setImportMethod("upload")}
                 >
@@ -453,12 +453,12 @@ export default function CreateResumePage() {
             </div>
 
             {importMethod === "upload" ? (
-              <div className="rounded-lg border-2 border-dashed border-gray-300 p-8 text-center">
-                <Upload className="mx-auto mb-4 h-10 w-10 text-gray-400" />
+              <div className="rounded-lg border-2 border-dashed border-border p-8 text-center">
+                <Upload className="mx-auto mb-4 h-10 w-10 text-muted-foreground" />
                 <h3 className="mb-2 font-medium">
                   Upload your existing resume
                 </h3>
-                <p className="mb-4 text-sm text-gray-600">
+                <p className="mb-4 text-sm text-muted-foreground">
                   We&apos;ll extract your information automatically. Supported
                   formats: PDF, Word (.docx)
                 </p>
@@ -466,7 +466,7 @@ export default function CreateResumePage() {
                 {isParsingFile ? (
                   <div className="flex flex-col items-center">
                     <Loader2 className="mb-2 h-6 w-6 animate-spin text-blue-600" />
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       Analyzing your resume...
                     </p>
                   </div>
@@ -493,7 +493,7 @@ export default function CreateResumePage() {
                     </label>
 
                     {uploadedFile && (
-                      <p className="mt-2 text-sm text-gray-600">
+                      <p className="mt-2 text-sm text-muted-foreground">
                         Selected: {uploadedFile.name}
                       </p>
                     )}
@@ -517,7 +517,7 @@ export default function CreateResumePage() {
                       handleInputChange("root", "title", e.target.value)
                     }
                   />
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     This title is for your reference only and won&apos;t appear
                     on the resume
                   </p>
@@ -528,7 +528,7 @@ export default function CreateResumePage() {
                     htmlFor="target-job"
                     className="block text-sm font-medium"
                   >
-                    Target Job Title <span className="text-red-500">*</span>
+                    Target Job Title <span className="text-destructive">*</span>
                   </label>
                   <Input
                     id="target-job"
@@ -551,7 +551,7 @@ export default function CreateResumePage() {
                       htmlFor="full-name"
                       className="block text-sm font-medium"
                     >
-                      Full Name <span className="text-red-500">*</span>
+                      Full Name <span className="text-destructive">*</span>
                     </label>
                     <Input
                       id="full-name"
@@ -573,7 +573,7 @@ export default function CreateResumePage() {
                       htmlFor="email"
                       className="block text-sm font-medium"
                     >
-                      Email <span className="text-red-500">*</span>
+                      Email <span className="text-destructive">*</span>
                     </label>
                     <Input
                       id="email"
@@ -688,7 +688,7 @@ export default function CreateResumePage() {
         return (
           <div className="space-y-6">
             <h2 className="text-xl font-semibold">Professional Summary</h2>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               Write a brief, compelling summary of your professional background
               and key strengths. This will appear at the top of your resume.
             </p>
@@ -698,7 +698,7 @@ export default function CreateResumePage() {
                 htmlFor="professional-summary"
                 className="block text-sm font-medium"
               >
-                Professional Summary <span className="text-red-500">*</span>
+                Professional Summary <span className="text-destructive">*</span>
               </label>
               <Textarea
                 id="professional-summary"
@@ -714,13 +714,13 @@ export default function CreateResumePage() {
                 className="h-32 resize-y"
                 required
               />
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-muted-foreground">
                 Keep your summary concise (3-5 sentences) and focused on your
                 most relevant qualifications for the target role.
               </p>
             </div>
 
-            <div className="rounded border border-blue-100 bg-blue-50 p-4 text-sm text-blue-800">
+            <div className="rounded border border-blue-100 bg-info/10 p-4 text-sm text-blue-800">
               <h3 className="mb-2 font-medium">Pro Tip</h3>
               <p>
                 A great professional summary highlights your years of
@@ -735,21 +735,21 @@ export default function CreateResumePage() {
         return (
           <div className="space-y-6">
             <h2 className="text-xl font-semibold">Create Your Resume</h2>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               Review your information before creating your resume. You&apos;ll
               be able to add more details like work experience and education in
               the next step.
             </p>
 
-            <div className="space-y-4 rounded-lg bg-gray-50 p-6">
+            <div className="space-y-4 rounded-lg bg-muted/50 p-6">
               <div>
                 <h3 className="text-lg font-medium">{resumeData.title}</h3>
-                <p className="text-gray-600">{resumeData.targetJobTitle}</p>
+                <p className="text-muted-foreground">{resumeData.targetJobTitle}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 border-t border-gray-200 pt-4">
+              <div className="grid grid-cols-2 gap-4 border-t border-border pt-4">
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500">
+                  <h4 className="text-sm font-medium text-muted-foreground">
                     Template
                   </h4>
                   <p>
@@ -759,29 +759,29 @@ export default function CreateResumePage() {
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500">Name</h4>
+                  <h4 className="text-sm font-medium text-muted-foreground">Name</h4>
                   <p>{resumeData.personalInfo?.fullName}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500">Email</h4>
+                  <h4 className="text-sm font-medium text-muted-foreground">Email</h4>
                   <p>{resumeData.personalInfo?.email}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500">Phone</h4>
+                  <h4 className="text-sm font-medium text-muted-foreground">Phone</h4>
                   <p>{resumeData.personalInfo?.phone || "Not provided"}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500">
+                  <h4 className="text-sm font-medium text-muted-foreground">
                     Location
                   </h4>
                   <p>{resumeData.personalInfo?.location || "Not provided"}</p>
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 pt-4">
+              <div className="border-t border-border pt-4">
                 <h4 className="text-sm font-medium text-gray-500">
                   Professional Summary
                 </h4>
@@ -791,7 +791,7 @@ export default function CreateResumePage() {
               </div>
             </div>
 
-            <div className="rounded border border-green-100 bg-green-50 p-4 text-sm text-green-800">
+            <div className="rounded border border-green-100 bg-success/10 p-4 text-sm text-green-800">
               <h3 className="mb-2 font-medium">What&apos;s Next?</h3>
               <p>
                 After creating your resume, you&apos;ll be able to add work
@@ -831,8 +831,8 @@ export default function CreateResumePage() {
               <div
                 className={`flex h-10 w-10 items-center justify-center rounded-full ${
                   currentStep >= index
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200 text-gray-500"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
                 }`}
               >
                 {currentStep > index ? (
@@ -845,8 +845,8 @@ export default function CreateResumePage() {
                 <div
                   className={
                     currentStep >= index
-                      ? "font-medium text-blue-600"
-                      : "text-gray-500"
+                      ? "font-medium text-primary"
+                      : "text-muted-foreground"
                   }
                 >
                   {step.title}
@@ -856,7 +856,7 @@ export default function CreateResumePage() {
               {index < steps.length - 1 && (
                 <div
                   className={`absolute left-1/2 top-5 h-0.5 w-full ${
-                    currentStep > index ? "bg-blue-600" : "bg-gray-200"
+                    currentStep > index ? "bg-primary" : "bg-muted"
                   }`}
                 ></div>
               )}
@@ -866,9 +866,9 @@ export default function CreateResumePage() {
       </div>
 
       {/* Form Content */}
-      <div className="mb-6 rounded-lg bg-white p-6 shadow-xs">
+      <div className="mb-6 rounded-lg bg-surface p-6 shadow-xs">
         {error && (
-          <div className="mb-6 border-l-4 border-red-500 bg-red-50 p-4 text-red-700">
+          <div className="mb-6 border-l-4 border-red-500 bg-destructive/10 p-4 text-red-700">
             <p>{error}</p>
           </div>
         )}

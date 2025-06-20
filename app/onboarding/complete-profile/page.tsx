@@ -72,26 +72,26 @@ export default function CompleteProfilePage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 p-6">
-      <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-8 shadow">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-background p-6">
+      <div className="w-full max-w-md space-y-8 rounded-lg bg-surface p-8 shadow">
         <div className="text-center">
           <h1 className="text-2xl font-bold">Complete Your Profile</h1>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-muted-foreground">
             Just a few more details to get started
           </p>
         </div>
 
         <form className="space-y-6" onSubmit={handleSubmit}>
           {error && (
-            <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            <div className="rounded-md border border-red-200 bg-destructive/10 p-3 text-sm text-red-700">
               {error}
             </div>
           )}
 
           <div className="space-y-4">
             <div className="space-y-2">
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                First Name <span className="text-red-500">*</span>
+              <label htmlFor="firstName" className="block text-sm font-medium text-foreground">
+                First Name <span className="text-destructive">*</span>
               </label>
               <Input
                 id="firstName"
@@ -105,8 +105,8 @@ export default function CompleteProfilePage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                Last Name <span className="text-red-500">*</span>
+              <label htmlFor="lastName" className="block text-sm font-medium text-foreground">
+                Last Name <span className="text-destructive">*</span>
               </label>
               <Input
                 id="lastName"

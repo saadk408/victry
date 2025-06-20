@@ -150,7 +150,7 @@ export function JobDescriptionInput({ onSubmit }: JobDescriptionInputProps) {
     <div className="space-y-6">
       <div>
         <h2 className="text-xl font-bold">Tailor Your Resume to a Job</h2>
-        <p className="mt-1 text-gray-600">
+        <p className="mt-1 text-muted-foreground">
           Enter a job description or select one of your saved jobs to tailor
           your resume.
         </p>
@@ -161,7 +161,7 @@ export function JobDescriptionInput({ onSubmit }: JobDescriptionInputProps) {
         <div className="rounded-md border">
           <button
             type="button"
-            className="flex w-full items-center justify-between p-4 transition-colors hover:bg-gray-50"
+            className="flex w-full items-center justify-between p-4 transition-colors hover:bg-muted/50">
             onClick={() => setShowSavedJobs(!showSavedJobs)}
           >
             <div className="flex items-center">
@@ -169,9 +169,9 @@ export function JobDescriptionInput({ onSubmit }: JobDescriptionInputProps) {
               <span className="font-medium">Select from your saved jobs</span>
             </div>
             {showSavedJobs ? (
-              <ChevronUp className="h-5 w-5 text-gray-400" />
+              <ChevronUp className="h-5 w-5 text-muted-foreground" />
             ) : (
-              <ChevronDown className="h-5 w-5 text-gray-400" />
+              <ChevronDown className="h-5 w-5 text-muted-foreground" />
             )}
           </button>
 
@@ -186,13 +186,13 @@ export function JobDescriptionInput({ onSubmit }: JobDescriptionInputProps) {
                   {savedJobs.map((job) => (
                     <button
                       key={job.id}
-                      className="w-full rounded-md p-3 text-left transition-colors hover:bg-blue-50"
+                      className="w-full rounded-md p-3 text-left transition-colors hover:bg-info/10"
                       onClick={() => handleSelectSavedJob(job)}
                     >
                       <div className="flex justify-between">
                         <div>
                           <h3 className="font-medium">{job.title}</h3>
-                          <p className="text-sm text-gray-600">{job.company}</p>
+                          <p className="text-sm text-muted-foreground">{job.company}</p>
                         </div>
                         {job.url && (
                           <a
@@ -220,17 +220,17 @@ export function JobDescriptionInput({ onSubmit }: JobDescriptionInputProps) {
       {/* OR Divider */}
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-300"></div>
+          <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="bg-white px-2 text-gray-500">OR</span>
+          <span className="bg-surface px-2 text-muted-foreground">OR</span>
         </div>
       </div>
 
       {/* New Job Description Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
-          <div className="rounded-md bg-red-50 p-3 text-sm text-red-700">
+          <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
             {error}
           </div>
         )}
@@ -241,7 +241,7 @@ export function JobDescriptionInput({ onSubmit }: JobDescriptionInputProps) {
               htmlFor="job-title"
               className="mb-1 block text-sm font-medium"
             >
-              Job Title <span className="text-red-500">*</span>
+              Job Title <span className="text-destructive">*</span>
             </label>
             <Input
               id="job-title"
@@ -254,7 +254,7 @@ export function JobDescriptionInput({ onSubmit }: JobDescriptionInputProps) {
 
           <div>
             <label htmlFor="company" className="mb-1 block text-sm font-medium">
-              Company <span className="text-red-500">*</span>
+              Company <span className="text-destructive">*</span>
             </label>
             <Input
               id="company"
@@ -301,7 +301,7 @@ export function JobDescriptionInput({ onSubmit }: JobDescriptionInputProps) {
             htmlFor="job-content"
             className="mb-1 block text-sm font-medium"
           >
-            Job Description <span className="text-red-500">*</span>
+            Job Description <span className="text-destructive">*</span>
           </label>
           <Textarea
             id="job-content"
@@ -311,7 +311,7 @@ export function JobDescriptionInput({ onSubmit }: JobDescriptionInputProps) {
             className="min-h-[200px] resize-y"
             required
           />
-          <p className="mt-1 text-xs text-gray-500">
+          <p className="mt-1 text-xs text-muted-foreground">
             For best results, include the full job description with all
             responsibilities and requirements.
           </p>

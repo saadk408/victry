@@ -159,13 +159,13 @@ export function ResetPasswordForm() {
   }
 
   const passwordStrength = password ? getPasswordStrength(password) : { score: 0, feedback: [] };
-  const strengthColors = ["bg-red-500", "bg-orange-500", "bg-yellow-500", "bg-lime-500", "bg-green-500"];
+  const strengthColors = ["bg-destructive/100", "bg-orange-500", "bg-yellow-500", "bg-lime-500", "bg-success/100"];
   const strengthLabels = ["Very Weak", "Weak", "Fair", "Good", "Strong"];
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {errors.root && (
-        <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+        <div className="rounded-md border border-red-200 bg-destructive/10 p-3 text-sm text-red-700">
           {errors.root.message}
         </div>
       )}
@@ -276,12 +276,12 @@ export function ResetPasswordForm() {
           <div className="flex items-center space-x-2">
             {password === confirmPassword ? (
               <>
-                <CheckCircle className="h-4 w-4 text-green-500" />
+                <CheckCircle className="h-4 w-4 text-success" />
                 <span className="text-sm text-green-600">Passwords match</span>
               </>
             ) : (
               <>
-                <AlertCircle className="h-4 w-4 text-red-500" />
+                <AlertCircle className="h-4 w-4 text-destructive" />
                 <span className="text-sm text-red-600">Passwords do not match</span>
               </>
             )}

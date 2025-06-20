@@ -154,21 +154,21 @@ export default function ResumeListPage() {
         {sortedResumes.map((resume) => (
           <div key={resume.id} className="overflow-hidden rounded-lg border">
             <div className="flex">
-              <div className="relative h-48 w-36 bg-gray-100">
+              <div className="relative h-48 w-36 bg-muted">
                 <Image
                   src={`/templates/${resume.templateId || "classic"}.png`}
                   alt={resume.title}
                   fill
                   style={{ objectFit: "cover" }}
                 />
-                <div className="absolute bottom-2 left-2 right-2 rounded bg-white/80 py-1 text-center text-xs">
-                  Classic <span className="text-gray-500">Light</span>
+                <div className="absolute bottom-2 left-2 right-2 rounded bg-surface/80 py-1 text-center text-xs">
+                  Classic <span className="text-muted-foreground">Light</span>
                 </div>
               </div>
 
               <div className="flex flex-1 flex-col p-4">
                 <h3 className="mb-1 font-semibold">{resume.title}</h3>
-                <p className="text-sm text-gray-600">{resume.targetJobTitle}</p>
+                <p className="text-sm text-muted-foreground">{resume.targetJobTitle}</p>
 
                 <div className="mt-auto">
                   <Button
@@ -220,7 +220,7 @@ export default function ResumeListPage() {
               </div>
             </div>
 
-            <div className="border-t px-4 py-2 text-xs text-gray-500">
+            <div className="border-t px-4 py-2 text-xs text-muted-foreground">
               Last Edited: {formatDate(resume.updatedAt, "short")}
             </div>
           </div>
@@ -238,21 +238,21 @@ export default function ResumeListPage() {
         {sortedResumes.map((resume) => (
           <div key={resume.id} className="overflow-hidden rounded-lg border">
             <div className="flex">
-              <div className="relative h-48 w-36 bg-gray-100">
+              <div className="relative h-48 w-36 bg-muted">
                 <Image
                   src={`/templates/${resume.templateId || "classic"}.png`}
                   alt={resume.title}
                   fill
                   style={{ objectFit: "cover" }}
                 />
-                <div className="absolute bottom-2 left-2 right-2 rounded bg-white/80 py-1 text-center text-xs">
-                  Classic <span className="text-gray-500">Light</span>
+                <div className="absolute bottom-2 left-2 right-2 rounded bg-surface/80 py-1 text-center text-xs">
+                  Classic <span className="text-muted-foreground">Light</span>
                 </div>
               </div>
 
               <div className="flex flex-1 flex-col p-4">
                 <h3 className="mb-1 font-semibold">{resume.title}</h3>
-                <p className="text-sm text-gray-600">{resume.targetJobTitle}</p>
+                <p className="text-sm text-muted-foreground">{resume.targetJobTitle}</p>
 
                 <div className="mt-auto">
                   <Button
@@ -291,7 +291,7 @@ export default function ResumeListPage() {
               </div>
             </div>
 
-            <div className="border-t px-4 py-2 text-xs text-gray-500">
+            <div className="border-t px-4 py-2 text-xs text-muted-foreground">
               Last Edited: {formatDate(resume.updatedAt, "short")}
             </div>
           </div>
@@ -308,8 +308,8 @@ export default function ResumeListPage() {
     if (activeTab === "base") {
       return (
         <div className="overflow-x-auto">
-          <table className="w-full rounded-lg border bg-white">
-            <thead className="bg-gray-50 text-sm text-gray-700">
+          <table className="w-full rounded-lg border bg-surface">
+            <thead className="bg-muted/50 text-sm text-foreground">
               <tr>
                 <th className="px-4 py-3 text-left font-medium">
                   <button
@@ -341,20 +341,20 @@ export default function ResumeListPage() {
                 <th className="px-4 py-3 text-center font-medium">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-border">
               {sortedResumes.map((resume) => (
                 <tr
                   key={resume.id}
-                  className="cursor-pointer hover:bg-gray-50"
+                  className="cursor-pointer hover:bg-muted/50"
                   onClick={() => handleResumeClick(resume.id)}
                 >
-                  <td className="px-4 py-3 font-medium text-blue-900">
+                  <td className="px-4 py-3 font-medium text-foreground">
                     {resume.title}
                   </td>
-                  <td className="px-4 py-3 text-gray-700">
+                  <td className="px-4 py-3 text-foreground">
                     {resume.targetJobTitle}
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-600">
+                  <td className="px-4 py-3 text-sm text-muted-foreground">
                     {formatDate(resume.updatedAt)}
                   </td>
                   <td className="px-4 py-3">
@@ -397,7 +397,7 @@ export default function ResumeListPage() {
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="text-red-500 hover:text-red-700"
+                        className="text-destructive hover:text-red-700"
                         onClick={(e) => handleDelete(resume.id, e)}
                         title="Delete Resume"
                       >
@@ -415,8 +415,8 @@ export default function ResumeListPage() {
       // Tailored resumes table view
       return (
         <div className="overflow-x-auto">
-          <table className="w-full rounded-lg border bg-white">
-            <thead className="bg-gray-50 text-sm text-gray-700">
+          <table className="w-full rounded-lg border bg-surface">
+            <thead className="bg-muted/50 text-sm text-foreground">
               <tr>
                 <th className="px-4 py-3 text-left font-medium">Resume Name</th>
                 <th className="px-4 py-3 text-left font-medium">Job Match</th>
@@ -431,17 +431,17 @@ export default function ResumeListPage() {
                 <th className="px-4 py-3 text-center font-medium">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-border">
               {sortedResumes.map((resume) => (
                 <tr
                   key={resume.id}
-                  className="cursor-pointer hover:bg-gray-50"
+                  className="cursor-pointer hover:bg-muted/50"
                   onClick={() => handleResumeClick(resume.id)}
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center">
-                      <button className="mr-2 text-gray-400">...</button>
-                      <span className="font-medium text-blue-900">
+                      <button className="mr-2 text-muted-foreground">...</button>
+                      <span className="font-medium text-foreground">
                         {resume.title}
                       </span>
                     </div>
@@ -451,16 +451,16 @@ export default function ResumeListPage() {
                       {resume.atsScore ?? "N/A"}
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-600">
+                  <td className="px-4 py-3 text-sm text-muted-foreground">
                     {formatDate(resume.createdAt, "short")}
                   </td>
-                  <td className="px-4 py-3 text-gray-700">
+                  <td className="px-4 py-3 text-foreground">
                     {resume.targetJobTitle}
                   </td>
-                  <td className="px-4 py-3 text-gray-700">
+                  <td className="px-4 py-3 text-foreground">
                     {resume.targetJobTitle}
                   </td>
-                  <td className="px-4 py-3 text-gray-700">
+                  <td className="px-4 py-3 text-foreground">
                     {baseResumes.find(
                       (base) => base.id === resume.originalResumeId,
                     )?.title || "Unknown"}
@@ -491,7 +491,7 @@ export default function ResumeListPage() {
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="text-red-500 hover:text-red-700"
+                        className="text-destructive hover:text-red-700"
                         onClick={(e) => handleDelete(resume.id, e)}
                         title="Delete Resume"
                       >
@@ -525,13 +525,13 @@ export default function ResumeListPage() {
 
       {/* Resume Type Cards */}
       <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-        <div className="flex rounded-lg border bg-white p-6">
+        <div className="flex rounded-lg border bg-surface p-6">
           <div className="mr-4 rounded-md bg-blue-100 p-3">
             <FileText className="h-6 w-6 text-blue-700" />
           </div>
           <div className="flex-1">
             <h2 className="mb-1 text-lg font-semibold">Base Resume</h2>
-            <p className="mb-3 text-sm text-gray-600">
+            <p className="mb-3 text-sm text-muted-foreground">
               A main resume targeted to a specific role/title and seniority. We
               suggest you create one or two of these at most, one for each role
               you are targeting.
@@ -544,13 +544,13 @@ export default function ResumeListPage() {
           </div>
         </div>
 
-        <div className="flex rounded-lg border bg-white p-6">
+        <div className="flex rounded-lg border bg-surface p-6">
           <div className="mr-4 rounded-md bg-green-100 p-3">
             <Zap className="h-6 w-6 text-green-700" />
           </div>
           <div className="flex-1">
             <h2 className="mb-1 text-lg font-semibold">Job Tailored Resume</h2>
-            <p className="mb-3 text-sm text-gray-600">
+            <p className="mb-3 text-sm text-muted-foreground">
               A resume targeted to a specific job description and built off of a
               Base Resume.
             </p>
@@ -587,7 +587,7 @@ export default function ResumeListPage() {
           {/* Search and View Controls for Base Resumes */}
           <div className="mb-6 flex flex-col gap-4 sm:flex-row">
             <div className="relative flex-grow">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
               <Input
                 type="text"
                 placeholder="Search base resumes..."
@@ -618,12 +618,12 @@ export default function ResumeListPage() {
           {loading ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-              <span className="ml-2 text-gray-600">
+              <span className="ml-2 text-muted-foreground">
                 Loading your resumes...
               </span>
             </div>
           ) : error ? (
-            <div className="relative mb-6 rounded border border-red-200 bg-red-50 px-4 py-3 text-red-700">
+            <div className="relative mb-6 rounded border border-red-200 bg-destructive/10 px-4 py-3 text-red-700">
               <strong className="font-bold">Error:</strong>
               <span className="block sm:inline">
                 {" "}
@@ -681,7 +681,7 @@ export default function ResumeListPage() {
           {/* Search and View Controls for Tailored Resumes */}
           <div className="mb-6 flex flex-col gap-4 sm:flex-row">
             <div className="relative flex-grow">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
               <Input
                 type="text"
                 placeholder="Search tailored resumes..."
@@ -712,12 +712,12 @@ export default function ResumeListPage() {
           {loading ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-              <span className="ml-2 text-gray-600">
+              <span className="ml-2 text-muted-foreground">
                 Loading your resumes...
               </span>
             </div>
           ) : error ? (
-            <div className="relative mb-6 rounded border border-red-200 bg-red-50 px-4 py-3 text-red-700">
+            <div className="relative mb-6 rounded border border-red-200 bg-destructive/10 px-4 py-3 text-red-700">
               <strong className="font-bold">Error:</strong>
               <span className="block sm:inline">
                 {" "}

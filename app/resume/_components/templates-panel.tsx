@@ -59,7 +59,7 @@ export function TemplatesPanel({
         {templates.map((template) => (
           <div key={template.id} className="space-y-2">
             <div
-              className={`cursor-pointer overflow-hidden rounded-md border transition-all ${currentTemplateId === template.id ? "border-blue-600 shadow-md" : "border-gray-200 hover:border-gray-300"}`}
+              className={`cursor-pointer overflow-hidden rounded-md border transition-all ${currentTemplateId === template.id ? "border-primary shadow-md" : "border-border hover:border-muted-foreground"}`}
               onClick={() => onTemplateSelect(template.id)}
             >
               <div className="relative h-40 w-full">
@@ -73,12 +73,12 @@ export function TemplatesPanel({
             </div>
             <div className="text-center">
               <h3 className="font-medium">{template.name}</h3>
-              <p className="text-sm text-gray-600">{template.style}</p>
+              <p className="text-sm text-muted-foreground">{template.style}</p>
               <div className="mt-1 flex justify-center space-x-1">
                 {template.colors.map((color, index) => (
                   <div
                     key={index}
-                    className="h-4 w-4 rounded-full border border-gray-200"
+                    className="h-4 w-4 rounded-full border border-border"
                     style={{ backgroundColor: color }}
                   />
                 ))}

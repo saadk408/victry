@@ -85,7 +85,7 @@ export default function DashboardPage() {
       {isLoading ? (
         <div className="grid animate-pulse grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="h-32 rounded-lg bg-gray-200"></div>
+            <div key={i} className="h-32 rounded-lg bg-muted"></div>
           ))}
         </div>
       ) : (
@@ -125,7 +125,7 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {/* Recent Resumes */}
             <div className="lg:col-span-2">
-              <div className="rounded-lg bg-white p-6 shadow">
+              <div className="rounded-lg bg-surface p-6 shadow">
                 <div className="mb-4 flex items-center justify-between">
                   <h2 className="text-xl font-semibold">Recent Resumes</h2>
                   <Link
@@ -137,9 +137,9 @@ export default function DashboardPage() {
                 </div>
 
                 {recentResumes.length === 0 ? (
-                  <div className="rounded-lg bg-gray-50 py-8 text-center">
-                    <FileText className="mx-auto mb-2 h-12 w-12 text-gray-400" />
-                    <p className="mb-4 text-gray-600">
+                  <div className="rounded-lg bg-muted/50 py-8 text-center">
+                    <FileText className="mx-auto mb-2 h-12 w-12 text-muted-foreground" />
+                    <p className="mb-4 text-muted-foreground">
                       You haven&apos;t created any resumes yet
                     </p>
                     <Link
@@ -154,7 +154,7 @@ export default function DashboardPage() {
                     {recentResumes.map((resume) => (
                       <div
                         key={resume.id}
-                        className="cursor-pointer rounded-lg border border-gray-100 p-4 transition-colors hover:bg-blue-50"
+                        className="cursor-pointer rounded-lg border border-border p-4 transition-colors hover:bg-info/10"
                         onClick={() => router.push(`/resume/${resume.id}`)}
                       >
                         <div className="flex items-center justify-between">
@@ -162,7 +162,7 @@ export default function DashboardPage() {
                             <h3 className="font-medium text-blue-900">
                               {resume.title}
                             </h3>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-muted-foreground">
                               {resume.targetJobTitle} • Updated{" "}
                               {formatDate(resume.updatedAt)}
                             </p>
@@ -173,7 +173,7 @@ export default function DashboardPage() {
                                 e.stopPropagation();
                                 router.push(`/resume/${resume.id}/edit`);
                               }}
-                              className="rounded-full p-2 text-gray-500 hover:bg-blue-100 hover:text-blue-600"
+                              className="rounded-full p-2 text-muted-foreground hover:bg-blue-100 hover:text-blue-600"
                               title="Edit Resume"
                             >
                               <FileEdit className="h-4 w-4" />
@@ -183,7 +183,7 @@ export default function DashboardPage() {
                                 e.stopPropagation();
                                 router.push(`/resume/${resume.id}/tailor`);
                               }}
-                              className="rounded-full p-2 text-gray-500 hover:bg-blue-100 hover:text-blue-600"
+                              className="rounded-full p-2 text-muted-foreground hover:bg-blue-100 hover:text-blue-600"
                               title="Tailor Resume"
                             >
                               <Zap className="h-4 w-4" />
@@ -199,19 +199,19 @@ export default function DashboardPage() {
 
             {/* Quick Actions */}
             <div>
-              <div className="mb-6 rounded-lg bg-white p-6 shadow">
+              <div className="mb-6 rounded-lg bg-surface p-6 shadow">
                 <h2 className="mb-4 text-xl font-semibold">Quick Actions</h2>
                 <div className="space-y-2">
                   <Link
                     href="/resume/create"
-                    className="flex items-center rounded-lg bg-blue-50 p-3 text-blue-700 transition-colors hover:bg-blue-100"
+                    className="flex items-center rounded-lg bg-info/10 p-3 text-blue-700 transition-colors hover:bg-blue-100"
                   >
                     <Plus className="mr-3 h-5 w-5" />
                     <span>Create new resume</span>
                   </Link>
                   <Link
                     href="/resume"
-                    className="flex items-center rounded-lg bg-gray-50 p-3 text-gray-700 transition-colors hover:bg-gray-100"
+                    className="flex items-center rounded-lg bg-muted/50 p-3 text-foreground transition-colors hover:bg-muted/80"
                   >
                     <Search className="mr-3 h-5 w-5" />
                     <span>Browse all resumes</span>
@@ -229,13 +229,13 @@ export default function DashboardPage() {
               </div>
 
               {/* Recent Job Descriptions */}
-              <div className="rounded-lg bg-white p-6 shadow">
+              <div className="rounded-lg bg-surface p-6 shadow">
                 <div className="mb-4 flex items-center justify-between">
                   <h2 className="text-xl font-semibold">Recent Jobs</h2>
                 </div>
 
                 {recentJobs.length === 0 ? (
-                  <p className="py-4 text-center text-gray-500">
+                  <p className="py-4 text-center text-muted-foreground">
                     No job descriptions saved
                   </p>
                 ) : (
@@ -243,10 +243,10 @@ export default function DashboardPage() {
                     {recentJobs.map((job) => (
                       <div
                         key={job.id}
-                        className="rounded-lg border border-gray-100 p-3"
+                        className="rounded-lg border border-border p-3"
                       >
                         <h3 className="font-medium">{job.title}</h3>
-                        <p className="text-sm text-gray-500">{job.company}</p>
+                        <p className="text-sm text-muted-foreground">{job.company}</p>
                       </div>
                     ))}
                   </div>
@@ -265,14 +265,14 @@ export default function DashboardPage() {
                     <div className="space-y-2">
                       <Link
                         href="/dashboard/admin"
-                        className="flex items-center rounded-lg bg-white p-3 text-purple-700 transition-colors hover:bg-purple-100 border border-purple-200"
+                        className="flex items-center rounded-lg bg-surface p-3 text-purple-700 transition-colors hover:bg-purple-100 border border-purple-200"
                       >
                         <Users className="mr-3 h-5 w-5" />
                         <span>Manage Users</span>
                       </Link>
                       <Link
                         href="/dashboard/analytics"
-                        className="flex items-center rounded-lg bg-white p-3 text-purple-700 transition-colors hover:bg-purple-100 border border-purple-200"
+                        className="flex items-center rounded-lg bg-surface p-3 text-purple-700 transition-colors hover:bg-purple-100 border border-purple-200"
                       >
                         <BarChart3 className="mr-3 h-5 w-5" />
                         <span>Analytics Dashboard</span>
@@ -287,14 +287,14 @@ export default function DashboardPage() {
                   description="Track and manage your job applications in one place"
                   featureName="Application Tracking"
                 >
-                  <div className="p-4 border rounded-lg bg-white">
+                  <div className="p-4 border rounded-lg bg-surface">
                     <h3 className="text-lg font-semibold mb-2">Job Applications</h3>
                     <div className="space-y-3">
                       <div className="p-3 border rounded-md">
                         <div className="flex justify-between items-center">
                           <div>
                             <h4 className="font-medium">Senior Frontend Developer</h4>
-                            <p className="text-sm text-gray-500">TechCorp Inc.</p>
+                            <p className="text-sm text-muted-foreground">TechCorp Inc.</p>
                           </div>
                           <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Interview</span>
                         </div>
@@ -303,7 +303,7 @@ export default function DashboardPage() {
                         <div className="flex justify-between items-center">
                           <div>
                             <h4 className="font-medium">UX Designer</h4>
-                            <p className="text-sm text-gray-500">Design Studio</p>
+                            <p className="text-sm text-muted-foreground">Design Studio</p>
                           </div>
                           <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Applied</span>
                         </div>
