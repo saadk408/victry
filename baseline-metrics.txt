@@ -1,0 +1,210 @@
+
+> victry@0.1.0 build
+> next build --turbopack
+
+   ▲ Next.js 15.3.2 (Turbopack)
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 5.0s
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/32) ...
+Error getting user session: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (8/32) 
+Error getting user session: Error: Dynamic server usage: Route /reset-password couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /reset-password couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /resume/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /resume/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /resume couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /resume couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /login couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /login couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /_not-found couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /_not-found couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (16/32) 
+Error getting user session: Error: Dynamic server usage: Route /auth/verify-email couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /auth/verify-email couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /onboarding/complete-profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /onboarding/complete-profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (24/32) 
+Error getting user session: Error: Dynamic server usage: Route /upgrade couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /upgrade couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /dashboard couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /register couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /register couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /auth/auth-code-error couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /auth/auth-code-error couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /access-denied couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /access-denied couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /performance-test couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /performance-test couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /forgot-password couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:9225)
+    at f (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:22269)
+    at l (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37121)
+    at m (.next/server/chunks/ssr/[root-of-the-server]__3acb11ed._.js:14:37290)
+    at stringify (<anonymous>) {
+  description: "Route /forgot-password couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+ ✓ Generating static pages (32/32)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size  First Load JS
+┌ ƒ /                                 52.1 kB         234 kB
+├ ƒ /_not-found                           0 B         182 kB
+├ ƒ /access-denied                        0 B         182 kB
+├ ƒ /api/ai/analyze-job                   0 B            0 B
+├ ƒ /api/ai/claude                        0 B            0 B
+├ ƒ /api/ai/claude-stream                 0 B            0 B
+├ ƒ /api/ai/tailor-resume                 0 B            0 B
+├ ƒ /api/audit-logs                       0 B            0 B
+├ ƒ /api/auth/forgot-password             0 B            0 B
+├ ƒ /api/db-monitoring                    0 B            0 B
+├ ƒ /api/example-with-error-handler       0 B            0 B
+├ ƒ /api/example-with-error-tracking      0 B            0 B
+├ ƒ /api/job-description                  0 B            0 B
+├ ƒ /api/query-analyzer                   0 B            0 B
+├ ƒ /api/resume                           0 B            0 B
+├ ƒ /auth/auth-code-error             3.06 kB         185 kB
+├ ƒ /auth/callback                        0 B            0 B
+├ ƒ /auth/confirm                         0 B            0 B
+├ ƒ /auth/verify-email                4.53 kB         186 kB
+├ ƒ /dashboard                        7.18 kB         189 kB
+├ ƒ /forgot-password                  5.57 kB         213 kB
+├ ƒ /login                            9.14 kB         191 kB
+├ ƒ /onboarding/complete-profile      3.61 kB         185 kB
+├ ƒ /performance-test                 6.77 kB         188 kB
+├ ƒ /register                         9.64 kB         191 kB
+├ ƒ /reset-password                   8.34 kB         216 kB
+├ ƒ /resume                           16.2 kB         198 kB
+├ ƒ /resume/[id]                      9.28 kB         191 kB
+├ ƒ /resume/[id]/edit                 18.1 kB         200 kB
+├ ƒ /resume/[id]/tailor               24.9 kB         207 kB
+├ ƒ /resume/create                    16.6 kB         198 kB
+└ ƒ /upgrade                              0 B         182 kB
++ First Load JS shared by all          204 kB
+  ├ chunks/7a85ef133e30718b.js        11.7 kB
+  ├ chunks/85aa3da2d4e53c67.js        16.8 kB
+  ├ chunks/ac5adceb88fa172f.js        42.4 kB
+  ├ chunks/cffd008c555dfae0.js        61.4 kB
+  ├ chunks/f878add9e2d1068b.js        16.9 kB
+  ├ chunks/ae8a5b33daa0c314.css       21.5 kB
+  └ other shared chunks (total)       33.2 kB
+
+
+ƒ Middleware                          85.8 kB
+
+ƒ  (Dynamic)  server-rendered on demand
+
+ ⚠ Support for Turbopack builds is experimental. We don't recommend deploying mission-critical applications to production.
+
+- Turbopack currently always builds production sourcemaps for the browser. This will include project sourcecode if deployed to production.
+- It is expected that your bundle size might be different from `next build` with webpack. This will be improved as we work towards stability.
+- This build is without disk caching; subsequent builds will become faster when disk caching becomes available.
+- When comparing output to webpack builds, make sure to first clear the Next.js cache by deleting the `.next` directory.
+
+Provide feedback for Turbopack builds at https://github.com/vercel/next.js/discussions/77721

@@ -1,0 +1,495 @@
+
+> victry@0.1.0 test:visual
+> playwright test
+
+
+Running 131 tests using 7 workers
+
+[1A[2K[1/131] [chromium] › tests/visual/components/button-simple.visual.test.ts:8:7 › Button Visual Test - Infrastructure Validation › sign-in button visual test
+[1A[2K[2/131] [chromium] › tests/visual/components/button-simple.visual.test.ts:24:7 › Button Visual Test - Infrastructure Validation › page visual regression test
+[1A[2K[3/131] [setup] › tests/visual/auth.setup.ts:15:6 › authenticate test user
+[1A[2K[4/131] [chromium] › tests/visual/components/button.visual.test.ts:20:7 › Button Visual Regression Tests › primary button visual comparison
+[1A[2K[5/131] [chromium] › tests/visual/components/button.visual.test.ts:60:7 › Button Visual Regression Tests › button focus state visual comparison
+[1A[2K[6/131] [chromium] › tests/visual/components/button.visual.test.ts:37:7 › Button Visual Regression Tests › secondary button visual comparison
+[1A[2K[7/131] [chromium] › tests/visual/components/button.visual.test.ts:48:7 › Button Visual Regression Tests › button hover state visual comparison
+[1A[2K[setup] › tests/visual/auth.setup.ts:15:6 › authenticate test user
+Authentication setup failed: Error: Failed to create test user: Email address "test@victry.app" is invalid
+    at [90m/Users/saadkhan/Development/Victry GPT/victry/[39mtests/visual/auth.setup.ts:47:15
+[90m    at processTicksAndRejections (node:internal/process/task_queues:105:5)[39m
+    at [90m/Users/saadkhan/Development/Victry GPT/victry/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:304:9
+    at [90m/Users/saadkhan/Development/Victry GPT/victry/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:284:11
+    at TimeoutManager.withRunnable [90m(/Users/saadkhan/Development/Victry GPT/victry/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:67:14[90m)[39m
+    at TestInfoImpl._runWithTimeout [90m(/Users/saadkhan/Development/Victry GPT/victry/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:282:7[90m)[39m
+    at [90m/Users/saadkhan/Development/Victry GPT/victry/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:302:7
+    at WorkerMain._runTest [90m(/Users/saadkhan/Development/Victry GPT/victry/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:277:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/Users/saadkhan/Development/Victry GPT/victry/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:193:11[90m)[39m
+    at process.<anonymous> [90m(/Users/saadkhan/Development/Victry GPT/victry/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:65:22[90m)[39m
+
+[1A[2K  1) [setup] › tests/visual/auth.setup.ts:15:6 › authenticate test user ────────────────────────────
+
+    Error: Failed to create test user: Email address "test@victry.app" is invalid
+
+      45 |
+      46 |       if (signUpError) {
+    > 47 |         throw new Error(`Failed to create test user: ${signUpError.message}`);
+         |               ^
+      48 |       }
+      49 |
+      50 |       console.log('Test user created successfully');
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/auth.setup.ts:47:15
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth.setup.ts-authenticate-test-user-setup/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[8/131] [chromium] › tests/visual/components/button.visual.test.ts:72:7 › Button Visual Regression Tests › disabled button visual comparison
+[1A[2K  2) [chromium] › tests/visual/components/button-simple.visual.test.ts:24:7 › Button Visual Test - Infrastructure Validation › page visual regression test 
+
+    Error: [31mTimed out 5000ms waiting for [39m[2mexpect([22m[31mpage[39m[2m).[22mtoHaveScreenshot[2m([22m[32mexpected[39m[2m)[22m
+
+      Failed to take two consecutive stable screenshots.
+    Previous: [33m/Users/saadkhan/Development/Victry GPT/victry/test-results/components-button-simple.v-ef498-page-visual-regression-test-chromium/homepage-previous.png[39m
+    Received: [33m/Users/saadkhan/Development/Victry GPT/victry/test-results/components-button-simple.v-ef498-page-visual-regression-test-chromium/homepage-actual.png[39m
+        Diff: [33m/Users/saadkhan/Development/Victry GPT/victry/test-results/components-button-simple.v-ef498-page-visual-regression-test-chromium/homepage-diff.png[39m
+
+    Call log:
+    [2m  - Expect "toHaveScreenshot(homepage.png)" with timeout 5000ms[22m
+    [2m    - generating new stable screenshot expectation[22m
+    [2m  - taking page screenshot[22m
+    [2m    - disabled all CSS animations[22m
+    [2m  - waiting for fonts to load...[22m
+    [2m  - fonts loaded[22m
+    [2m  - waiting 100ms before taking screenshot[22m
+    [2m  - taking page screenshot[22m
+    [2m    - disabled all CSS animations[22m
+    [2m  - waiting for fonts to load...[22m
+    [2m  - fonts loaded[22m
+    [2m  - 488 pixels (ratio 0.01 of all image pixels) are different.[22m
+    [2m  - waiting 250ms before taking screenshot[22m
+    [2m  - taking page screenshot[22m
+    [2m    - disabled all CSS animations[22m
+    [2m  - waiting for fonts to load...[22m
+    [2m  - fonts loaded[22m
+    [2m  - 1308 pixels (ratio 0.01 of all image pixels) are different.[22m
+    [2m  - waiting 500ms before taking screenshot[22m
+    [2m  - taking page screenshot[22m
+    [2m    - disabled all CSS animations[22m
+    [2m  - waiting for fonts to load...[22m
+    [2m  - fonts loaded[22m
+    [2m  - Timeout 5000ms exceeded.[22m
+
+
+      30 |     
+      31 |     // Take full page screenshot
+    > 32 |     await expect(page).toHaveScreenshot('homepage.png', {
+         |                        ^
+      33 |       fullPage: true,
+      34 |       threshold: 0.1
+      35 |     });
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button-simple.visual.test.ts:32:24
+
+    attachment #1: homepage-previous.png (image/png) ───────────────────────────────────────────────
+    test-results/components-button-simple.v-ef498-page-visual-regression-test-chromium/homepage-previous.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: homepage-actual.png (image/png) ─────────────────────────────────────────────────
+    test-results/components-button-simple.v-ef498-page-visual-regression-test-chromium/homepage-actual.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: homepage-diff.png (image/png) ───────────────────────────────────────────────────
+    test-results/components-button-simple.v-ef498-page-visual-regression-test-chromium/homepage-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/components-button-simple.v-ef498-page-visual-regression-test-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/components-button-simple.v-ef498-page-visual-regression-test-chromium/error-context.md
+
+
+[1A[2K[9/131] [chromium] › tests/visual/components/button.visual.test.ts:85:7 › Button Visual Regression Tests › button accessibility compliance
+[1A[2K  3) [chromium] › tests/visual/components/button.visual.test.ts:20:7 › Button Visual Regression Tests › primary button visual comparison 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       9 | test.describe('Button Visual Regression Tests', () => {
+      10 |   
+    > 11 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      12 |     // Navigate to sign-in page which has buttons without auth requirement
+      13 |     await page.goto('/sign-in');
+      14 |     
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:11:8
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('form') to be visible[22m
+
+
+      14 |     
+      15 |     // Wait for page to be fully loaded
+    > 16 |     await page.waitForSelector('form', { state: 'visible' });
+         |                ^
+      17 |     await page.waitForTimeout(500);
+      18 |   });
+      19 |
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:16:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/components-button.visual-B-84bd8-ry-button-visual-comparison-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/components-button.visual-B-84bd8-ry-button-visual-comparison-chromium/error-context.md
+
+
+[1A[2K  4) [chromium] › tests/visual/components/button.visual.test.ts:60:7 › Button Visual Regression Tests › button focus state visual comparison 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       9 | test.describe('Button Visual Regression Tests', () => {
+      10 |   
+    > 11 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      12 |     // Navigate to sign-in page which has buttons without auth requirement
+      13 |     await page.goto('/sign-in');
+      14 |     
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:11:8
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('form') to be visible[22m
+
+
+      14 |     
+      15 |     // Wait for page to be fully loaded
+    > 16 |     await page.waitForSelector('form', { state: 'visible' });
+         |                ^
+      17 |     await page.waitForTimeout(500);
+      18 |   });
+      19 |
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:16:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/components-button.visual-B-17e54-cus-state-visual-comparison-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/components-button.visual-B-17e54-cus-state-visual-comparison-chromium/error-context.md
+
+
+[1A[2K  5) [chromium] › tests/visual/components/button-simple.visual.test.ts:8:7 › Button Visual Test - Infrastructure Validation › sign-in button visual test 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('form') to be visible[22m
+
+
+      11 |     
+      12 |     // Wait for form to be loaded
+    > 13 |     await page.waitForSelector('form', { state: 'visible' });
+         |                ^
+      14 |     
+      15 |     // Find the sign-in button
+      16 |     const signInButton = page.locator('button[type="submit"]');
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button-simple.visual.test.ts:13:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/components-button-simple.v-f027a--sign-in-button-visual-test-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/components-button-simple.v-f027a--sign-in-button-visual-test-chromium/error-context.md
+
+
+[1A[2K  6) [chromium] › tests/visual/components/button.visual.test.ts:48:7 › Button Visual Regression Tests › button hover state visual comparison 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       9 | test.describe('Button Visual Regression Tests', () => {
+      10 |   
+    > 11 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      12 |     // Navigate to sign-in page which has buttons without auth requirement
+      13 |     await page.goto('/sign-in');
+      14 |     
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:11:8
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('form') to be visible[22m
+
+
+      14 |     
+      15 |     // Wait for page to be fully loaded
+    > 16 |     await page.waitForSelector('form', { state: 'visible' });
+         |                ^
+      17 |     await page.waitForTimeout(500);
+      18 |   });
+      19 |
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:16:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/components-button.visual-B-ff50f-ver-state-visual-comparison-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/components-button.visual-B-ff50f-ver-state-visual-comparison-chromium/error-context.md
+
+
+[1A[2K  7) [chromium] › tests/visual/components/button.visual.test.ts:37:7 › Button Visual Regression Tests › secondary button visual comparison 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       9 | test.describe('Button Visual Regression Tests', () => {
+      10 |   
+    > 11 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      12 |     // Navigate to sign-in page which has buttons without auth requirement
+      13 |     await page.goto('/sign-in');
+      14 |     
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:11:8
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('form') to be visible[22m
+
+
+      14 |     
+      15 |     // Wait for page to be fully loaded
+    > 16 |     await page.waitForSelector('form', { state: 'visible' });
+         |                ^
+      17 |     await page.waitForTimeout(500);
+      18 |   });
+      19 |
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:16:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/components-button.visual-B-c875f-ry-button-visual-comparison-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/components-button.visual-B-c875f-ry-button-visual-comparison-chromium/error-context.md
+
+
+[1A[2K[10/131] [chromium] › tests/visual/components/button.visual.test.ts:93:7 › Button Visual Regression Tests › button responsive design - mobile
+[1A[2K[11/131] [chromium] › tests/visual/components/button.visual.test.ts:104:7 › Button Visual Regression Tests › button semantic token compliance
+[1A[2K[12/131] [chromium] › tests/visual/components/keyword-analysis.visual.test.ts:27:7 › Keyword Analysis Visual Regression › keyword analysis overall appearance
+[1A[2K[13/131] [chromium] › tests/visual/components/keyword-analysis.visual.test.ts:39:7 › Keyword Analysis Visual Regression › importance badges use semantic colors
+[1A[2K[14/131] [chromium] › tests/visual/components/keyword-analysis.visual.test.ts:52:7 › Keyword Analysis Visual Regression › progress bar uses semantic status colors
+[1A[2K  8) [chromium] › tests/visual/components/button.visual.test.ts:72:7 › Button Visual Regression Tests › disabled button visual comparison 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       9 | test.describe('Button Visual Regression Tests', () => {
+      10 |   
+    > 11 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      12 |     // Navigate to sign-in page which has buttons without auth requirement
+      13 |     await page.goto('/sign-in');
+      14 |     
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:11:8
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('form') to be visible[22m
+
+
+      14 |     
+      15 |     // Wait for page to be fully loaded
+    > 16 |     await page.waitForSelector('form', { state: 'visible' });
+         |                ^
+      17 |     await page.waitForTimeout(500);
+      18 |   });
+      19 |
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:16:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/components-button.visual-B-27738-ed-button-visual-comparison-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/components-button.visual-B-27738-ed-button-visual-comparison-chromium/error-context.md
+
+
+[1A[2K[15/131] [chromium] › tests/visual/components/keyword-analysis.visual.test.ts:62:7 › Keyword Analysis Visual Regression › keyword analysis text uses semantic tokens
+[1A[2K[chromium] › tests/visual/components/keyword-analysis.visual.test.ts:39:7 › Keyword Analysis Visual Regression › importance badges use semantic colors
+Keyword analysis not found, may require authentication or resume data
+
+[1A[2K[chromium] › tests/visual/components/keyword-analysis.visual.test.ts:27:7 › Keyword Analysis Visual Regression › keyword analysis overall appearance
+Keyword analysis not found, may require authentication or resume data
+
+[1A[2K[chromium] › tests/visual/components/keyword-analysis.visual.test.ts:52:7 › Keyword Analysis Visual Regression › progress bar uses semantic status colors
+Keyword analysis not found, may require authentication or resume data
+
+[1A[2K[chromium] › tests/visual/components/keyword-analysis.visual.test.ts:27:7 › Keyword Analysis Visual Regression › keyword analysis overall appearance
+Keyword analysis component not visible, skipping visual test
+
+[1A[2K[16/131] [chromium] › tests/visual/components/keyword-analysis.visual.test.ts:87:7 › Keyword Analysis Visual Regression › keyword analysis backgrounds use semantic tokens
+[1A[2K[17/131] [chromium] › tests/visual/components/keyword-analysis.visual.test.ts:112:7 › Keyword Analysis Visual Regression › keyword analysis accessibility compliance
+[1A[2K[18/131] [chromium] › tests/visual/components/keyword-analysis.visual.test.ts:124:7 › Keyword Analysis Visual Regression › keyword analysis responsive design
+[1A[2K  9) [chromium] › tests/visual/components/button.visual.test.ts:85:7 › Button Visual Regression Tests › button accessibility compliance 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       9 | test.describe('Button Visual Regression Tests', () => {
+      10 |   
+    > 11 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      12 |     // Navigate to sign-in page which has buttons without auth requirement
+      13 |     await page.goto('/sign-in');
+      14 |     
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:11:8
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('form') to be visible[22m
+
+
+      14 |     
+      15 |     // Wait for page to be fully loaded
+    > 16 |     await page.waitForSelector('form', { state: 'visible' });
+         |                ^
+      17 |     await page.waitForTimeout(500);
+      18 |   });
+      19 |
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:16:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/components-button.visual-B-94306-on-accessibility-compliance-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/components-button.visual-B-94306-on-accessibility-compliance-chromium/error-context.md
+
+
+[1A[2K[19/131] [chromium] › tests/visual/components/resume-score-panel.visual.test.ts:29:7 › Resume Score Panel Visual Regression › score panel overall appearance
+[1A[2K[chromium] › tests/visual/components/keyword-analysis.visual.test.ts:62:7 › Keyword Analysis Visual Regression › keyword analysis text uses semantic tokens
+Keyword analysis not found, may require authentication or resume data
+
+[1A[2K[20/131] [chromium] › tests/visual/components/resume-score-panel.visual.test.ts:53:7 › Resume Score Panel Visual Regression › score circle SVG semantic colors
+[1A[2K[chromium] › tests/visual/components/keyword-analysis.visual.test.ts:87:7 › Keyword Analysis Visual Regression › keyword analysis backgrounds use semantic tokens
+Keyword analysis not found, may require authentication or resume data
+
+[1A[2K[chromium] › tests/visual/components/keyword-analysis.visual.test.ts:124:7 › Keyword Analysis Visual Regression › keyword analysis responsive design
+Keyword analysis not found, may require authentication or resume data
+
+[1A[2K[chromium] › tests/visual/components/keyword-analysis.visual.test.ts:112:7 › Keyword Analysis Visual Regression › keyword analysis accessibility compliance
+Keyword analysis not found, may require authentication or resume data
+
+[1A[2K[21/131] [chromium] › tests/visual/components/resume-score-panel.visual.test.ts:63:7 › Resume Score Panel Visual Regression › score categories use semantic tokens
+[1A[2K[22/131] [chromium] › tests/visual/components/resume-score-panel.visual.test.ts:75:7 › Resume Score Panel Visual Regression › score panel text uses semantic tokens
+[1A[2K[23/131] [chromium] › tests/visual/components/resume-score-panel.visual.test.ts:97:7 › Resume Score Panel Visual Regression › score panel accessibility compliance
+[1A[2K[chromium] › tests/visual/components/resume-score-panel.visual.test.ts:29:7 › Resume Score Panel Visual Regression › score panel overall appearance
+Score panel not found, may require authentication
+
+[1A[2KScore panel not visible, skipping visual test
+
+[1A[2K[24/131] [chromium] › tests/visual/components/resume-score-panel.visual.test.ts:109:7 › Resume Score Panel Visual Regression › score panel responsive design
+[1A[2K[chromium] › tests/visual/components/resume-score-panel.visual.test.ts:53:7 › Resume Score Panel Visual Regression › score circle SVG semantic colors
+Score panel not found, may require authentication
+
+[1A[2K[25/131] [chromium] › tests/visual/components/validation.visual.test.ts:9:7 › Testing Infrastructure Validation › creates baseline screenshots
+[1A[2K[chromium] › tests/visual/components/resume-score-panel.visual.test.ts:63:7 › Resume Score Panel Visual Regression › score categories use semantic tokens
+Score panel not found, may require authentication
+
+[1A[2K[chromium] › tests/visual/components/resume-score-panel.visual.test.ts:75:7 › Resume Score Panel Visual Regression › score panel text uses semantic tokens
+Score panel not found, may require authentication
+
+[1A[2K[chromium] › tests/visual/components/resume-score-panel.visual.test.ts:97:7 › Resume Score Panel Visual Regression › score panel accessibility compliance
+Score panel not found, may require authentication
+
+[1A[2K[26/131] [chromium] › tests/visual/components/validation.visual.test.ts:25:7 › Testing Infrastructure Validation › accessibility testing works
+[1A[2K[27/131] [chromium] › tests/visual/components/validation.visual.test.ts:35:7 › Testing Infrastructure Validation › performance timing works
+[1A[2K[chromium] › tests/visual/components/resume-score-panel.visual.test.ts:109:7 › Resume Score Panel Visual Regression › score panel responsive design
+Score panel not found, may require authentication
+
+[1A[2K[chromium] › tests/visual/components/validation.visual.test.ts:25:7 › Testing Infrastructure Validation › accessibility testing works
+✅ Basic accessibility testing is configured!
+
+[1A[2K[chromium] › tests/visual/components/validation.visual.test.ts:35:7 › Testing Infrastructure Validation › performance timing works
+✅ Performance testing works! Page loaded in 1992ms
+
+[1A[2K[chromium] › tests/visual/components/validation.visual.test.ts:9:7 › Testing Infrastructure Validation › creates baseline screenshots
+✅ Visual regression infrastructure is working!
+
+[1A[2K  10) [chromium] › tests/visual/components/button.visual.test.ts:93:7 › Button Visual Regression Tests › button responsive design - mobile 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       9 | test.describe('Button Visual Regression Tests', () => {
+      10 |   
+    > 11 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      12 |     // Navigate to sign-in page which has buttons without auth requirement
+      13 |     await page.goto('/sign-in');
+      14 |     
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:11:8
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('form') to be visible[22m
+
+
+      14 |     
+      15 |     // Wait for page to be fully loaded
+    > 16 |     await page.waitForSelector('form', { state: 'visible' });
+         |                ^
+      17 |     await page.waitForTimeout(500);
+      18 |   });
+      19 |
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:16:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/components-button.visual-B-00e25--responsive-design---mobile-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/components-button.visual-B-00e25--responsive-design---mobile-chromium/error-context.md
+
+
+[1A[2K  11) [chromium] › tests/visual/components/button.visual.test.ts:104:7 › Button Visual Regression Tests › button semantic token compliance 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       9 | test.describe('Button Visual Regression Tests', () => {
+      10 |   
+    > 11 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      12 |     // Navigate to sign-in page which has buttons without auth requirement
+      13 |     await page.goto('/sign-in');
+      14 |     
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:11:8
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('form') to be visible[22m
+
+
+      14 |     
+      15 |     // Wait for page to be fully loaded
+    > 16 |     await page.waitForSelector('form', { state: 'visible' });
+         |                ^
+      17 |     await page.waitForTimeout(500);
+      18 |   });
+      19 |
+        at /Users/saadkhan/Development/Victry GPT/victry/tests/visual/components/button.visual.test.ts:16:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/components-button.visual-B-9dd6c-n-semantic-token-compliance-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/components-button.visual-B-9dd6c-n-semantic-token-compliance-chromium/error-context.md
+
+
+[1A[2K  11 failed
+    [setup] › tests/visual/auth.setup.ts:15:6 › authenticate test user ─────────────────────────────
+    [chromium] › tests/visual/components/button-simple.visual.test.ts:8:7 › Button Visual Test - Infrastructure Validation › sign-in button visual test 
+    [chromium] › tests/visual/components/button-simple.visual.test.ts:24:7 › Button Visual Test - Infrastructure Validation › page visual regression test 
+    [chromium] › tests/visual/components/button.visual.test.ts:20:7 › Button Visual Regression Tests › primary button visual comparison 
+    [chromium] › tests/visual/components/button.visual.test.ts:37:7 › Button Visual Regression Tests › secondary button visual comparison 
+    [chromium] › tests/visual/components/button.visual.test.ts:48:7 › Button Visual Regression Tests › button hover state visual comparison 
+    [chromium] › tests/visual/components/button.visual.test.ts:60:7 › Button Visual Regression Tests › button focus state visual comparison 
+    [chromium] › tests/visual/components/button.visual.test.ts:72:7 › Button Visual Regression Tests › disabled button visual comparison 
+    [chromium] › tests/visual/components/button.visual.test.ts:85:7 › Button Visual Regression Tests › button accessibility compliance 
+    [chromium] › tests/visual/components/button.visual.test.ts:93:7 › Button Visual Regression Tests › button responsive design - mobile 
+    [chromium] › tests/visual/components/button.visual.test.ts:104:7 › Button Visual Regression Tests › button semantic token compliance 
+  104 did not run
+  16 passed (1.1m)
+
+[36m  Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.[39m

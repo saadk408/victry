@@ -1,0 +1,284 @@
+
+> victry@0.1.0 build:standard
+> next build
+
+   ▲ Next.js 15.3.2
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+Webpack Bundle Analyzer saved report to /Users/saadkhan/Development/Victry GPT/victry/.next/analyze/nodejs.html
+Webpack Bundle Analyzer saved report to /Users/saadkhan/Development/Victry GPT/victry/.next/analyze/edge.html
+Webpack Bundle Analyzer saved report to /Users/saadkhan/Development/Victry GPT/victry/.next/analyze/client.html
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|/Users/saadkhan/Development/Victry GPT/victry/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!/Users/saadkhan/Development/Victry GPT/victry/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!/Users/saadkhan/Development/Victry GPT/victry/app/globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 5 items } -> webpack/lib/ModuleWarning -> Warning
+ ⚠ Compiled with warnings in 7.0s
+
+./app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css
+Warning
+
+(2:11189) postcss-calc: Lexical error on line 1: Unrecognized text.
+
+  Erroneous area:
+1: l - .05
+^..^
+
+Import trace for requested module:
+./app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css
+./app/globals.css
+
+./app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css
+Warning
+
+(2:11308) postcss-calc: Lexical error on line 1: Unrecognized text.
+
+  Erroneous area:
+1: l - .05
+^..^
+
+Import trace for requested module:
+./app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css
+./app/globals.css
+
+./app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css
+Warning
+
+(2:11427) postcss-calc: Lexical error on line 1: Unrecognized text.
+
+  Erroneous area:
+1: l - .05
+^..^
+
+Import trace for requested module:
+./app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css
+./app/globals.css
+
+./app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css
+Warning
+
+(2:11540) postcss-calc: Lexical error on line 1: Unrecognized text.
+
+  Erroneous area:
+1: l - .05
+^..^
+
+Import trace for requested module:
+./app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css
+./app/globals.css
+
+./app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css
+Warning
+
+(2:11650) postcss-calc: Lexical error on line 1: Unrecognized text.
+
+  Erroneous area:
+1: l - .1
+^..^
+
+Import trace for requested module:
+./app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css
+./app/globals.css
+
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/32) ...
+Error getting user session: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (8/32) 
+Error getting user session: Error: Dynamic server usage: Route /auth/auth-code-error couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /auth/auth-code-error couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /register couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /register couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /_not-found couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /_not-found couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /forgot-password couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /forgot-password couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /performance-test couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /performance-test couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /access-denied couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /access-denied couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (16/32) 
+Error getting user session: Error: Dynamic server usage: Route /login couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /login couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /onboarding/complete-profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /onboarding/complete-profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /dashboard couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /dashboard couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /reset-password couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /reset-password couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /auth/verify-email couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /auth/verify-email couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (24/32) 
+Error getting user session: Error: Dynamic server usage: Route /upgrade couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /upgrade couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /resume couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /resume couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error getting user session: Error: Dynamic server usage: Route /resume/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at y (.next/server/chunks/4447.js:19:10449)
+    at u (.next/server/chunks/3622.js:14:327576)
+    at o (.next/server/chunks/5382.js:1:832)
+    at v (.next/server/chunks/3596.js:1:12033)
+    at b (.next/server/chunks/3596.js:1:12202)
+    at stringify (<anonymous>) {
+  description: "Route /resume/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+ ✓ Generating static pages (32/32)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ƒ /                                    44.8 kB         150 kB
+├ ƒ /_not-found                            990 B         103 kB
+├ ƒ /access-denied                       1.06 kB         107 kB
+├ ƒ /api/ai/analyze-job                    181 B         102 kB
+├ ƒ /api/ai/claude                         181 B         102 kB
+├ ƒ /api/ai/claude-stream                  181 B         102 kB
+├ ƒ /api/ai/tailor-resume                  181 B         102 kB
+├ ƒ /api/audit-logs                        181 B         102 kB
+├ ƒ /api/auth/forgot-password              181 B         102 kB
+├ ƒ /api/db-monitoring                     181 B         102 kB
+├ ƒ /api/example-with-error-handler        181 B         102 kB
+├ ƒ /api/example-with-error-tracking       181 B         102 kB
+├ ƒ /api/job-description                   181 B         102 kB
+├ ƒ /api/query-analyzer                    181 B         102 kB
+├ ƒ /api/resume                            181 B         102 kB
+├ ƒ /auth/auth-code-error                2.09 kB         117 kB
+├ ƒ /auth/callback                         181 B         102 kB
+├ ƒ /auth/confirm                          181 B         102 kB
+├ ƒ /auth/verify-email                   3.21 kB         153 kB
+├ ƒ /dashboard                           5.23 kB         160 kB
+├ ƒ /forgot-password                     2.29 kB         181 kB
+├ ƒ /login                               3.55 kB         159 kB
+├ ƒ /onboarding/complete-profile         2.35 kB         153 kB
+├ ƒ /performance-test                    5.11 kB         119 kB
+├ ƒ /register                            4.15 kB         160 kB
+├ ƒ /reset-password                      3.21 kB         182 kB
+├ ƒ /resume                              8.72 kB         133 kB
+├ ƒ /resume/[id]                         2.84 kB         162 kB
+├ ƒ /resume/[id]/edit                    4.66 kB         171 kB
+├ ƒ /resume/[id]/tailor                  15.4 kB         181 kB
+├ ƒ /resume/create                       6.01 kB         167 kB
+└ ƒ /upgrade                             1.06 kB         107 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/1684-9e312fa4e3d30e4c.js      46.4 kB
+  ├ chunks/4bd1b696-cfc0baad6d9a9f28.js  53.2 kB
+  └ other shared chunks (total)          2.55 kB
+
+
+ƒ Middleware                             64.5 kB
+
+ƒ  (Dynamic)  server-rendered on demand
+
