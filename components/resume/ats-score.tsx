@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Check, AlertCircle, Info } from "lucide-react";
+import { getStatusClasses, getStatusColors } from "@/lib/utils/status-colors";
 
 interface ATSScoreFeedbackItem {
   category: string;
@@ -65,22 +66,22 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
     },
   );
 
-  // Get score color class
-  const getScoreColorClass = (score: number) => {
-    if (score >= 80) return "text-green-700 bg-green-100";
-    if (score >= 60) return "text-yellow-700 bg-yellow-100";
-    return "text-destructive bg-destructive/10";
+  // Get score status type based on score value
+  const getScoreStatus = (score: number) => {
+    if (score >= 80) return "success";
+    if (score >= 60) return "warning";
+    return "error";
   };
 
-  // Get severity icon
+  // Get severity icon with semantic colors
   const getSeverityIcon = (severity: "low" | "medium" | "high") => {
     switch (severity) {
       case "high":
-        return <AlertCircle className="h-4 w-4 flex-shrink-0 text-red-500" />;
+        return <AlertCircle className="h-4 w-4 flex-shrink-0 text-destructive" />;
       case "medium":
-        return <Info className="h-4 w-4 flex-shrink-0 text-yellow-500" />;
+        return <Info className="h-4 w-4 flex-shrink-0 text-warning-foreground" />;
       case "low":
-        return <Info className="h-4 w-4 flex-shrink-0 text-blue-500" />;
+        return <Info className="h-4 w-4 flex-shrink-0 text-info" />;
     }
   };
 
@@ -96,8 +97,9 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
               cy="50"
               r="45"
               fill="none"
-              stroke="#f0f0f0"
+              stroke="currentColor"
               strokeWidth="10"
+              className="text-muted/20"
             />
             {/* Score arc */}
             <circle
@@ -105,13 +107,18 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
               cy="50"
               r="45"
               fill="none"
-              stroke={
-                score >= 80 ? "#10B981" : score >= 60 ? "#FBBF24" : "#EF4444"
-              }
+              stroke="currentColor"
               strokeWidth="10"
               strokeDasharray={`${score * 2.83} 283`}
               strokeDashoffset="0"
               transform="rotate(-90 50 50)"
+              className={
+                score >= 80
+                  ? "text-success"
+                  : score >= 60
+                  ? "text-warning"
+                  : "text-destructive"
+              }
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -151,21 +158,24 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
                 >
                   <div className="flex items-center">
                     <div
-                      className={`mr-3 flex h-10 w-10 items-center justify-center rounded-full ${getScoreColorClass(score)}`}
+                      className={`mr-3 flex h-10 w-10 items-center justify-center rounded-full ${getStatusClasses(
+                        getScoreStatus(score),
+                        "soft"
+                      )}`}
                     >
                       {score}
                     </div>
                     <span className="font-medium">{category}</span>
                   </div>
                   {expandedCategories.includes(category) ? (
-                    <ChevronUp className="h-5 w-5 text-gray-400" />
+                    <ChevronUp className="h-5 w-5 text-muted-foreground" />
                   ) : (
-                    <ChevronDown className="h-5 w-5 text-gray-400" />
+                    <ChevronDown className="h-5 w-5 text-muted-foreground" />
                   )}
                 </button>
 
                 {expandedCategories.includes(category) && (
-                  <div className="border-t bg-gray-50 p-4">
+                  <div className="border-t bg-muted/50 p-4">
                     <h4 className="mb-3 font-medium">
                       Feedback for {category}
                     </h4>
@@ -177,8 +187,8 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
                             {getSeverityIcon(item.severity)}
                           </div>
                           <div>
-                            <p className="text-gray-800">{item.message}</p>
-                            <p className="mt-1 text-xs text-gray-500">
+                            <p className="text-foreground">{item.message}</p>
+                            <p className="mt-1 text-xs text-muted-foreground">
                               Priority:{" "}
                               {item.severity === "high"
                                 ? "High"
@@ -196,14 +206,14 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
                       (item) =>
                         item.severity === "high" || item.severity === "medium",
                     ) && (
-                      <div className="mt-4 rounded-md bg-blue-50 p-3">
-                        <h5 className="mb-2 text-sm font-medium text-blue-800">
+                      <div className="mt-4 rounded-md bg-info/10 p-3">
+                        <h5 className="mb-2 text-sm font-medium text-info">
                           Recommendations
                         </h5>
                         <ul className="space-y-2">
                           {items.some((item) => item.severity === "high") && (
                             <li className="flex text-sm">
-                              <Check className="mr-2 mt-0.5 h-4 w-4 flex-shrink-0 text-blue-600" />
+                              <Check className="mr-2 mt-0.5 h-4 w-4 flex-shrink-0 text-info" />
                               <span>
                                 Address high-priority issues first to
                                 significantly improve your ATS score
@@ -212,7 +222,7 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
                           )}
                           {items.some((item) => item.severity === "medium") && (
                             <li className="flex text-sm">
-                              <Check className="mr-2 mt-0.5 h-4 w-4 flex-shrink-0 text-blue-600" />
+                              <Check className="mr-2 mt-0.5 h-4 w-4 flex-shrink-0 text-info" />
                               <span>
                                 Review medium-priority items to refine your
                                 resume further
@@ -231,14 +241,14 @@ export function ATSScore({ score, feedback }: ATSScoreProps) {
       </div>
 
       {/* ATS Explanation */}
-      <div className="rounded-md border bg-gray-50 p-4 text-sm">
+      <div className="rounded-md border bg-muted/50 p-4 text-sm">
         <h3 className="mb-2 font-medium">What is ATS?</h3>
-        <p className="mb-2 text-gray-700">
+        <p className="mb-2 text-muted-foreground">
           Applicant Tracking Systems (ATS) are software that employers use to
           manage job applications. They scan resumes for keywords and formatting
           to determine which candidates move forward.
         </p>
-        <p className="text-gray-700">
+        <p className="text-muted-foreground">
           This score reflects how well your resume is optimized for ATS systems.
           A higher score means your resume is more likely to pass through and be
           seen by recruiters.
