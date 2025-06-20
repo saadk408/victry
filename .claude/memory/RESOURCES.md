@@ -1,12 +1,12 @@
 # Dark Mode Removal - Resource Knowledge Map
 
 Generated: January 16, 2025
-Last Updated: January 20, 2025 - Added Dialog, Popover, Tooltip, and Slider documentation
+Last Updated: January 21, 2025 - Added Tabs analysis and migration documentation
 Phase 1 Completed: January 16, 2025
 Phase 2 Completed: January 16, 2025
-Phase 3 Progress: 13/70 components documented
+Phase 3 Progress: 15/70 components documented
 Purpose: Central knowledge map for efficient task execution
-Total Files Cataloged: 34 (1 index + 9 research files + 4 specifications + 20 implementations)
+Total Files Cataloged: 36 (1 index + 9 research files + 4 specifications + 22 implementations)
 
 ## Quick Reference Guide
 
@@ -64,6 +64,9 @@ Total Files Cataloged: 34 (1 index + 9 research files + 4 specifications + 20 im
 - **Overlay universality** → implementation/popover-migration.md (Pattern 11 validation across components)  
 - **Tooltip implementation** → implementation/tooltip-migration.md (Pattern 11 universality, CSS-first animations)
 - **Range component patterns** → implementation/slider-migration.md (Pattern 13 discovery, form pattern extension)
+- **Collapsible component patterns** → implementation/accordion-discovery.md (Pattern 14 CSS keyframes, consumer cleanup importance)
+- **HIGH RISK component analysis** → implementation/tabs-analysis.md (multi-variant complexity analysis)
+- **Complex navigation patterns** → implementation/tabs-migration.md (3 variants, inverted pill pattern)
 
 ## Complete File Inventory
 
@@ -115,6 +118,9 @@ Total Files Cataloged: 34 (1 index + 9 research files + 4 specifications + 20 im
 | popover-migration.md | Popover component | 1. Pattern 11 application<br>2. Dark mode replacement<br>3. Arrow element handling<br>4. Overlay universality | Pattern 1-3, 11 | High - Pattern 11 confirmation |
 | tooltip-migration.md | Tooltip implementation | 1. New component creation<br>2. Pattern 11 universality<br>3. CSS-first animations<br>4. Consumer enablement | Pattern 11, CSS animations | High - Overlay template validation |
 | slider-migration.md | Slider component | 1. Pattern 13 discovery<br>2. Range component patterns<br>3. Form pattern extension<br>4. Enhancement migration | Pattern 9, 13 | High - Range input template |
+| accordion-discovery.md | Accordion validation | 1. Already semantic (zero dark)<br>2. Pattern 14 CSS keyframes<br>3. Consumer cleanup pattern<br>4. Analysis-first validation | Pattern 14, consumer cleanup | High - Collapsible template |
+| tabs-analysis.md | Tabs analysis | 1. HIGH RISK complexity analysis<br>2. 3 variant breakdown<br>3. Animation/transition usage<br>4. 8+ consumer impact | Pre-migration research | High - Complex component guide |
+| tabs-migration.md | Tabs (HIGH RISK) | 1. Multi-variant migration<br>2. Inverted pill pattern<br>3. State-based styling<br>4. Pattern scalability proof | Pattern 1-3, 6, 11, animations | High - Navigation component template |
 
 ### Test Results (.claude/memory/test-results/)
 | Subdirectory | Purpose | Status |
@@ -161,6 +167,8 @@ Total Files Cataloged: 34 (1 index + 9 research files + 4 specifications + 20 im
 - **Pattern Evolution**: Pattern 6 → Pattern 7 & 8 → Pattern 9 & 10 → Pattern 11 → Pattern 12 → Pattern 13 (progressive discovery)
 - **Overlay Template**: dialog-discovery.md + popover-migration.md + tooltip-migration.md → Universal Pattern 11 validation
 - **Range Components**: slider-migration.md → Pattern 13 for all range-based inputs (progress bars, sliders)
+- **HIGH RISK Navigation**: tabs-analysis.md → tabs-migration.md → Complex multi-variant component strategy
+- **Collapsible Animations**: accordion-discovery.md → Pattern 14 for all expandable components
 
 ## Gap Analysis Report
 *Generated: January 16, 2025 during Task 0.7*
@@ -454,7 +462,7 @@ NICE-TO-HAVE gaps are documented for future consideration but do not impact impl
 
 ### Critical Path for Phase 3
 1. **✅ COMPLETED**: Resume editor bundle optimization (404KB → 171KB achieved, 9KB under target)
-2. **🔄 IN PROGRESS**: Component Migration (9/70 components complete)
+2. **🔄 IN PROGRESS**: Component Migration (15/70 components complete)
 3. **⏳ PENDING**: Test Coverage - Increase from ~10% to 95% through component testing
 4. **⏳ PENDING**: Turbopack Resolution - Fix middleware conflicts for final build performance gains
 
@@ -462,15 +470,15 @@ NICE-TO-HAVE gaps are documented for future consideration but do not impact impl
 - ✅ **Phase 0**: Research Complete (9 comprehensive files)
 - ✅ **Phase 1**: Specifications Complete (4 integrated specs)
 - ✅ **Phase 2**: Architecture Complete (3 implementations, foundation solid)
-- 🔄 **Phase 3**: Component Migration (13/70 components complete, 20 implementations documented)
+- 🔄 **Phase 3**: Component Migration (15/70 components complete, 22 implementations documented)
 - ⏳ **Phase 4**: Testing & Validation (Infrastructure ready, tests pending)
 - ⏳ **Phase 5**: Production Deployment (Monitoring patterns established)
 
 ### Phase 3 Progress Details
-- **Components Complete**: 13/70 (19%) - Status utility, Card, Badge, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Dialog, Popover, Tooltip
+- **Components Complete**: 15/70 (21%) - Status utility, Card, Badge, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Dialog, Popover, Tooltip, Accordion, Tabs
 - **Bundle Reduction**: 233KB achieved on critical path (404KB → 171KB)
-- **Patterns Discovered**: 10 new patterns (13 total with 3 from specifications)
-- **Documentation**: 20 implementation files capturing learnings
-- **Next Priority**: Tabs (HIGH RISK navigation patterns) or Accordion (collapsible patterns)
+- **Patterns Discovered**: 11 new patterns (14 total with 3 from specifications)
+- **Documentation**: 22 implementation files capturing learnings
+- **Next Priority**: Feature Components (ATS Score, Application Tracking)
 
 **Phase 3 Status**: Foundation established, patterns proven, ready for acceleration.
