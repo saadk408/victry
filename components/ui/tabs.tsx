@@ -57,7 +57,7 @@ function TabsList({
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        "flex items-center rounded-md bg-gray-100 p-1 text-gray-500 dark:bg-gray-800 dark:text-gray-400",
+        "flex items-center rounded-md bg-muted p-1 text-muted-foreground",
         vertical
           ? "w-full max-w-[200px] flex-col"
           : "inline-flex h-10 justify-center",
@@ -126,15 +126,15 @@ function TabsTrigger({
 
   // Base styles always applied
   const baseStyles =
-    "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300";
+    "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ring-offset-background";
 
   // Style variants
   const styleVariants = {
     default:
-      "rounded-sm px-3 py-1.5 data-[state=active]:bg-white data-[state=active]:text-gray-950 data-[state=active]:shadow-xs dark:data-[state=active]:bg-gray-950 dark:data-[state=active]:text-gray-50",
+      "rounded-sm px-3 py-1.5 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-xs",
     underlined:
-      "border-b-2 border-transparent px-1 pb-3 pt-2 data-[state=active]:border-gray-950 data-[state=active]:text-gray-950 dark:data-[state=active]:border-gray-50 dark:data-[state=active]:text-gray-50",
-    pill: "rounded-full bg-transparent px-3 py-1.5 hover:bg-gray-100 data-[state=active]:bg-gray-900 data-[state=active]:text-white dark:hover:bg-gray-800 dark:data-[state=active]:bg-gray-100 dark:data-[state=active]:text-gray-900",
+      "border-b-2 border-transparent px-1 pb-3 pt-2 data-[state=active]:border-foreground data-[state=active]:text-foreground",
+    pill: "rounded-full bg-transparent px-3 py-1.5 hover:bg-muted data-[state=active]:bg-foreground data-[state=active]:text-background",
   };
 
   // Determine which style to use
@@ -213,7 +213,7 @@ function TabsContent({
     <TabsPrimitive.Content
       data-slot="tabs-content"
       className={cn(
-        "mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300",
+        "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         animationClasses,
         className,
       )}
