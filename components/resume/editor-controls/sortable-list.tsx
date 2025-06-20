@@ -153,7 +153,7 @@ function SortableListItem<T>({
     dragging: {
       // Framer Motion limitation: CSS variables not supported in boxShadow
       // Using RGB equivalent of var(--shadow-md) from globals.css
-      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.15)",
+      boxShadow: "0 4px 6px -1px rgb(23 23 23 / 0.15), 0 2px 4px -2px rgb(23 23 23 / 0.15)",
       scale: 1.02,
       zIndex: 2,
       // RGB equivalent of oklch(1 0 0) / var(--color-surface)

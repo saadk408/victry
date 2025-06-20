@@ -1115,7 +1115,7 @@ ls -lh .next/static/chunks/
 - [x] themeColor updated to single string value (#ffffff)
 - [x] Build successful (verified with npm run build)
 - [x] OAuth buttons decision implemented (Option B: CSS variables for brand colors, legally required by providers)
-- [ ] Sortable list shadow fixed
+- [x] Sortable list shadow fixed (RGB equivalents used due to Framer Motion limitation, documented as technical exception)
 - [ ] Template colors documented
 
 ### Phase 4D Checklist
