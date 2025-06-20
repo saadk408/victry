@@ -20,11 +20,6 @@ export type SubscriptionStatus =
   | "past_due";
 
 /**
- * Theme options for UI preferences
- */
-export type ThemePreference = "light" | "dark" | "system";
-
-/**
  * User interface language options
  */
 export type LanguagePreference = "en" | "es" | "fr" | "de" | "zh" | "ja";
@@ -33,8 +28,6 @@ export type LanguagePreference = "en" | "es" | "fr" | "de" | "zh" | "ja";
  * User preferences configuration
  */
 export interface UserPreferences {
-  /** UI theme preference */
-  theme?: ThemePreference;
   /** Default resume template ID */
   defaultTemplate?: string;
   /** Whether to receive email notifications */
@@ -307,7 +300,6 @@ export interface User {
 export function mapDbUserToUser(dbUser: Record<string, any>): User {
   // Default user preferences if none exist
   const defaultPreferences: UserPreferences = {
-    theme: "system",
     emailNotifications: true,
     autosave: true,
     showATSTips: true,
@@ -386,7 +378,6 @@ export function createNewUser(email: string, id?: string): User {
     subscriptionStatus: "trial",
     trialEnds: trialEnd.toISOString(),
     preferences: {
-      theme: "system",
       emailNotifications: true,
       autosave: true,
       showATSTips: true,

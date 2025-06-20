@@ -10,8 +10,7 @@ import { cookies } from "next/headers";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
-// Import theme provider for dark/light mode
-import { ThemeProvider } from "@/components/theme-provider";
+// Import UI components
 import { Toaster } from "@/components/ui/toaster";
 
 // Import RBAC provider for role-based access control
@@ -56,10 +55,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = { width: "device-width", initialScale: 1 };
-export const themeColor = [
-  { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-  { media: "(prefers-color-scheme: dark)", color: "#0c4a6e" },
-];
+export const themeColor = "#ffffff";
 
 // Get user session data for the layout
 async function getUserSession() {
@@ -88,13 +84,7 @@ export default async function RootLayout({
       <body
         className={`${inter.className} flex min-h-screen flex-col bg-background antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <RbacProvider>
+        <RbacProvider>
           {/* Header with authentication state */}
           <Suspense
             fallback={
@@ -112,8 +102,7 @@ export default async function RootLayout({
 
           {/* Toast notifications */}
           <Toaster />
-          </RbacProvider>
-        </ThemeProvider>
+        </RbacProvider>
       </body>
     </html>
   );

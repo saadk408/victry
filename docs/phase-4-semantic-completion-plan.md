@@ -1108,12 +1108,15 @@ ls -lh .next/static/chunks/
 - [x] Functionality preserved (verified - see phase-4b-functionality-verification-report.md)
 
 ### Phase 4C Checklist
-- [ ] Theme system removed
-- [ ] next-themes uninstalled
+- [x] Theme system removed (ThemeProvider wrapper removed from layout.tsx)
+- [x] next-themes uninstalled (package.json updated, dependency removed)
+- [x] Theme selection UI removed from profile editor
+- [x] User types updated (ThemePreference type and theme field removed)
+- [x] themeColor updated to single string value (#ffffff)
+- [x] Build successful (verified with npm run build)
 - [ ] OAuth buttons decision implemented
 - [ ] Sortable list shadow fixed
 - [ ] Template colors documented
-- [ ] Build successful
 
 ### Phase 4D Checklist
 - [ ] Comprehensive audit complete

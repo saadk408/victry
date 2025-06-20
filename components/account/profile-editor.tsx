@@ -39,7 +39,6 @@ export function ProfileEditor({
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [theme, setTheme] = useState<"light" | "dark" | "system">("system");
   const [defaultTemplate, setDefaultTemplate] = useState("");
   const [emailNotifications, setEmailNotifications] = useState(true);
 
@@ -102,7 +101,6 @@ export function ProfileEditor({
         setFirstName(userProfile.firstName || "");
         setLastName(userProfile.lastName || "");
         setEmail(userProfile.email);
-        setTheme(userProfile.preferences?.theme || "system");
         setDefaultTemplate(userProfile.preferences?.defaultTemplate || "");
         setEmailNotifications(
           userProfile.preferences?.emailNotifications !== false,
@@ -155,7 +153,6 @@ export function ProfileEditor({
 
       // Prepare preferences object
       const preferences = {
-        theme,
         defaultTemplate,
         emailNotifications,
       };
@@ -320,27 +317,6 @@ export function ProfileEditor({
               </p>
 
               <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-0.5">
-                    <Label htmlFor="theme">Theme</Label>
-                    <p className="text-sm text-muted-foreground">
-                      Select your preferred theme for the application.
-                    </p>
-                  </div>
-                  <select
-                    id="theme"
-                    value={theme}
-                    onChange={(e) =>
-                      setTheme(e.target.value as "light" | "dark" | "system")
-                    }
-                    className="rounded-md border border-border bg-background text-foreground p-2"
-                  >
-                    <option value="light">Light</option>
-                    <option value="dark">Dark</option>
-                    <option value="system">System Default</option>
-                  </select>
-                </div>
-
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label htmlFor="defaultTemplate">
