@@ -399,60 +399,130 @@ Apply tabs.tsx learnings.
 Commit: "refactor: migrate switch.tsx using tabs patterns"
 ```
 
+#### Task 3.11: Migrate Alert Component
+```
+Simple notification component with semantic meaning preservation.
+
+**Pattern Validation Focus**:
+- Only 1 dark: class to replace
+- Validate Pattern 5 for alert types (success, warning, error, info)
+- Test notification color psychology
+- Quick win to build confidence
+
+**Category**: UI Components (notification family)
+
+Commit: "refactor: migrate Alert to semantic colors"
+```
+
+#### Task 3.12: Migrate Toast/Toaster Components
+```
+Notification system with positioning and animation.
+
+**Pattern Validation Focus**:
+- Pattern 11 for overlay positioning
+- Animation preservation patterns
+- Multiple toast variant support
+- Auto-dismiss behavior preservation
+
+**Category**: Interactive Components (notification system)
+
+Commit: "refactor: migrate Toast system to semantic colors"
+```
+
+#### Task 3.13: Migrate Calendar/DatePicker Component
+```
+Complex date selection with multiple states.
+
+**Pattern Validation Focus**:
+- Selected date highlighting
+- Hover states for date cells
+- Disabled date styling
+- Today marker semantics
+- Month navigation preservation
+
+**Category**: Form Components (date input family)
+**Risk**: Medium - multiple interactive states
+
+Commit: "refactor: migrate Calendar/DatePicker to semantic colors"
+```
+
+#### Task 3.14: Migrate Label Component
+```
+Form helper component for accessibility.
+
+**Pattern Validation Focus**:
+- Required field indicators
+- Error state integration
+- Helper text styling
+- Form field association
+
+**Category**: Form Components (helper family)
+
+Commit: "refactor: migrate Label to semantic colors"
+```
+
 ### Systematic Category Coverage
-```
-Work through component categories systematically:
 
-Form Components (Continue):
-- Textarea (multi-line patterns)
-- Slider (range input patterns)
-- DatePicker (calendar patterns)
+Track coverage across all component categories to ensure patterns work universally:
 
-Layout Components:
-- Header (navigation patterns)
-- Sidebar (menu patterns)
-- Footer (static patterns)
+**Coverage Targets for Phase 3B**:
+- UI Components: 80%+ coverage (Alert completes this)
+- Form Components: 80%+ coverage (Calendar, Label complete this)
+- Interactive Components: 70%+ coverage (Toast helps this)
+- Layout Components: Save for automation (simple patterns)
+- Data Components: Save for automation (complex but repetitive)
 
-Data Components:
-- Table (data grid patterns)
-- List (item patterns)
-- Tree (hierarchy patterns)
+**During Each Component Migration**:
+1. Note which category it belongs to
+2. Track if patterns from other categories apply
+3. Document any category-specific patterns
+4. Update coverage percentages in CLAUDE.md
 
-Interactive Components:
-- Accordion (collapse patterns)
-- Popover (positioning patterns)
-- Menu (dropdown patterns)
-
-Select components that:
-- Validate existing patterns
-- Represent different use cases
-- Cover all major categories
-- Build toward automation
-```
+**Assessment Questions**:
+- Are patterns truly universal across categories?
+- Which categories have unique requirements?
+- What category-specific edge cases exist?
+- Which categories are best suited for automation?
 
 ### Automation Readiness Assessment
-```
-Throughout Phase 3B, continuously assess:
 
-**Pattern Stability Checklist**:
-- [ ] Same patterns working across categories?
-- [ ] Edge cases well-understood?
-- [ ] Replacement rules clear and consistent?
-- [ ] Test patterns proven reliable?
-- [ ] Error rate < 5%?
+**Continuous Tracking Requirements**:
 
-**Automation Candidates**:
-Track which operations are:
-- Highly repetitive
-- Rule-based
-- Low-risk
-- Time-consuming
+After EACH component in Phase 3B, update CLAUDE.md with:
 
-**Document in CLAUDE.md**:
-- Pattern frequency matrix
-- Automation ROI calculation
-- Risk assessment for scripting
-```
+1. **Pattern Stability Check**:
+   - Did any patterns need modification? If yes, document why
+   - Were all changes predictable based on component type?
+   - Could the changes be rule-based for automation?
+
+2. **Time and Efficiency Metrics**:
+   ```
+   Component: [Name]
+   Time taken: [minutes]
+   Patterns reused: [list pattern numbers]
+   New discoveries: [any unexpected findings]
+   Automation feasibility: High/Medium/Low
+   ```
+
+3. **Error Tracking**:
+   - Any verification failures?
+   - Any unexpected behavior after migration?
+   - Any patterns that didn't apply as expected?
+
+4. **Automation Candidate Identification**:
+   Track operations that are:
+   - Highly repetitive (exact same replacements)
+   - Rule-based (if X then Y patterns)
+   - Low-risk (simple components)
+   - Time-consuming (many instances)
+
+**Phase 3C Go/No-Go Criteria** (document in CLAUDE.md):
+- [ ] Pattern stability confirmed (no changes in final 5 components)
+- [ ] 80%+ pattern reuse rate sustained
+- [ ] Clear automation rules identified
+- [ ] ROI calculation shows >10 hours saved
+- [ ] Error rate remains <5%
+- [ ] Test strategy for automated changes defined
 
 ### Phase 3B Reflection Checkpoint
 ```
@@ -473,6 +543,18 @@ After completing ~30 components total:
 Make go/no-go decision for automation phase
 ```
 
+### Phase 3B Completion Checklist
+
+Before proceeding to Phase 3C:
+1. Complete all 4 remaining components
+2. Update Phase 3B Assessment Tracking in CLAUDE.md
+3. Verify all automation readiness criteria are met
+4. Document go/no-go decision with rationale
+5. If GO: Proceed to Phase 3C automation
+6. If NO-GO: Identify what needs stabilization
+
+**Remember**: The goal is confident automation, not rushed completion.
+
 ## Phase 3C: Automation & Scale (Components 31-70)
 
 ### Milestone Overview
@@ -488,7 +570,7 @@ Make go/no-go decision for automation phase
 - Manual fallback process ready
 ```
 
-### Task 3.11: Create and Execute Migration Automation
+### Task 3.15: Create and Execute Migration Automation
 ```
 Build and run automation based on discovered patterns.
 
