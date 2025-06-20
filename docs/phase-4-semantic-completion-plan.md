@@ -1116,7 +1116,7 @@ ls -lh .next/static/chunks/
 - [x] Build successful (verified with npm run build)
 - [x] OAuth buttons decision implemented (Option B: CSS variables for brand colors, legally required by providers)
 - [x] Sortable list shadow fixed (RGB equivalents used due to Framer Motion limitation, documented as technical exception)
-- [ ] Template colors documented
+- [x] Template colors documented (both data and style colors kept as hardcoded values - see phase-4c-technical-exceptions.md)
 
 ### Phase 4D Checklist
 - [ ] Comprehensive audit complete
