@@ -83,6 +83,23 @@
   --color-error-foreground: var(--color-white);
   --color-info-foreground: var(--color-white);
   
+  /* OAuth Provider Brand Colors 
+   * These are legally required by OAuth providers for brand compliance.
+   * They represent external brand identities, not UI states.
+   * Similar to template colors, these are treated as data.
+   */
+  --brand-oauth-google-red: #EA4335;
+  --brand-oauth-google-blue: #4285F4;
+  --brand-oauth-google-yellow: #FBBC05;
+  --brand-oauth-google-green: #34A853;
+  --brand-oauth-linkedin-blue: #0077B5;
+  --brand-oauth-linkedin-hover: #005885;
+  
+  /* Future extensibility for additional providers */
+  /* --brand-oauth-facebook-blue: #4267B2; */
+  /* --brand-oauth-github-black: #24292e; */
+  /* --brand-oauth-twitter-blue: #1da1f2; */
+  
   /* ===================================================================
    * Typography System
    * =================================================================== */

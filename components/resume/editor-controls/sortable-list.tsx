@@ -135,15 +135,29 @@ function SortableListItem<T>({
   const key = getItemKey ? getItemKey(item, index) : index;
   const isDragging = activeItem === index;
 
+  /**
+   * Animation variants for sortable list items.
+   * Note: Due to Framer Motion limitations with CSS variables in boxShadow,
+   * we use RGB equivalents here. These values match our semantic tokens:
+   * - boxShadow: matches var(--shadow-md) with slightly higher opacity for emphasis
+   * - backgroundColor: matches var(--color-surface) / oklch(1 0 0)
+   * 
+   * This is similar to OAuth brand colors - a technical requirement that
+   * prevents full semantic token usage. Consider migrating to CSS-first
+   * drag-and-drop in future optimization efforts.
+   */
   const itemVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 },
     dragging: {
-      boxShadow: "0 5px 10px rgba(0, 0, 0, 0.15)",
+      // Framer Motion limitation: CSS variables not supported in boxShadow
+      // Using RGB equivalent of var(--shadow-md) from globals.css
+      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.15)",
       scale: 1.02,
       zIndex: 2,
-      background: "white",
+      // RGB equivalent of oklch(1 0 0) / var(--color-surface)
+      backgroundColor: "rgb(255 255 255)",
     },
   };
 

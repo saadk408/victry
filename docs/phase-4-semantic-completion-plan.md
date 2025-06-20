@@ -1114,7 +1114,7 @@ ls -lh .next/static/chunks/
 - [x] User types updated (ThemePreference type and theme field removed)
 - [x] themeColor updated to single string value (#ffffff)
 - [x] Build successful (verified with npm run build)
-- [ ] OAuth buttons decision implemented
+- [x] OAuth buttons decision implemented (Option B: CSS variables for brand colors, legally required by providers)
 - [ ] Sortable list shadow fixed
 - [ ] Template colors documented
 
