@@ -277,11 +277,11 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
       {/* Empty state */}
       {experiences.length === 0 ? (
         <div className="rounded-md border-2 border-dashed py-8 text-center">
-          <Briefcase className="mx-auto mb-3 h-10 w-10 text-gray-400" />
-          <h4 className="mb-1 text-base font-medium text-gray-700">
+          <Briefcase className="mx-auto mb-3 h-10 w-10 text-muted-foreground" />
+          <h4 className="mb-1 text-base font-medium text-foreground">
             No work experience added yet
           </h4>
-          <p className="mx-auto mb-3 max-w-sm text-sm text-gray-500">
+          <p className="mx-auto mb-3 max-w-sm text-sm text-muted-foreground">
             Add your relevant work history. Focus on achievements and
             responsibilities that showcase your skills for the target job.
           </p>
@@ -307,7 +307,7 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
           onRemove={(index) => handleDeleteExperience(index)}
           emptyPlaceholder={
             <div className="py-6 text-center">
-              <p className="text-gray-500">No work experience added yet</p>
+              <p className="text-muted-foreground">No work experience added yet</p>
             </div>
           }
           renderItem={(experience, index) => (
@@ -324,13 +324,13 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
                 value={experience.id}
                 className="overflow-hidden rounded-md border"
               >
-                <AccordionTrigger className="px-4 py-3 hover:bg-gray-50 data-[state=open]:bg-gray-50">
+                <AccordionTrigger className="px-4 py-3 hover:bg-muted data-[state=open]:bg-muted">
                   <div className="flex w-full flex-col items-start text-left">
                     <div className="flex w-full items-center justify-between">
                       <h4 className="truncate font-medium">
                         {experience.position || "Untitled Position"}
                       </h4>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-muted-foreground">
                         {formatDateRange(
                           experience.startDate,
                           experience.endDate,
@@ -338,13 +338,13 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
                         )}
                       </div>
                     </div>
-                    <div className="mt-1 text-sm text-gray-600">
+                    <div className="mt-1 text-sm text-muted-foreground">
                       {experience.company}
                       {experience.location ? `, ${experience.location}` : ""}
                     </div>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="bg-white px-4 pb-4 pt-2">
+                <AccordionContent className="bg-background px-4 pb-4 pt-2">
                   <div className="space-y-4">
                     {/* Position/Title */}
                     <div>
@@ -352,9 +352,9 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
                         htmlFor={`work-position-${index}`}
                         className="flex items-center"
                       >
-                        <Briefcase className="mr-2 h-4 w-4 text-gray-500" />
+                        <Briefcase className="mr-2 h-4 w-4 text-muted-foreground" />
                         Position/Title
-                        <span className="ml-1 text-red-500">*</span>
+                        <span className="ml-1 text-destructive">*</span>
                       </Label>
                       <Input
                         id={`work-position-${index}`}
@@ -378,9 +378,9 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
                         htmlFor={`work-company-${index}`}
                         className="flex items-center"
                       >
-                        <Building className="mr-2 h-4 w-4 text-gray-500" />
+                        <Building className="mr-2 h-4 w-4 text-muted-foreground" />
                         Company
-                        <span className="ml-1 text-red-500">*</span>
+                        <span className="ml-1 text-destructive">*</span>
                       </Label>
                       <Input
                         id={`work-company-${index}`}
@@ -404,7 +404,7 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
                         htmlFor={`work-location-${index}`}
                         className="flex items-center"
                       >
-                        <MapPin className="mr-2 h-4 w-4 text-gray-500" />
+                        <MapPin className="mr-2 h-4 w-4 text-muted-foreground" />
                         Location
                       </Label>
                       <Input
@@ -425,7 +425,7 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
                     {/* Date Range */}
                     <div>
                       <Label className="mb-1 flex items-center">
-                        <Calendar className="mr-2 h-4 w-4 text-gray-500" />
+                        <Calendar className="mr-2 h-4 w-4 text-muted-foreground" />
                         Date Range
                       </Label>
                       <DateRangePicker
@@ -446,7 +446,7 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
                     <div>
                       <div className="mb-2 flex items-center justify-between">
                         <Label className="flex items-center">
-                          <PenTool className="mr-2 h-4 w-4 text-gray-500" />
+                          <PenTool className="mr-2 h-4 w-4 text-muted-foreground" />
                           Accomplishments & Responsibilities
                         </Label>
                         <Button
@@ -463,7 +463,7 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
                       </div>
 
                       {(experience.highlights?.length || 0) === 0 ? (
-                        <p className="text-sm italic text-gray-500">
+                        <p className="text-sm italic text-muted-foreground">
                           Add key accomplishments and responsibilities relevant
                           to your target job
                         </p>
@@ -507,7 +507,7 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
                                         type="button"
                                         variant="ghost"
                                         size="sm"
-                                        className="h-7 text-xs text-blue-600 hover:text-blue-700"
+                                        className="h-7 text-xs text-primary hover:text-primary"
                                         onClick={() =>
                                           handleRequestAiSuggestion(
                                             index,
@@ -554,7 +554,7 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
                         variant="ghost"
                         size="sm"
                         onClick={() => handleDeleteExperience(index)}
-                        className="text-red-600 hover:bg-red-50 hover:text-red-700"
+                        className="text-destructive hover:bg-destructive/10 hover:text-destructive"
                         disabled={disabled}
                       >
                         <Trash2 className="mr-2 h-4 w-4" />
@@ -570,8 +570,8 @@ Duration: ${formatDateRange(experience.startDate, experience.endDate, experience
       )}
 
       {/* Help Text */}
-      <div className="mt-4 rounded-md bg-gray-50 p-4 text-sm text-gray-500">
-        <h4 className="mb-1 font-medium text-gray-700">
+      <div className="mt-4 rounded-md bg-muted p-4 text-sm text-muted-foreground">
+        <h4 className="mb-1 font-medium text-foreground">
           Tips for Work Experience
         </h4>
         <ul className="list-inside list-disc space-y-1">

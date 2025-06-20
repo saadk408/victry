@@ -1,0 +1,243 @@
+/**
+ * Victry Brand Color System Update
+ * 
+ * This file contains the updated color definitions for implementing
+ * the Victry brand guide colors into the existing OKLCH color system.
+ * 
+ * Replace the color definitions in app/globals.css with these values
+ * to align with the brand identity.
+ */
+
+@import "tailwindcss";
+
+@theme {
+  /* ===================================================================
+   * VICTRY BRAND COLORS - OKLCH Color System
+   * Based on brand guide: Orange (#FF6104) & Teal (#002624)
+   * =================================================================== */
+  
+  /* Primary Brand Colors */
+  --color-victry-orange:      oklch(0.70 0.20 39);     /* #FF6104 - Primary Action */
+  --color-victry-orange-dark: oklch(0.63 0.19 39);     /* #EC5800 - Hover State */
+  --color-victry-orange-mid:  oklch(0.65 0.18 39);     /* #EE6D00 - Secondary Orange */
+  --color-victry-orange-light: oklch(0.92 0.06 39);    /* Light orange tint */
+  
+  --color-victry-teal:        oklch(0.20 0.04 192);    /* #002624 - Primary Dark */
+  --color-victry-teal-rich:   oklch(0.25 0.05 192);    /* #153335 - Rich Teal */
+  --color-victry-navy:        oklch(0.22 0.07 237);    /* #0E2647 - Deep Navy */
+  
+  /* Neutral Brand Colors */
+  --color-victry-cream:       oklch(0.97 0.02 70);     /* #FFF1E4 - Background */
+  --color-victry-blue-gray:   oklch(0.38 0.03 237);    /* #434F60 - Muted Text */
+  --color-victry-gray:        oklch(0.28 0.01 0);      /* #2F2E2C - Dark Gray */
+  --color-victry-brown:       oklch(0.30 0.08 50);     /* #3F2001 - Deep Brown */
+  
+  /* Base Neutrals */
+  --color-white:              oklch(1 0 0);            /* Pure white */
+  --color-black:              oklch(0.15 0 0);         /* Near black */
+  
+  /* Gray Scale (Adjusted for brand) */
+  --color-gray-50:  var(--color-victry-cream);         /* Use brand cream */
+  --color-gray-100: oklch(0.96 0.01 70);               /* Warm light gray */
+  --color-gray-200: oklch(0.92 0.01 70);               /* Warm border gray */
+  --color-gray-300: oklch(0.83 0.01 0);                /* Disabled gray */
+  --color-gray-400: var(--color-victry-blue-gray);     /* Use brand blue-gray */
+  --color-gray-500: oklch(0.57 0.02 192);              /* Muted with teal hint */
+  --color-gray-600: oklch(0.47 0.03 192);              /* Secondary with teal */
+  --color-gray-700: var(--color-victry-gray);          /* Use brand gray */
+  --color-gray-800: var(--color-victry-teal-rich);     /* Use rich teal */
+  --color-gray-900: var(--color-victry-teal);          /* Use brand teal */
+  
+  /* Status Colors (Brand-Aligned) */
+  --color-success:  var(--color-victry-teal-rich);     /* Teal for success */
+  --color-warning:  var(--color-victry-orange-mid);    /* Orange for warnings */
+  --color-error:    oklch(0.53 0.24 25);               /* Red for errors */
+  --color-info:     var(--color-victry-navy);          /* Navy for info */
+  
+  /* ===================================================================
+   * Semantic Token Architecture - VICTRY BRAND
+   * =================================================================== */
+  
+  /* Primary Intent Tokens */
+  --color-background:      var(--color-victry-cream);
+  --color-surface:         var(--color-white);
+  --color-foreground:      var(--color-victry-teal);
+  --color-primary:         var(--color-victry-orange);
+  --color-primary-hover:   var(--color-victry-orange-dark);
+  --color-secondary:       var(--color-victry-teal);
+  --color-secondary-hover: var(--color-victry-teal-rich);
+  --color-muted:           var(--color-victry-blue-gray);
+  --color-border:          oklch(0.90 0.01 70);        /* Warm light border */
+  --color-input:           oklch(0.88 0.01 70);        /* Warm input border */
+  --color-ring:            var(--color-victry-orange);
+  
+  /* Component-Specific Semantic Tokens */
+  --color-card:            var(--color-surface);
+  --color-card-foreground: var(--color-victry-teal);
+  --color-popover:         var(--color-surface);
+  --color-popover-foreground: var(--color-victry-teal);
+  --color-primary-foreground: var(--color-white);
+  --color-secondary-foreground: var(--color-white);
+  --color-muted-foreground: var(--color-victry-blue-gray);
+  --color-accent:          var(--color-victry-orange-light);
+  --color-accent-foreground: var(--color-victry-teal);
+  --color-destructive:     var(--color-error);
+  --color-destructive-foreground: var(--color-white);
+  
+  /* Brand-Specific Component Tokens */
+  --color-nav-bg:          var(--color-victry-teal);
+  --color-nav-text:        var(--color-white);
+  --color-nav-active:      var(--color-victry-orange);
+  --color-hero-gradient-start: var(--color-victry-teal);
+  --color-hero-gradient-end: var(--color-victry-navy);
+  --color-cta-gradient-start: var(--color-victry-orange);
+  --color-cta-gradient-end: var(--color-victry-orange-dark);
+  
+  /* ===================================================================
+   * Typography System - Optimized for Brand Colors
+   * =================================================================== */
+  
+  --font-sans: "Poppins", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  
+  /* Keep existing font sizes and weights */
+  --font-size-xs:   0.75rem;
+  --font-size-sm:   0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg:   1.125rem;
+  --font-size-xl:   1.25rem;
+  --font-size-2xl:  1.5rem;
+  --font-size-3xl:  1.875rem;
+  --font-size-4xl:  2.25rem;
+  
+  /* ===================================================================
+   * Shadows & Effects - Brand-Colored Shadows
+   * =================================================================== */
+  
+  /* Orange-tinted shadows for primary elements */
+  --shadow-orange-xs:  0 1px 2px 0 oklch(0.70 0.20 39 / 0.05);
+  --shadow-orange-sm:  0 1px 3px 0 oklch(0.70 0.20 39 / 0.1), 0 1px 2px -1px oklch(0.70 0.20 39 / 0.06);
+  --shadow-orange:     0 4px 6px -1px oklch(0.70 0.20 39 / 0.1), 0 2px 4px -2px oklch(0.70 0.20 39 / 0.05);
+  --shadow-orange-lg:  0 10px 15px -3px oklch(0.70 0.20 39 / 0.1), 0 4px 6px -4px oklch(0.70 0.20 39 / 0.05);
+  
+  /* Teal-tinted shadows for secondary elements */
+  --shadow-teal-xs:  0 1px 2px 0 oklch(0.20 0.04 192 / 0.05);
+  --shadow-teal-sm:  0 1px 3px 0 oklch(0.20 0.04 192 / 0.1), 0 1px 2px -1px oklch(0.20 0.04 192 / 0.06);
+  --shadow-teal:     0 4px 6px -1px oklch(0.20 0.04 192 / 0.1), 0 2px 4px -2px oklch(0.20 0.04 192 / 0.05);
+  
+  /* Neutral shadows (keep existing) */
+  --shadow-xs:  0 1px 2px 0 oklch(0.20 0.04 192 / 0.05);
+  --shadow-sm:  0 1px 2px 0 oklch(0.20 0.04 192 / 0.05);
+  --shadow:     0 1px 3px 0 oklch(0.20 0.04 192 / 0.1), 0 1px 2px -1px oklch(0.20 0.04 192 / 0.1);
+  --shadow-md:  0 4px 6px -1px oklch(0.20 0.04 192 / 0.1), 0 2px 4px -2px oklch(0.20 0.04 192 / 0.1);
+  --shadow-lg:  0 10px 15px -3px oklch(0.20 0.04 192 / 0.1), 0 4px 6px -4px oklch(0.20 0.04 192 / 0.1);
+  --shadow-xl:  0 20px 25px -5px oklch(0.20 0.04 192 / 0.1), 0 8px 10px -6px oklch(0.20 0.04 192 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px oklch(0.20 0.04 192 / 0.25);
+  
+  /* ===================================================================
+   * Animation System - Keep existing
+   * =================================================================== */
+  
+  /* Existing animation definitions remain the same */
+  --ease-linear:   linear;
+  --ease-out:      cubic-bezier(0, 0, 0.2, 1);
+  --ease-in:       cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce:   cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  --duration-75:  75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+  --duration-700: 700ms;
+  --duration-1000: 1000ms;
+}
+
+/* ===================================================================
+ * Base Styles - Updated for Brand
+ * =================================================================== */
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* ===================================================================
+ * Brand-Specific Utility Classes
+ * =================================================================== */
+
+/* Gradient utilities */
+.gradient-victry-primary {
+  background: linear-gradient(135deg, var(--color-victry-orange) 0%, var(--color-victry-orange-dark) 100%);
+}
+
+.gradient-victry-hero {
+  background: linear-gradient(135deg, var(--color-victry-teal) 0%, var(--color-victry-navy) 100%);
+}
+
+.gradient-victry-surface {
+  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-victry-cream) 100%);
+}
+
+/* Text gradient utilities */
+.text-gradient-victry {
+  background: linear-gradient(135deg, var(--color-victry-orange) 0%, var(--color-victry-orange-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shadow utilities */
+.shadow-victry-orange {
+  box-shadow: var(--shadow-orange);
+}
+
+.shadow-victry-teal {
+  box-shadow: var(--shadow-teal);
+}
+
+/* Focus ring with brand color */
+.focus\:ring-victry:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-victry-orange);
+}
+
+/* ===================================================================
+ * Component Overrides for Brand
+ * =================================================================== */
+
+/* Primary buttons should use orange */
+.btn-primary,
+[data-slot="button"][data-variant="default"] {
+  background-color: var(--color-victry-orange);
+  color: var(--color-white);
+}
+
+.btn-primary:hover,
+[data-slot="button"][data-variant="default"]:hover {
+  background-color: var(--color-victry-orange-dark);
+}
+
+/* Secondary buttons should use teal */
+.btn-secondary,
+[data-slot="button"][data-variant="secondary"] {
+  background-color: var(--color-victry-teal);
+  color: var(--color-white);
+}
+
+.btn-secondary:hover,
+[data-slot="button"][data-variant="secondary"]:hover {
+  background-color: var(--color-victry-teal-rich);
+}
+
+/* Navigation active states */
+.nav-active,
+[data-active="true"] {
+  border-left-color: var(--color-victry-orange);
+  background-color: oklch(0.70 0.20 39 / 0.1);
+  color: var(--color-victry-orange);
+}

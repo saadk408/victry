@@ -264,11 +264,11 @@ export function ProjectsEditor({
 
       {projects.length === 0 ? (
         <div className="rounded-md border-2 border-dashed py-8 text-center">
-          <FolderGit className="mx-auto mb-3 h-10 w-10 text-gray-400" />
-          <h4 className="mb-1 text-base font-medium text-gray-700">
+          <FolderGit className="mx-auto mb-3 h-10 w-10 text-muted-foreground" />
+          <h4 className="mb-1 text-base font-medium text-foreground">
             No projects added yet
           </h4>
-          <p className="mx-auto mb-3 max-w-sm text-sm text-gray-500">
+          <p className="mx-auto mb-3 max-w-sm text-sm text-muted-foreground">
             Showcase your best work by adding relevant projects. These could be
             professional, personal, or academic projects.
           </p>
@@ -293,7 +293,7 @@ export function ProjectsEditor({
           onAdd={handleAddProject}
           emptyPlaceholder={
             <div className="py-6 text-center">
-              <p className="text-gray-500">No projects added yet</p>
+              <p className="text-muted-foreground">No projects added yet</p>
             </div>
           }
           renderItem={(project, index) => (
@@ -310,14 +310,14 @@ export function ProjectsEditor({
                 value={project.id}
                 className="overflow-hidden rounded-md border"
               >
-                <AccordionTrigger className="px-4 py-3 hover:bg-gray-50 data-[state=open]:bg-gray-50">
+                <AccordionTrigger className="px-4 py-3 hover:bg-muted data-[state=open]:bg-muted">
                   <div className="flex w-full flex-col items-start text-left">
                     <div className="flex w-full items-center justify-between">
                       <h4 className="font-medium">
                         {project.name || "Untitled Project"}
                       </h4>
                       {(project.startDate || project.endDate) && (
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-muted-foreground">
                           {project.startDate
                             ? formatDate(project.startDate, "short")
                             : ""}
@@ -327,7 +327,7 @@ export function ProjectsEditor({
                       )}
                     </div>
                     {project.description && (
-                      <p className="mt-1 line-clamp-1 text-sm text-gray-600">
+                      <p className="mt-1 line-clamp-1 text-sm text-muted-foreground">
                         {project.description}
                       </p>
                     )}
@@ -341,9 +341,9 @@ export function ProjectsEditor({
                         htmlFor={`project-name-${index}`}
                         className="flex items-center"
                       >
-                        <FolderGit className="mr-2 h-4 w-4 text-gray-500" />
+                        <FolderGit className="mr-2 h-4 w-4 text-muted-foreground" />
                         Project Name
-                        <span className="ml-1 text-red-500">*</span>
+                        <span className="ml-1 text-destructive">*</span>
                       </Label>
                       <Input
                         id={`project-name-${index}`}
@@ -365,7 +365,7 @@ export function ProjectsEditor({
                       {errors[index]?.name && (
                         <p
                           id={`project-name-error-${index}`}
-                          className="mt-1 flex items-center text-sm text-red-500"
+                          className="mt-1 flex items-center text-sm text-destructive"
                         >
                           <AlertCircle className="mr-1 h-3.5 w-3.5" />
                           {errors[index].name}
@@ -379,7 +379,7 @@ export function ProjectsEditor({
                         htmlFor={`project-description-${index}`}
                         className="flex items-center"
                       >
-                        <FileText className="mr-2 h-4 w-4 text-gray-500" />
+                        <FileText className="mr-2 h-4 w-4 text-muted-foreground" />
                         Description
                       </Label>
                       <Textarea
@@ -404,7 +404,7 @@ export function ProjectsEditor({
                           htmlFor={`project-url-${index}`}
                           className="flex items-center"
                         >
-                          <LinkIcon className="mr-2 h-4 w-4 text-gray-500" />
+                          <LinkIcon className="mr-2 h-4 w-4 text-muted-foreground" />
                           Project URL
                         </Label>
                         <Input
@@ -426,7 +426,7 @@ export function ProjectsEditor({
                         {errors[index]?.url && (
                           <p
                             id={`project-url-error-${index}`}
-                            className="mt-1 flex items-center text-sm text-red-500"
+                            className="mt-1 flex items-center text-sm text-destructive"
                           >
                             <AlertCircle className="mr-1 h-3.5 w-3.5" />
                             {errors[index].url}
@@ -440,7 +440,7 @@ export function ProjectsEditor({
                           htmlFor={`project-date-${index}`}
                           className="flex items-center"
                         >
-                          <Calendar className="mr-2 h-4 w-4 text-gray-500" />
+                          <Calendar className="mr-2 h-4 w-4 text-muted-foreground" />
                           Date (optional)
                         </Label>
                         <Input
@@ -456,7 +456,7 @@ export function ProjectsEditor({
                           className="mt-1"
                           disabled={disabled}
                         />
-                        <p className="mt-1 text-xs text-gray-500">
+                        <p className="mt-1 text-xs text-muted-foreground">
                           Format can be month/year (e.g., &quot;June 2023&quot;) or a
                           specific date
                         </p>
@@ -481,7 +481,7 @@ export function ProjectsEditor({
                       </div>
 
                       {(project.highlights?.length || 0) === 0 ? (
-                        <p className="text-sm italic text-gray-500">
+                        <p className="text-sm italic text-muted-foreground">
                           Add bullet points highlighting key features,
                           technologies used, or results achieved
                         </p>
@@ -527,7 +527,7 @@ export function ProjectsEditor({
                         variant="ghost"
                         size="sm"
                         onClick={() => handleDeleteProject(index)}
-                        className="text-red-600 hover:bg-red-50 hover:text-red-700"
+                        className="text-destructive hover:bg-destructive/10 hover:text-destructive"
                         disabled={disabled}
                         aria-label={`Remove ${project.name || "project"}`}
                       >
@@ -544,8 +544,8 @@ export function ProjectsEditor({
       )}
 
       {/* Help Text */}
-      <div className="rounded-md bg-gray-50 p-4 text-sm text-gray-500">
-        <h4 className="mb-1 font-medium text-gray-700">
+      <div className="rounded-md bg-muted p-4 text-sm text-muted-foreground">
+        <h4 className="mb-1 font-medium text-foreground">
           Tips for Project Section
         </h4>
         <ul className="list-inside list-disc space-y-1">

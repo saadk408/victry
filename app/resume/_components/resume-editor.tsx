@@ -80,7 +80,7 @@ const SocialLinksEditor = dynamic(
 function SectionLoading() {
   return (
     <div className="flex items-center justify-center p-8">
-      <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
+      <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
     </div>
   );
 }
@@ -141,8 +141,8 @@ export function ResumeEditor({ id }: ResumeEditorProps) {
     return (
       <div className="flex h-64 items-center justify-center">
         <div className="flex flex-col items-center space-y-4">
-          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-          <p className="text-gray-500">Loading resume...</p>
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <p className="text-muted-foreground">Loading resume...</p>
         </div>
       </div>
     );
@@ -152,9 +152,9 @@ export function ResumeEditor({ id }: ResumeEditorProps) {
     return (
       <div className="flex h-64 items-center justify-center">
         <div className="flex flex-col items-center space-y-4 text-center">
-          <AlertCircle className="h-8 w-8 text-red-500" />
-          <p className="font-medium text-gray-700">Failed to load resume</p>
-          <p className="max-w-md text-gray-500">
+          <AlertCircle className="h-8 w-8 text-destructive" />
+          <p className="font-medium text-foreground">Failed to load resume</p>
+          <p className="max-w-md text-muted-foreground">
             {error?.message ||
               "The resume couldn't be loaded. Please try again or contact support."}
           </p>
@@ -217,8 +217,8 @@ export function ResumeEditor({ id }: ResumeEditorProps) {
       </div>
 
       {/* Section Navigation Tabs */}
-      <div className="rounded-md bg-gray-50 p-2">
-        <h3 className="mb-2 px-2 text-xs font-semibold uppercase text-gray-500">
+      <div className="rounded-md bg-muted p-2">
+        <h3 className="mb-2 px-2 text-xs font-semibold uppercase text-muted-foreground">
           Resume Sections
         </h3>
         <div className="space-y-1">
@@ -228,8 +228,8 @@ export function ResumeEditor({ id }: ResumeEditorProps) {
               className={cn(
                 "w-full rounded-md px-3 py-2 text-left text-sm font-medium transition-colors",
                 activeSection === section.id
-                  ? "bg-blue-50 text-blue-700"
-                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900",
+                  ? "bg-primary/10 text-primary"
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
               )}
               onClick={() => setActiveSection(section.id)}
             >
@@ -336,7 +336,7 @@ export function ResumeEditor({ id }: ResumeEditorProps) {
 
       {/* Unsaved changes indicator */}
       {unsavedChanges && (
-        <div className="rounded-md border border-yellow-200 bg-yellow-50 p-2 text-center text-sm text-yellow-700">
+        <div className="rounded-md border border-warning/20 bg-warning/10 p-2 text-center text-sm text-warning-foreground">
           You have unsaved changes. Click Save Changes in the header to save.
         </div>
       )}
