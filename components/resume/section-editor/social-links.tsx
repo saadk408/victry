@@ -234,7 +234,7 @@ export function SocialLinksEditor({
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Check className="h-4 w-4 text-green-500" />
+              <Check className="h-4 w-4 text-success" />
             </TooltipTrigger>
             <TooltipContent>
               <p>Valid URL format</p>
@@ -249,7 +249,7 @@ export function SocialLinksEditor({
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <AlertCircle className="h-4 w-4 text-red-500" />
+              <AlertCircle className="h-4 w-4 text-destructive" />
             </TooltipTrigger>
             <TooltipContent>
               <p>{validationErrors[index.toString()]}</p>
@@ -267,7 +267,7 @@ export function SocialLinksEditor({
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-medium">Social Links</h3>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-muted-foreground">
             Add links to your professional profiles
           </p>
         </div>
@@ -285,11 +285,11 @@ export function SocialLinksEditor({
 
       {socialLinks.length === 0 ? (
         <div className="rounded-md border-2 border-dashed py-8 text-center">
-          <LinkIcon className="mx-auto mb-3 h-10 w-10 text-gray-400" />
-          <h4 className="mb-1 text-base font-medium text-gray-700">
+          <LinkIcon className="mx-auto mb-3 h-10 w-10 text-muted-foreground/50" />
+          <h4 className="mb-1 text-base font-medium text-foreground">
             No social links added yet
           </h4>
-          <p className="mx-auto mb-3 max-w-sm text-sm text-gray-500">
+          <p className="mx-auto mb-3 max-w-sm text-sm text-muted-foreground">
             Add links to your professional social media profiles or portfolio
             websites to showcase your work and online presence.
           </p>
@@ -315,7 +315,7 @@ export function SocialLinksEditor({
           onAdd={handleAddSocialLink}
           emptyPlaceholder={
             <div className="py-6 text-center">
-              <p className="text-gray-500">No social links added yet</p>
+              <p className="text-muted-foreground">No social links added yet</p>
             </div>
           }
           renderItem={(socialLink, index) => (
@@ -333,7 +333,7 @@ export function SocialLinksEditor({
                   <SelectTrigger
                     className={cn(
                       "w-full",
-                      !socialLink.platform && "text-gray-400",
+                      !socialLink.platform && "text-muted-foreground",
                     )}
                   >
                     <SelectValue placeholder="Select platform">
@@ -375,7 +375,7 @@ export function SocialLinksEditor({
                     </span>
                   </div>
                 ) : (
-                  <span className="text-gray-400">No platform selected</span>
+                  <span className="text-muted-foreground">No platform selected</span>
                 )}
               </div>
 
@@ -392,7 +392,7 @@ export function SocialLinksEditor({
                     className={cn(
                       "w-full pr-8",
                       validationErrors[index.toString()] &&
-                        "border-red-300 focus-visible:ring-red-500",
+                        "border-destructive focus-visible:ring-destructive",
                     )}
                     disabled={disabled}
                     aria-invalid={!!validationErrors[index.toString()]}
@@ -411,7 +411,7 @@ export function SocialLinksEditor({
                 {validationErrors[index.toString()] && (
                   <p
                     id={`url-error-${index}`}
-                    className="mt-1 text-xs text-red-500"
+                    className="mt-1 text-xs text-destructive"
                   >
                     {validationErrors[index.toString()]}
                   </p>
@@ -434,8 +434,8 @@ export function SocialLinksEditor({
       )}
 
       {/* Help Text */}
-      <div className="rounded-md bg-gray-50 p-4 text-sm text-gray-500">
-        <h4 className="mb-1 font-medium text-gray-700">
+      <div className="rounded-md bg-muted p-4 text-sm text-muted-foreground">
+        <h4 className="mb-1 font-medium text-foreground">
           Tips for Social Links
         </h4>
         <ul className="list-inside list-disc space-y-1">

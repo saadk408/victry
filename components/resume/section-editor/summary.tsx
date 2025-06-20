@@ -100,7 +100,7 @@ export function SummaryEditor({
               !summary.content ||
               (aiSuggestionState?.isLoading ?? false)
             }
-            className="border-blue-200 text-blue-600 hover:bg-blue-50"
+            className="border-info text-info hover:bg-info/10"
           >
             {aiSuggestionState?.isLoading ? (
               <>
@@ -173,14 +173,14 @@ export function SummaryEditor({
           analyticsCategory="professional_summary"
         />
 
-        <div className="flex justify-between text-xs text-gray-500">
+        <div className="flex justify-between text-xs text-muted-foreground">
           <span>Recommended: 30-100 words</span>
         </div>
       </div>
 
       {/* Help Text */}
-      <div className="rounded-md bg-gray-50 p-4 text-sm text-gray-500">
-        <h4 className="mb-1 font-medium text-gray-700">
+      <div className="rounded-md bg-muted p-4 text-sm text-muted-foreground">
+        <h4 className="mb-1 font-medium text-foreground">
           Tips for a Strong Professional Summary
         </h4>
         <ul className="list-inside list-disc space-y-1">
@@ -195,12 +195,12 @@ export function SummaryEditor({
 
       {/* Empty State - Show when there's no content */}
       {!summary.content && (
-        <div className="rounded-md border-2 border-dashed border-gray-200 p-4 text-center">
-          <Sparkles className="mx-auto mb-2 h-8 w-8 text-gray-300" />
-          <p className="font-medium text-gray-700">
+        <div className="rounded-md border-2 border-dashed border-border p-4 text-center">
+          <Sparkles className="mx-auto mb-2 h-8 w-8 text-muted-foreground/50" />
+          <p className="font-medium text-foreground">
             Your professional summary is empty
           </p>
-          <p className="mx-auto mb-4 mt-1 max-w-md text-sm text-gray-500">
+          <p className="mx-auto mb-4 mt-1 max-w-md text-sm text-muted-foreground">
             A strong professional summary helps recruiters quickly understand
             your qualifications and increases your chances of getting an
             interview.
@@ -215,7 +215,7 @@ export function SummaryEditor({
                   "Experienced professional with expertise in [your field]. Skilled in [key skills] with a proven track record of [achievements].",
                 );
               }}
-              className="border-blue-200 text-blue-600 hover:bg-blue-50"
+              className="border-info text-info hover:bg-info/10"
             >
               <Sparkles className="mr-2 h-4 w-4" />
               Use Template

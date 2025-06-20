@@ -157,7 +157,7 @@ export function PersonalInfoEditor({
         <Label htmlFor={`personal-info-${field}`} className="flex items-center">
           {icon}
           {label}
-          {required && <span className="ml-1 text-red-500">*</span>}
+          {required && <span className="ml-1 text-destructive">*</span>}
         </Label>
         <div className="relative">
           <Input
@@ -171,10 +171,10 @@ export function PersonalInfoEditor({
             required={required}
             aria-invalid={hasError}
             aria-describedby={hasError ? `${field}-error` : undefined}
-            className={cn(hasError && "border-red-500 focus:ring-red-500")}
+            className={cn(hasError && "border-destructive focus:ring-destructive")}
           />
           {hasError && (
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 transform text-red-500">
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 transform text-destructive">
               <AlertCircle className="h-4 w-4" />
             </div>
           )}
@@ -182,7 +182,7 @@ export function PersonalInfoEditor({
         {hasError && (
           <p
             id={`${field}-error`}
-            className="flex items-center gap-1 text-sm text-red-500"
+            className="flex items-center gap-1 text-sm text-destructive"
           >
             {errors[field]}
           </p>
@@ -200,7 +200,7 @@ export function PersonalInfoEditor({
         {renderField(
           "fullName",
           "Full Name",
-          <User className="mr-2 h-4 w-4 text-gray-500" />,
+          <User className="mr-2 h-4 w-4 text-muted-foreground" />,
           "text",
           "John Doe",
           true,
@@ -210,7 +210,7 @@ export function PersonalInfoEditor({
         {renderField(
           "email",
           "Email",
-          <Mail className="mr-2 h-4 w-4 text-gray-500" />,
+          <Mail className="mr-2 h-4 w-4 text-muted-foreground" />,
           "email",
           "johndoe@example.com",
           true,
@@ -220,7 +220,7 @@ export function PersonalInfoEditor({
         {renderField(
           "phone",
           "Phone Number",
-          <Phone className="mr-2 h-4 w-4 text-gray-500" />,
+          <Phone className="mr-2 h-4 w-4 text-muted-foreground" />,
           "tel",
           "(123) 456-7890",
         )}
@@ -229,7 +229,7 @@ export function PersonalInfoEditor({
         {renderField(
           "location",
           "Location",
-          <MapPin className="mr-2 h-4 w-4 text-gray-500" />,
+          <MapPin className="mr-2 h-4 w-4 text-muted-foreground" />,
           "text",
           "City, State",
         )}
@@ -242,7 +242,7 @@ export function PersonalInfoEditor({
         {renderField(
           "linkedIn",
           "LinkedIn",
-          <Linkedin className="mr-2 h-4 w-4 text-gray-500" />,
+          <Linkedin className="mr-2 h-4 w-4 text-muted-foreground" />,
           "text",
           "linkedin.com/in/johndoe",
         )}
@@ -251,7 +251,7 @@ export function PersonalInfoEditor({
         {renderField(
           "website",
           "Website",
-          <Globe className="mr-2 h-4 w-4 text-gray-500" />,
+          <Globe className="mr-2 h-4 w-4 text-muted-foreground" />,
           "text",
           "johndoe.com",
         )}
@@ -260,15 +260,15 @@ export function PersonalInfoEditor({
         {renderField(
           "github",
           "GitHub",
-          <Github className="mr-2 h-4 w-4 text-gray-500" />,
+          <Github className="mr-2 h-4 w-4 text-muted-foreground" />,
           "text",
           "github.com/johndoe",
         )}
       </div>
 
       {/* Help Text */}
-      <div className="mt-4 rounded-md bg-gray-50 p-4 text-sm text-gray-500">
-        <h4 className="mb-1 font-medium text-gray-700">
+      <div className="mt-4 rounded-md bg-muted p-4 text-sm text-muted-foreground">
+        <h4 className="mb-1 font-medium text-foreground">
           Tips for Contact Information
         </h4>
         <ul className="list-inside list-disc space-y-1">

@@ -110,11 +110,11 @@ export function CertificationsEditor({
 
       {certifications.length === 0 ? (
         <div className="rounded-md border-2 border-dashed py-8 text-center">
-          <Award className="mx-auto mb-3 h-10 w-10 text-gray-400" />
-          <h4 className="mb-1 text-base font-medium text-gray-700">
+          <Award className="mx-auto mb-3 h-10 w-10 text-muted-foreground/50" />
+          <h4 className="mb-1 text-base font-medium text-foreground">
             No certifications added yet
           </h4>
-          <p className="mx-auto mb-3 max-w-sm text-sm text-gray-500">
+          <p className="mx-auto mb-3 max-w-sm text-sm text-muted-foreground">
             Add professional certifications, licenses, or credentials relevant
             to your career goals.
           </p>
@@ -139,7 +139,7 @@ export function CertificationsEditor({
           onAdd={handleAddCertification}
           emptyPlaceholder={
             <div className="py-6 text-center">
-              <p className="text-gray-500">No certifications added yet</p>
+              <p className="text-muted-foreground">No certifications added yet</p>
             </div>
           }
           renderItem={(certification, index) => (
@@ -158,20 +158,20 @@ export function CertificationsEditor({
                 value={certification.id}
                 className="overflow-hidden rounded-md border"
               >
-                <AccordionTrigger className="px-4 py-3 hover:bg-gray-50 data-[state=open]:bg-gray-50">
+                <AccordionTrigger className="px-4 py-3 hover:bg-accent data-[state=open]:bg-accent">
                   <div className="flex w-full flex-col items-start text-left">
                     <div className="flex w-full items-center justify-between">
                       <h4 className="truncate font-medium">
                         {certification.name || "Untitled Certification"}
                       </h4>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-muted-foreground">
                         {certification.date
                           ? formatDate(certification.date, "short")
                           : ""}
                       </div>
                     </div>
                     {certification.issuer && (
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         {certification.issuer}
                       </p>
                     )}
@@ -185,9 +185,9 @@ export function CertificationsEditor({
                         htmlFor={`certification-name-${index}`}
                         className="flex items-center"
                       >
-                        <Award className="mr-2 h-4 w-4 text-gray-500" />
+                        <Award className="mr-2 h-4 w-4 text-muted-foreground" />
                         Certification Name
-                        <span className="ml-1 text-red-500">*</span>
+                        <span className="ml-1 text-destructive">*</span>
                       </Label>
                       <Input
                         id={`certification-name-${index}`}
@@ -211,9 +211,9 @@ export function CertificationsEditor({
                         htmlFor={`certification-issuer-${index}`}
                         className="flex items-center"
                       >
-                        <Building className="mr-2 h-4 w-4 text-gray-500" />
+                        <Building className="mr-2 h-4 w-4 text-muted-foreground" />
                         Issuing Organization
-                        <span className="ml-1 text-red-500">*</span>
+                        <span className="ml-1 text-destructive">*</span>
                       </Label>
                       <Input
                         id={`certification-issuer-${index}`}
@@ -238,9 +238,9 @@ export function CertificationsEditor({
                           htmlFor={`certification-date-${index}`}
                           className="flex items-center"
                         >
-                          <Calendar className="mr-2 h-4 w-4 text-gray-500" />
+                          <Calendar className="mr-2 h-4 w-4 text-muted-foreground" />
                           Issue Date
-                          <span className="ml-1 text-red-500">*</span>
+                          <span className="ml-1 text-destructive">*</span>
                         </Label>
                         <Input
                           id={`certification-date-${index}`}
@@ -270,7 +270,7 @@ export function CertificationsEditor({
                           htmlFor={`certification-expiry-${index}`}
                           className="flex items-center"
                         >
-                          <Clock className="mr-2 h-4 w-4 text-gray-500" />
+                          <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
                           Expiration Date
                         </Label>
                         <Input
@@ -301,7 +301,7 @@ export function CertificationsEditor({
                         htmlFor={`certification-url-${index}`}
                         className="flex items-center"
                       >
-                        <Link className="mr-2 h-4 w-4 text-gray-500" />
+                        <Link className="mr-2 h-4 w-4 text-muted-foreground" />
                         Credential URL
                       </Label>
                       <Input
@@ -326,7 +326,7 @@ export function CertificationsEditor({
                         variant="ghost"
                         size="sm"
                         onClick={() => handleDeleteCertification(index)}
-                        className="text-red-600 hover:bg-red-50 hover:text-red-700"
+                        className="text-destructive hover:bg-destructive/10 hover:text-destructive"
                         disabled={disabled}
                       >
                         <Trash2 className="mr-2 h-4 w-4" />
@@ -342,8 +342,8 @@ export function CertificationsEditor({
       )}
 
       {/* Help Text */}
-      <div className="rounded-md bg-gray-50 p-4 text-sm text-gray-500">
-        <h4 className="mb-1 font-medium text-gray-700">
+      <div className="rounded-md bg-muted p-4 text-sm text-muted-foreground">
+        <h4 className="mb-1 font-medium text-foreground">
           Tips for Certifications
         </h4>
         <ul className="list-inside list-disc space-y-1">

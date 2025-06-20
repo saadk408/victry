@@ -31,18 +31,18 @@ function Progress({
 
   // Determine variant classes
   const variantClasses = {
-    default: "bg-gray-900 dark:bg-gray-50",
-    primary: "bg-blue-600 dark:bg-blue-500",
-    success: "bg-green-600 dark:bg-green-500",
-    warning: "bg-amber-600 dark:bg-amber-500",
-    danger: "bg-red-600 dark:bg-red-500",
+    default: "bg-foreground",
+    primary: "bg-primary",
+    success: "bg-success",
+    warning: "bg-warning",
+    danger: "bg-destructive",
   };
 
   return (
     <div
       data-slot="progress"
       className={cn(
-        "relative w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800",
+        "relative w-full overflow-hidden rounded-full bg-muted",
         height,
         className,
       )}

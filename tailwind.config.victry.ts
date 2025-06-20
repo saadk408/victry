@@ -110,6 +110,7 @@ const config: Config = {
         "glow": "glow 2s ease-in-out infinite",
         "slide-up-fade": "slide-up-fade 0.3s ease-out",
         "slide-down-fade": "slide-down-fade 0.3s ease-out",
+        "indeterminate-progress": "indeterminate-progress 1.5s linear infinite",
       },
       
       keyframes: {

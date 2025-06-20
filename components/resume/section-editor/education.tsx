@@ -170,11 +170,11 @@ export function EducationEditor({
 
       {education.length === 0 ? (
         <div className="rounded-md border-2 border-dashed py-8 text-center">
-          <GraduationCap className="mx-auto mb-3 h-10 w-10 text-gray-400" />
-          <h4 className="mb-1 text-base font-medium text-gray-700">
+          <GraduationCap className="mx-auto mb-3 h-10 w-10 text-muted-foreground/50" />
+          <h4 className="mb-1 text-base font-medium text-foreground">
             No education added yet
           </h4>
-          <p className="mx-auto mb-3 max-w-sm text-sm text-gray-500">
+          <p className="mx-auto mb-3 max-w-sm text-sm text-muted-foreground">
             Add your educational background, including degrees, certificates,
             and relevant coursework.
           </p>
@@ -199,7 +199,7 @@ export function EducationEditor({
           onAdd={handleAddEducation}
           emptyPlaceholder={
             <div className="py-6 text-center">
-              <p className="text-gray-500">No education added yet</p>
+              <p className="text-muted-foreground">No education added yet</p>
             </div>
           }
           renderItem={(edu, index) => (
@@ -216,13 +216,13 @@ export function EducationEditor({
                 value={edu.id}
                 className="overflow-hidden rounded-md border"
               >
-                <AccordionTrigger className="px-4 py-3 hover:bg-gray-50 data-[state=open]:bg-gray-50">
+                <AccordionTrigger className="px-4 py-3 hover:bg-accent data-[state=open]:bg-accent">
                   <div className="flex w-full flex-col items-start text-left">
                     <div className="flex w-full items-center justify-between">
                       <h4 className="truncate font-medium">
                         {edu.institution || "Unnamed Institution"}
                       </h4>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-muted-foreground">
                         {formatDateRange(
                           edu.startDate,
                           edu.endDate,
@@ -230,7 +230,7 @@ export function EducationEditor({
                         )}
                       </div>
                     </div>
-                    <div className="mt-1 text-sm text-gray-600">
+                    <div className="mt-1 text-sm text-muted-foreground">
                       {edu.degree}
                       {edu.field ? ` in ${edu.field}` : ""}
                     </div>
@@ -244,9 +244,9 @@ export function EducationEditor({
                         htmlFor={`education-institution-${index}`}
                         className="flex items-center"
                       >
-                        <School className="mr-2 h-4 w-4 text-gray-500" />
+                        <School className="mr-2 h-4 w-4 text-muted-foreground" />
                         Institution
-                        <span className="ml-1 text-red-500">*</span>
+                        <span className="ml-1 text-destructive">*</span>
                       </Label>
                       <Input
                         id={`education-institution-${index}`}
@@ -271,9 +271,9 @@ export function EducationEditor({
                           htmlFor={`education-degree-${index}`}
                           className="flex items-center"
                         >
-                          <Award className="mr-2 h-4 w-4 text-gray-500" />
+                          <Award className="mr-2 h-4 w-4 text-muted-foreground" />
                           Degree/Certificate
-                          <span className="ml-1 text-red-500">*</span>
+                          <span className="ml-1 text-destructive">*</span>
                         </Label>
                         <Input
                           id={`education-degree-${index}`}
@@ -319,7 +319,7 @@ export function EducationEditor({
                           htmlFor={`education-location-${index}`}
                           className="flex items-center"
                         >
-                          <MapPin className="mr-2 h-4 w-4 text-gray-500" />
+                          <MapPin className="mr-2 h-4 w-4 text-muted-foreground" />
                           Location
                         </Label>
                         <Input
@@ -359,7 +359,7 @@ export function EducationEditor({
                     {/* Date Range */}
                     <div>
                       <Label className="mb-1 flex items-center">
-                        <ListChecks className="mr-2 h-4 w-4 text-gray-500" />
+                        <ListChecks className="mr-2 h-4 w-4 text-muted-foreground" />
                         Date Range
                       </Label>
                       <DateRangePicker
@@ -394,7 +394,7 @@ export function EducationEditor({
                       </div>
 
                       {(edu.highlights?.length || 0) === 0 ? (
-                        <p className="text-sm italic text-gray-500">
+                        <p className="text-sm italic text-muted-foreground">
                           Add key achievements, activities, honors, or relevant
                           coursework
                         </p>
@@ -442,7 +442,7 @@ export function EducationEditor({
                         variant="ghost"
                         size="sm"
                         onClick={() => handleDeleteEducation(index)}
-                        className="text-red-600 hover:bg-red-50 hover:text-red-700"
+                        className="text-destructive hover:bg-destructive/10 hover:text-destructive"
                         disabled={disabled}
                       >
                         <Trash2 className="mr-2 h-4 w-4" />
@@ -458,8 +458,8 @@ export function EducationEditor({
       )}
 
       {/* Help Text */}
-      <div className="mt-4 rounded-md bg-gray-50 p-4 text-sm text-gray-500">
-        <h4 className="mb-1 font-medium text-gray-700">
+      <div className="mt-4 rounded-md bg-muted p-4 text-sm text-muted-foreground">
+        <h4 className="mb-1 font-medium text-foreground">
           Tips for Education Section
         </h4>
         <ul className="list-inside list-disc space-y-1">
