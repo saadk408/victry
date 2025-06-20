@@ -32,9 +32,9 @@
 ## Recent Implementation Docs (Most Recent First)
 <!-- Update this list after completing each component -->
 <!-- Keep only the 3 most recent entries -->
-1. _Tooltip Component_ - `tooltip-migration.md` - Key insight: _Pattern 11 universality confirmed across all overlay components - Tooltip implementation proves popover tokens work identically for Select, Popover, and Tooltip with CSS-first animations_
-2. _Popover Component_ - `popover-migration.md` - Key insight: _Pattern 11 overlay tokens universally applicable - popover, select, future tooltip/dropdown all use identical token structure for consistent overlay theming_
-3. _Dialog Component_ - `dialog-discovery.md` - Key insight: _Dialog already semantic (zero dark classes), perfect overlay template combining Pattern 6 + 11, reinforces strategy to analyze before migrating_
+1. _Tabs Component_ - `tabs-migration.md` - Key insight: _HIGH RISK justified by 3 variants × states complexity, inverted pill variant uses bg-foreground/text-background for emphasis, validates patterns scale to complex navigation components_
+2. _Accordion Component_ - `accordion-discovery.md` - Key insight: _Already semantic but consumers need cleanup, CSS keyframe animations (Pattern 14 candidate), analysis-first strategy validates checking both component AND consumer files_
+3. _Tooltip Component_ - `tooltip-migration.md` - Key insight: _Pattern 11 universality confirmed across all overlay components - Tooltip implementation proves popover tokens work identically for Select, Popover, and Tooltip with CSS-first animations_
 
 **Before Reaching Context Limit:**
 - [ ] Update pattern library with new discoveries
@@ -194,8 +194,8 @@ cd ../victry                   # Main branch
 - [x] Dialog - ALREADY SEMANTIC (perfect overlay template) ✓
 - [x] Popover - Overlay patterns (Pattern 11 validation) ✓
 - [x] Tooltip - Hint patterns ✓
-- [ ] Tabs - Navigation patterns (HIGH RISK)
-- [ ] Accordion - Collapsible patterns
+- [x] Tabs - Navigation patterns (HIGH RISK) ✓
+- [x] Accordion - ALREADY SEMANTIC (consumer cleanup needed) ✓
 
 ### Feature Components
 - [ ] ATS Score - Dynamic color implementation
@@ -245,7 +245,7 @@ Exceptions: [When NOT to use]
 
 ## Pattern Library
 
-**Current Pattern Count**: 13 (3 from specifications + 10 discovered)
+**Current Pattern Count**: 14 (3 from specifications + 11 discovered)
 
 ### Pattern 1: Surface Colors
 - **Rule**: "Replace all dark/light mode pairs with semantic surface tokens"
@@ -367,6 +367,16 @@ Exceptions: [When NOT to use]
 - **Automation**: High
 - **Exceptions**: None - universal for range-based inputs (sliders, progress bars)
 
+### Pattern 14: CSS Keyframe Animations for Collapsible Components
+- **Rule**: "Use CSS keyframes with data-state attributes for smooth expand/collapse animations"
+- **Example**:
+  - Animation: `@keyframes accordion-down { from { height: 0; } to { height: var(--radix-accordion-content-height); } }`
+  - Application: `data-[state=open]:animate-accordion-down`
+  - Rotation: `[&[data-state=open]>svg]:rotate-180 transition-transform duration-200`
+- **Found in**: Accordion component
+- **Automation**: Medium (animation names vary by component)
+- **Exceptions**: None - universally applicable to collapsible UI
+
 ### [New patterns will be added here as discovered]
 
 ## Intelligent Discovery Prompts
@@ -434,10 +444,10 @@ Template based on discovery:
 - Efficiency gained: [Track improvement]
 
 **Migration Progress**:
-- Components complete: 13/70 (Status colors utility + Card component + Badge enhancement + Input discovery + Textarea migration + Select discovery + Checkbox enhancement + Radio enhancement + Switch enhancement + Slider enhancement + Dialog discovery + Popover migration + Tooltip implementation ✓)
+- Components complete: 15/70 (Status colors utility + Card component + Badge enhancement + Input discovery + Textarea migration + Select discovery + Checkbox enhancement + Radio enhancement + Switch enhancement + Slider enhancement + Dialog discovery + Popover migration + Tooltip implementation + Accordion discovery + Tabs navigation (HIGH RISK) ✓)
 - Bundle reduction: 233KB achieved (404KB → 171KB)
 - Target exceeded: 9KB under 180KB limit ✓
-- Complexity pattern: Overlay components (Dialog, Popover, Tooltip) follow identical Pattern 11, surface components established, form patterns mature
+- Complexity pattern: Overlay components (Dialog, Popover, Tooltip, Accordion) follow identical patterns, consumer cleanup often more work than component migration
 - Quality maintained: Yes (zero hardcoded colors, semantic tokens working, CSS-first animations)
 
 ### Current Milestone Status
@@ -448,9 +458,9 @@ Template based on discovery:
 
 ### Automation Readiness Checklist
 
-**Start Planning** (Currently: [ ]):
-- [ ] 10+ components complete
-- [ ] 5+ patterns documented beyond initial 3
+**Start Planning** (Currently: [x]):
+- [x] 10+ components complete
+- [x] 5+ patterns documented beyond initial 3
 - [ ] Repetitive work clearly identified
 - [ ] Error rate < 5% on recent components
 - [ ] Pattern reuse rate > 70%
@@ -497,6 +507,7 @@ Template based on discovery:
 24. Analysis-first discovery strategy prevents unnecessary work - Dialog component already semantic with zero dark classes, perfect overlay template combining Patterns 6+11, reinforces scanning for dark: classes as first step
 25. Pattern 11 overlay universality validated - Popover migration confirms overlay components (Select, Popover, future Tooltip/Dropdown) use identical popover token structure for consistent theming across component families
 26. Tooltip implementation proves Pattern 11 universal applicability - overlay components (Select, Popover, Tooltip) use identical popover token structure, CSS-first animations superior to JavaScript for micro-interactions, Radix UI ecosystem enables zero-architectural-change component additions
+27. Consumer cleanup can exceed component migration effort - Accordion component already semantic but 4 consumer files needed 50+ color replacements, validates checking both component AND consumer files during analysis phase
 
 ## IMPORTANT Discovery Rules
 
