@@ -171,7 +171,7 @@ function SortableListItem<T>({
       }}
       className={cn(
         "group relative",
-        isEditing ? "hover:bg-gray-50" : "",
+        isEditing ? "hover:bg-muted/30" : "",
         itemClassName,
       )}
     >
@@ -200,7 +200,7 @@ function SortableListItem<T>({
               variant="ghost"
               size="sm"
               onClick={() => onRemove(index)}
-              className="h-6 w-6 rounded-full p-0 text-gray-400 hover:text-red-600"
+              className="h-6 w-6 rounded-full p-0 text-muted-foreground hover:text-destructive"
               aria-label={`Remove item ${index + 1}`}
             >
               <Trash2 className="h-3.5 w-3.5" />
@@ -263,12 +263,12 @@ export function SortableList<T>(props: SortableListProps<T>) {
         className={cn(
           "relative",
           isEditing
-            ? "rounded-md border-2 border-dashed border-gray-300 p-4"
+            ? "rounded-md border-2 border-dashed border-border p-4"
             : "",
           className,
         )}
       >
-        <div className="py-4 text-center text-gray-500">{emptyPlaceholder}</div>
+        <div className="py-4 text-center text-muted-foreground">{emptyPlaceholder}</div>
 
         {onAdd && !disabled && (
           <div className="mt-2 flex justify-center">
@@ -293,7 +293,7 @@ export function SortableList<T>(props: SortableListProps<T>) {
       className={cn(
         "relative",
         isEditing
-          ? "rounded-md border-2 border-dashed border-gray-300 p-4"
+          ? "rounded-md border-2 border-dashed border-border p-4"
           : "",
         className,
       )}
@@ -353,7 +353,7 @@ export function SortableList<T>(props: SortableListProps<T>) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="pointer-events-none rounded-md border bg-white p-2 shadow-lg"
+              className="pointer-events-none rounded-md border bg-surface p-2 shadow-lg"
             >
               {renderItem(safeItems[activeItem], activeItem, true)}
             </motion.div>

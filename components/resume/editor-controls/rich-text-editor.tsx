@@ -43,7 +43,7 @@ const RichTextEditorContent = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex items-center justify-center p-8 text-gray-500">
+      <div className="flex items-center justify-center p-8 text-muted-foreground">
         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         <span>Loading editor...</span>
       </div>

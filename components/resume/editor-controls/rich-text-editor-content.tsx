@@ -64,7 +64,7 @@ export function RichTextEditorContent({
         openOnClick: false,
         HTMLAttributes: {
           rel: "noopener noreferrer",
-          class: "text-blue-600 hover:underline",
+          class: "text-info hover:underline",
         },
       }),
       Placeholder.configure({
@@ -188,7 +188,7 @@ export function RichTextEditorContent({
       size="sm"
       className={cn(
         "h-8 w-8 p-0",
-        isActive && "bg-info/10 text-blue-900",
+        isActive && "bg-info/10 text-info-foreground",
         disabled && "cursor-not-allowed opacity-50",
       )}
       onClick={action}
@@ -204,7 +204,7 @@ export function RichTextEditorContent({
     <div className={cn("rounded-md border", className)}>
       {/* Editor Toolbar */}
       {!readOnly && toolbarButtons.length > 0 && (
-        <div className="flex flex-wrap items-center gap-1 border-b bg-gray-50 p-1.5">
+        <div className="flex flex-wrap items-center gap-1 border-b bg-muted/30 p-1.5">
           {/* Format buttons */}
           <div className="flex space-x-1">
             {toolbarButtons.includes("bold") && (
@@ -242,7 +242,7 @@ export function RichTextEditorContent({
           {(toolbarButtons.includes("bulletList") ||
             toolbarButtons.includes("orderedList")) && (
             <>
-              <div className="mx-1 h-5 w-px bg-gray-300" />
+              <div className="mx-1 h-5 w-px bg-border" />
               <div className="flex space-x-1">
                 {toolbarButtons.includes("bulletList") && (
                   <ToolbarButton
@@ -286,7 +286,7 @@ export function RichTextEditorContent({
           {(toolbarButtons.includes("undo") ||
             toolbarButtons.includes("redo")) && (
             <>
-              <div className="mx-1 h-5 w-px bg-gray-300" />
+              <div className="mx-1 h-5 w-px bg-border" />
               <div className="flex space-x-1">
                 {toolbarButtons.includes("undo") && (
                   <ToolbarButton

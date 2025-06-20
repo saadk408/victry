@@ -401,3 +401,31 @@ export function getScoreStatus(score: number): StatusType {
   if (score >= 60) return 'warning';
   return 'error';
 }
+
+/**
+ * Skill level type definition
+ */
+export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert';
+
+/**
+ * Map skill levels to semantic status types
+ * Uses Pattern 8: Skill Level Status Mapping with logical progression
+ * 
+ * @param level - Skill proficiency level
+ * @returns Semantic status type representing skill progression
+ * 
+ * @example
+ * skillLevelToStatus('expert') // Returns 'success'
+ * skillLevelToStatus('intermediate') // Returns 'pending'
+ * skillLevelToStatus('beginner') // Returns 'info'
+ */
+export function skillLevelToStatus(level: SkillLevel): StatusType {
+  const levelMap: Record<SkillLevel, StatusType> = {
+    beginner: 'info',        // Blue - learning/informational
+    intermediate: 'pending', // Purple - developing/in progress
+    advanced: 'active',      // Accent - skilled/active
+    expert: 'success',       // Green - mastered/successful
+  };
+  
+  return levelMap[level];
+}

@@ -57,6 +57,7 @@ import {
 } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils/utils";
+import { getStatusClasses } from "@/lib/utils/status-colors";
 import { Resume, Skill } from "@/types/resume";
 import { JobDescription } from "@/types/job-description";
 // import TextAlign from '@tiptap/extension-text-align'; // Commented out - likely needs npm install
@@ -622,7 +623,7 @@ export function CoverLetterEditor({
       type="button"
       variant="ghost"
       size="sm"
-      className={cn("h-8 w-8 p-0", isActive && "bg-gray-100 text-gray-900")}
+      className={cn("h-8 w-8 p-0", isActive && "bg-accent text-accent-foreground")}
       onClick={action}
       disabled={!editor || readOnly}
     >
@@ -692,14 +693,22 @@ export function CoverLetterEditor({
 
       {/* Status messages */}
       {error && (
-        <div className="flex items-center border-l-4 border-red-500 bg-destructive/10 p-4 text-red-700">
+        <div className={cn(
+          "flex items-center border-l-4 p-4",
+          getStatusClasses('error', 'soft'),
+          "border-destructive"
+        )}>
           <AlertCircle className="mr-2 h-5 w-5 flex-shrink-0" />
           <p>{error}</p>
         </div>
       )}
 
       {success && (
-        <div className="flex items-center border-l-4 border-green-500 bg-success/10 p-4 text-green-700">
+        <div className={cn(
+          "flex items-center border-l-4 p-4",
+          getStatusClasses('success', 'soft'),
+          "border-success"
+        )}>
           <Check className="mr-2 h-5 w-5 flex-shrink-0" />
           <p>{success}</p>
         </div>
@@ -826,10 +835,10 @@ export function CoverLetterEditor({
                     handleInputChange("whyInterested", e.target.value)
                   }
                   placeholder="Briefly explain what interests you about this role or company..."
-                  className="min-h-24 w-full rounded-md border border-gray-300 p-2 text-sm"
+                  className="min-h-24 w-full rounded-md border border-input bg-background p-2 text-sm text-foreground placeholder:text-muted-foreground"
                   disabled={readOnly}
                 />
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   Used to personalize AI-generated content
                 </p>
               </div>
@@ -856,7 +865,10 @@ export function CoverLetterEditor({
                   </Button>
 
                   {!resume && (
-                    <p className="mt-1 text-xs text-amber-600">
+                    <p className={cn(
+                      "mt-1 text-xs",
+                      getStatusClasses('warning', 'ghost')
+                    )}>
                       Please select a resume first
                     </p>
                   )}
@@ -959,7 +971,7 @@ export function CoverLetterEditor({
                       isActive={editor?.isActive("underline") || false}
                       tooltip="Underline"
                     />
-                    <div className="mx-1 h-6 w-px bg-gray-200" />
+                    <div className="mx-1 h-6 w-px bg-border" />
                     <EditorButton
                       icon={<Heading1 className="h-4 w-4" />}
                       action={() =>
@@ -988,7 +1000,7 @@ export function CoverLetterEditor({
                       }
                       tooltip="Heading 2"
                     />
-                    <div className="mx-1 h-6 w-px bg-gray-200" />
+                    <div className="mx-1 h-6 w-px bg-border" />
                     <EditorButton
                       icon={<List className="h-4 w-4" />}
                       action={() =>
@@ -1005,7 +1017,7 @@ export function CoverLetterEditor({
                       isActive={editor?.isActive("orderedList") || false}
                       tooltip="Numbered List"
                     />
-                    <div className="mx-1 h-6 w-px bg-gray-200" />
+                    <div className="mx-1 h-6 w-px bg-border" />
                     <EditorButton
                       icon={<AlignLeft className="h-4 w-4" />}
                       action={() =>
@@ -1042,7 +1054,7 @@ export function CoverLetterEditor({
                       }
                       tooltip="Align Right"
                     />
-                    <div className="mx-1 h-6 w-px bg-gray-200" />
+                    <div className="mx-1 h-6 w-px bg-border" />
                     <EditorButton
                       icon={<LinkIcon className="h-4 w-4" />}
                       action={() => {
@@ -1096,7 +1108,7 @@ export function CoverLetterEditor({
                   {/* Rich Text Editor */}
                   <div
                     className={cn(
-                      "min-h-[500px] border-0 bg-white p-5",
+                      "min-h-[500px] border-0 bg-background p-5",
                       readOnly ? "opacity-70" : "prose-sm",
                     )}
                   >

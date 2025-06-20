@@ -21,6 +21,11 @@ import { cn } from "@/lib/utils/utils";
 import { Skill } from "@/types/resume";
 import { Badge } from "@/components/ui/badge";
 import { clientAnalytics } from "@/lib/utils/client-analytics";
+import { 
+  skillLevelToStatus, 
+  getStatusBadgeClasses,
+  type SkillLevel 
+} from "@/lib/utils/status-colors";
 
 // Common skill categories and suggestions based on job markets
 const SKILL_CATEGORIES = [
@@ -325,20 +330,13 @@ export function SkillInput({
     addSkill(newSkill, newCategory, newLevel);
   };
 
-  // Get appropriate color based on skill level
-  const getSkillLevelColor = (level?: Skill["level"]): string => {
-    switch (level) {
-      case "beginner":
-        return "bg-blue-100 text-blue-800 border-blue-200";
-      case "intermediate":
-        return "bg-green-100 text-green-800 border-green-200";
-      case "advanced":
-        return "bg-purple-100 text-purple-800 border-purple-200";
-      case "expert":
-        return "bg-orange-100 text-orange-800 border-orange-200";
-      default:
-        return "bg-gray-100 text-gray-800 border-gray-200";
+  // Get semantic color classes based on skill level
+  const getSkillLevelClasses = (level?: Skill["level"]): string => {
+    if (!level) {
+      return getStatusBadgeClasses('neutral', 'default', 'soft');
     }
+    const status = skillLevelToStatus(level as SkillLevel);
+    return getStatusBadgeClasses(status, 'default', 'soft');
   };
 
   // Group skills by category
@@ -362,9 +360,9 @@ export function SkillInput({
           <Badge
             variant="outline"
             className={cn(
-              "cursor-pointer hover:bg-gray-100",
+              "cursor-pointer hover:bg-muted/50",
               !activeCategoryFilter &&
-                "bg-blue-100 text-blue-800 hover:bg-blue-100",
+                "bg-info/10 text-info border-info/20",
             )}
             onClick={() => setActiveCategoryFilter(null)}
           >
@@ -376,9 +374,9 @@ export function SkillInput({
               key={category}
               variant="outline"
               className={cn(
-                "cursor-pointer hover:bg-gray-100",
+                "cursor-pointer hover:bg-muted/50",
                 activeCategoryFilter === category &&
-                  "bg-blue-100 text-blue-800 hover:bg-blue-100",
+                  "bg-info/10 text-info border-info/20",
               )}
               onClick={() =>
                 setActiveCategoryFilter(
@@ -406,8 +404,8 @@ export function SkillInput({
             <div
               key={skill.id}
               className={cn(
-                "group flex items-center gap-1 rounded-full border px-3 py-1 text-sm transition-colors",
-                getSkillLevelColor(skill.level),
+                "group flex items-center gap-1 transition-colors",
+                getSkillLevelClasses(skill.level),
               )}
             >
               <span>{skill.name}</span>
@@ -450,7 +448,7 @@ export function SkillInput({
                               <div
                                 className={cn(
                                   "mr-2 h-4 w-4 rounded-full",
-                                  getSkillLevelColor(level as Skill["level"]),
+                                  getSkillLevelClasses(level as Skill["level"]),
                                 )}
                               />
                               <span className="capitalize">{level}</span>
@@ -508,7 +506,7 @@ export function SkillInput({
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-5 w-5 rounded-full p-0 opacity-0 hover:text-red-600 hover:opacity-100 group-hover:opacity-70"
+                className="h-5 w-5 rounded-full p-0 opacity-0 hover:text-destructive hover:opacity-100 group-hover:opacity-70"
                 onClick={() => removeSkill(skill.id)}
                 disabled={disabled}
               >
@@ -553,16 +551,16 @@ export function SkillInput({
                 autoComplete="off"
               />
 
-              <Search className="absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 transform text-gray-400" />
+              <Search className="absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 transform text-muted-foreground" />
 
               {/* Autocomplete dropdown */}
               {showSuggestions && filteredSkills.length > 0 && (
-                <div className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-gray-200 bg-white shadow-lg">
+                <div className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-border bg-surface shadow-lg">
                   <ul className="py-1">
                     {filteredSkills.slice(0, 10).map((skill, index) => (
                       <li
                         key={index}
-                        className="cursor-pointer px-3 py-1.5 text-sm hover:bg-gray-100"
+                        className="cursor-pointer px-3 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
                         onMouseDown={(e) => {
                           e.preventDefault();
                           handleSelectSkill(skill);
@@ -589,7 +587,7 @@ export function SkillInput({
                     {newLevel ? (
                       <span className="capitalize">{newLevel}</span>
                     ) : (
-                      <span className="text-gray-500">Level</span>
+                      <span className="text-muted-foreground">Level</span>
                     )}
                     <ChevronDown className="ml-1 h-3.5 w-3.5" />
                   </Button>
@@ -609,7 +607,7 @@ export function SkillInput({
                             <div
                               className={cn(
                                 "mr-2 h-4 w-4 rounded-full",
-                                getSkillLevelColor(level as Skill["level"]),
+                                getSkillLevelClasses(level as Skill["level"]),
                               )}
                             />
                             <span className="capitalize">{level}</span>
@@ -635,7 +633,7 @@ export function SkillInput({
                     {newCategory ? (
                       <span>{newCategory}</span>
                     ) : (
-                      <span className="text-gray-500">Category</span>
+                      <span className="text-muted-foreground">Category</span>
                     )}
                     <ChevronDown className="ml-1 h-3.5 w-3.5" />
                   </Button>
@@ -669,7 +667,7 @@ export function SkillInput({
                 type="submit"
                 variant="ghost"
                 size="sm"
-                className="h-7 w-7 rounded-full p-0 text-green-600 hover:bg-success/10 hover:text-green-700"
+                className="h-7 w-7 rounded-full p-0 text-success hover:bg-success/10"
                 disabled={!newSkill.trim() || disabled}
               >
                 <span className="sr-only">Add</span>
@@ -680,7 +678,7 @@ export function SkillInput({
                 type="button"
                 variant="ghost"
                 size="sm"
-                className="h-7 w-7 rounded-full p-0 text-gray-600 hover:bg-gray-50 hover:text-gray-700"
+                className="h-7 w-7 rounded-full p-0 text-muted-foreground hover:bg-muted/50"
                 onClick={() => {
                   setIsAddingSkill(false);
                   setNewSkill("");
@@ -699,7 +697,7 @@ export function SkillInput({
 
       {/* Helper text */}
       {skills.length >= maxSkills && (
-        <p className="text-xs text-amber-600">
+        <p className="text-xs text-warning-foreground">
           Maximum of {maxSkills} skills reached.
         </p>
       )}
@@ -707,7 +705,7 @@ export function SkillInput({
       {/* Suggested skills section */}
       {suggestedSkills.length > 0 && skills.length < maxSkills && (
         <div className="mt-4">
-          <p className="mb-2 text-sm font-medium text-gray-700">
+          <p className="mb-2 text-sm font-medium text-foreground">
             Suggested skills
           </p>
           <div className="flex flex-wrap gap-2">
@@ -723,7 +721,7 @@ export function SkillInput({
                 <Badge
                   key={index}
                   variant="outline"
-                  className="cursor-pointer hover:bg-info/10 hover:text-blue-700"
+                  className="cursor-pointer hover:bg-info/10 hover:text-info"
                   onClick={() => handleSelectSkill(skill)}
                 >
                   <Plus className="mr-1 h-3 w-3" />
