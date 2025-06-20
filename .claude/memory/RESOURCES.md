@@ -1,12 +1,12 @@
 # Dark Mode Removal - Resource Knowledge Map
 
 Generated: January 16, 2025
-Last Updated: January 22, 2025 - Added ATS Score and Application Tracking documentation
+Last Updated: January 23, 2025 - Added Auth Components and Resume Editor migration documentation
 Phase 1 Completed: January 16, 2025
 Phase 2 Completed: January 16, 2025
-Phase 3 Progress: 17/70 components documented
+Phase 3 Progress: 19/70 components documented
 Purpose: Central knowledge map for efficient task execution
-Total Files Cataloged: 38 (1 index + 9 research files + 4 specifications + 24 implementations)
+Total Files Cataloged: 40 (1 index + 9 research files + 4 specifications + 26 implementations)
 
 ## Quick Reference Guide
 
@@ -69,6 +69,8 @@ Total Files Cataloged: 38 (1 index + 9 research files + 4 specifications + 24 im
 - **Complex navigation patterns** → implementation/tabs-migration.md (3 variants, inverted pill pattern)
 - **Score-based status mapping** → implementation/ats-score-migration.md (Pattern 15 & 16 discovery)
 - **Pattern 5 enhancement example** → implementation/application-tracking-migration.md (8 usage contexts centralized)
+- **Security-critical components** → implementation/auth-components-migration.md (90% already semantic template)
+- **Complex component simplicity** → implementation/resume-editor-migration.md (architecture beats complexity)
 
 ## Complete File Inventory
 
@@ -125,6 +127,8 @@ Total Files Cataloged: 38 (1 index + 9 research files + 4 specifications + 24 im
 | tabs-migration.md | Tabs (HIGH RISK) | 1. Multi-variant migration<br>2. Inverted pill pattern<br>3. State-based styling<br>4. Pattern scalability proof | Pattern 1-3, 6, 11, animations | High - Navigation component template |
 | ats-score-migration.md | ATS Score component | 1. Pattern 15 & 16 discovery<br>2. Score-based status mapping<br>3. SVG currentColor technique<br>4. Severity level mapping | Pattern 15, 16 | High - Score visualization template |
 | application-tracking-migration.md | Application Tracking | 1. Pattern 5 enhancement<br>2. 8 usage contexts<br>3. Zero dark: classes<br>4. Local STATUS_COLORS removal | Pattern 5 perfect example | High - Complex enhancement template |
+| auth-components-migration.md | Auth Components | 1. Security-critical migration<br>2. 90% already semantic<br>3. Pattern 5 for error states<br>4. OAuth error alert migration | Pattern 1-3, 5, 16 | High - Security component template |
+| resume-editor-migration.md | Resume Editor | 1. Complex component simplicity<br>2. Navigation patterns reuse<br>3. Warning status for unsaved<br>4. Already optimized structure | Pattern 1-3, 5, 6, 11 | High - Complex component template |
 
 ### Test Results (.claude/memory/test-results/)
 | Subdirectory | Purpose | Status |
@@ -175,6 +179,8 @@ Total Files Cataloged: 38 (1 index + 9 research files + 4 specifications + 24 im
 - **Collapsible Animations**: accordion-discovery.md → Pattern 14 for all expandable components
 - **Score-Based Visualization**: ats-score-migration.md → Pattern 15 & 16 for all progress/score components
 - **Enhancement Strategy**: application-tracking-migration.md → Pattern 5 centralization for already-semantic components
+- **Security Component Pattern**: auth-components-migration.md → Template for security-critical UI with minimal migration needs
+- **Complex Component Architecture**: resume-editor-migration.md → Proves well-structured components migrate easily despite complexity
 
 ## Gap Analysis Report
 *Generated: January 16, 2025 during Task 0.7*
@@ -476,15 +482,15 @@ NICE-TO-HAVE gaps are documented for future consideration but do not impact impl
 - ✅ **Phase 0**: Research Complete (9 comprehensive files)
 - ✅ **Phase 1**: Specifications Complete (4 integrated specs)
 - ✅ **Phase 2**: Architecture Complete (3 implementations, foundation solid)
-- 🔄 **Phase 3**: Component Migration (15/70 components complete, 22 implementations documented)
+- 🔄 **Phase 3**: Component Migration (19/70 components complete, 26 implementations documented)
 - ⏳ **Phase 4**: Testing & Validation (Infrastructure ready, tests pending)
 - ⏳ **Phase 5**: Production Deployment (Monitoring patterns established)
 
 ### Phase 3 Progress Details
-- **Components Complete**: 17/70 (24%) - Status utility, Card, Badge, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Dialog, Popover, Tooltip, Accordion, Tabs, ATS Score, Application Tracking
+- **Components Complete**: 19/70 (27%) - Status utility, Card, Badge, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Dialog, Popover, Tooltip, Accordion, Tabs, ATS Score, Application Tracking, Auth Components, Resume Editor
 - **Bundle Reduction**: 233KB achieved on critical path (404KB → 171KB)
 - **Patterns Discovered**: 13 new patterns (16 total with 3 from specifications)
-- **Documentation**: 24 implementation files capturing learnings
-- **Next Priority**: Auth Components, Resume Editor, Job Match Panel
+- **Documentation**: 26 implementation files capturing learnings
+- **Next Priority**: Job Match Panel, Resume Section Editors
 
 **Phase 3 Status**: Foundation established, patterns proven, ready for acceleration.
