@@ -1101,7 +1101,7 @@ ls -lh .next/static/chunks/
 - [x] Resume editor controls migrated (rich-text-editor, skill-input, sortable-list migrated to semantic tokens - 40+ hardcoded colors replaced with semantic utilities including new skillLevelToStatus mapping)
 - [x] Resume section editors cleaned (education.tsx - bg-white → bg-surface migration completed, semantic token adoption verified)
 - [x] Cover letter editor components migrated (10 hardcoded colors → semantic tokens, Pattern 1-3 & 5 applied, status messages use centralized utilities)
-- [ ] UI dialog component cleaned
+- [x] UI dialog component cleaned (already 100% semantic - bg-background, text-muted-foreground, focus:ring-ring, data-state variants all use semantic tokens)
 - [ ] Analytics/application-tracking component migrated
 - [ ] No gray colors remaining
 - [ ] Functionality preserved
