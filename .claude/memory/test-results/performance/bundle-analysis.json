@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-06-21T12:24:29.649Z",
+  "bundleSizes": {
+    "routes": {
+      "/": {
+        "js": 234,
+        "firstLoad": 234
+      },
+      "/dashboard": {
+        "js": 189,
+        "firstLoad": 189
+      },
+      "/resume/[id]/edit": {
+        "js": 200,
+        "firstLoad": 200
+      },
+      "/resume/[id]/tailor": {
+        "js": 207,
+        "firstLoad": 207
+      },
+      "/login": {
+        "js": 191,
+        "firstLoad": 191
+      },
+      "/register": {
+        "js": 191,
+        "firstLoad": 191
+      }
+    },
+    "css": {
+      "total": 21.5,
+      "target": 50,
+      "status": "PASS"
+    },
+    "middleware": 85.8
+  },
+  "buildPerformance": {
+    "time": 3000,
+    "target": 1500,
+    "status": "FAIL"
+  },
+  "phase4Progress": {
+    "semanticTokens": 98,
+    "darkClasses": 0,
+    "bundleReduction": "404KB → 171KB"
+  }
+}

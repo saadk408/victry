@@ -2,7 +2,7 @@
 
 ## Your Mission
 
-Execute the remaining tasks documented in `docs/dark-mode-removal-comprehensive-implementation-plan.md` following the established project patterns and quality standards.
+Execute the remaining tasks documented in `docs/dark-mode-removal-comprehensive-implementation-plan.md` following the established project patterns and quality standards. Use subagents in parallel to read the entire file.
 
 **IMPORTANT**: This guide explains HOW to execute tasks. The actual task list with checkboxes is in the implementation plan.
 
@@ -19,7 +19,7 @@ Take a deep breath and take it one step at a time.
 For EACH task in the implementation plan:
 
 ### 1. Task Selection
-- Open `docs/dark-mode-removal-comprehensive-implementation-plan.md`
+- Use subagents in parallel to read the entire `docs/dark-mode-removal-comprehensive-implementation-plan.md`
 - Find the next unchecked task (look for `[ ]`)
 - Read the ENTIRE task description carefully
 - Note any referenced line numbers or specific requirements
